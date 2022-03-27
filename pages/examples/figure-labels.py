@@ -1,0 +1,55 @@
+from dash import Dash, dcc, html, Input, Output
+import plotly.graph_objects as go
+import plotly.express as px
+import dash_daq as daq
+
+app = Dash(__name__)
+
+
+picker_style = {"float": "left", "margin": "auto"}
+
+app.layout = html.Div(
+    [
+        html.H4("Interactive color picker with Dash"),
+        dcc.Graph(id="figure-labels-x-graph"),
+        daq.ColorPicker(
+            id="figure-labels-x-font",
+            label="Font Color",
+            size=150,
+            style=picker_style,
+            value=dict(hex="#119DFF"),
+        ),
+        daq.ColorPicker(
+            id="figure-labels-x-title",
+            label="Title Color",
+            size=150,
+            style=picker_style,
+            value=dict(hex="#F71016"),
+        ),
+    ]
+)
+
+
+@app.callback(
+    Output("figure-labels-x-graph", "figure"),
+    Input("figure-labels-x-font", "value"),
+    Input("figure-labels-x-title", "value"),
+)
+def update_bar_chart(font_color, title_color):
+    df = px.data.iris()  # replace with your own data source
+    fig = go.Figure(
+        px.scatter(
+            df,
+            x="sepal_length",
+            y="sepal_width",
+            height=350,
+            color="species",
+            title="Playing with Fonts",
+        )
+    )
+    fig.update_layout(font_color=font_color["hex"], title_font_color=title_color["hex"])
+    return fig
+
+
+if __name__ == "__main__":
+    app.run_server(debug=True)
