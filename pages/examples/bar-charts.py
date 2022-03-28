@@ -8,18 +8,18 @@ app.layout = html.Div(
     [
         html.H4("Restaurant tips by day of week"),
         dcc.Dropdown(
-            id="bar-chart-x-dropdown",
+            id="bar-charts-x-dropdown",
             options=["Fri", "Sat", "Sun"],
             value="Fri",
             clearable=False,
         ),
-        dcc.Graph(id="bar-chart-x-graph"),
+        dcc.Graph(id="bar-charts-x-graph"),
     ]
 )
 
 
 @app.callback(
-    Output("bar-chart-x-graph", "figure"), Input("bar-chart-x-dropdown", "value")
+    Output("bar-charts-x-graph", "figure"), Input("bar-charts-x-dropdown", "value")
 )
 def update_bar_chart(day):
     df = px.data.tips()  # replace with your own data source

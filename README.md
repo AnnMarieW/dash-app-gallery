@@ -2,7 +2,7 @@
 
 This app creates gallery of example apps using `pages/` the Multi-page app plug-in from dash-labs.  
 
-For more information on `paages/` see the forum post https://community.plotly.com/t/introducing-dash-pages-a-dash-2-x-feature-preview
+For more information on `pages/` see the forum post https://community.plotly.com/t/introducing-dash-pages-a-dash-2-x-feature-preview
 Or the live demo : https://dashlabs.pythonanywhere.com/
 
 ## Running the app
@@ -98,8 +98,8 @@ def layout():
 
 ### App frame:  `app.py`
 
-The app.py file defines the "app frame".  Here you can define the the parts of the app
-that remain constant across all pages, such as the header, footer, main naviation,  `dcc.Store`
+The app.py file defines the "app frame".  Here you can define the parts of the app
+that remain constant across all pages, such as the header, footer, main navigation,  `dcc.Store`
 components etc. 
 
 ### App Gallery Home page
@@ -121,6 +121,24 @@ used to select apps in dropdowns or search fields.  See an example of this in th
 Once you select an app, it will show the app and/or the code
 
 The layout for the app is defined in the `example_app()` function which you can find in `utils/code_and_show.py`.
+
+Use it to create the layout, for example:
+
+```python
+# default side by side layout
+code_n_show =  example_app(f"pages/examples/colorscales.py")
+
+# define a function to display a custom layout (see more info below:
+code_n_show =  example_app(f"pages/examples/colorscales.py", make_layout=my_custom_layout_function)
+
+code_only = example_app(f"pages/examples/colorscales.py", run=False)
+
+app_only = example_app(f"pages/examples/colorscales.py", show_code=False)
+
+
+```
+
+Here is more info on `example_app()`
 
 ```
 def example_app(filename, make_layout=None, run=True, show_code=True):

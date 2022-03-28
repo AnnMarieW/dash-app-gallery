@@ -37,7 +37,7 @@ def example_app(filename, make_layout=None, run=True, show_code=True):
 
     run_app = _run_code(code) if run else ""
 
-    code = _remove_prefix(code)
+    code = _remove_prefix(page, code)
     code = code if show_code else ""
 
     if make_layout is not None:
@@ -157,7 +157,7 @@ class RemoveAppAssignment(ast.NodeTransformer):
         return node
 
 
-def _remove_prefix(code):
+def _remove_prefix(page, code):
     """
     Dash requires all ids to be unique, so for multi-page apps it's common to add a prefix to the id.
     The convention for ids in this app is to use the module name followed by "-x-" then the simple id name.
@@ -165,4 +165,5 @@ def _remove_prefix(code):
 
     For example `id="module_name-x-button"` will display as `id="button"`
     """
-    return re.sub(r"([\'\"])((.*?)(-x-))", r"\1", code)
+    prefix = page.split(".")[-1] + "-x-"
+    return code.replace(prefix, "")

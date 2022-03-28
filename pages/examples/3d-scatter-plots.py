@@ -6,10 +6,10 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H4("Iris samples filtered by petal width"),
-        dcc.Graph(id="3d-scatter-plot-x-graph"),
+        dcc.Graph(id="3d-scatter-plots-x-graph"),
         html.P("Petal Width:"),
         dcc.RangeSlider(
-            id="3d-scatter-plot-x-range-slider",
+            id="3d-scatter-plots-x-range-slider",
             min=0,
             max=2.5,
             step=0.1,
@@ -21,8 +21,8 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output("3d-scatter-plot-x-graph", "figure"),
-    Input("3d-scatter-plot-x-range-slider", "value"),
+    Output("3d-scatter-plots-x-graph", "figure"),
+    Input("3d-scatter-plots-x-range-slider", "value"),
 )
 def update_bar_chart(slider_range):
     df = px.data.iris()  # replace with your own data source
