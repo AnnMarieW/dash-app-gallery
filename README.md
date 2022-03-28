@@ -11,7 +11,7 @@ After cloning the repo, run `app.py`
 
 
 
-## Creating Examples
+## Adding Examples
 
 ### Example app source code
 
@@ -74,7 +74,7 @@ def rotate_figure(n_clicks):
 
 For pages/box-plots.py we  would add `box-plots-x-` in front of every id. 
 
-## Code and Show
+## Registering the page and creating the page layout
 
 Each page of the multi-page app is defined by a file in the root of the `pages/` folder
 
@@ -94,14 +94,39 @@ def layout():
 
 ```
 
-### Creating the code and show layout with example_app()
-The layout for the app is defined in the `example_app()` function in the `utils/code_and_show/` folder
+## Changing the app design
+
+### App frame:  `app.py`
+
+The app.py file defines the "app frame".  Here you can define the the parts of the app
+that remain constant across all pages, such as the header, footer, main naviation,  `dcc.Store`
+components etc. 
+
+### App Gallery Home page
+
+The home page is a grid of cards with a preview of each example app.  You can see two sample designs in
+- `pages/home`  - grid only
+- `pages/home-search` - grid with some dropdowns to select apps by category
+
+To select apps by category, extra data can be added to `dash.page_registry` for each app. This can be
+used to select apps in dropdowns or search fields.  See an example of this in the following files:
+- `pages/3d-scatter-plots.py`
+- `pages/exmaples3d-scatter-plots.py`
+- `pages/home-search.py`
+
+![image](https://user-images.githubusercontent.com/72614349/160307582-feaf3568-30a1-47f5-a464-5f9886b0d0ca.png)
+
+### Code and Show pages
+
+Once you select an app, it will show the app and/or the code
+
+The layout for the app is defined in the `example_app()` function which you can find in `utils/code_and_show.py`.
 
 ```
 def example_app(filename, make_layout=None, run=True, show_code=True):
 ```
     
-Creates the "code and show layout for an example dash app.
+Creates the "code and show" layout for an example dash app.
 
 - `filename`:
    The path to the file with the sample app code.  
@@ -119,6 +144,10 @@ Creates the "code and show layout for an example dash app.
     
 - `show_code`:
     bool (default: True) Whether to show the code   
+
+
+![image](https://user-images.githubusercontent.com/72614349/160307783-af71ae67-4672-4ee8-a0d2-e06d9dd71510.png)
+
 
 ### Create custom code and show layouts
 
@@ -156,13 +185,3 @@ def make_app_first(code, show_app):
 
 ```
 
-
-
-## App Gallery Home Page
-
-The home page has a grid of cards with a preview of the apps.  This can be customized by using information about each app
-included in `dash.page_registry`  Extra data can be added to `dash.page_registry` and used to categorize, sort, filter etc
-the apps.  See an example of this in the files:
-- `pages/3d-scatter-plots.py`
-- `pages/exmaples3d-scatter-plots.py`
-- `pages/home-search.py`
