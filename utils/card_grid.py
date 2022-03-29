@@ -1,12 +1,10 @@
 import dash
-from dash import html, dcc, callback, Output, Input
+from dash import html
 import uuid
 import random
 import dash_bootstrap_components as dbc
 
 rd = random.Random(0)
-
-dash.register_page(__name__, description="Sample Dash Apps", path="/")
 
 
 def make_card(page):
@@ -53,36 +51,3 @@ def make_card_grid(cards_per_row=3, registry=None):
                 row = []
     grid.append(dbc.CardGroup(row))
     return grid
-
-
-def layout():
-    return html.Div(
-        [
-            "Select Callback Structure:",
-            dcc.Dropdown(
-                ["All", "1 Output 1 Input", "1 Output 2 Input"],
-                "All",
-                id="home-search-x-dd",
-                className="mb-4",
-                persistence=True,
-            ),
-            "Select Graph Type:",
-            dcc.Dropdown(["All", "To Do"], "All", className="mb-4"),
-            html.Div(id="home-search-x-grid"),
-        ]
-    )
-
-
-@callback(
-    Output("home-search-x-grid", "children"),
-    Input("home-search-x-dd", "value"),
-)
-def update(value):
-    if value == "All":
-        registry = dash.page_registry.values()
-    else:
-        registry = [
-            p for p in dash.page_registry.values() if p.get("callback_dd") == value
-        ]
-
-    return make_card_grid(registry=registry)

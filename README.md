@@ -114,7 +114,7 @@ used to select apps in dropdowns or search fields.  See an example of this in th
 - `pages/exmaples3d-scatter-plots.py`
 - `pages/home-search.py`
 
-![image](https://user-images.githubusercontent.com/72614349/160307582-feaf3568-30a1-47f5-a464-5f9886b0d0ca.png)
+![image](https://user-images.githubusercontent.com/72614349/160702790-fa1bf95a-abc8-43cd-88aa-a7a7eef65fcf.png)
 
 ### Code and Show pages
 
@@ -163,8 +163,7 @@ Creates the "code and show" layout for an example dash app.
 - `show_code`:
     bool (default: True) Whether to show the code   
 
-
-![image](https://user-images.githubusercontent.com/72614349/160307783-af71ae67-4672-4ee8-a0d2-e06d9dd71510.png)
+![image](https://user-images.githubusercontent.com/72614349/160705938-da83452b-dce2-4236-a658-2e6fcbf8b451.png)
 
 
 ### Create custom code and show layouts

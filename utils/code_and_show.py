@@ -82,7 +82,7 @@ def make_side_by_side(code, show_app):
             else None,
             dbc.Col(
                 dbc.Card(
-                    [code_card], style={"max-height": "500px", "overflow": "auto"}
+                    [code_card], style={"max-height": "800px", "overflow": "auto"}
                 ),
                 width=12,
                 lg=6,
@@ -111,7 +111,7 @@ def make_app_first(code, show_app):
             if show_app
             else None,
             dbc.Col(
-                dbc.Card([code], style={"max-height": "500px", "overflow": "auto"}),
+                dbc.Card([code], style={"max-height": "600px", "overflow": "auto"}),
                 width=12,
             )
             if code
@@ -122,13 +122,6 @@ def make_app_first(code, show_app):
 
 def _run_code(code):
     scope = {"callback": callback}
-
-    # remove if __name__ == "__main": from the view
-    code = code.replace(
-        """if __name__ == "__main__":
-       app.run_server(debug=True)""",
-        "app.run_server(debug=True)",
-    )
 
     if "app.layout" in code:
         code = code.replace("app.layout", "layout")

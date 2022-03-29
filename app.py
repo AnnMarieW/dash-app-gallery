@@ -1,13 +1,9 @@
-import uuid
-import random
 import dash
-from dash import Dash, html, dcc
+from dash import Dash, html
 import dash_bootstrap_components as dbc
 import dash_labs as dl
 
-rd = random.Random(0)
-
-# syntax highlighting
+# syntax highlighting light or dark
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
 dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-dark.min.css"
 
@@ -18,67 +14,38 @@ app = Dash(
     suppress_callback_exceptions=True,
 )
 
-topbar = html.H2(
-    "Dash App Gallery",
-    className="p-4 bg-primary text-white ",
-)
 
-
-def make_navlink_with_tooltip(page):
-    tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
-    return html.Div(
-        [
-            dbc.NavLink(
+navbar = dbc.NavbarSimple(
+    [
+        dbc.Button("Overview", href="/"),
+        dbc.DropdownMenu(
+            html.Div(
                 [
-                    html.Div(page["name"], className="ms-2"),
+                    dbc.DropdownMenuItem(page["title"], href=page["path"])
+                    for page in dash.page_registry.values()
                 ],
-                href=page["path"],
-                active="exact",
-                id=tooltip_id,
+                style={"height": 600, "overflow": "scroll"},
             ),
-            dbc.Tooltip(page["description"], target=tooltip_id, placement="top"),
-        ]
-    )
-
-
-sidebar = dbc.Card(
-    [
-        dbc.NavLink(
-            [
-                html.Div("Home", className="ms-2"),
-            ],
-            href="/",
-            active="exact",
-        ),
-        html.H6("Sample Apps", className="mt-2"),
-        dbc.Nav(
-            [
-                make_navlink_with_tooltip(page)
-                for page in dash.page_registry.values()
-                if page["path"] != "/"
-            ],
-            vertical=True,
-            pills=True,
+            nav=True,
+            label="Select App",
         ),
     ],
-    className="overflow-auto sticky-top",
-    style={"maxHeight": 600},
+    brand="Dash App Gallery",
+    color="primary",
+    dark=True,
+    fixed="top",
+    className="mb-2",
 )
 
-app.layout = dbc.Container(
+
+app.layout = html.Div(
     [
-        dbc.Row(
-            [
-                topbar,
-                dbc.Col(sidebar, width=3, lg=2),
-                dbc.Col(dl.plugins.page_container, width=8, lg=10),
-            ]
+        navbar,
+        dbc.Container(
+            dl.plugins.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
-    ],
-    fluid=True,
+    ]
 )
-
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-
