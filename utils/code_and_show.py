@@ -128,6 +128,10 @@ def _run_code(code):
     if "app.callback" in code:
         code = code.replace("app.callback", "callback")
 
+    # todo use regular expressions to remove the entire line with app.server
+    if "app.server" in code:
+        code = code.replace("server = app.server", "")
+
     if "layout" in code:
         # Remove the app instance in the code block otherwise app.callbacks don't work
         tree = ast.parse(code)
