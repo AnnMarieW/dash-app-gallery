@@ -14,7 +14,7 @@ dash.register_page(
 
 filename = __name__.split("pages.")[1]
 
-# make a mini layout with the links
+# make a mini layout with the links to the docs that would go under each app
 # links = html.Div([])
 
 def layout():
