@@ -1,6 +1,5 @@
 import plotly.express as px
-from dash import Dash, dcc, html
-from dash import Output, Input
+from dash import Dash, dcc, html, Output, Input
 from plotly import data
 
 # Data
