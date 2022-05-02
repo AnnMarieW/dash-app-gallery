@@ -11,14 +11,24 @@ app.layout = html.Div([
     
     daq.LEDDisplay(
         id='stopwatch-y',
-        label="Default",
+        label="Stopwatch",
         value=6
     ),
-    dcc.Input(
-        id="stopwatch-input",
-        type="number",
-        placeholder="input type integer",
+ 
+    html.Center( 
+        [
+            html.Header("Enter seconds"),
+            dcc.Input(
+            id="stopwatch-input",
+            type="number",
+            placeholder="enter number of seconds here",
+            )
+        ]
         ),
+   
+    dcc.Interval(id='trigger-while-button-on',
+                 interval=1*1000,
+                 n_intervals=0),
     daq.PowerButton(
         id='stopwatch-start',
         on=False,
@@ -26,37 +36,25 @@ app.layout = html.Div([
         theme ="dark"
     ),
 
-    # dcc.Slider(
-    #     id='stopwatch-x',
-    #     min=0,
-    #     max=10,
-    #     step=1,
-    #     value=5
-    # ),
 ])
+
 
 @app.callback(
     Output('stopwatch-y', 'value'),
+    Input('trigger-while-button-on', 'n_intervals'),
     Input('stopwatch-input', 'value'),
-    Input("stopwatch-start", 'value')
+    Input("stopwatch-start", 'on'),
+    Input('stopwatch-y', 'value'),
 )
-def update_output(value, start_watch):
-    value = int(value)
-    if start_watch:
-        while value > 0 : 
-            value-= 1 
-            time.sleep(100)
-            return str(value)
-           
-        
-    return str(value)
-
-# @app.callback(
-#     Output('stopwatch-y', 'value'),
-#     Input('stopwatch-start', 'value')
-# )
-# def update_time(value):
-#     return str(value)
+def update_output(n, input_value, start_watch, led_value):
+    
+    if input_value != None and start_watch == False: 
+        return int(input_value)
+    if n > 0 and start_watch == True:
+        if led_value > 0:
+            led_value -= 1
+            return led_value
+    return led_value
 
 if __name__ == '__main__':
     app.run_server(debug=True)
