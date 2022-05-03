@@ -23,7 +23,7 @@ app.layout = html.Div([
         ]
         ),
    
-    dcc.Interval(id='trigger-while-button-on',
+    dcc.Interval(id='stopwatch-x-trigger-while-button-on',
                  interval=1*1000,
                  n_intervals=0),
     daq.PowerButton(
