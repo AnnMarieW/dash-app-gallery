@@ -58,13 +58,13 @@ app.layout = dbc.Container(
     Output("poisson-distribution-x-histogram", "figure"),
     Input("poisson-distribution-x-lambda", "value")
 )
-
 def graph_histogram(lambda_value):
-
-    s = np.random.poisson(int(lambda_value), 10000)
-    fig = px.histogram(x=s, nbins=24, histnorm='probability')
-
-    return fig
+    if lambda_value:
+        s = np.random.poisson(int(lambda_value), 10000)
+        fig = px.histogram(x=s, nbins=24, histnorm='probability')
+        return fig
+    else:
+        return dash.no_update
 
 # Run the app
 if __name__ == "__main__":
