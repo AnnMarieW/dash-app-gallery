@@ -27,7 +27,7 @@ app.layout = html.Div([
                  interval=1*1000,
                  n_intervals=0),
     daq.PowerButton(
-        id='stopwatch-start',
+        id='stopwatch-x-start',
         on=False,
         color='#FF5E5E',
         theme ="dark"
