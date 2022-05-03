@@ -1,11 +1,8 @@
-import dash
-from dash.dependencies import Input, Output
+from dash import Dash, dcc, html, Input, Output
 import dash_daq as daq
-import dash_core_components as dcc
-import dash_html_components as html
-import time 
+import time
 
-app = dash.Dash(__name__)
+app = Dash(__name__)
 
 app.layout = html.Div([
     
