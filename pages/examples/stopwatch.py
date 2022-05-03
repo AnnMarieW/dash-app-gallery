@@ -16,7 +16,7 @@ app.layout = html.Div([
         [
             html.Header("Enter seconds"),
             dcc.Input(
-            id="stopwatch-input",
+            id="stopwatch-x-myinput",
             type="number",
             placeholder="enter number of seconds here",
             )
