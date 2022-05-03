@@ -37,11 +37,11 @@ app.layout = html.Div([
 
 
 @app.callback(
-    Output('stopwatch-y', 'value'),
-    Input('trigger-while-button-on', 'n_intervals'),
-    Input('stopwatch-input', 'value'),
-    Input("stopwatch-start", 'on'),
-    Input('stopwatch-y', 'value'),
+    Output('stopwatch-x-y', 'value'),
+    Input('stopwatch-x-trigger-while-button-on', 'n_intervals'),
+    Input('stopwatch-x-myinput', 'value'),
+    Input("stopwatch-x-start", 'on'),
+    Input('stopwatch-x-y', 'value'),
 )
 def update_output(n, input_value, start_watch, led_value):
     
