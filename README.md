@@ -21,10 +21,10 @@ To add apps to the gallery, place dash example apps in the `pages/examples/` fol
 
 Add an image of the app in the `assets/` folder.  Make the image filename the same name as the source
 code filename.  For example, if the file name is `3d-scatter-plots.py`, then the image filename
-should be `3d-scatter-plots.pgn`  (or whatever image file extension you are using)
+should be `3d-scatter-plots.png`  (or whatever image file extension you are using)
 
 The `pages/` plugin will automatically use this image to create the meta tags.  This image will also be used in the 
-card grid on the home page.  If no image is provided, then it will default to  `app.pgn` .
+card grid on the home page.  If no image is provided, then it will default to  `app.png` .
 
 ### Unique IDs
 If you are creating/adjusting examples, you need to make sure that every id is unique otherwise the callbacks will not work.
