@@ -7,7 +7,7 @@ app = Dash(__name__)
 app.layout = html.Div([
     
     daq.LEDDisplay(
-        id='stopwatch-y',
+        id='stopwatch-x-y',
         label="Stopwatch",
         value=6
     ),
