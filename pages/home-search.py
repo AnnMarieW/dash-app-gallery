@@ -62,12 +62,13 @@ def layout():
             dcc.Dropdown(
                 ["All", "1 Output 1 Input", "1 Output 2 Input"],
                 "All",
+                clearable=False,
                 id="home-search-x-dd",
                 className="mb-4",
                 persistence=True,
             ),
             "Select Graph Type:",
-            dcc.Dropdown(["All", "To Do"], "All", className="mb-4"),
+            dcc.Dropdown(["All", "To Do"], "All", clearable=False, className="mb-4"),
             html.Div(id="home-search-x-grid"),
         ]
     )

@@ -11,14 +11,7 @@ def make_card(page):
     tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
     return dbc.Card(
         [
-            dbc.CardHeader(
-                [
-                    dbc.NavLink(
-                        page["title"],
-                        href=page["path"],
-                    ),
-                ]
-            ),
+            dbc.CardHeader([dbc.NavLink(page["title"], href=page["path"],),]),
             dbc.CardBody(
                 [
                     html.A(
@@ -26,10 +19,7 @@ def make_card(page):
                         href=page["path"],
                         id=tooltip_id,
                     ),
-                    html.P(
-                        page["description"],
-                        className="card-text",
-                    ),
+                    html.P(page["description"], className="card-text",),
                 ]
             ),
             dbc.Tooltip(page["description"], target=tooltip_id),

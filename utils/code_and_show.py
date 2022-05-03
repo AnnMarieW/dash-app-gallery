@@ -66,10 +66,7 @@ def make_side_by_side(code, show_app):
     code_card = html.Div(
         [
             dcc.Markdown(f"```python\n{code}```\n"),
-            dcc.Clipboard(
-                target_id=f"{clipboard_id}",
-                style=clipboard_style,
-            ),
+            dcc.Clipboard(target_id=f"{clipboard_id}", style=clipboard_style,),
         ],
         id=f"{clipboard_id}",
         style={"position": "relative"},
@@ -104,14 +101,14 @@ def make_app_first(code, show_app):
     to the `make_layout` attribute in example_app()   e.g.:
     `example_app("pathto/my_filename.py", make_layout=make_app_first)`
     """
-    code = dcc.Markdown(f"```python\n{code}```\n")
+    md_code = dcc.Markdown(f"```python\n{code}```\n")
     return dbc.Row(
         [
             dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12)
             if show_app
             else None,
             dbc.Col(
-                dbc.Card([code], style={"max-height": "600px", "overflow": "auto"}),
+                dbc.Card([md_code], style={"max-height": "600px", "overflow": "auto"}),
                 width=12,
             )
             if code
