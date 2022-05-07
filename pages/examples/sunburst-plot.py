@@ -1,12 +1,15 @@
-import dash
-from dash import Dash, Input, Output, State, html, dcc
+from dash import Dash, Input, Output, State, html, dcc, no_update
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
 
 df = px.data.gapminder().query("year >= 1992")
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], prevent_initial_callbacks=True)
+app = Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    prevent_initial_callbacks=True,
+)
 
 app.layout = dbc.Container(
     dbc.Row(
@@ -14,21 +17,16 @@ app.layout = dbc.Container(
             dbc.Col(
                 [
                     html.Label("Select year:"),
-                    dcc.Dropdown(
-                        id="sunburst-plot-x-year",
-                        options=df.year.unique()
-                    ),
+                    dcc.Dropdown(id="sunburst-plot-x-year", options=df.year.unique()),
                     html.Label("Select continent:"),
                     dcc.Dropdown(id="sunburst-plot-x-continent", multi=True),
                     html.Label("Select country:"),
-                    dcc.Dropdown(id="sunburst-plot-x-country", multi=True)
+                    dcc.Dropdown(id="sunburst-plot-x-country", multi=True),
                 ],
                 width=3,
             ),
             dbc.Col(
-                [
-                    dcc.Graph(id="sunburst-plot-x-graph")
-                ],
+                [dcc.Graph(id="sunburst-plot-x-graph")],
                 width=9,
             ),
         ]
@@ -64,16 +62,16 @@ def chained_dropdown_2(continent, year):
 @app.callback(
     Output("sunburst-plot-x-graph", "figure"),
     Input("sunburst-plot-x-country", "value"),
-    State("sunburst-plot-x-year", "value"),
-    State("sunburst-plot-x-continent", "value"),
+    Input("sunburst-plot-x-year", "value"),
+    Input("sunburst-plot-x-continent", "value"),
 )
 def generate_graph(country, year, continent):
-    if country is None:
-        return {}
-    elif len(country)==0:
-        return {}
+    if not all([country, year, continent]):
+        return no_update
     else:
-        dff = df.query(f"year == {year} & continent in {continent} & country in {country}")
+        dff = df.query(
+            f"year == {year} & continent in {continent} & country in {country}"
+        )
 
         fig = px.sunburst(
             dff,
