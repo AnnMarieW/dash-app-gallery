@@ -68,7 +68,9 @@ def chained_dropdown_2(continent, year):
     State("sunburst-plot-x-continent", "value"),
 )
 def generate_graph(country, year, continent):
-    if len(country)==0:
+    if country is None:
+        return {}
+    elif len(country)==0:
         return {}
     else:
         dff = df.query(f"year == {year} & continent in {continent} & country in {country}")
