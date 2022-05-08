@@ -57,7 +57,7 @@ app.layout = dbc.Container(
                             ],
                         )
                     ],
-                    style={"width": "100%", "overflow": "auto"},
+                    style={"width": "100%"},
                 )
             )
         ),
