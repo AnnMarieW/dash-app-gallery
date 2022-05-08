@@ -17,7 +17,7 @@ app = Dash(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", href="/"),
+        dbc.Button("Overview", href="/", color="secondary"),
         dbc.DropdownMenu(
             html.Div(
                 [
