@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, dash_table, Output, Input
+from dash import Dash, html, dcc, dash_table, Output, Input, no_update
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
@@ -71,6 +71,8 @@ app.layout = dbc.Container(
     prevent_initial_call=True,
 )
 def update_graph(data):
+    if len(data) == 0:
+        return 2 * [no_update]
     _df = pd.DataFrame(data)
     fig1 = px.bar_polar(_df, r="RATIO", hover_name="GAME")
     fig2 = px.bar_polar(_df, r="COMP %", hover_name="GAME")
