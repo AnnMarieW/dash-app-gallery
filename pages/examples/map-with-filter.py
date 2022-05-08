@@ -124,7 +124,7 @@ def update_map(value, _id):
                 **room,
                 **dict(
                     tooltip=" | ".join(
-                        f"$ {room[i]:}" if i == "price" else str(room[i])
+                        f"${room[i]}" if i == "price" else str(room[i])
                         for i in ["name", "host_name", "room_type", "price"]
                     )
                 ),
