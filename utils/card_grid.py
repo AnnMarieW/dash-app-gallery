@@ -11,19 +11,34 @@ def make_card(page):
     tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
     return dbc.Card(
         [
-            dbc.CardHeader([dbc.NavLink(page["title"], href=page["path"],),]),
+            dbc.CardHeader(
+                [
+                    dbc.NavLink(
+                        page["title"],
+                        href=page["path"],
+                    ),
+                ]
+            ),
             dbc.CardBody(
                 [
                     html.A(
-                        html.Img(src=dash.get_asset_url(page["image"]), height=200),
+                        html.Div(
+                            html.Img(
+                                src=dash.get_asset_url(page["image"]),
+                                className="img-fluid",
+                            ),
+                        ),
                         href=page["path"],
                         id=tooltip_id,
                     ),
-                    html.P(page["description"], className="card-text",),
+                    html.P(
+                        page["description"],
+                        className="card-text",
+                    ),
                 ]
             ),
             dbc.Tooltip(page["description"], target=tooltip_id),
-        ]
+        ],
     )
 
 

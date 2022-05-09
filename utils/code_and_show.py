@@ -66,7 +66,10 @@ def make_side_by_side(code, show_app):
     code_card = html.Div(
         [
             dcc.Markdown(f"```python\n{code}```\n"),
-            dcc.Clipboard(target_id=f"{clipboard_id}", style=clipboard_style,),
+            dcc.Clipboard(
+                target_id=f"{clipboard_id}",
+                style=clipboard_style,
+            ),
         ],
         id=f"{clipboard_id}",
         style={"position": "relative"},

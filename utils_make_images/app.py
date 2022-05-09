@@ -14,7 +14,9 @@ example_apps = get_example_app_names()
 
 
 app = dash.Dash(
-    __name__, plugins=[dl.plugins.pages], external_stylesheets=[dbc.themes.SPACELAB],
+    __name__,
+    plugins=[dl.plugins.pages],
+    external_stylesheets=[dbc.themes.SPACELAB],
 )
 
 for page in example_apps:
@@ -30,4 +32,4 @@ app.layout = dbc.Container(dl.plugins.page_container, fluid=True, className="mt-
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)

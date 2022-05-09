@@ -8,7 +8,7 @@ app.layout = html.Div(
     [
         html.H4("Analysis of the restaurant's revenue"),
         html.P("Select sepal length:"),
-        dcc.Slider( id="slider-plots-x-sepal-length", min=5, max=8, value=5.1),
+        dcc.Slider(id="slider-plots-x-sepal-length", min=5, max=8, value=5.1),
         dcc.Graph(id="slider-plots-x-graph"),
     ]
 )
