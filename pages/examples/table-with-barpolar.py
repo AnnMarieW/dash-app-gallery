@@ -68,6 +68,10 @@ app.layout = dbc.Container(
                                     "selector": ".dash-cell",
                                     "rule": "background: seagreen;",
                                 },
+                                {
+                                    "selector": ".focused",
+                                    "rule": "background: rgba(55, 55, 55, 0.5) !important;",
+                                },
                                 {"selector": ".show-hide", "rule": "display: none"},
                             ],
                         )
