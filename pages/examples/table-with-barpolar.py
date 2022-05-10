@@ -54,6 +54,7 @@ app.layout = dbc.Container(
                                     "selector": "table",
                                     "rule": "--hover: tomato;",
                                 },
+                                {"selector": ".show-hide", "rule": "display: none"},
                             ],
                         )
                     ],
