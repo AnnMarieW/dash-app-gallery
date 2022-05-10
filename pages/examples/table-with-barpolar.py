@@ -7,14 +7,24 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/IcToxi/datasets/main/Gamepass_Games_v1.csv"
 )
 
+fig = px.line()
+fig.update_layout(plot_bgcolor="#222", paper_bgcolor="#222")
+fig.update_xaxes(showgrid=False, showticklabels=False, showline=False)
+fig.update_yaxes(showgrid=False, showticklabels=False, showline=False)
+
+
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc.icons.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
         dbc.Row(
             [
-                dbc.Col(fig_1 := dcc.Graph(config=dict(displayModeBar=False))),
-                dbc.Col(fig_2 := dcc.Graph(config=dict(displayModeBar=False))),
+                dbc.Col(
+                    fig_1 := dcc.Graph(figure=fig, config=dict(displayModeBar=False))
+                ),
+                dbc.Col(
+                    fig_2 := dcc.Graph(figure=fig, config=dict(displayModeBar=False))
+                ),
             ]
         ),
         dbc.Row(
@@ -107,11 +117,8 @@ def update_graph(data):
             polar_radialaxis_gridcolor="#222",
             polar_angularaxis_gridcolor="#222",
             polar=dict(
-                radialaxis=dict(
-                    showticklabels=False,
-                    ticks="",
-                ),
-                angularaxis=dict(showticklabels=False, ticks="", linecolor="#222"),
+                radialaxis=dict(showticklabels=False),
+                angularaxis=dict(showticklabels=False, linewidth=0),
             ),
         )
         fig.update_polars(radialaxis_showline=False, bgcolor="#222", hole=0.8)
