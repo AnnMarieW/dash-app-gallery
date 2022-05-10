@@ -25,8 +25,8 @@ app.layout = dbc.Container(
                             df.to_dict("records"),
                             [{"name": i, "id": i} for i in df.columns],
                             style_header={"backgroundColor": "black"},
-                            style_data={"background": "#00000000"},
-                            style_filter={"background": "DimGray"},
+                            style_data={"background": "transparent"},
+                            style_filter={"background": "dimgray"},
                             style_cell={
                                 "textAlign": "center",
                                 "overflow": "hidden",
@@ -54,6 +54,10 @@ app.layout = dbc.Container(
                                     "selector": "table",
                                     "rule": "--hover: tomato;",
                                 },
+                                {
+                                    "selector": ".dash-cell",
+                                    "rule": "background: seagreen;",
+                                },
                                 {"selector": ".show-hide", "rule": "display: none"},
                             ],
                         )
@@ -67,7 +71,7 @@ app.layout = dbc.Container(
 )
 
 app.clientside_callback(
-    f"(href => window.innerWidth < 750 ? {[i for i in df.columns if i not in ['GAME','RATIO','COMP %']]} : [])",
+    f"(href => window.innerWidth < 750 ? {[i for i in df.columns if i not in ['GAME','RATIO','COMP %']]} : null)",
     Output(table, "hidden_columns"),
     Input("table-with-barplot-x-loc", "href"),
 )
