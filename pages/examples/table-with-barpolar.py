@@ -51,7 +51,7 @@ app.layout = dbc.Container(
                                     "rule": "background: #222; text-align: center;",
                                 },
                                 {
-                                    "selector": ".dash-spreadsheet-container",
+                                    "selector": "table",
                                     "rule": "--hover: tomato;",
                                 },
                             ],
@@ -61,7 +61,14 @@ app.layout = dbc.Container(
                 )
             )
         ),
+        dcc.Location(id="table-with-barplot-x-loc"),
     ]
+)
+
+app.clientside_callback(
+    f"(href => window.innerWidth < 750 ? {[i for i in df.columns if i not in ['GAME','RATIO','COMP %']]} : [])",
+    Output(table, "hidden_columns"),
+    Input("table-with-barplot-x-loc", "href"),
 )
 
 
@@ -83,7 +90,7 @@ def update_graph(data):
                 "text": f"{_df['COMP %'].mean():.2f}%"
                 if _
                 else f"{_df['RATIO'].mean():.2f}",
-                "y": 0.5,
+                "y": 0.48,
                 "x": 0.5,
                 "xanchor": "center",
                 "yanchor": "bottom",
