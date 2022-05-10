@@ -9,6 +9,8 @@ import ast
 from dash import html, dcc, callback
 import dash_bootstrap_components as dbc
 
+from utils.search_code import sourcecode
+
 rd = random.Random(0)
 
 
@@ -31,13 +33,13 @@ def example_app(filename, make_layout=None, run=True, show_code=True):
         bool (default: True) Whether to show the code
 
     """
-    page = filename.replace(".py", "").replace("\\", "/").replace("/", ".")
-    module = import_module(page)
-    code = getsource(module)
+
+    code = sourcecode[filename]
 
     run_app = _run_code(code) if run else ""
 
-    code = _remove_prefix(page, code)
+    # Removes the id prefix
+    code = code.replace(filename + "-x-", "")
     code = code if show_code else ""
 
     if make_layout is not None:

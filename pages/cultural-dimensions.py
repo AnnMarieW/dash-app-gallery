@@ -18,4 +18,4 @@ filename = __name__.split("pages.")[1]
 # links = html.Div([])
 
 def layout():
-    return example_app(f"pages/examples/{filename}.py")
+    return example_app(filename)

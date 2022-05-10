@@ -4,7 +4,6 @@ from dash import html, dcc
 from utils.code_and_show import example_app
 
 
-
 dash.register_page(
     __name__,
     description = "This app plots a Poisson distribution on a histogram, which contains a formula with MathJax.",
@@ -50,7 +49,7 @@ This example app was contributed by [name](link)
 def layout():
     return html.Div(
         [
-            example_app(f"pages/examples/{filename}.py"),
+            example_app(filename),
             dcc.Markdown(notes, className="m-4")
         ]
     )
