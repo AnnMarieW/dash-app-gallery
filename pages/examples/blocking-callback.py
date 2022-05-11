@@ -22,7 +22,7 @@ fig.update_yaxes(showgrid=False, showticklabels=False, showline=False)
 app = DashProxy(
     __name__,
     transforms=[BlockingCallbackTransform(timeout=10)],
-    external_stylesheets=[dbc.themes.DARKLY, dbc.icons.BOOTSTRAP],
+    external_stylesheets=[dbc.themes.DARKLY],
 )
 
 app.layout = dbc.Container(
@@ -37,14 +37,14 @@ app.layout = dbc.Container(
                 ),
             ]
         ),
-        dcc.Interval(id="table-with-barplot-x-interval", n_intervals=0),
+        dcc.Interval(id="blocking-callback-x-interval", n_intervals=0),
     ]
 )
 
 
 @app.callback(
     [Output(fig_1, "figure"), Output(fig_2, "figure")],
-    Input("table-with-barplot-x-interval", "n_intervals"),
+    Input("blocking-callback-x-interval", "n_intervals"),
     prevent_initial_call=True,
 )
 def update_graph(interval):
