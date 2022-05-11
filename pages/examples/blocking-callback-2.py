@@ -6,13 +6,17 @@ from dash_extensions.enrich import (
     Input,
     State,
     BlockingCallbackTransform,
+    Trigger,
+    TriggerTransform,
 )
 import plotly.express as px
 
 df = px.data.gapminder()
 years = df.year.unique()
 
-app = DashProxy(__name__, transforms=[BlockingCallbackTransform(timeout=10)])
+app = DashProxy(
+    __name__, transforms=[BlockingCallbackTransform(timeout=10), TriggerTransform()]
+)
 
 app.layout = html.Div(
     [
@@ -31,8 +35,8 @@ app.layout = html.Div(
 
 
 app.callback(
-    Output(slider, "value"), Input(interval, "n_intervals"), State(slider, "value")
-)(lambda interval, value: years[(years.tolist().index(value) + 1) % years.shape[0]])
+    Output(slider, "value"), Trigger(interval, "n_intervals"), State(slider, "value")
+)(lambda value: years[(years.tolist().index(value) + 1) % years.shape[0]])
 
 
 @app.callback(Output(graph, "figure"), Input(slider, "value"))
@@ -51,7 +55,7 @@ def update_graph(value):
         autosize=True,
         yaxis={"autorange": True, "zeroline": False},
         xaxis={"autorange": True, "zeroline": False},
-        margin={"l": 0, "b": 0, "t": 0, "r": 0},
+        margin={"l": 0, "b": 0, "t": 50, "r": 0},
         transition={
             "duration": 500,
             "easing": "cubic-in-out",
