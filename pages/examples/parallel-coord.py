@@ -2,6 +2,8 @@ from dash import Dash, html, dcc, dash_table, Output, Input, State
 from dash.exceptions import PreventUpdate
 import plotly.express as px
 
+app = Dash(__name__)
+
 df = px.data.iris()
 fig = px.parallel_coordinates(
     df,
@@ -17,23 +19,26 @@ fig = px.parallel_coordinates(
     color_continuous_midpoint=2,
 )
 
-app = Dash(__name__)
+my_graph = dcc.Graph(id='parallel-coord-x-graph', figure=fig)
+my_table = dash_table.DataTable(
+    data=df.to_dict("records"),
+    row_selectable="single",
+    id='parallel-coord-x-table',
+
+)
 
 app.layout = html.Div(
     [
-        my_graph := dcc.Graph(figure=fig),
-        my_table := dash_table.DataTable(
-            df.to_dict("records"),
-            row_selectable="single",
-        ),
+        my_graph,
+        my_table
     ]
 )
 
 
 @app.callback(
-    Output(my_graph, "figure"),
-    Input(my_table, "selected_rows"),
-    State(my_graph, "figure"),
+    Output("parallel-coord-x-graph", "figure"),
+    Input("parallel-coord-x-table", "selected_rows"),
+    State("parallel-coord-x-graph", "figure")
 )
 def pick(r, f):
     if r is None:
