@@ -47,7 +47,8 @@ app.layout = html.Div(
 )
 
 
-app.callback(
+app.clientside_callback(
+    "(v => v === 'Yes' ? false : true)",
     Output(
         {
             "category": "questionnaire",
@@ -66,16 +67,17 @@ app.callback(
         },
         "value",
     ),
-)(lambda v: False if v == "Yes" else True)
+)
 
 
-app.callback(
+app.clientside_callback(
+    "(answers => answers.every(Boolean) ? false : true)",
     Output(btn, "disabled"),
     Input(
         {"category": "questionnaire", "type": ALL, "additional": False, "index": ALL},
         "value",
     ),
-)(lambda answer: False if all(answer) else True)
+)
 
 
 @app.callback(

@@ -76,9 +76,12 @@ app.layout = html.Div(
     ],
 )
 
-app.callback(
-    Output(drawer, "is_open"), Input(btn, "n_clicks"), State(drawer, "is_open")
-)(lambda n, is_open: not is_open if n else is_open)
+app.clientside_callback(
+    "((n, is_open) => n ? !is_open : is_open)",
+    Output(drawer, "is_open"),
+    Input(btn, "n_clicks"),
+    State(drawer, "is_open"),
+)
 
 
 @app.callback(
