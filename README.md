@@ -10,7 +10,6 @@ Or the live demo : https://dashlabs.pythonanywhere.com/
 After cloning the repo, run `app.py`
 
 
-
 ## Adding Examples
 
 ### Example app source code
