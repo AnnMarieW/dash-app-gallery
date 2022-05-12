@@ -23,6 +23,7 @@ my_graph = dcc.Graph(id='parallel-coord-x-graph', figure=fig)
 my_table = dash_table.DataTable(
     data=df.to_dict("records"),
     row_selectable="single",
+    page_size=5,
     id='parallel-coord-x-table',
 
 )
