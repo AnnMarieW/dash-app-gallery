@@ -1,6 +1,7 @@
-from dash import Dash, dcc, html
+from dash import Dash, dcc
 from plotly import data
 import plotly.express as px
+import dash_bootstrap_components as dbc
 
 # Tab 1
 gapminder = data.gapminder()
@@ -24,7 +25,7 @@ fig_iris = px.scatter(
 
 # App
 app = Dash(__name__)
-app.layout = html.Div([
+app.layout = dbc.Container([
     dcc.Tabs([
         dcc.Tab(label='Iris', children=[
             dcc.Graph(
