@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, Input, Output, State
+from dash import Dash, html, dcc, Input, Output, State, clientside_callback
 import requests
 
 frames = requests.get(
@@ -16,7 +16,7 @@ app.layout = html.Div(
 )
 
 # helps to use clientside when intervals are very frequent
-app.clientside_callback(
+clientside_callback(
     "((n, frames) => n % Object.keys(frames).length && frames[n % Object.keys(frames).length])",
     Output("bad-apple-x-show", "children"),
     Input("bad-apple-x-interval", "n_intervals"),
