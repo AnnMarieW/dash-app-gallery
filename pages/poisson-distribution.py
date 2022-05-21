@@ -6,11 +6,11 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description = "This app plots a Poisson distribution on a histogram, which contains a formula with MathJax.",
-    layout_type = "cards",
-    components_type = ["input", "card", "accordion", "markdown"],
-    graph_type = "histogram",
-    callback_type = "general",
+    description="This app plots a Poisson distribution on a histogram, which contains a formula with MathJax.",
+    layout_type="cards",
+    components_type=["input", "card", "accordion", "markdown"],
+    graph_type="histogram",
+    callback_type="general",
 )
 
 filename = __name__.split("pages.")[1]
@@ -46,10 +46,4 @@ This example app was contributed by [name](link)
 
 """
 
-def layout():
-    return html.Div(
-        [
-            example_app(filename),
-            dcc.Markdown(notes, className="m-4")
-        ]
-    )
+layout = html.Div([example_app(filename), dcc.Markdown(notes, className="m-4")])

@@ -1,16 +1,16 @@
 import dash
 from dash import html, dcc
 
-from utils.code_and_show import example_app
+from utils.code_and_show import example_app, make_app_first
 
 
 dash.register_page(
     __name__,
-    description = "An app that uses clientside callback to display frames because dcc Interval is activated multiple times per second.",
-    layout_type = "top-bottom",
-    components_type = ["store", "interval"],
-    graph_type = None,
-    callback_type = "clientside",
+    description="An app that uses clientside callback to display frames because dcc Interval is activated multiple times per second.",
+    layout_type="top-bottom",
+    components_type=["store", "interval"],
+    graph_type=None,
+    callback_type="clientside",
 )
 
 filename = __name__.split("pages.")[1]
@@ -32,10 +32,9 @@ This example app was contributed by [IcToxi](https://github.com/IcToxi)
 
 """
 
-def layout():
-    return html.Div(
-        [
-            example_app(filename),
-            dcc.Markdown(notes, className="m-4")
-        ]
-    )
+layout = html.Div(
+    [
+        example_app(filename, make_layout=make_app_first),
+        dcc.Markdown(notes, className="m-4"),
+    ]
+)
