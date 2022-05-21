@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent.parent
-EXAMPLE_APPS_DIR = os.path.join(ROOT_DIR, "pages", "examples")
+EXAMPLE_APPS_DIR = os.path.join(ROOT_DIR, "examples")
 APP_ASSETS_DIR = os.path.join(ROOT_DIR, "assets")
 
 

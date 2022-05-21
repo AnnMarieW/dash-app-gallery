@@ -2,7 +2,6 @@ from importlib import import_module
 from inspect import getsource
 import re
 import uuid
-import random
 import ast
 
 
@@ -10,8 +9,6 @@ from dash import html, dcc, callback
 import dash_bootstrap_components as dbc
 
 from utils.search_code import sourcecode
-
-rd = random.Random(0)
 
 
 def example_app(filename, make_layout=None, run=True, show_code=True):
@@ -55,7 +52,7 @@ def make_side_by_side(code, show_app):
     It also has a dcc.Clipboard to copy the code.
     """
     # make a unique id for clipboard
-    clipboard_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
+    clipboard_id = str(uuid.uuid4())
 
     clipboard_style = {
         "right": 0,
@@ -125,10 +122,10 @@ def make_app_first(code, show_app):
 def _run_code(code):
     scope = {"callback": callback}
 
-    if "app.layout" in code:
-        code = code.replace("app.layout", "layout")
-    if "app.callback" in code:
-        code = code.replace("app.callback", "callback")
+    code = code.replace("app.layout", "layout")
+    code = code.replace("app.callback", "callback").replace(
+        "app.clientside_callback", "clientside_callback"
+    )
 
     # todo use regular expressions to remove the entire line with app.server
     if "app.server" in code:

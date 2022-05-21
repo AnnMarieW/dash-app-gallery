@@ -1,5 +1,5 @@
 import dash
-from dash import Dash, html
+from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import dash_labs as dl
 
@@ -18,16 +18,12 @@ app = Dash(
 navbar = dbc.NavbarSimple(
     [
         dbc.Button("Overview", href="/", color="secondary"),
-        dbc.DropdownMenu(
-            html.Div(
-                [
-                    dbc.DropdownMenuItem(page["title"], href=page["path"])
-                    for page in dash.page_registry.values()
-                ],
-                style={"height": 600, "overflow": "scroll"},
-            ),
-            nav=True,
-            label="Select App",
+        dbc.Switch(
+            id="full-screen",
+            label="Full Screen",
+            value=False,
+            label_class_name="text-white",
+            className="d-none",  # todo hidden for now
         ),
     ],
     brand="Dash App Gallery",
@@ -44,8 +40,18 @@ app.layout = html.Div(
         dbc.Container(
             dl.plugins.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
+        dcc.Location(id="url"),
     ]
 )
+
+
+@app.callback(Output("full-screen", "className"), Input("url", "pathname"))
+def fullscreen(path):
+    if path == "/":
+        return "d-none"
+    # return "ms-2 mt-2"  # todo hidden for now until the swtich works
+    return "d-none"
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)

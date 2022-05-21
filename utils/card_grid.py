@@ -8,7 +8,7 @@ rd = random.Random(0)
 
 
 def make_card(page):
-    tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
+    tooltip_id = str(uuid.UUID(int=rd.randint(0, 2**128)))
     return dbc.Card(
         [
             dbc.CardHeader(
