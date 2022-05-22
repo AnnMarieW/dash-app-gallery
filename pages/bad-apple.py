@@ -32,9 +32,4 @@ This example app was contributed by [IcToxi](https://github.com/IcToxi)
 
 """
 
-layout = html.Div(
-    [
-        example_app(filename, make_layout=make_app_first),
-        dcc.Markdown(notes, className="m-4"),
-    ]
-)
+layout = example_app(filename, make_layout=make_app_first, notes=notes)

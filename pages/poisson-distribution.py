@@ -46,4 +46,4 @@ This example app was contributed by [name](link)
 
 """
 
-layout = html.Div([example_app(filename), dcc.Markdown(notes, className="m-4")])
+layout = example_app(filename, notes=notes)
