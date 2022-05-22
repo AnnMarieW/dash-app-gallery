@@ -11,7 +11,7 @@ import dash_bootstrap_components as dbc
 from utils.search_code import sourcecode
 
 
-def example_app(filename, make_layout=None, run=True, show_code=True):
+def example_app(filename, make_layout=None, run=True, show_code=True, notes=None):
     """
     Creates the "code and show layout for an example dash app.
 
@@ -29,6 +29,10 @@ def example_app(filename, make_layout=None, run=True, show_code=True):
     - `show_code`:
         bool (default: True) Whether to show the code
 
+    - `notes`:
+        stromg (default: None)  Notes or tutorial to display with the app.  Text may include markdown formatting
+        as it will be displayed in a dcc.Mardkown component
+
     """
 
     code = sourcecode[filename]
@@ -40,16 +44,17 @@ def example_app(filename, make_layout=None, run=True, show_code=True):
     code = code if show_code else ""
 
     if make_layout is not None:
-        return make_layout(code, run_app)
-    return make_side_by_side(code, run_app)
+        return make_layout(code, run_app, notes)
+    return make_side_by_side(code, run_app, notes)
 
 
-def make_side_by_side(code, show_app):
+def make_side_by_side(code, show_app, notes):
     """
     This is the default layout for the "code and show"
     It displays the app and the code side-by-side on large screens, or
     the app first, followed by the code on smaller screens.
-    It also has a dcc.Clipboard to copy the code.
+    It also has a dcc.Clipboard to copy the code.  Notes will display
+    in a dcc.Markdown comonent below the app.
     """
     # make a unique id for clipboard
     clipboard_id = str(uuid.uuid4())
@@ -88,11 +93,12 @@ def make_side_by_side(code, show_app):
             )
             if code
             else None,
+            dcc.Markdown(notes, className="m-4") if notes else None
         ]
     )
 
 
-def make_app_first(code, show_app):
+def make_app_first(code, show_app, notes):
     """
     This is an alternate layout for the "code and show"
     It displays the app on top and the code below.
@@ -115,6 +121,7 @@ def make_app_first(code, show_app):
             )
             if code
             else None,
+            dcc.Markdown(notes, className="m-4") if notes else None
         ]
     )
 
