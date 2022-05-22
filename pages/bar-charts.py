@@ -12,4 +12,5 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 
-layout = example_app(filename)
+def layout():
+    return example_app(filename)

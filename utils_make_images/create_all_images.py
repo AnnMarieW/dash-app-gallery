@@ -11,14 +11,12 @@ import os
 from selenium import webdriver
 import time
 
-from utils.file_names import get_example_app_names
+from utils.init_app import file_names
 
 
 def snapshot(driver):
 
-    example_apps = get_example_app_names()
-
-    for page in example_apps:
+    for page in file_names:
         driver.get(f"http://localhost:8050/{page}")
         time.sleep(5)
         driver.save_screenshot(

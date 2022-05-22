@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc, callback, Output, Input, State, callback_context as ctx
 import dash_bootstrap_components as dbc
-from utils.search_code import search_code_files
+from utils.search import search_code_files
 from utils.card_grid import make_card, make_card_grid
 
 

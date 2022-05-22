@@ -1,14 +1,9 @@
-from importlib import import_module
-from inspect import getsource
-import re
 import uuid
-import ast
 
-
-from dash import html, dcc, callback
+from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-from utils.search_code import sourcecode
+from utils.init_app import example_source_codes, example_apps
 
 
 def example_app(filename, make_layout=None, run=True, show_code=True, notes=None):
@@ -30,14 +25,13 @@ def example_app(filename, make_layout=None, run=True, show_code=True, notes=None
         bool (default: True) Whether to show the code
 
     - `notes`:
-        stromg (default: None)  Notes or tutorial to display with the app.  Text may include markdown formatting
-        as it will be displayed in a dcc.Mardkown component
+        str (default: None)  Notes or tutorial to display with the app.  Text may include markdown formatting
+        as it will be displayed in a dcc.Markdown component
 
     """
 
-    code = sourcecode[filename]
-
-    run_app = _run_code(code) if run else ""
+    code = example_source_codes[filename]
+    run_app = example_apps[filename].layout if run else ""
 
     # Removes the id prefix
     code = code.replace(filename + "-x-", "")
@@ -93,7 +87,7 @@ def make_side_by_side(code, show_app, notes):
             )
             if code
             else None,
-            dcc.Markdown(notes, className="m-4") if notes else None
+            dcc.Markdown(notes, className="m-4") if notes else None,
         ]
     )
 
@@ -121,52 +115,6 @@ def make_app_first(code, show_app, notes):
             )
             if code
             else None,
-            dcc.Markdown(notes, className="m-4") if notes else None
+            dcc.Markdown(notes, className="m-4") if notes else None,
         ]
     )
-
-
-def _run_code(code):
-    scope = {"callback": callback}
-
-    code = code.replace("app.layout", "layout")
-    code = code.replace("app.callback", "callback").replace(
-        "app.clientside_callback", "clientside_callback"
-    )
-
-    # todo use regular expressions to remove the entire line with app.server
-    if "app.server" in code:
-        code = code.replace("server = app.server", "")
-
-    if "layout" in code:
-        # Remove the app instance in the code block otherwise app.callbacks don't work
-        tree = ast.parse(code)
-        new_tree = RemoveAppAssignment().visit(tree)
-        exec(compile(new_tree, filename="<ast>", mode="exec"), scope)
-        return html.Div(scope["layout"])
-
-
-class RemoveAppAssignment(ast.NodeTransformer):
-    """
-    Remove the app instance from a code block otherwise app.callback` doesn't work. If `app` is defined locally
-    within the code block, then it overrides the `app` passed in to the scope.
-    """
-
-    def visit_Assign(self, node):
-        if hasattr(node, "targets") and "app" in [
-            n.id for n in node.targets if hasattr(n, "id")
-        ]:
-            return None
-        return node
-
-
-def _remove_prefix(page, code):
-    """
-    Dash requires all ids to be unique, so for multi-page apps it's common to add a prefix to the id.
-    The convention for ids in this app is to use the module name followed by "-x-" then the simple id name.
-    This function will strip the prefix so that only the simple ID names are displayed.
-
-    For example `id="module_name-x-button"` will display as `id="button"`
-    """
-    prefix = page.split(".")[-1] + "-x-"
-    return code.replace(prefix, "")

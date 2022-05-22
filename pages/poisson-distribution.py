@@ -1,6 +1,4 @@
 import dash
-from dash import html, dcc
-
 from utils.code_and_show import example_app
 
 
@@ -14,14 +12,6 @@ dash.register_page(
 )
 
 filename = __name__.split("pages.")[1]
-
-# make a mini layout with the links to the docs that would go under each app
-# all_links: {"input": "https://dash.plotly.com/dash-core-components/input",
-# "card": "https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/",
-# "accordion": "https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/",
-# "markdown": "https://dash.plotly.com/dash-core-components/markdown",
-# "histogram": "https://plotly.com/python/histograms/"}
-# links = html.Div([all_links])
 
 
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component

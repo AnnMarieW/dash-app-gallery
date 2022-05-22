@@ -2,17 +2,28 @@ import dash
 from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import dash_labs as dl
+from utils.init_app import example_apps
 
 # syntax highlighting light or dark
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
 dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-dark.min.css"
 
+
 app = Dash(
     __name__,
     plugins=[dl.plugins.pages],
-    external_stylesheets=[dbc.themes.SPACELAB, light_hljs],
+    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs],
     suppress_callback_exceptions=True,
 )
+
+
+for k in example_apps:
+    # Prepend to layout IDs recursively in-place
+    new_callback_map = example_apps[k].callback_map
+    new_callback_list = example_apps[k]._callback_list
+
+    app.callback_map.update(new_callback_map)
+    app._callback_list.extend(new_callback_list)
 
 
 navbar = dbc.NavbarSimple(
