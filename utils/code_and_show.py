@@ -6,6 +6,35 @@ import dash_bootstrap_components as dbc
 from utils.init_app import example_source_codes, example_apps
 
 
+def make_code_div(code):
+    """
+    Display code str in dcc.Markdown with dcc.Clipboard
+    """
+
+    # make a unique id for clipboard
+    clipboard_id = str(uuid.uuid4())
+
+    clipboard_style = {
+        "right": 0,
+        "position": "absolute",
+        "top": 0,
+        "backgroundColor": "#f6f6f6",
+        "color": "#2f3337",
+        "padding": 4,
+    }
+    return html.Div(
+        [
+            dcc.Markdown(f"```python\n{code}```\n"),
+            dcc.Clipboard(
+                target_id=f"{clipboard_id}",
+                style=clipboard_style,
+            ),
+        ],
+        id=f"{clipboard_id}",
+        style={"position": "relative"},
+    )
+
+
 def example_app(filename, make_layout=None, run=True, show_code=True, notes=None):
     """
     Creates the "code and show layout for an example dash app.
@@ -50,28 +79,6 @@ def make_side_by_side(code, show_app, notes):
     It also has a dcc.Clipboard to copy the code.  Notes will display
     in a dcc.Markdown comonent below the app.
     """
-    # make a unique id for clipboard
-    clipboard_id = str(uuid.uuid4())
-
-    clipboard_style = {
-        "right": 0,
-        "position": "absolute",
-        "top": 0,
-        "backgroundColor": "#f6f6f6",
-        "color": "#2f3337",
-        "padding": 4,
-    }
-    code_card = html.Div(
-        [
-            dcc.Markdown(f"```python\n{code}```\n"),
-            dcc.Clipboard(
-                target_id=f"{clipboard_id}",
-                style=clipboard_style,
-            ),
-        ],
-        id=f"{clipboard_id}",
-        style={"position": "relative"},
-    )
 
     return dbc.Row(
         [
@@ -80,7 +87,8 @@ def make_side_by_side(code, show_app, notes):
             else None,
             dbc.Col(
                 dbc.Card(
-                    [code_card], style={"max-height": "800px", "overflow": "auto"}
+                    [make_code_div(code)],
+                    style={"max-height": "800px", "overflow": "auto"},
                 ),
                 width=12,
                 lg=6,
@@ -103,14 +111,17 @@ def make_app_first(code, show_app, notes):
     to the `make_layout` attribute in example_app()   e.g.:
     `example_app("pathto/my_filename.py", make_layout=make_app_first)`
     """
-    md_code = dcc.Markdown(f"```python\n{code}```\n")
+
     return dbc.Row(
         [
             dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12)
             if show_app
             else None,
             dbc.Col(
-                dbc.Card([md_code], style={"max-height": "600px", "overflow": "auto"}),
+                dbc.Card(
+                    [make_code_div(code)],
+                    style={"max-height": "600px", "overflow": "auto"},
+                ),
                 width=12,
             )
             if code

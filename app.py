@@ -1,8 +1,9 @@
 import dash
-from dash import Dash, html, dcc, Input, Output
+from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import dash_labs as dl
-from utils.init_app import example_apps
+from utils.init_app import example_apps, example_source_codes
+from utils.code_and_show import make_code_div
 
 # syntax highlighting light or dark
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
@@ -18,7 +19,6 @@ app = Dash(
 
 
 for k in example_apps:
-    # Prepend to layout IDs recursively in-place
     new_callback_map = example_apps[k].callback_map
     new_callback_list = example_apps[k]._callback_list
 
@@ -26,9 +26,20 @@ for k in example_apps:
     app._callback_list.extend(new_callback_list)
 
 
+fullscreen_modal = dbc.Modal(
+    [
+        dbc.ModalHeader(dbc.ModalTitle("Full screen")),
+        dbc.ModalBody(id="content-fs"),
+    ],
+    id="modal-fs",
+    fullscreen=True,
+)
+
 navbar = dbc.NavbarSimple(
     [
         dbc.Button("Overview", href="/", color="secondary"),
+        dbc.Button("Fullscreen App", id="open-fs-app", color="secondary"),
+        dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary"),
         dbc.Switch(
             id="full-screen",
             label="Full Screen",
@@ -48,6 +59,7 @@ navbar = dbc.NavbarSimple(
 app.layout = html.Div(
     [
         navbar,
+        fullscreen_modal,
         dbc.Container(
             dl.plugins.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
@@ -56,12 +68,38 @@ app.layout = html.Div(
 )
 
 
-@app.callback(Output("full-screen", "className"), Input("url", "pathname"))
+@app.callback(
+    Output("open-fs-app", "className"),
+    Output("open-fs-code", "className"),
+    Input("url", "pathname"),
+)
 def fullscreen(path):
     if path == "/":
-        return "d-none"
-    # return "ms-2 mt-2"  # todo hidden for now until the swtich works
-    return "d-none"
+        return "d-none", "d-none"
+    return "ms-2", "ms-2"
+
+
+@app.callback(
+    Output("modal-fs", "is_open"),
+    Output("content-fs", "children"),
+    Input("open-fs-app", "n_clicks"),
+    Input("open-fs-code", "n_clicks"),
+    Input("url", "pathname"),
+    State("modal-fs", "is_open"),
+)
+def toggle_modal(n_app, n_code, pathname, is_open):
+    filename = pathname.strip("/")
+    layout = None
+    code = None
+    if filename in example_apps:
+        layout = example_apps[filename].layout
+        code = example_source_codes[filename].replace(filename + "-x-", "")
+        code = make_code_div(code)
+    content = layout if ctx.triggered_id == "open-fs-app" else code
+
+    if n_app or n_code:
+        return not is_open, content
+    return is_open, content
 
 
 if __name__ == "__main__":
