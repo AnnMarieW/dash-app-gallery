@@ -4,11 +4,9 @@ from dash import Input, Output, dcc, html
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-# Defining the Dash application
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
 
-# Input
+
 inputs = dbc.Card(
     dbc.CardBody(
         [
@@ -25,7 +23,6 @@ graph = dbc.Card(
     )
 )
 
-# Details
 accordion = html.Div(
     dbc.Accordion(
         [
@@ -42,7 +39,6 @@ accordion = html.Div(
     ),
 )
 
-# Application layout
 app.layout = dbc.Container(
     [
         html.H1("Poisson distribution graph"),
@@ -53,7 +49,6 @@ app.layout = dbc.Container(
     ]
 )
 
-# Callback
 @app.callback(
     Output("poisson-distribution-x-histogram", "figure"),
     Input("poisson-distribution-x-lambda", "value")
@@ -66,6 +61,6 @@ def graph_histogram(lambda_value):
     else:
         return dash.no_update
 
-# Run the app
+
 if __name__ == "__main__":
     app.run_server(debug=True)

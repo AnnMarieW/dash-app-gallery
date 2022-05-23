@@ -8,10 +8,9 @@ import dash
 import dash_labs as dl
 import dash_bootstrap_components as dbc
 from utils.code_and_show import example_app, make_app_first
-from utils.file_names import get_example_app_names
+from utils.init_app import file_names
 
-example_apps = get_example_app_names()
-
+from utils.init_app import example_apps
 
 app = dash.Dash(
     __name__,
@@ -19,12 +18,18 @@ app = dash.Dash(
     external_stylesheets=[dbc.themes.SPACELAB],
 )
 
-for page in example_apps:
+for k in example_apps:
+    # Prepend to layout IDs recursively in-place
+    new_callback_map = example_apps[k].callback_map
+    new_callback_list = example_apps[k]._callback_list
+
+    app.callback_map.update(new_callback_map)
+    app._callback_list.extend(new_callback_list)
+
+for page in file_names:
     dash.register_page(
         page,
-        layout=example_app(
-            f"pages/examples/{page}.py", show_code=False, make_layout=make_app_first
-        ),
+        layout=example_app(page, show_code=False, make_layout=make_app_first),
     )
 
 

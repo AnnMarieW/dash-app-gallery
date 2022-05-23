@@ -32,4 +32,4 @@ This example app was contributed by [IcToxi](https://github.com/IcToxi)
 
 """
 
-layout = example_app(filename, make_layout=make_app_first, notes=notes)
+layout = example_app(filename, notes=notes)
