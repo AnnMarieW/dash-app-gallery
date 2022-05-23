@@ -84,7 +84,7 @@ def fullscreen(path):
     Output("content-fs", "children"),
     Input("open-fs-app", "n_clicks"),
     Input("open-fs-code", "n_clicks"),
-    Input("url", "pathname"),
+    State("url", "pathname"),
     State("modal-fs", "is_open"),
 )
 def toggle_modal(n_app, n_code, pathname, is_open):

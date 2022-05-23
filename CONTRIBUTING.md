@@ -32,7 +32,8 @@ To add apps to the gallery, place dash example apps in the `examples/` folder.
 The Dash App Gallery is creates a multi-page app based on the example apps.  It's a Dash requirement that every
 id in a multi-page app is unique otherwise the callbacks will not work.
 
-To do this, add `[name-of-the-file]-x-` to every id. This will ensure that none of the ids across the files clash. 
+If you are using [auto generated ids](https://dash.plotly.com/basic-callbacks#passing-components-into-callbacks-instead-of-ids), the id will be unique.  
+However if you specify the id, add `[name-of-the-file]-x-` to every id. This will ensure that none of the ids across the files clash. 
 
 This extra bit is then automatically removed from the displayed code, such that it remains simple and readable.
 
