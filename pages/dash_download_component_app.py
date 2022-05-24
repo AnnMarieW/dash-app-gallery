@@ -26,7 +26,7 @@ Dash docs:
 - [Download component](https://dash.plotly.com/dash-core-components/download)
 
 ### Contributed by:
-This example app was contributed by [milanzmitrovic]https://github.com/milanzmitrovic)
+This example app was contributed by [milanzmitrovic](https://github.com/milanzmitrovic)
 
 """
 
