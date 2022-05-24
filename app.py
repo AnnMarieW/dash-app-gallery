@@ -2,7 +2,7 @@ import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import dash_labs as dl
-from utils.init_app import example_apps, example_source_codes
+from utils.init_app import example_apps, example_source_codes, file_name_from_path
 from utils.code_and_show import make_code_div
 
 # syntax highlighting light or dark
@@ -89,7 +89,7 @@ def fullscreen(path):
     State("modal-fs", "is_open"),
 )
 def toggle_modal(n_app, n_code, pathname, is_open):
-    filename = pathname.strip("/")
+    filename = file_name_from_path(pathname)
     layout = None
     code = None
     if filename in example_apps:

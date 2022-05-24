@@ -2,6 +2,10 @@ import os
 from pathlib import Path
 from importlib import import_module
 from inspect import getsource
+from fnmatch import fnmatch
+import re
+
+import dash
 
 
 EXAMPLE_APPS_DIR_NAME = "examples"
@@ -44,3 +48,17 @@ def get_missing_image_names():
     images = get_app_image_names()
     missing = [app for app in file_names if app not in images]
     return missing
+
+
+def file_name_from_path(path):
+    for page in dash.page_registry.values():
+        template = page.get("path_template")
+        if template:
+            # check that static sections of the pathname match the template
+            wildcard_pattern = re.sub("<.*?>", "*", template)
+            if fnmatch(path, wildcard_pattern):
+                return page["module"].split(".")[-1]
+
+        if page["path"] == path:
+            return page["module"].split(".")[-1]
+    return ""
