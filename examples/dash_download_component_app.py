@@ -1,7 +1,4 @@
-from dash import dcc, html, Input, Output
-
 from dash import Dash, dcc, html, Input, Output, dash_table, State
-import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
@@ -11,24 +8,24 @@ df = px.data.stocks()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
-        html.Br(),
-        html.H2("Download data example", style={'text-align': 'center'}),
-        html.Br(),
+        dbc.Row([
+            dbc.Col([
+                html.H2("Download data example", style={'text-align': 'center'})
+            ])
+        ]),
         dcc.Download(id="dash_download_component_app-x-download"),
 
-        dash_table.DataTable(df.to_dict('records'),
-                             [{"name": i, "id": i} for i in df.columns],
-                             page_size=10
-                             ),
-
-        html.Br(),
-
-        # ------------------------------------------------ #
-        # Starting bootstrap layout
         dbc.Row([
-
             dbc.Col([
+                dash_table.DataTable(df.to_dict('records'),
+                                     [{"name": i, "id": i} for i in df.columns],
+                                     page_size=10,
+                                     style_table={'overflowX': 'auto'})
+            ])
+        ]),
 
+        dbc.Row([
+            dbc.Col([
                 dcc.Dropdown(options=[
                     {'label': 'Excel file', 'value': 'excel'},
                     {'label': 'CSV file', 'value': 'csv'},
@@ -38,15 +35,9 @@ app.layout = dbc.Container(
             ]),
 
             dbc.Col([
-
-                html.Button("Download Data", id="dash_download_component_app-x-btn_csv"),
-
-                ]),
-
+                dbc.Button("Download Data", id="dash_download_component_app-x-btn_csv"),
+            ]),
         ])
-        # Ending bootstrap layout
-        # ------------------------------------------------ #
-
 ])
 
 
@@ -67,4 +58,3 @@ def func(n_clicks_btn, download_type):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-
