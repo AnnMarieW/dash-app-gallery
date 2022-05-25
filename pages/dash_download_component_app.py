@@ -17,16 +17,16 @@ filename = __name__.split("pages.")[1]
 
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
-### For more information see:
-Dash docs:  
-
+#### Dash Components in App:
 - [DataTable component](https://dash.plotly.com/datatable)
-- [Button component](https://dash.plotly.com/dash-html-components/button)
 - [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
 - [Download component](https://dash.plotly.com/dash-core-components/download)
 
-### Contributed by:
-This example app was contributed by [milanzmitrovic](https://github.com/milanzmitrovic)
+#### 3rd-party Dash Bootstrap Components: 
+- [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
+
+#### Contributed by:
+- This app was built by [milanzmitrovic](https://github.com/milanzmitrovic)
 
 """
 
