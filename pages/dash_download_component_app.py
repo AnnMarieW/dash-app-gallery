@@ -26,7 +26,7 @@ notes = """
 - [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
 
 #### Contributed by:
-- This app was built by [milanzmitrovic](https://github.com/milanzmitrovic)
+- This app was built by [Milan](https://milanzmitrovic.github.io/)
 
 """
 
