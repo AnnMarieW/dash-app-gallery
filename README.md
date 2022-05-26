@@ -3,14 +3,11 @@
 This Community App Gallery is designed for people new to Plotly and Dash.  It contains minimal sample apps
 with ~150 lines of code to demonstrate basic usage of graphs, components, callbacks, and layout design.
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/32049495/170573941-a17323d0-4788-4b5a-b065-aa74a6c34a6e.gif)
-
-
 ### Navigtaing the Gallery:
 1. To get started, use the search field to search for any keyword you're interested in. For example, search for "dcc.Dropdown" and you will see only
  apps containing dropdowns.
  
- ![search-app](https://user-images.githubusercontent.com/32049495/170563447-9f2370b1-842c-41ff-b9c0-8c210111a043.gif)
+https://user-images.githubusercontent.com/32049495/170574324-1d388d11-89dd-4821-8177-1532986b3db2.mp4
  
 2. Select an app to see it live with the code side-by-side. At the lower part of each app, you will find links to tutorials and Dash documentation.
 
