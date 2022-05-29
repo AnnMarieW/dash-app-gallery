@@ -33,9 +33,9 @@ app.layout = html.Div(
             alert on click
             """),
         dbc.Button(
-            "Toggle alert", id="age-alert-toggle-fade", n_clicks=0
+            "Toggle alert", id="age-alert-x-toggle-fade", n_clicks=0
         ),
-        html.Div(id = "age-alert-fade")
+        html.Div(id="age-alert-x-fade")
     ]
 )
 
@@ -69,8 +69,8 @@ def update_output(d):
 
 # app callback for toggling alert with button
 @app.callback(
-    Output("age-alert-fade", "children"),
-    [Input("age-alert-toggle-fade", "n_clicks")],
+    Output("age-alert-x-fade", "children"),
+    [Input("age-alert-x-toggle-fade", "n_clicks")],
 )
 def toggle_alert(n):
     return dbc.Alert("Hello! I am an alert",dismissable=True,duration = 900)
