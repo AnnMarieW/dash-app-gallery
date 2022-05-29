@@ -2,10 +2,10 @@ from dash import Dash, html, dcc, Input, Output, State, callback
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc 
 from datetime import datetime, date
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # main app code
-app.layout = html.Div(
+app.layout = dbc.Container(
     [        
         dcc.Markdown("""
         #### Birthday !! 
@@ -24,7 +24,7 @@ app.layout = html.Div(
         html.Div(id= "age-alert-x-show-age"),
         dcc.Markdown('''
             ### Using Simple alert
-            You can use this for simple application for showing success, failure, etc. Note that this will stay on screen till it's rendering since we are `not giving any duration`.
+            You can use this for applications for showing success, failure, etc. Note that this will stay on screen once rendered since we are not assigning any time duration`.
             '''), 
         dbc.Alert("this is a simple alert", color= "warning"),
         dcc.Markdown("One with the `different color`"), 
@@ -43,7 +43,8 @@ app.layout = html.Div(
 @callback(
     Output("age-alert-x-show-succ", "children"),
     Output("age-alert-x-show-age", "children"),
-    Input("age-alert-x-date-pick", "value")
+    Input("age-alert-x-date-pick", "value"),
+prevent_initial_call=True
 )
 def update_output(d): 
     todays_date = datetime.now().date().year
@@ -57,10 +58,6 @@ def update_output(d):
             Happy childhood! 🎉 """  
     alert_text = f"thanks for selecting date {d}"
     duration = 3000
-    if  d == "2002-09-19":
-        duration = 1 
-        alert_text = ""
-        text = ""
     
     return [
     dbc.Alert(alert_text , duration = duration , color = 'success'),
