@@ -1,5 +1,4 @@
 import dash
-from dash import html, dcc
 
 from utils.code_and_show import example_app
 
@@ -10,7 +9,7 @@ dash.register_page(
     layout_type="top-bottom",
     components_type=["markdown", "datepicker", "alert", "button"],
     graph_type=None,
-    callback_type="general"
+    callback_type="general",
 )
 
 filename = __name__.split("pages.")[1]

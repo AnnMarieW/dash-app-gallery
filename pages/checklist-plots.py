@@ -12,4 +12,18 @@ dash.register_page(
 
 filename = __name__.split("pages.")[1]
 
-layout = example_app(filename)
+
+notes = """
+### For more information see:
+Plotly docs:  
+
+- [Line and Scatter charts](https://plotly.com/python/line-and-scatter/)
+How to make interactive line and scatter charts 
+
+### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)
