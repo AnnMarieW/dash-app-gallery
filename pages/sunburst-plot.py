@@ -20,4 +20,18 @@ filename = __name__.split("pages.")[1]
 # "sunburst": "https://plotly.com/python/sunburst-charts/"}
 # links = html.Div([all_links])
 
-layout = example_app(filename)
+
+notes = """
+### For more information see:
+Plotly docs:  
+
+- [Sunburst plots](https://plotly.com/python/sunburst-charts/)
+
+
+### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)

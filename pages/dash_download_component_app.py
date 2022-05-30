@@ -1,5 +1,4 @@
 import dash
-from dash import html, dcc
 
 from utils.code_and_show import example_app
 

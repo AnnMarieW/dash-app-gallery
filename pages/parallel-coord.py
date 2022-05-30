@@ -1,5 +1,4 @@
 import dash
-from dash import html, dcc
 
 from utils.code_and_show import example_app
 
@@ -31,4 +30,4 @@ This example app was contributed by [IcToxi](https://github.com/IcToxi)
 
 """
 
-layout = html.Div([example_app(filename), dcc.Markdown(notes, className="m-4")])
+layout = example_app(filename, notes=notes)
