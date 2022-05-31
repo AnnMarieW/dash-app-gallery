@@ -1,0 +1,32 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.10, 3.9, 3.8]
+    name: Test
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x64'
+      - uses: actions/checkout@v3
+      - uses: logikal-code/pip-install@v1.0.0 # maybe consider switching to poetry in the future
+      - uses: browser-actions/setup-geckodriver@latest
+      - name: Build & Test
+        run: pytest --webdriver Firefox --cov=examples --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov-report=xml tests
+      - name: Upload Results
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: junit/test-results-${{ matrix.python-version }}.xml
+        if: ${{ always() }}
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v3.1.0
