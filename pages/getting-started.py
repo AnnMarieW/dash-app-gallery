@@ -10,17 +10,17 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Getting Started with Dash and Plotly](https://plotly.com/python/getting-started/)
 
-Dash docs:
+#### Plotly Documentation:  
 
 - [Dash Tutorial](https://dash.plotly.com/installation)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

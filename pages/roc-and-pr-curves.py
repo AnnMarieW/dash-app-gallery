@@ -11,14 +11,14 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [ROC and PR Curves](https://plotly.com/python/roc-and-pr-curves/)
 Interpret the results of your classification using Receiver Operating Characteristics (ROC) and Precision-Recall (PR) Curves 
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

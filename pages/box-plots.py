@@ -13,15 +13,15 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [How to make box plots](https://plotly.com/python/box-plots/)
 A box plot is a statistical representation of the distribution of a variable through its quartiles. 
 The ends of the box represent the lower and upper quartiles, while the median (second quartile) is marked by a line inside the box. 
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """
