@@ -3,10 +3,22 @@ import dash
 from utils.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Dash Sample App")
+dash.register_page(__name__, description="Updating the figure layout")
 
 filename = __name__.split("pages.")[1]
 
 
-def layout():
-    return example_app(f"pages/examples/{filename}.py")
+notes = """
+### For more information see:
+Plotly docs:  
+
+- [Creating and updating figures](https://plotly.com/python/creating-and-updating-figures)
+
+
+### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)

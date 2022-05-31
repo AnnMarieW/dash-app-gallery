@@ -3,10 +3,21 @@ import dash
 from utils.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Dash Sample App")
+dash.register_page(__name__, description="Demo of the hover modes")
 
 filename = __name__.split("pages.")[1]
 
 
-def layout():
-    return example_app(f"pages/examples/{filename}.py")
+notes = """
+### For more information see:
+Plotly docs:  
+
+- [How to use hover text and formatting ](https://plotly.com/python/hover-text-and-formatting/)
+
+
+### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+layout = example_app(filename, notes=notes)

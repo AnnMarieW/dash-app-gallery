@@ -3,10 +3,24 @@ import dash
 from utils.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Dash Sample App")
+dash.register_page(
+    __name__, description="Interactive Mapbox Choropleth Map of US Counties"
+)
 
 filename = __name__.split("pages.")[1]
 
 
-def layout():
-    return example_app(f"pages/examples/{filename}.py")
+notes = """
+### For more information see:
+Plotly docs:  
+
+- [Choropleth maps](https://plotly.com/python/mapbox-county-choropleth/)
+How to make an interactive Mapbox Choropleth Map of US Counties.
+
+### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)
