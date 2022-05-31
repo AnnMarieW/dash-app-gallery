@@ -88,7 +88,7 @@ def make_side_by_side(code, show_app, notes):
             dbc.Col(
                 dbc.Card(
                     [make_code_div(code)],
-                    style={"max-height": "800px", "overflow": "auto"},
+                    style={"max-height": "600px", "overflow": "auto"},
                 ),
                 width=12,
                 lg=6,
@@ -120,7 +120,7 @@ def make_app_first(code, show_app, notes):
             dbc.Col(
                 dbc.Card(
                     [make_code_div(code)],
-                    style={"max-height": "600px", "overflow": "auto"},
+                    style={"height": "700px", "overflow": "auto"},
                 ),
                 width=12,
             )

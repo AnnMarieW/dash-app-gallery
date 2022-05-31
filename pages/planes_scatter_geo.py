@@ -17,17 +17,17 @@ filename = __name__.split("pages.")[1]
 
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
-### For more information see:
+
 Dash docs:  
 
 - [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
 
-Plotly docs:  
+#### Plotly Documentation:  
 
 - [Scatter Mapbox](https://plotly.com/python/mapbox-layers/) 
 - [Scatter Geo](https://plotly.com/python/bubble-maps/) 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
 
 """

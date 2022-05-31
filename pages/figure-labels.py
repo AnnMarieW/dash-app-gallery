@@ -12,13 +12,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Setting the Font, Title, Legend Entries, and Axis Titles.](https://plotly.com/python/figure-labels/)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

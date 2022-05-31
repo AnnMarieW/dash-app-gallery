@@ -12,8 +12,8 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Dist plots](https://plotly.com/python/distplot/)
 Combined statistical representations with px.histogram
@@ -24,7 +24,7 @@ Several representations of statistical distributions are available in plotly, su
  than the histogram, given by the parameter marginal.
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

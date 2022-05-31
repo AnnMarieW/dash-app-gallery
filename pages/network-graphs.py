@@ -11,13 +11,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [How to make Network Graphs](https://plotly.com/python/network-graphs/)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

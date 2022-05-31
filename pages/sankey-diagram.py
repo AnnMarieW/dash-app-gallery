@@ -9,13 +9,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Sankey Diagrams](https://plotly.com/python/sankey-diagram/)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

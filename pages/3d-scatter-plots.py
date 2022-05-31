@@ -13,13 +13,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly documentation:  
 
 - [3d Scatter Plots](https://plotly.com/python/3d-scatter-plots/)
 
 
-### Contributed by:
+##### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

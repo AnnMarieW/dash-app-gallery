@@ -8,12 +8,12 @@ dash.register_page(__name__, description="DataTable with callback on cell click"
 filename = __name__.split("pages.")[1]
 
 notes = """
-### For more information see:
+
 Dash docs:  
 
 - [DataTable component](https://dash.plotly.com/datatable)
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

@@ -24,7 +24,7 @@ notes = """
 #### 3rd-party Dash Bootstrap Components: 
 - [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
 
-#### Contributed by:
+##### Contributed by:
 - This app was built by [Milan](https://milanzmitrovic.github.io/)
 
 """

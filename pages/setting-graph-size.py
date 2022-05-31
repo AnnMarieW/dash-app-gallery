@@ -9,13 +9,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [How to manipulate the graph size, margins and background color.](https://plotly.com/python/setting-graph-size/)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

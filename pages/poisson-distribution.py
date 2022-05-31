@@ -14,26 +14,21 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 
-# any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
-### For more information see:
-Dash docs:  
+#### Dash Components in App:
 
 - [Input component](https://dash.plotly.com/dash-core-components/input)
 - [Markdown component](https://dash.plotly.com/dash-core-components/markdown)
 
-Plotly docs:  
-
+#### Plotly Documentation:  
 - [histogram](https://plotly.com/python/histograms/) 
 
-Dash Bootstrap Components docs:
+#### 3rd-party Dash Bootstrap Components: 
 - [Card](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
 - [Accordion](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/)
 
-
-### Contributed by:
-This example app was contributed by [name](link)
-
+##### Contributed by:
+This example app was contributed by [someshfengde](https://github.com/someshfengde)
 """
 
 layout = example_app(filename, notes=notes)

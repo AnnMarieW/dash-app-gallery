@@ -6,6 +6,7 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This application shows the connections between a Datepicker and Alert.",
+
     layout_type="top-bottom",
     components_type=["markdown", "datepicker", "alert", "button"],
     graph_type=None,
@@ -24,7 +25,10 @@ notes = """
 - [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
 - [Alert component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/ "This component was made by the community and not officially maintained by Plotly.")
 
-### Contributed by:
+#### 3rd-party Dash Mantine Components: 
+- [DatePicker component](https://www.dash-mantine-components.com/components/datepicker)
+
+##### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
 
 """

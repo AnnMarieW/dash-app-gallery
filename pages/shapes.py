@@ -9,13 +9,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [How to make SVG shapes. Examples of lines, circle, rectangle, and path.](https://plotly.com/python/shapes/)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

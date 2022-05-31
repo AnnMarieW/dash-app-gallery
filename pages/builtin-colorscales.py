@@ -9,13 +9,13 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Continuous Color Scales and Color Bars](https://plotly.com/python/colorscales/)
 How to set, create and control continuous color scales and color bars in scatter, bar, map and heatmap figures.
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """

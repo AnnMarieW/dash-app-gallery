@@ -9,14 +9,14 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-### For more information see:
-Plotly docs:  
+
+#### Plotly Documentation:  
 
 - [Creating and updating figures](https://plotly.com/python/discrete-color/)
 How to use and configure discrete color sequences, also known as categorical or qualitative color scales.
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
 """
