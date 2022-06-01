@@ -28,7 +28,9 @@ notes = """
 #### Plotly Components in App:
 - [Line chart](https://plotly.com/python/line-charts/)
 
-#### 3rd-party Dash Bootstrap Components: 
+#### Community Components:
+
+Dash Bootstrap Components 
 - [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
 - [Card component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/ "This component was made by the community and not officially maintained by Plotly.")
 

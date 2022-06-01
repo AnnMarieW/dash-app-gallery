@@ -23,7 +23,9 @@ notes = """
 #### Plotly Documentation:  
 - [histogram](https://plotly.com/python/histograms/) 
 
-#### 3rd-party Dash Bootstrap Components: 
+#### Community Components:
+
+Dash Bootstrap Components 
 - [Card](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
 - [Accordion](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/)
 
