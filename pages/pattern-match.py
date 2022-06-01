@@ -6,9 +6,10 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components",
-    layout_type="top-bottom",
-    graph_type="scatter",
-    callback_type="pattern-matching",
+    layout_type=["top-bottom","card"],
+    components_type=["dropdown", "button"],
+    graph_type="line",
+    callback_type=["pattern-matching", "ctx"],
 )
 
 filename = __name__.split("pages.")[1]
@@ -19,15 +20,19 @@ notes = """
 
 - [Medium Article Introducing Pattern Matching Callbacks](https://medium.com/plotly/pattern-matching-callbacks-in-dash-9014eee99858)
 
-Dash docs:  
-
+#### Dash Components in App:
 - [Pattern Matching Callbacks](https://dash.plotly.com/pattern-matching-callbacks)
+- [Callback Context](https://dash.plotly.com/determining-which-callback-input-changed)
+- [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
 
-Plotly docs:  
+#### Plotly Components in App:
+- [Line chart](https://plotly.com/python/line-charts/)
 
-- [parallel coordinates](https://plotly.com/python/parallel-coordinates-plot/) 
+#### 3rd-party Dash Bootstrap Components: 
+- [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
+- [Card component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/ "This component was made by the community and not officially maintained by Plotly.")
 
-### Contributed by:
+##### Contributed by:
 This example app was contributed by [AnnMarieW](https://github.com/AnnMarieW)
 
 """
