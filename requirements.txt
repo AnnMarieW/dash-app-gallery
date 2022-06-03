@@ -1,5 +1,7 @@
-dash==2.3.1
+dash>=2.3.1
 dash_bootstrap_components==1.1.0
+dash_html_components>=2.0
+dash_mantine_components>=2.0
 dash_cytoscape==0.3.0
 dash_daq==0.5.0
 dash_labs==1.0.3
@@ -10,5 +12,5 @@ pandas==1.1.5;python_version=="3.6"
 plotly==5.7.0
 scikit-learn
 scikit-image==0.18.2;python_version>="3.7"
-scikit-image==0.17.2;python_version=="3.6"
+scikit-image==0.17.2;python_version>="3.6"
 kaleido
