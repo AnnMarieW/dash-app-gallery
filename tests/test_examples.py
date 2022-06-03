@@ -7,12 +7,12 @@ import pkgutil
 from dash.testing.application_runners import import_app
 
 
-components = [
+examples = [
     n for f, n, i in pkgutil.iter_modules(examples.__path__, examples.__name__ + ".")
 ]
 
 
-@pytest.mark.parametrize("component", components)
-def test_render_components(dash_duo, component):
-    app = import_app(component)
+@pytest.mark.parametrize("example", examples)
+def test_render_components(dash_duo, example):
+    app = import_app(example)
     dash_duo.start_server(app)
