@@ -17,8 +17,8 @@ filename = __name__.split("pages.")[1]
 
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
-### For more information see:
-Dash docs:  
+
+#### Dash documentation:  
 
 - [Interval component](https://dash.plotly.com/dash-core-components/interval)
 
@@ -27,7 +27,7 @@ Dash docs:
 - [Clientside Callback](https://dash.plotly.com/clientside-callbacks)
 
 
-### Contributed by:
+#### Contributed by:
 This example app was contributed by [IcToxi](https://github.com/IcToxi)
 
 """

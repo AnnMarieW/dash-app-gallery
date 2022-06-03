@@ -12,4 +12,17 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 
-layout = example_app(filename)
+notes = """
+
+#### Plotly documentation:  
+
+- [3d Scatter Plots](https://plotly.com/python/3d-scatter-plots/)
+
+
+##### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)
