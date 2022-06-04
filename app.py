@@ -1,4 +1,6 @@
-import dash
+"""
+Main application code.
+"""
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import dash_labs as dl
@@ -45,7 +47,7 @@ navbar = dbc.NavbarSimple(
             label="Full Screen",
             value=False,
             label_class_name="text-white",
-            className="d-none",  # todo hidden for now
+            className="d-none"
         ),
     ],
     brand="Dash App Gallery",
@@ -75,6 +77,9 @@ app.layout = html.Div(
     Input("url", "pathname"),
 )
 def fullscreen(path):
+    """
+    Setting path for full screen.
+    """
     if path == "/":
         return "d-none", "d-none"
     return "ms-2", "ms-2"
@@ -89,6 +94,9 @@ def fullscreen(path):
     State("modal-fs", "is_open"),
 )
 def toggle_modal(n_app, n_code, pathname, is_open):
+    """
+    toggle modal for full screen.
+    """
     filename = file_name_from_path(pathname)
     layout = None
     code = None

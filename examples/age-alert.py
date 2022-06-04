@@ -1,17 +1,19 @@
-from dash import Dash, html, dcc, Input, Output, State, callback
-import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc 
 from datetime import datetime, date
+from dash import Dash, html, dcc, Input, Output,callback
+import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
+
+
 app = Dash(__name__)
 
 # main app code
 app.layout = html.Div(
-    [        
+    [
         dcc.Markdown("""
         #### Birthday !! 
         here we are asking user to enter birthdate with datepicker and showing success message when user selects date.
         we will be using duration to make sure alert will last for certain duration
-        """), 
+        """),
         dmc.DatePicker(
             id="age-alert-x-date-pick",
             label="Birthday!",
@@ -25,9 +27,9 @@ app.layout = html.Div(
         dcc.Markdown('''
             ### Using Simple alert
             You can use this for simple application for showing success, failure, etc. Note that this will stay on screen till it's rendering since we are `not giving any duration`.
-            '''), 
+            '''),
         dbc.Alert("this is a simple alert", color= "warning"),
-        dcc.Markdown("One with the `different color`"), 
+        dcc.Markdown("One with the `different color`"),
         dbc.Alert("one with another color" , color = "danger"),
         dcc.Markdown("""
             alert on click
@@ -45,23 +47,28 @@ app.layout = html.Div(
     Output("age-alert-x-show-age", "children"),
     Input("age-alert-x-date-pick", "value")
 )
-def update_output(d): 
+def update_output(input_date):
+    """
+    update output divs according to date provided.
+        Input: date
+        Output: Message and age
+    """
     todays_date = datetime.now().date().year
-    if todays_date- int(d[:4]) > 18 : 
+    if todays_date- int(input_date[:4]) > 18 :
         text = """
         # 
-            You are 18+ 🎁! """  
-    else: 
+            You are 18+ 🎁! """
+    else:
         text = """
         # 
-            Happy childhood! 🎉 """  
-    alert_text = f"thanks for selecting date {d}"
+            Happy childhood! 🎉 """
+    alert_text = f"thanks for selecting date {input_date}"
     duration = 3000
-    if  d == "2002-09-19":
-        duration = 1 
+    if  input_date == "2002-09-19":
+        duration = 1
         alert_text = ""
         text = ""
-    
+
     return [
     dbc.Alert(alert_text , duration = duration , color = 'success'),
     dcc.Markdown(text)
@@ -73,6 +80,11 @@ def update_output(d):
     [Input("age-alert-toggle-fade", "n_clicks")],
 )
 def toggle_alert(n):
+    """
+    Toggle alert on click.
+        Input: no of clicks
+        Ouput: alert
+    """
     return dbc.Alert("Hello! I am an alert",dismissable=True,duration = 900)
 
 if __name__ == "__main__":

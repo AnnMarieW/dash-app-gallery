@@ -25,12 +25,17 @@ app.layout = html.Div(
     Input("3d-scatter-plots-x-range-slider", "value"),
 )
 def update_bar_chart(slider_range):
-    df = px.data.iris()  # replace with your own data source
+    """
+    Updates the graph for bar chart.
+        Input: slider_range
+        Ouput: bar chart (fig)
+    """
+    data_df = px.data.iris()  # replace with your own data source
     low, high = slider_range
-    mask = (df.petal_width > low) & (df.petal_width < high)
+    mask = (data_df.petal_width > low) & (data_df.petal_width < high)
 
     fig = px.scatter_3d(
-        df[mask],
+        data_df[mask],
         x="sepal_length",
         y="sepal_width",
         z="petal_width",
