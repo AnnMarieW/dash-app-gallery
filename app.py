@@ -1,6 +1,7 @@
 """
 Main application code.
 """
+import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import dash_labs as dl
@@ -66,7 +67,7 @@ app.layout = html.Div(
         dbc.Container(
             dl.plugins.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
-        dcc.Location(id="url"),
+        dcc.Location(id="url", refresh=True),
     ]
 )
 
@@ -77,9 +78,7 @@ app.layout = html.Div(
     Input("url", "pathname"),
 )
 def fullscreen(path):
-    """
-    Setting path for full screen.
-    """
+    """ Don't show fullscreen buttons on home page (gallery overview)"""
     if path == "/":
         return "d-none", "d-none"
     return "ms-2", "ms-2"
@@ -90,8 +89,8 @@ def fullscreen(path):
     Output("content-fs", "children"),
     Input("open-fs-app", "n_clicks"),
     Input("open-fs-code", "n_clicks"),
-    State("url", "pathname"),
     State("modal-fs", "is_open"),
+    State("url", "pathname"),
 )
 def toggle_modal(n_app, n_code, pathname, is_open):
     """
@@ -109,6 +108,18 @@ def toggle_modal(n_app, n_code, pathname, is_open):
     if n_app or n_code:
         return not is_open, content
     return is_open, content
+
+
+@app.callback(
+    Output("url", "href"),
+    Input("modal-fs", "is_open"),
+    State("url", "pathname")
+)
+def refresh_page(is_open, pathname):
+    """ refreshes screen when fullscreen mode is closed, else callbacks don't fire"""
+    if is_open is None:
+        return dash.no_update
+    return pathname if not is_open else dash.no_update
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.H4("Polotical candidate voting pool analysis"),
+        html.H4("Political candidate voting pool analysis"),
         html.P("Select a candidate:"),
         dcc.RadioItems(
             id="choropleth-maps-x-candidate",

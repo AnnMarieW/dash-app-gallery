@@ -12,4 +12,17 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 
-layout = example_app(filename)
+notes = """
+
+#### Plotly Documentation:  
+
+- [Intro to animations](https://plotly.com/python/animations/)
+
+
+#### Contributed by:
+This example app was contributed by [Plotly](https://plotly.com/python/)
+
+"""
+
+
+layout = example_app(filename, notes=notes)
