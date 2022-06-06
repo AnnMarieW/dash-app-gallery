@@ -12,32 +12,25 @@ fig_gapminder = px.scatter(
     color="continent",
     hover_name="country",
     log_x=True,
-    size_max=60)
+    size_max=60,
+)
 
 # Tab 2
 iris = data.iris()
-fig_iris = px.scatter(
-        iris,
-        x="sepal_length",
-        y="sepal_width", 
-        color="species")
+fig_iris = px.scatter(iris, x="sepal_length", y="sepal_width", color="species")
 
 # App
 app = Dash(__name__)
-app.layout = html.Div([
-    dcc.Tabs([
-        dcc.Tab(label='Iris', children=[
-            dcc.Graph(
-                figure=fig_iris
-            )
-        ]),
-        dcc.Tab(label='Gapminder', children=[
-            dcc.Graph(
-                figure=fig_gapminder
-            )
-        ])
-    ])
-])
+app.layout = html.Div(
+    [
+        dcc.Tabs(
+            [
+                dcc.Tab(label="Iris", children=[dcc.Graph(figure=fig_iris)]),
+                dcc.Tab(label="Gapminder", children=[dcc.Graph(figure=fig_gapminder)]),
+            ]
+        )
+    ]
+)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True)

@@ -24,7 +24,7 @@ app.layout = html.Div([
     Input("template-x-component", "value"))
 def display_(value):
     """
-    Displays a graph. 
+    Displays a graph.
     """
     return
 

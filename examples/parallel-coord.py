@@ -19,27 +19,21 @@ fig = px.parallel_coordinates(
     color_continuous_midpoint=2,
 )
 
-my_graph = dcc.Graph(id='parallel-coord-x-graph', figure=fig)
+my_graph = dcc.Graph(id="parallel-coord-x-graph", figure=fig)
 my_table = dash_table.DataTable(
     data=df.to_dict("records"),
     row_selectable="single",
     page_size=5,
-    id='parallel-coord-x-table',
-
+    id="parallel-coord-x-table",
 )
 
-app.layout = html.Div(
-    [
-        my_graph,
-        my_table
-    ]
-)
+app.layout = html.Div([my_graph, my_table])
 
 
 @app.callback(
     Output("parallel-coord-x-graph", "figure"),
     Input("parallel-coord-x-table", "selected_rows"),
-    State("parallel-coord-x-graph", "figure")
+    State("parallel-coord-x-graph", "figure"),
 )
 def pick(r, f):
     if r is None:

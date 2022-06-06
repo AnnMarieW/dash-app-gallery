@@ -6,7 +6,6 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This application shows the connections between a Datepicker and Alert.",
-
     layout_type="top-bottom",
     components_type=["markdown", "datepicker", "alert", "button"],
     graph_type=None,
