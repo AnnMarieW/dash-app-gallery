@@ -24,7 +24,7 @@ dropdown_menu = dcc.Dropdown(
 # Application layout
 app.layout = dbc.Container(
     [
-        html.H2("Salary changes over years"),
+        html.H2("Salary changes by region"),
         html.Hr(),
         dbc.Row(
             [
