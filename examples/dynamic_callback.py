@@ -5,7 +5,7 @@ import copy
 import plotly.express as px
 
 # df = pd.read_table('super_store.tsv')
-df = pd.read_table('https://raw.githubusercontent.com/milanzmitrovic/Global-Super-Store/main/Data/Orders.tsv')
+df = pd.read_table('https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv')
 
 df['Order Date'] = pd.to_datetime(df['Order Date'])
 df['Profit'] = df['Profit'].str.replace(',', '.')
