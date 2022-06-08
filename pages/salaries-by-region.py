@@ -17,7 +17,7 @@ filename = __name__.split("pages.")[1]
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
 #### Dash Components in App:
-- [Dropdown component](https://plotly.com/python/dropdowns/)
+- [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
 
 #### Plotly Documentation:
 - [3d-Line component](https://plotly.com/python/3d-line-plots/)
