@@ -19,7 +19,6 @@ filename = __name__.split("pages.")[1]
 notes = """
 #### Dash Components in App:
 - [Markdown component](https://dash.plotly.com/dash-core-components/markdown)
-- [DatePickerSingle component](https://dash.plotly.com/dash-core-components/datepickersingle)
 
 #### Community Components:
 
