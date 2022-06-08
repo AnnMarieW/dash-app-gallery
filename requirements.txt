@@ -12,4 +12,4 @@ scikit-learn
 scikit-image==0.18.2;python_version>="3.7"
 scikit-image==0.17.2;python_version=="3.6"
 kaleido
-request
+requests==2.27.1
