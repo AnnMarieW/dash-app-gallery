@@ -17,7 +17,7 @@ app.layout = html.Div(
     [
         html.H5("Region"),
         dcc.Dropdown(
-            id="dynamic_callback-x-region",
+            id="dynamic-callback-x-region",
             options=[{"label": x, "value": x} for x in sorted(df["Region"].unique())],
         ),
         html.H5("Country"),
