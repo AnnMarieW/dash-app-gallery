@@ -67,7 +67,7 @@ layout = html.Div(
     [
         dbc.Row([dbc.Col(search_code_div), dbc.Col(callback_structure_div)]),
         dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
-    ]
+    ], className="p-4 mx-5"
 )
 
 

@@ -21,7 +21,7 @@ app.layout = html.Div(
     Output("plotly-express-x-graph", "figure"),
     Input("plotly-express-x-dropdown", "value"),
 )
-def update_bar_chart(dims):
+def update_charts(dims):
     df = px.data.iris()  # replace with your own data source
     fig = px.scatter_matrix(df, dimensions=dims, color="species")
     return fig
