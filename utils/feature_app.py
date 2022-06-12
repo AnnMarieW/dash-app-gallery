@@ -1,0 +1,108 @@
+"""
+This defines the feature apps component.
+
+Each feature app category is a`dbc.AccordionItem`. This component contains  buttons formatted as links.
+
+There is one dictionary for each category, e.g. `figure_type`
+This dictionary is used to create the link buttons, the keys are the link name, and the values are the search terms
+that will be used to filter the code files.
+
+The search terms are passed to the callback via the "index" of a pattern matching dict id
+  e.g. ` id = {"type": "feature_app", "index": searchterm}
+
+"""
+from dash import html
+
+import dash_bootstrap_components as dbc
+
+
+figure_type = {
+    # key  : value
+    # name of link  : search term used to filter the code files
+    "Scatter": "px.scatter",
+    "Line": "px.line",
+    "3d Scatter": "px.scatter_3d",
+    "3d Line": "px.line_3d",
+    "Bar": "px.bar",
+    "Box": "px.box",
+    "Candlestick": "go.Candlestick",
+    "Chorlopleth": "px.choropleth",
+    "Histogram": "px.histogram",
+    "Filled Area": "px.area",
+    "Contour": "go.Contour",
+    "Parallel Coordinates": "px.parallel_coordinates",
+    "Scatter Matirix": "px.scatter_matrix",
+    "Pie": "px.pie",
+    "Scatter Geo": "px.scatter_geo",
+    "Sankey": "go.Sankey",
+    "Sub plots": "make_subplots",
+    "Sunburst": "px.sunburst",
+}
+figure_type = {key: figure_type[key] for key in sorted(figure_type)}
+
+callback_type = {
+    # key  : value
+    # name of link  : search term used to filter the code files
+    "Pattern Match": "ALL",
+    "Clientside": "clientside_callback",
+    "Callbacks": "callback(",
+}
+
+components = {
+    # key  : value
+    # name of link  : search term used to filter the code files
+    "Dash Bootstrap Components": "dbc.",
+    "Dash Mantine Components": "dmc.",
+    "Dash DataTable": "DataTable",
+    "Dropdown": "Dropdown(",
+    "Checklist": "Checklist(",
+    "Tabs": "Tab(",
+    "Slider": "Slider(",
+}
+components = {key: components[key] for key in sorted(components)}
+
+
+feature_app_div = html.Div(
+    [
+        "Featured Apps",
+        dbc.Accordion(
+            [
+                dbc.AccordionItem(
+                    [
+                        dbc.Button(
+                            name,
+                            id={"type": "feature_app", "index": searchterm},
+                            color="link",
+                        )
+                        for name, searchterm in figure_type.items()
+                    ],
+                    title="Figure Type",
+                ),
+                dbc.AccordionItem(
+                    [
+                        dbc.Button(
+                            name,
+                            id={"type": "feature_app", "index": searchterm},
+                            color="link",
+                        )
+                        for name, searchterm in callback_type.items()
+                    ],
+                    title="Callback Type",
+                ),
+                dbc.AccordionItem(
+                    [
+                        dbc.Button(
+                            name,
+                            id={"type": "feature_app", "index": searchterm},
+                            color="link",
+                        )
+                        for name, searchterm in components.items()
+                    ],
+                    title="Components",
+                ),
+            ],
+            start_collapsed=True,
+            className="mb-2",
+        ),
+    ]
+)

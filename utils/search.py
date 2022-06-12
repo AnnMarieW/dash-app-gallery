@@ -12,17 +12,29 @@ Note:  The file names of the example apps must be unique, even if they are in su
 """
 
 
-def search_code_files(searchterms, case_sensitive):
+def search_code_files(searchterms, case_sensitive, search_type="and"):
     """
     returns a list of filenames of the example apps that contain the search terms
-    todo: search for exact string, and/or
     """
-    filtered = []
+
+    searchterms = searchterms.split()
+    if not case_sensitive:
+        searchterms = [terms.lower() for terms in searchterms]
+
+    # initialize the index of filenames of code with the search terms
+    index = {term: set() for term in searchterms}
+
     for filename, code in example_source_codes.items():
         if not case_sensitive:
             code = code.lower()
-            searchterms = searchterms.lower()
 
-        if searchterms in code:
-            filtered.append(filename)
-    return filtered
+        # build index of filenames of code with the search terms
+        for term in searchterms:
+            if term in code:
+                index[term].add(filename)
+
+    search_results = [index.get(term, set()) for term in searchterms]
+
+    if search_type == "and":
+        return set.intersection(*search_results)
+    return set.union(*search_results)
