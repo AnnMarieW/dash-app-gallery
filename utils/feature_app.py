@@ -107,6 +107,7 @@ feature_app_div = html.Div(
             ],
             start_collapsed=True,
             className="mb-2",
+            id = "featured-apps"
         ),
     ]
 )

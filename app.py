@@ -1,7 +1,6 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-import dash_labs as dl
 from utils.init_app import example_apps, example_source_codes, file_name_from_path
 from utils.code_and_show import make_code_div
 
@@ -12,7 +11,7 @@ dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/s
 
 app = Dash(
     __name__,
-    plugins=[dl.plugins.pages],
+    use_pages=True,
     external_stylesheets=[dbc.themes.SPACELAB, dark_hljs],
     suppress_callback_exceptions=True,
 )
@@ -55,7 +54,7 @@ app.layout = html.Div(
         navbar,
         fullscreen_modal,
         dbc.Container(
-            dl.plugins.page_container, fluid=True, style={"marginTop": "4rem"}
+            dash.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
         dcc.Location(id="url", refresh=True),
     ]

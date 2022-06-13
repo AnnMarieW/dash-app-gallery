@@ -68,6 +68,7 @@ layout = html.Div(
 @callback(
     Output("home-search-x-grid", "children"),
     Output("home-search-x-code-search-input", "value"),
+    Output("featured-apps", "active_item"),
     Input("home-search-x-code-search-input", "value"),
     Input("home-search-x-case-sensitive", "value"),
     Input({"type": "feature_app", "index": ALL}, "n_clicks"),
@@ -79,21 +80,23 @@ def update(searchterms, case_sensitive, feature_app, overview):
 
     # show apps based on search field
     if input_id == "home-search-x-code-search-input":
-        print("search",)
         if searchterms:
             filtered_example_app_names = search_code_files(searchterms, case_sensitive)
             registry = filtered_registry(filtered_example_app_names)
-            return make_card_grid(registry=registry), dash.no_update
+            return make_card_grid(registry=registry), dash.no_update, dash.no_update
 
     # show feature apps
     if isinstance(input_id, dict):
-        print("feature")
         # The searchterms are from the "index" key of the pattern matching dict id
         # See `utils.feature_app.py for more details.
         searchterms = input_id["index"]
         case_sensitive = True
         filtered_example_app_names = search_code_files(searchterms, case_sensitive)
         registry = filtered_registry(filtered_example_app_names)
-        return make_card_grid(registry=registry), None
+        return make_card_grid(registry=registry), None, dash.no_update
 
-    return make_card_grid(registry=registry), None
+    if input_id == "overview":
+        # close the featured apps accordian when the overview button is clicked.
+        return dash.no_update, dash.no_update, None
+
+    return make_card_grid(registry=registry), None, None
