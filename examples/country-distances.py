@@ -23,9 +23,13 @@ app.layout = dbc.Container(
         html.Hr(),
         dbc.Row(
             [
-                dbc.Col(
-                    [dropdown_country_a, dropdown_country_b, info_card], lg=6, sm=12
-                ),
+                dbc.Col([dropdown_country_a, dropdown_country_b], lg=6, sm=12),
+                dbc.Col(info_card, lg=6, sm=12),
+            ]
+        ),
+        dbc.Row(
+            [
+                dbc.Col(dcc.Graph(id="country-distances-locations-graph"), lg=6, sm=12),
                 dbc.Col(dcc.Graph(id="country-distances-graph"), lg=6, sm=12),
             ]
         ),
@@ -49,6 +53,7 @@ def set_dropdown_b_options(dropdown_a_value, dropdown_b_options):
 # Callback for line_geo graph
 @app.callback(
     Output("country-distances-graph", "figure"),
+    Output("country-distances-locations-graph", "figure"),
     Input("country-distances-dropdown-a", "value"),
     Input("country-distances-dropdown-b", "value"),
 )
@@ -58,11 +63,19 @@ def make_line_geo_graph(country_a, country_b):
 
     fig = px.line_geo(dff, locations="iso_alpha", projection="orthographic",)
 
+    fig_locations = px.line_geo(
+        dff, locations="iso_alpha", projection="orthographic", fitbounds="locations"
+    )
+
     fig.update_traces(
         line_width=3, line_color="red",
     )
 
-    return fig
+    fig_locations.update_traces(
+        line_width=3, line_color="red",
+    )
+
+    return fig, fig_locations
 
 
 # Run the app
