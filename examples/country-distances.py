@@ -15,9 +15,7 @@ dropdown_country_a = dcc.Dropdown(
 
 dropdown_country_b = dcc.Dropdown(id="country-distances-dropdown-b")
 
-info_card = dbc.Card(
-    dbc.CardBody(html.P("Choose two countries and drag to rotate."))
-)
+info_card = dbc.Card(dbc.CardBody(html.P("Choose two countries and drag to rotate.")))
 
 app.layout = dbc.Container(
     [
@@ -25,10 +23,12 @@ app.layout = dbc.Container(
         html.Hr(),
         dbc.Row(
             [
-                dbc.Col([dropdown_country_a, dropdown_country_b, info_card], lg=6, sm=12),
+                dbc.Col(
+                    [dropdown_country_a, dropdown_country_b, info_card], lg=6, sm=12
+                ),
                 dbc.Col(dcc.Graph(id="country-distances-graph"), lg=6, sm=12),
             ]
-        )
+        ),
     ]
 )
 
