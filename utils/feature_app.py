@@ -34,6 +34,7 @@ figure_type = {
     "Scatter Matirix": "px.scatter_matrix",
     "Pie": "px.pie",
     "Scatter Geo": "px.scatter_geo",
+    "Scatter Map": "px.scatter_mapbox",
     "Sankey": "go.Sankey",
     "Sub plots": "make_subplots",
     "Sunburst": "px.sunburst",
@@ -58,6 +59,9 @@ components = {
     "Checklist": "Checklist(",
     "Tabs": "Tab(",
     "Slider": "Slider(",
+    "Cytoscape": "Cyto",
+    "Download": "Download",
+
 }
 components = {key: components[key] for key in sorted(components)}
 

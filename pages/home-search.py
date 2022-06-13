@@ -71,13 +71,15 @@ layout = html.Div(
     Input("home-search-x-code-search-input", "value"),
     Input("home-search-x-case-sensitive", "value"),
     Input({"type": "feature_app", "index": ALL}, "n_clicks"),
+    Input("overview", "n_clicks"),
 )
-def update(searchterms, case_sensitive, feature_app):
+def update(searchterms, case_sensitive, feature_app, overview):
     input_id = ctx.triggered_id
     registry = dash.page_registry.values()
 
     # show apps based on search field
     if input_id == "home-search-x-code-search-input":
+        print("search",)
         if searchterms:
             filtered_example_app_names = search_code_files(searchterms, case_sensitive)
             registry = filtered_registry(filtered_example_app_names)
@@ -85,6 +87,7 @@ def update(searchterms, case_sensitive, feature_app):
 
     # show feature apps
     if isinstance(input_id, dict):
+        print("feature")
         # The searchterms are from the "index" key of the pattern matching dict id
         # See `utils.feature_app.py for more details.
         searchterms = input_id["index"]

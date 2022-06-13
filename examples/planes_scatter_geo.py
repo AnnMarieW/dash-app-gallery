@@ -10,7 +10,7 @@ app.layout = html.Div(
         html.H4("Airports"),
         html.P(
             "px.scatter_geo is used to plot points on globe across geolocations while "
-            "px.scatter_map is used to plot points on map across geolocations."
+            "px.scatter_mapbox is used to plot points on map across geolocations."
         ),
         dcc.Graph(id="planes_scatter_geo-x-graph"),
         html.P(

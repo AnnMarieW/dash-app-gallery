@@ -37,16 +37,9 @@ fullscreen_modal = dbc.Modal(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", href="/", color="secondary"),
+        dbc.Button("Overview", id="overview", href="/", color="secondary"),
         dbc.Button("Fullscreen App", id="open-fs-app", color="secondary"),
         dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary"),
-        dbc.Switch(
-            id="full-screen",
-            label="Full Screen",
-            value=False,
-            label_class_name="text-white",
-            className="d-none",  # todo hidden for now
-        ),
     ],
     brand="Dash App Gallery",
     brand_href="/",

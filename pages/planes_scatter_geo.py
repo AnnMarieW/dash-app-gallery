@@ -26,6 +26,7 @@ Dash docs:
 
 - [Scatter Mapbox](https://plotly.com/python/mapbox-layers/) 
 - [Scatter Geo](https://plotly.com/python/bubble-maps/) 
+- [Map Configuration: Mapbox Maps vs Geo Maps ](https://plotly.com/python/map-configuration/)
 
 #### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
