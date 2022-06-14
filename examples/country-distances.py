@@ -8,12 +8,12 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 df = px.data.gapminder().query("year == 2007")
 
 dropdown_country_a = dcc.Dropdown(
-    id="country-distances-dropdown-a",
+    id="country-distances-x-dropdown-a",
     options=[cntry for cntry in df.country],
     value="Turkey",
 )
 
-dropdown_country_b = dcc.Dropdown(id="country-distances-dropdown-b")
+dropdown_country_b = dcc.Dropdown(id="country-distances-x-dropdown-b")
 
 info_card = dbc.Card(dbc.CardBody(html.P("Choose two countries and drag to rotate.")))
 
@@ -29,8 +29,8 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(id="country-distances-locations-graph"), lg=6, sm=12),
-                dbc.Col(dcc.Graph(id="country-distances-graph"), lg=6, sm=12),
+                dbc.Col(dcc.Graph(id="country-distances-x-locations-graph"), lg=6, sm=12),
+                dbc.Col(dcc.Graph(id="country-distances-x-graph"), lg=6, sm=12),
             ]
         ),
     ]
@@ -38,10 +38,10 @@ app.layout = dbc.Container(
 
 # Callback for dropdown-b
 @app.callback(
-    Output("country-distances-dropdown-b", "options"),
-    Output("country-distances-dropdown-b", "value"),
-    Input("country-distances-dropdown-a", "value"),
-    Input("country-distances-dropdown-b", "options"),
+    Output("country-distances-x-dropdown-b", "options"),
+    Output("country-distances-x-dropdown-b", "value"),
+    Input("country-distances-x-dropdown-a", "value"),
+    Input("country-distances-x-dropdown-b", "options"),
 )
 def set_dropdown_b_options(dropdown_a_value, dropdown_b_options):
     return (
@@ -52,10 +52,10 @@ def set_dropdown_b_options(dropdown_a_value, dropdown_b_options):
 
 # Callback for line_geo graph
 @app.callback(
-    Output("country-distances-graph", "figure"),
-    Output("country-distances-locations-graph", "figure"),
-    Input("country-distances-dropdown-a", "value"),
-    Input("country-distances-dropdown-b", "value"),
+    Output("country-distances-x-graph", "figure"),
+    Output("country-distances-x-locations-graph", "figure"),
+    Input("country-distances-x-dropdown-a", "value"),
+    Input("country-distances-x-dropdown-b", "value"),
 )
 def make_line_geo_graph(country_a, country_b):
 
