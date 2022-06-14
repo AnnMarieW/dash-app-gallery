@@ -46,14 +46,15 @@ callback_type = {
     # name of link  : search term used to filter the code files
     "Pattern Match": "ALL",
     "Clientside": "clientside_callback",
-    "Callbacks": "callback(",
+    "Apps with Callbacks": "callback(",
+    "Callback context (ctx)": "ctx",
 }
 
 components = {
     # key  : value
     # name of link  : search term used to filter the code files
-    "Dash Bootstrap Components": "dbc.",
-    "Dash Mantine Components": "dmc.",
+    "" "Date Picker": "DatePicker",
+    "Cards": "Card",
     "Dash DataTable": "DataTable",
     "Dropdown": "Dropdown(",
     "Checklist": "Checklist(",
@@ -61,7 +62,6 @@ components = {
     "Slider": "Slider(",
     "Cytoscape": "Cyto",
     "Download": "Download",
-
 }
 components = {key: components[key] for key in sorted(components)}
 
@@ -80,7 +80,7 @@ feature_app_div = html.Div(
                         )
                         for name, searchterm in figure_type.items()
                     ],
-                    title="Figure Type",
+                    title="Figures",
                 ),
                 dbc.AccordionItem(
                     [
@@ -91,7 +91,7 @@ feature_app_div = html.Div(
                         )
                         for name, searchterm in callback_type.items()
                     ],
-                    title="Callback Type",
+                    title="Callbacks",
                 ),
                 dbc.AccordionItem(
                     [
@@ -106,8 +106,8 @@ feature_app_div = html.Div(
                 ),
             ],
             start_collapsed=True,
-            className="mb-2",
-            id = "featured-apps"
+            className="m-2 pb-5",
+            id="featured-apps",
         ),
     ]
 )

@@ -20,24 +20,35 @@ case_sensitive = (
 )
 search_code_div = html.Div(
     [
-        "Search code files",
+        "Search code",
         dbc.InputGroup(
             [
-                dbc.Input(id="home-search-x-code-search-input", debounce=True),
+                dbc.Input(
+                    id="home-search-x-code-search-input",
+                    debounce=True,
+                    placeholder="e.g. Dropdown bar",
+                ),
                 dbc.InputGroupText(
                     case_sensitive, id="home-search-x-case-label", className="p-0"
                 ),
             ]
         ),
-        dbc.Tooltip(
-            "Find app examples with selected code, for example, try entering dcc.Dropdown, or scatter",
-            target="home-search-x-code-search-input",
-        ),
+        # dbc.Tooltip(
+        #     "Find app examples with selected code, for example, try entering dcc.Dropdown, or scatter",
+        #     target="home-search-x-code-search-input",
+        # ),
         dbc.Tooltip(
             "Match Case",
             target="home-search-x-case-label",
         ),
     ],
+    className="mb-4 mx-2",
+)
+
+textbox_card = dbc.Card(
+    ["Welcome to the Dash app gallery!"],
+    style={"height": 225},
+    className="shadow-sm p-4 mt-4 mx-2",
 )
 
 
@@ -58,10 +69,10 @@ def filtered_registry(filtered_example_app_list):
 
 layout = html.Div(
     [
-        dbc.Row([dbc.Col(search_code_div), dbc.Col(feature_app_div)]),
+        dbc.Row([dbc.Col([search_code_div, feature_app_div]), dbc.Col(textbox_card)]),
         dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
     ],
-    className="p-4 mx-5",
+    className="p-4 mx-2",
 )
 
 

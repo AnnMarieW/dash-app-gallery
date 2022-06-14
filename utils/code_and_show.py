@@ -95,7 +95,9 @@ def make_side_by_side(code, show_app, notes):
             )
             if code
             else None,
-            dcc.Markdown(notes, className="m-4") if notes else None,
+            dcc.Markdown(notes, className="m-4", link_target="_blank")
+            if notes
+            else None,
         ],
         className="p-4",
     )
@@ -127,7 +129,9 @@ def make_app_first(code, show_app, notes):
             )
             if code
             else None,
-            dcc.Markdown(notes, className="m-4") if notes else None,
+            dcc.Markdown(notes, className="m-4", link_target="_blank")
+            if notes
+            else None,
         ],
         className="p-4",
     )
