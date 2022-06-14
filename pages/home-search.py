@@ -20,13 +20,13 @@ case_sensitive = (
 )
 search_code_div = html.Div(
     [
-        "Search code",
+        dbc.Label("Search code", className="fw-bolder"),
         dbc.InputGroup(
             [
                 dbc.Input(
                     id="home-search-x-code-search-input",
                     debounce=True,
-                    placeholder="e.g. Dropdown bar",
+                    placeholder="e.g. Dropdown",
                 ),
                 dbc.InputGroupText(
                     case_sensitive, id="home-search-x-case-label", className="p-0"
@@ -41,8 +41,7 @@ search_code_div = html.Div(
             "Match Case",
             target="home-search-x-case-label",
         ),
-    ],
-    className="mb-4 mx-2",
+    ], className="mb-2"
 )
 
 textbox_card = dbc.Card(
@@ -69,7 +68,7 @@ def filtered_registry(filtered_example_app_list):
 
 layout = html.Div(
     [
-        dbc.Row([dbc.Col([search_code_div, feature_app_div]), dbc.Col(textbox_card)]),
+        dbc.Row([dbc.Col([search_code_div, feature_app_div],className="m-2"), dbc.Col(textbox_card)]),
         dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
     ],
     className="p-4 mx-2",
@@ -108,6 +107,6 @@ def update(searchterms, case_sensitive, feature_app, overview):
 
     if input_id == "overview":
         # close the featured apps accordian when the overview button is clicked.
-        return dash.no_update, dash.no_update, None
+        return make_card_grid(registry=registry), None, None
 
     return make_card_grid(registry=registry), None, None

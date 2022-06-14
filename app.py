@@ -40,12 +40,12 @@ navbar = dbc.NavbarSimple(
         dbc.Button("Fullscreen App", id="open-fs-app", color="secondary"),
         dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary"),
     ],
-    brand="Dash App Gallery",
+    brand="Dash Community App Gallery",
     brand_href="/",
     color="primary",
     dark=True,
     fixed="top",
-    className="mb-2",
+    className="mb-2 fs-3",
 )
 
 
