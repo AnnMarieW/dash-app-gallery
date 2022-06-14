@@ -9,7 +9,7 @@ dash.register_page(
     layout_type="side by side",
     components_type=["dropdown"],
     graph_type="line_geo",
-    callback_type=["general", "dynamic"],
+    callback_type=["general", "chained"],
 )
 
 filename = __name__.split("pages.")[1]
