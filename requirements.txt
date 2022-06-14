@@ -7,6 +7,5 @@ pandas>=1.3.0
 plotly==5.7.0
 scikit-learn
 scikit-image==0.18.2
-kaleido
 requests==2.27.1
 dash-mantine-components==0.10.2
