@@ -5,11 +5,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This application shows the connections between a Datepicker and Alert.",
-    layout_type="top-bottom",
-    components_type=["markdown", "datepicker", "alert", "button"],
-    graph_type=None,
-    callback_type="general",
+    description="This application shows the connections between a Datepicker and an Alert. It has a top-bottom layout and regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
