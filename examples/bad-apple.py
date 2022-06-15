@@ -2,7 +2,7 @@ from dash import Dash, html, dcc, Input, Output, State, clientside_callback
 import requests
 
 frames = requests.get(
-    "https://raw.githubusercontent.com/IcToxi/datasets/main/bad_apple_frames.json"
+    "https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Other/Data-Dash-app-gallery/badapple_frames.json"
 ).json()
 
 app = Dash(__name__)
