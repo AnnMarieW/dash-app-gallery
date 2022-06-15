@@ -4,7 +4,7 @@ from dash import Input, Output, dcc, html
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 inputs = dbc.Card(
@@ -48,6 +48,7 @@ app.layout = dbc.Container(
         dbc.Row(dbc.Col(graph, lg=12, sm=12))
     ]
 )
+
 
 @app.callback(
     Output("poisson-distribution-x-histogram", "figure"),

@@ -3,7 +3,7 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 
 # Defining the Dash application
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = px.data.gapminder().query("year == 2007")
 
