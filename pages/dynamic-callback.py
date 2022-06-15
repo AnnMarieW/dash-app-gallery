@@ -6,10 +6,6 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This application shows how to use chained callbacks with a line graph.",
-    layout_type="top-bottom",
-    components_type=["dropdown"],
-    graph_type="line",
-    callback_type="chained",
 )
 
 filename = __name__.split("pages.")[1]

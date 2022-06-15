@@ -12,7 +12,7 @@ dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/s
 app = Dash(
     __name__,
     use_pages=True,
-    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs],
+    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP],
     suppress_callback_exceptions=True,
 )
 
@@ -40,12 +40,21 @@ navbar = dbc.NavbarSimple(
         dbc.Button("Fullscreen App", id="open-fs-app", color="secondary"),
         dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary"),
     ],
-    brand="Dash Community App Gallery",
+    brand="Dash Example App Gallery",
     brand_href="/",
     color="primary",
     dark=True,
     fixed="top",
     className="mb-2 fs-3",
+)
+
+footer = html.H4(
+    [
+
+        dcc.Link(" Thank you contributors!", className="bi bi-github",
+                   href="https://github.com/AnnMarieW/dash-app-gallery/graphs/contributors", target="_blank")
+
+    ], className="p-4 mt-5 text-center"
 )
 
 
@@ -56,6 +65,7 @@ app.layout = html.Div(
         dbc.Container(
             dash.page_container, fluid=True, style={"marginTop": "4rem"}
         ),
+        footer,
         dcc.Location(id="url", refresh=True),
     ]
 )

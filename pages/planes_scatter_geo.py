@@ -7,10 +7,6 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This app connects between a dropdown and two graphs: scatter_geo (also called Bubble map) and scatter_mapbox",
-    layout_type="top-bottom",
-    components_type=["dropdown"],
-    graph_type="ScatterGeo and Scatter Mapbox",
-    callback_type="general",
 )
 
 filename = __name__.split("pages.")[1]

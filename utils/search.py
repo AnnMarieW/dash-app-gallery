@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+
+import dash
+
 from utils.init_app import example_source_codes
 
 ROOT_DIR = Path(__file__).parent.parent
@@ -12,10 +15,11 @@ Note:  The file names of the example apps must be unique, even if they are in su
 """
 
 
-def search_code_files(searchterms, case_sensitive, search_type="and"):
+def search_code_files(searchterms, case_sensitive, search_type="and", include_description=True):
     """
     returns a list of filenames of the example apps that contain the search terms
     """
+
 
     searchterms = searchterms.split()
     if not case_sensitive:
@@ -25,6 +29,11 @@ def search_code_files(searchterms, case_sensitive, search_type="and"):
     index = {term: set() for term in searchterms}
 
     for filename, code in example_source_codes.items():
+        if include_description:
+            module = "pages." + filename
+            app_description = dash.page_registry[module]["description"]
+            code = "\n".join([app_description, code])
+
         if not case_sensitive:
             code = code.lower()
 

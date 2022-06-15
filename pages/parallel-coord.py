@@ -6,10 +6,6 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This app connects between selected rows in a Dash DataTable to update traces of a parallel coordinates graph.",
-    layout_type="top-bottom",
-    components_type=["datatable"],
-    graph_type="parallel coordinates",
-    callback_type="general",
 )
 
 filename = __name__.split("pages.")[1]

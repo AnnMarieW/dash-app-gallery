@@ -5,7 +5,6 @@ Start this app, then run update_images_all.py or update_images_missing.py
 
 
 import dash
-import dash_labs as dl
 import dash_bootstrap_components as dbc
 from utils.code_and_show import example_app, make_app_first
 from utils.init_app import file_names
@@ -14,7 +13,8 @@ from utils.init_app import example_apps
 
 app = dash.Dash(
     __name__,
-    plugins=[dl.plugins.pages],
+    use_pages=True,
+    pages_folder="",
     external_stylesheets=[dbc.themes.SPACELAB],
 )
 
@@ -33,7 +33,7 @@ for page in file_names:
     )
 
 
-app.layout = dbc.Container(dl.plugins.page_container, fluid=True, className="mt-2")
+app.layout = dbc.Container(dash.page_container, fluid=True, className="mt-2")
 
 
 if __name__ == "__main__":

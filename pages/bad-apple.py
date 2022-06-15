@@ -7,10 +7,6 @@ from utils.code_and_show import example_app, make_app_first
 dash.register_page(
     __name__,
     description="An app that uses clientside callback to display frames because dcc Interval is activated multiple times per second.",
-    layout_type="top-bottom",
-    components_type=["store", "interval"],
-    graph_type=None,
-    callback_type="clientside",
 )
 
 filename = __name__.split("pages.")[1]

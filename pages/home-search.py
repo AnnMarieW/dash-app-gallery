@@ -26,10 +26,9 @@ search_code_div = html.Div(
                 dbc.Input(
                     id="home-search-x-code-search-input",
                     debounce=True,
-                    placeholder="e.g. Dropdown",
                 ),
                 dbc.InputGroupText(
-                    case_sensitive, id="home-search-x-case-label", className="p-0"
+                    case_sensitive, id="home-search-x-case-label", className="px-1"
                 ),
             ]
         ),
@@ -41,7 +40,8 @@ search_code_div = html.Div(
             "Match Case",
             target="home-search-x-case-label",
         ),
-    ], className="mb-2"
+    ],
+    className="mb-2",
 )
 
 textbox_card = dbc.Card(
@@ -68,7 +68,12 @@ def filtered_registry(filtered_example_app_list):
 
 layout = html.Div(
     [
-        dbc.Row([dbc.Col([search_code_div, feature_app_div],className="m-2"), dbc.Col(textbox_card)]),
+        dbc.Row(
+            [
+                dbc.Col([search_code_div, feature_app_div], className="m-2"),
+                dbc.Col(textbox_card),
+            ]
+        ),
         dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
     ],
     className="p-4 mx-2",

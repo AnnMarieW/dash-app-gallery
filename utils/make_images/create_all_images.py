@@ -2,7 +2,7 @@
 Script that saves screenshots of multi-page app pages.
 Requires that the app is running on a separate process on localhost:8050
 
-Save images in the utils_make_images/assets directory
+Save images in the utils/make_images/assets directory
 
 
 """

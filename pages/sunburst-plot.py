@@ -6,13 +6,9 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="Sunburst chart with continuous color scale.  Select gapminder data by year with a Dropdown component",
-    layout_type="side by side",
-    components_type=["dropdown"],
-    graph_type="sunburst",
 )
 
 filename = __name__.split("pages.")[1]
-
 
 
 notes = """

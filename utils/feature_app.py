@@ -48,6 +48,7 @@ callback_type = {
     "Clientside": "clientside_callback",
     "Callbacks": "callback(",
     "Callback context (ctx)": "ctx",
+    "Chained" : "chained"
 }
 
 components = {
@@ -67,7 +68,12 @@ components = {
     "Clipboard": "Clipboard(",
     "Accordion": "Accordian",
     "Loading": "Loading",
-    "Markdown": "Markdown"
+    "Markdown": "Markdown",
+    "Input": "Input",
+    "Interval": "Interval",
+    "Color Picker": "daq.Color",
+    "Led display" : "daq.LED",
+    "Power Button" : "daq.Power"
 }
 components = {key: components[key] for key in sorted(components)}
 

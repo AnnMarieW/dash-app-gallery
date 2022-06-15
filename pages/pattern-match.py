@@ -6,10 +6,6 @@ from utils.code_and_show import example_app
 dash.register_page(
     __name__,
     description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components",
-    layout_type=["top-bottom","card"],
-    components_type=["dropdown", "button"],
-    graph_type="line",
-    callback_type=["pattern-matching", "ctx"],
 )
 
 filename = __name__.split("pages.")[1]
