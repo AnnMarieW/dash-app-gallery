@@ -38,6 +38,7 @@ figure_type = {
     "Sankey": "go.Sankey",
     "Sub plots": "make_subplots",
     "Sunburst": "px.sunburst",
+    "Line Geo":  "px.line_geo"
 }
 figure_type = {key: figure_type[key] for key in sorted(figure_type)}
 
@@ -73,7 +74,8 @@ components = {
     "Interval": "Interval",
     "Color Picker": "daq.Color",
     "Led display" : "daq.LED",
-    "Power Button" : "daq.Power"
+    "Power Button" : "daq.Power",
+    "RadioItems" : "RadioItems"
 }
 components = {key: components[key] for key in sorted(components)}
 

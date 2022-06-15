@@ -12,6 +12,9 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 
+#### Dash Components in App:
+- [Cytoscape](https://dash.plotly.com/cytoscape)
+
 #### Plotly Documentation:  
 
 - [How to make Network Graphs](https://plotly.com/python/network-graphs/)
