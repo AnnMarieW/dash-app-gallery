@@ -17,19 +17,18 @@ app.layout = html.Div(
     [
         html.H5("Region"),
         dcc.Dropdown(
-            id="dynamic-callback-x-region",
-            options=[{"label": x, "value": x} for x in sorted(df["Region"].unique())],
+            id="dynamic-callback-x-region", options=sorted(df["Region"].unique())
         ),
         html.H5("Country"),
         dcc.Dropdown(
             id="dynamic-callback-x-country",
-            options=[{"label": x, "value": x} for x in sorted(df["Country"].unique())],
+            options=sorted(df["Country"].unique()),
             value=df["Country"][0],
         ),
         html.H5("State"),
         dcc.Dropdown(
             id="dynamic-callback-x-state",
-            options=[{"label": x, "value": x} for x in sorted(df["State"].unique())],
+            options=sorted(df["State"].unique()),
         ),
         html.Br(),
         dcc.Graph(id="dynamic-callback-x-line"),
@@ -38,11 +37,9 @@ app.layout = html.Div(
 
 
 @callback(
-    Output(component_id="dynamic-callback-x-country", component_property="options"),
-    [
-        Input(component_id="dynamic-callback-x-state", component_property="value"),
-        Input(component_id="dynamic-callback-x-region", component_property="value"),
-    ],
+    Output("dynamic-callback-x-country", "options"),
+    Input("dynamic-callback-x-state", "value"),
+    Input("dynamic-callback-x-region", "value"),
 )
 def chained_callback_country(state, region):
 
@@ -54,15 +51,13 @@ def chained_callback_country(state, region):
     if region is not None:
         dff = dff.query("Region == @region")
 
-    return [{"label": x, "value": x} for x in sorted(dff["Country"].unique())]
+    return sorted(dff["Country"].unique())
 
 
 @callback(
-    Output(component_id="dynamic-callback-x-state", component_property="options"),
-    [
-        Input(component_id="dynamic-callback-x-country", component_property="value"),
-        Input(component_id="dynamic-callback-x-region", component_property="value"),
-    ],
+    Output("dynamic-callback-x-state", "options"),
+    Input("dynamic-callback-x-country", "value"),
+    Input("dynamic-callback-x-region", "value"),
 )
 def chained_callback_state(country, region):
 
@@ -74,15 +69,13 @@ def chained_callback_state(country, region):
     if region is not None:
         dff = dff.query("Region == @region")
 
-    return [{"label": x, "value": x} for x in sorted(dff["State"].unique())]
+    return sorted(dff["State"].unique())
 
 
 @callback(
-    Output(component_id="dynamic-callback-x-region", component_property="options"),
-    [
-        Input(component_id="dynamic-callback-x-country", component_property="value"),
-        Input(component_id="dynamic-callback-x-state", component_property="value"),
-    ],
+    Output("dynamic-callback-x-region", "options"),
+    Input("dynamic-callback-x-country", "value"),
+    Input("dynamic-callback-x-state", "value"),
 )
 def chained_callback_region(country, state):
 
@@ -94,16 +87,14 @@ def chained_callback_region(country, state):
     if state is not None:
         dff = dff.query("State == @state")
 
-    return [{"label": x, "value": x} for x in sorted(dff["Region"].unique())]
+    return sorted(dff["Region"].unique())
 
 
 @callback(
-    Output(component_id="dynamic-callback-x-line", component_property="figure"),
-    [
-        Input(component_id="dynamic-callback-x-country", component_property="value"),
-        Input(component_id="dynamic-callback-x-state", component_property="value"),
-        Input(component_id="dynamic-callback-x-region", component_property="value"),
-    ],
+    Output("dynamic-callback-x-line", "figure"),
+    Input("dynamic-callback-x-country", "value"),
+    Input("dynamic-callback-x-state", "value"),
+    Input("dynamic-callback-x-region", "value"),
 )
 def line_chart(country, state, region):
 
