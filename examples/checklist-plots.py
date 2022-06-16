@@ -7,26 +7,28 @@ df = data.iris()
 
 species = df["species"].unique().tolist()
 
-options = [
-    {'label': specie.capitalize(),
-     'value': specie} for specie in species]
+options = [{"label": specie.capitalize(), "value": specie} for specie in species]
 
 # App
 app = Dash(__name__)
 
-app.layout = html.Div([
-    dcc.Checklist(
-        options=options,
-        inline=True,
-        value=species,
-        id='checklist-plots-x-checklist'),
-     dcc.Graph(id='checklist-plots-x-scatter')
-])
+app.layout = html.Div(
+    [
+        dcc.Checklist(
+            options=options,
+            inline=True,
+            value=species,
+            id="checklist-plots-x-checklist",
+        ),
+        dcc.Graph(id="checklist-plots-x-scatter"),
+    ]
+)
+
 
 @app.callback(
-    Output('checklist-plots-x-scatter', 'figure'),
-    Input('checklist-plots-x-checklist', 'value'))
-
+    Output("checklist-plots-x-scatter", "figure"),
+    Input("checklist-plots-x-checklist", "value"),
+)
 def update_figure(values):
     fig = px.scatter(
         df[df["species"].isin(values)],
@@ -36,5 +38,6 @@ def update_figure(values):
     )
     return fig
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run_server(debug=True)

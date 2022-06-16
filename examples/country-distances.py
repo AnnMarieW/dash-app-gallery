@@ -29,7 +29,9 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(id="country-distances-x-locations-graph"), lg=6, sm=12),
+                dbc.Col(
+                    dcc.Graph(id="country-distances-x-locations-graph"), lg=6, sm=12
+                ),
                 dbc.Col(dcc.Graph(id="country-distances-x-graph"), lg=6, sm=12),
             ]
         ),
@@ -61,18 +63,24 @@ def make_line_geo_graph(country_a, country_b):
 
     dff = df[df.country.isin([country_a, country_b])]
 
-    fig = px.line_geo(dff, locations="iso_alpha", projection="orthographic",)
+    fig = px.line_geo(
+        dff,
+        locations="iso_alpha",
+        projection="orthographic",
+    )
 
     fig_locations = px.line_geo(
         dff, locations="iso_alpha", projection="orthographic", fitbounds="locations"
     )
 
     fig.update_traces(
-        line_width=3, line_color="red",
+        line_width=3,
+        line_color="red",
     )
 
     fig_locations.update_traces(
-        line_width=3, line_color="red",
+        line_width=3,
+        line_color="red",
     )
 
     return fig, fig_locations
