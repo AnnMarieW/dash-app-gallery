@@ -12,6 +12,7 @@ notes = """
 #### Dash Components in App:
 - [Button](https://dash.plotly.com/dash-html-components/button)
 - [Graph](https://dash.plotly.com/dash-core-components/graph)
+- [Line](https://plotly.com/python/line-charts/)
 
 #### Plotly Documentation:  
 - [How plot data from csv file](https://plotly.com/python/plot-data-from-csv/)
