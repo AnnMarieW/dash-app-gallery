@@ -9,11 +9,11 @@ filename = __name__.split("pages.")[1]
 
 
 notes = """
-#### Plotly Documentation:  
-- [How plot data from csv file](https://plotly.com/python/plot-data-from-csv/)
-
 #### Dash Components in App:
 - [Button](https://dash.plotly.com/dash-html-components/button)
+
+#### Plotly Documentation:  
+- [How plot data from csv file](https://plotly.com/python/plot-data-from-csv/)
 - [Line](https://plotly.com/python/line-charts/)
 
 ##### Contributed by:
