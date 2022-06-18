@@ -11,10 +11,11 @@ filename = __name__.split("pages.")[1]
 notes = """
 #### Plotly Documentation:  
 - [Plotly Express Overview](https://plotly.com/python/plotly-express/)
+- [Scatter Matrix](https://plotly.com/python/splom/)
 
 #### Dash Components in App:
-- [Dropdown](https://plotly.com/python/dropdowns/)
-- [Scatter Matrix](https://plotly.com/python/splom/)
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
