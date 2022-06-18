@@ -3,16 +3,18 @@ import dash
 from utils.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Plotly Express scatter matrix")
+dash.register_page(__name__, description="Plotly Express scatter matrix example. It has a top-bottom layout and a regular-callback. ")
 
 filename = __name__.split("pages.")[1]
 
 
 notes = """
-
 #### Plotly Documentation:  
-
 - [Plotly Express Overview](https://plotly.com/python/plotly-express/)
+- [Scatter Matrix](https://plotly.com/python/splom/)
+
+#### Dash Components in App:
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
 
 #### Contributed by:
