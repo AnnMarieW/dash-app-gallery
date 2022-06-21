@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, Input, Output, callback
+from dash import Dash, html, dcc, Input, Output, callback, no_update
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from datetime import datetime, date
@@ -52,6 +52,8 @@ app.layout = dbc.Container(
     prevent_initial_call=True,
 )
 def update_output(d):
+    if d is None:
+        return no_update
     todays_date = datetime.now().date().year
     if todays_date - int(d[:4]) > 18:
         text = "You are 18+ 🎁! "
