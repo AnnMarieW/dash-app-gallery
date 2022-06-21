@@ -22,7 +22,7 @@ Dash Bootstrap Components
 - [Alert](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/ "This component was made by the community and not officially maintained by Plotly.")
 
 Dash Mantine Components
-- [DatePicker](https://www.dash-mantine-components.com/components/datepicker)
+- [DatePicker](https://www.dash-mantine-components.com/components/datepicker "This component was made by the community and not officially maintained by Plotly.")
 
 ##### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
