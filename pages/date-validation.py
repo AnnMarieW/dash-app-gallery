@@ -13,20 +13,19 @@ filename = __name__.split("pages.")[1]
 # any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
 #### Dash Components in App:
-- [Markdown component](https://dash.plotly.com/dash-core-components/markdown)
+- [Markdown](https://dash.plotly.com/dash-core-components/markdown)
 
 #### Community Components:
 
 Dash Bootstrap Components 
-- [Button component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
-- [Alert component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/ "This component was made by the community and not officially maintained by Plotly.")
+- [Button](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
+- [Alert](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/ "This component was made by the community and not officially maintained by Plotly.")
 
 Dash Mantine Components
-- [DatePicker component](https://www.dash-mantine-components.com/components/datepicker)
+- [DatePicker](https://www.dash-mantine-components.com/components/datepicker)
 
 ##### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
-
 """
 
 layout = example_app(filename, notes=notes)
