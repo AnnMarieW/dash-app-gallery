@@ -6,7 +6,7 @@ import pandas as pd
 
 # Reading the data and filling missing data
 df = pd.read_csv(
-    "https://raw.githubusercontent.com/tolgahancepel/tempdataset/main/hofstede-cultural-dimensions.csv",
+    "https://raw.githubusercontent.com/plotly/datasets/master/hofstede-cultural-dimensions.csv",
     delimiter=";",
 )
 df.replace(to_replace="#NULL!", value=0, inplace=True)
