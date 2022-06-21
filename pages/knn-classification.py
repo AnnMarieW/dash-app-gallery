@@ -17,7 +17,7 @@ notes = """
 - [Slider](https://dash.plotly.com/dash-core-components/slider)
 
 #### Plotly Documentation:  
-- [Scatter Plots in Python](https://plotly.com/python/line-and-scatter/)
+- [Scatter Plots](https://plotly.com/python/line-and-scatter/)
 
 
 #### Contributed by:
