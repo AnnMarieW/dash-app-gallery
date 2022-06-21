@@ -15,7 +15,7 @@ notes = """
 - [RangeSlider](https://dash.plotly.com/dash-core-components/rangeslider)
 
 #### Plotly Documentation:  
-- [Scatter Plots in Python](https://plotly.com/python/line-and-scatter/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 
 
 #### Contributed by:
