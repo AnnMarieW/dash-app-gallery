@@ -5,7 +5,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="Visualize scikit-learn's k-Nearest Neighbors (kNN) classification",
+    description="Visualize scikit-learn's k-Nearest Neighbors (kNN) classification. It has a top-bottom layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
@@ -13,9 +13,11 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 
-#### Plotly Documentation:  
+#### Dash Components in App:
+- [Slider](https://dash.plotly.com/dash-core-components/slider)
 
-- [Visualize scikit-learn's k-Nearest Neighbors (kNN) classification](https://plotly.com/python/knn-classification/)
+#### Plotly Documentation:  
+- [Scatter Plots in Python](https://plotly.com/python/line-and-scatter/)
 
 
 #### Contributed by:
