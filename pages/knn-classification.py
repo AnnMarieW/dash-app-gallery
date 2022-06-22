@@ -21,7 +21,6 @@ notes = """
 - [Scatter Plots](https://plotly.com/python/line-and-scatter/)
 - [Contour Plots](https://plotly.com/python/contour-plots/)
 
-
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
