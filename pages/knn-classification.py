@@ -16,8 +16,10 @@ notes = """
 #### Dash Components in App:
 - [Slider](https://dash.plotly.com/dash-core-components/slider)
 
-#### Plotly Documentation:  
+#### Plotly Documentation:
+- [Visualize scikit-learn's k-Nearest Neighbors (kNN) classification](https://plotly.com/python/knn-classification/)
 - [Scatter Plots](https://plotly.com/python/line-and-scatter/)
+- [Contour Plots](https://plotly.com/python/contour-plots/)
 
 
 #### Contributed by:
