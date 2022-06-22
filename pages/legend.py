@@ -13,11 +13,10 @@ notes = """
 #### Dash Components in App:
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
-
 #### Plotly Documentation:  
 
 - [How to configure and style the legend](https://plotly.com/python/legend/)
-
+- [Scatter Plots](https://plotly.com/python/line-and-scatter/)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
