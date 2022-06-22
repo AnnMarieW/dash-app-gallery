@@ -20,7 +20,6 @@ notes = """
 #### Community Components:
 
 Dash Bootstrap Components
-- [Layout](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/ "This component was made by the community and not officially maintained by Plotly.")
 - [Button](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/ "This component was made by the community and not officially maintained by Plotly.")
 
 ##### Contributed by:

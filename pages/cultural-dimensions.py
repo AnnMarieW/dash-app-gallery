@@ -5,7 +5,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app uses tabs to highlight cultural dimensions on a bar chart. It has a top-bottom layout and a regular-callback.",
+    description="This app uses tabs to highlight cultural dimensions on a bar chart. It has a side-by-side layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
@@ -21,8 +21,9 @@ notes = """
 #### Community Components:
 
 Dash Bootstrap Components 
-- [Layout](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/ "This component was made by the community and not officially maintained by Plotly.")
 - [Card](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/ "This component was made by the community and not officially maintained by Plotly.")
+- [Tabs](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/tabs/ "This component was made by the community and not officially maintained by Plotly.")
+- [Label](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/input/ "This component was made by the community and not officially maintained by Plotly.")
 
 ##### Contributed by:
 This example app was contributed by [tolgahancepel](https://github.com/tolgahancepel)
