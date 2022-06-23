@@ -3,17 +3,19 @@ import dash
 from utils.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Scatter chart")
+dash.register_page(__name__,
+                   description="Interactive scatter plot with Iris dataset. It has a top-bottom layout and a regular-callback")
 
 filename = __name__.split("pages.")[1]
 
 
 notes = """
 
-#### Plotly Documentation:  
+#### Dash Components in App:
+- [RangeSlider](https://dash.plotly.com/dash-core-components/rangeslider)
 
-- [Line and Scatter Chart](https://plotly.com/python/line-and-scatter/)
-How to make interactive line and scatter charts 
+#### Plotly Documentation:  
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
