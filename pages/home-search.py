@@ -1,89 +1,117 @@
 import dash
-from dash import html, dcc, callback, Output, Input
-import uuid
-import random
+from dash import html, callback, Output, Input, ALL, ctx
 import dash_bootstrap_components as dbc
-
-rd = random.Random(0)
-
-dash.register_page(__name__, description="Sample Dash Apps", path="/")
-
-
-def make_card(page):
-    tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
-    return dbc.Card(
-        [
-            dbc.CardHeader(
-                [
-                    dbc.NavLink(
-                        page["title"],
-                        href=page["path"],
-                    ),
-                ]
-            ),
-            dbc.CardBody(
-                [
-                    html.A(
-                        html.Img(src=dash.get_asset_url(page["image"]), height=200),
-                        href=page["path"],
-                        id=tooltip_id,
-                    ),
-                    html.P(
-                        page["description"],
-                        className="card-text",
-                    ),
-                ]
-            ),
-            dbc.Tooltip(page["description"], target=tooltip_id),
-        ]
-    )
+from utils.search import search_code_files
+from utils.card_grid import make_card_grid
+from utils.feature_app import feature_app_div
 
 
-def make_card_grid(cards_per_row=3, registry=None):
-    if registry is None:
-        registry = dash.page_registry.values()
-    row = []
-    grid = []
-    for page in registry:
-        if page["path"] != "/":
-            if len(row) < cards_per_row:
-                row.append(make_card(page))
-            if len(row) == cards_per_row:
-                grid.append(dbc.CardGroup(row, className="mb-4"))
-                row = []
-    grid.append(dbc.CardGroup(row))
-    return grid
+dash.register_page(
+    __name__, name="Home - Overview", description="Dash App Gallery", path="/"
+)
 
 
-def layout():
-    return html.Div(
-        [
-            "Select Callback Structure:",
-            dcc.Dropdown(
-                ["All", "1 Output 1 Input", "1 Output 2 Input"],
-                "All",
-                clearable=False,
-                id="home-search-x-dd",
-                className="mb-4",
-                persistence=True,
-            ),
-            "Select Graph Type:",
-            dcc.Dropdown(["All", "To Do"], "All", clearable=False, className="mb-4"),
-            html.Div(id="home-search-x-grid"),
-        ]
-    )
+case_sensitive = (
+    dbc.Switch(
+        id="home-search-x-case-sensitive",
+        label="Aa",
+        value=False,
+    ),
+)
+search_code_div = html.Div(
+    [
+        dbc.Label("Search code", className="fw-bolder"),
+        dbc.InputGroup(
+            [
+                dbc.Input(
+                    id="home-search-x-code-search-input",
+                    debounce=True,
+                ),
+                dbc.InputGroupText(
+                    case_sensitive, id="home-search-x-case-label", className="px-1"
+                ),
+            ]
+        ),
+        # dbc.Tooltip(
+        #     "Find app examples with selected code, for example, try entering dcc.Dropdown, or scatter",
+        #     target="home-search-x-code-search-input",
+        # ),
+        dbc.Tooltip(
+            "Match Case",
+            target="home-search-x-case-label",
+        ),
+    ],
+    className="mb-2",
+)
+
+textbox_card = dbc.Card(
+    ["Welcome to the Dash app gallery!"],
+    style={"height": 225},
+    className="shadow-sm p-4 mt-4 mx-2",
+)
+
+
+def filtered_registry(filtered_example_app_list):
+    """
+    Returns a filtered dash.page_registry dict based on a list of example app names
+    """
+
+    # We use the module param to filter the dash_page_registry
+    # Note that the module name includes the pages folder name eg: "pages.bar-charts"
+    filtered_registry = []
+    for page in dash.page_registry.values():
+        filename = page["module"].split("pages.")[1]
+        if filename in filtered_example_app_list:
+            filtered_registry.append(page)
+    return filtered_registry
+
+
+layout = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col([search_code_div, feature_app_div], className="m-2"),
+                dbc.Col(textbox_card),
+            ]
+        ),
+        dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
+    ],
+    className="p-4 mx-2",
+)
 
 
 @callback(
     Output("home-search-x-grid", "children"),
-    Input("home-search-x-dd", "value"),
+    Output("home-search-x-code-search-input", "value"),
+    Output("featured-apps", "active_item"),
+    Input("home-search-x-code-search-input", "value"),
+    Input("home-search-x-case-sensitive", "value"),
+    Input({"type": "feature_app", "index": ALL}, "n_clicks"),
+    Input("overview", "n_clicks"),
 )
-def update(value):
-    if value == "All":
-        registry = dash.page_registry.values()
-    else:
-        registry = [
-            p for p in dash.page_registry.values() if p.get("callback_dd") == value
-        ]
+def update(searchterms, case_sensitive, feature_app, overview):
+    input_id = ctx.triggered_id
+    registry = dash.page_registry.values()
 
-    return make_card_grid(registry=registry)
+    # show apps based on search field
+    if input_id == "home-search-x-code-search-input":
+        if searchterms:
+            filtered_example_app_names = search_code_files(searchterms, case_sensitive)
+            registry = filtered_registry(filtered_example_app_names)
+            return make_card_grid(registry=registry), dash.no_update, dash.no_update
+
+    # show feature apps
+    if isinstance(input_id, dict):
+        # The searchterms are from the "index" key of the pattern matching dict id
+        # See `utils.feature_app.py for more details.
+        searchterms = input_id["index"]
+        case_sensitive = True
+        filtered_example_app_names = search_code_files(searchterms, case_sensitive)
+        registry = filtered_registry(filtered_example_app_names)
+        return make_card_grid(registry=registry), None, dash.no_update
+
+    if input_id == "overview":
+        # close the featured apps accordian when the overview button is clicked.
+        return make_card_grid(registry=registry), None, None
+
+    return make_card_grid(registry=registry), None, None

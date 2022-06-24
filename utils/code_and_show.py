@@ -1,18 +1,41 @@
-from importlib import import_module
-from inspect import getsource
-import re
 import uuid
-import random
-import ast
 
-
-from dash import html, dcc, callback
+from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-rd = random.Random(0)
+from utils.init_app import example_source_codes, example_apps
 
 
-def example_app(filename, make_layout=None, run=True, show_code=True):
+def make_code_div(code):
+    """
+    Display code str in dcc.Markdown with dcc.Clipboard
+    """
+
+    # make a unique id for clipboard
+    clipboard_id = str(uuid.uuid4())
+
+    clipboard_style = {
+        "right": 0,
+        "position": "absolute",
+        "top": 0,
+        "backgroundColor": "#f6f6f6",
+        "color": "#2f3337",
+        "padding": 4,
+    }
+    return html.Div(
+        [
+            dcc.Markdown(f"```python\n{code}```\n"),
+            dcc.Clipboard(
+                target_id=f"{clipboard_id}",
+                style=clipboard_style,
+            ),
+        ],
+        id=f"{clipboard_id}",
+        style={"position": "relative"},
+    )
+
+
+def example_app(filename, make_layout=None, run=True, show_code=True, notes=None):
     """
     Creates the "code and show layout for an example dash app.
 
@@ -30,47 +53,32 @@ def example_app(filename, make_layout=None, run=True, show_code=True):
     - `show_code`:
         bool (default: True) Whether to show the code
 
+    - `notes`:
+        str (default: None)  Notes or tutorial to display with the app.  Text may include markdown formatting
+        as it will be displayed in a dcc.Markdown component
+
     """
-    page = filename.replace(".py", "").replace("\\", "/").replace("/", ".")
-    module = import_module(page)
-    code = getsource(module)
 
-    run_app = _run_code(code) if run else ""
+    code = example_source_codes[filename]
+    run_app = example_apps[filename].layout if run else ""
 
-    code = _remove_prefix(page, code)
+    # Removes the id prefix
+    code = code.replace(filename + "-x-", "")
     code = code if show_code else ""
 
     if make_layout is not None:
-        return make_layout(code, run_app)
-    return make_side_by_side(code, run_app)
+        return make_layout(code, run_app, notes)
+    return make_side_by_side(code, run_app, notes)
 
 
-def make_side_by_side(code, show_app):
+def make_side_by_side(code, show_app, notes):
     """
     This is the default layout for the "code and show"
     It displays the app and the code side-by-side on large screens, or
     the app first, followed by the code on smaller screens.
-    It also has a dcc.Clipboard to copy the code.
+    It also has a dcc.Clipboard to copy the code.  Notes will display
+    in a dcc.Markdown comonent below the app.
     """
-    # make a unique id for clipboard
-    clipboard_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
-
-    clipboard_style = {
-        "right": 0,
-        "position": "absolute",
-        "top": 0,
-        "backgroundColor": "#f6f6f6",
-        "color": "#2f3337",
-        "padding": 4,
-    }
-    code_card = html.Div(
-        [
-            dcc.Markdown(f"```python\n{code}```\n"),
-            dcc.Clipboard(target_id=f"{clipboard_id}", style=clipboard_style,),
-        ],
-        id=f"{clipboard_id}",
-        style={"position": "relative"},
-    )
 
     return dbc.Row(
         [
@@ -79,18 +87,23 @@ def make_side_by_side(code, show_app):
             else None,
             dbc.Col(
                 dbc.Card(
-                    [code_card], style={"max-height": "800px", "overflow": "auto"}
+                    [make_code_div(code)],
+                    style={"max-height": "600px", "overflow": "auto"},
                 ),
                 width=12,
                 lg=6,
             )
             if code
             else None,
-        ]
+            dcc.Markdown(notes, className="m-4", link_target="_blank")
+            if notes
+            else None,
+        ],
+        className="p-4",
     )
 
 
-def make_app_first(code, show_app):
+def make_app_first(code, show_app, notes):
     """
     This is an alternate layout for the "code and show"
     It displays the app on top and the code below.
@@ -101,63 +114,24 @@ def make_app_first(code, show_app):
     to the `make_layout` attribute in example_app()   e.g.:
     `example_app("pathto/my_filename.py", make_layout=make_app_first)`
     """
-    md_code = dcc.Markdown(f"```python\n{code}```\n")
+
     return dbc.Row(
         [
             dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12)
             if show_app
             else None,
             dbc.Col(
-                dbc.Card([md_code], style={"max-height": "600px", "overflow": "auto"}),
+                dbc.Card(
+                    [make_code_div(code)],
+                    style={"height": "700px", "overflow": "auto"},
+                ),
                 width=12,
             )
             if code
             else None,
-        ]
+            dcc.Markdown(notes, className="m-4", link_target="_blank")
+            if notes
+            else None,
+        ],
+        className="p-4",
     )
-
-
-def _run_code(code):
-    scope = {"callback": callback}
-
-    if "app.layout" in code:
-        code = code.replace("app.layout", "layout")
-    if "app.callback" in code:
-        code = code.replace("app.callback", "callback")
-
-    # todo use regular expressions to remove the entire line with app.server
-    if "app.server" in code:
-        code = code.replace("server = app.server", "")
-
-    if "layout" in code:
-        # Remove the app instance in the code block otherwise app.callbacks don't work
-        tree = ast.parse(code)
-        new_tree = RemoveAppAssignment().visit(tree)
-        exec(compile(new_tree, filename="<ast>", mode="exec"), scope)
-        return html.Div(scope["layout"])
-
-
-class RemoveAppAssignment(ast.NodeTransformer):
-    """
-    Remove the app instance from a code block otherwise app.callback` doesn't work. If `app` is defined locally
-    within the code block, then it overrides the `app` passed in to the scope.
-    """
-
-    def visit_Assign(self, node):
-        if hasattr(node, "targets") and "app" in [
-            n.id for n in node.targets if hasattr(n, "id")
-        ]:
-            return None
-        return node
-
-
-def _remove_prefix(page, code):
-    """
-    Dash requires all ids to be unique, so for multi-page apps it's common to add a prefix to the id.
-    The convention for ids in this app is to use the module name followed by "-x-" then the simple id name.
-    This function will strip the prefix so that only the simple ID names are displayed.
-
-    For example `id="module_name-x-button"` will display as `id="button"`
-    """
-    prefix = page.split(".")[-1] + "-x-"
-    return code.replace(prefix, "")
