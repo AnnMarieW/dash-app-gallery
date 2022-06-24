@@ -32,7 +32,6 @@ Dash Bootstrap Components
 
 ##### Contributed by:
 This example app was contributed by [AnnMarieW](https://github.com/AnnMarieW)
-
 """
 
 layout = example_app(filename, notes=notes)
