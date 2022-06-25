@@ -1,5 +1,5 @@
 import numpy as np
-from dash import Dash, html, dcc, Input, Output, State
+from dash import Dash, html, dcc, Input, Output, State, clientside_callback
 
 # Example from https://stackoverflow.com/a/63681810/2428887
 resolution = 1000
@@ -13,13 +13,13 @@ app = Dash(__name__, update_title=None)  # remove "Updating..." from title
 app.layout = html.Div(
     [
         html.H4("Smooth updates using clientside callbacks"),
-        dcc.Graph(id="graph", figure=dict(figure)),
-        dcc.Interval(id="interval", interval=25),
-        dcc.Store(id="offset", data=0),
-        dcc.Store(id="store", data=dict(x=x, y=y, resolution=resolution)),
+        dcc.Graph(id="extend-data-x-graph", figure=dict(figure)),
+        dcc.Interval(id="extend-data-x-interval", interval=25),
+        dcc.Store(id="extend-data-x-offset", data=0),
+        dcc.Store(id="extend-data-x-store", data=dict(x=x, y=y, resolution=resolution)),
     ]
 )
-app.clientside_callback(
+clientside_callback(
     """
     function (n_intervals, data, offset) {
         offset = offset % data.x.length;
@@ -27,9 +27,12 @@ app.clientside_callback(
         return [[{x: [data.x.slice(offset, end)], y: [data.y.slice(offset, end)]}, [0], 500], end]
     }
     """,
-    [Output("graph", "extendData"), Output("offset", "data")],
-    [Input("interval", "n_intervals")],
-    [State("store", "data"), State("offset", "data")],
+    [
+        Output("extend-data-x-graph", "extendData"),
+        Output("extend-data-x-offset", "data"),
+    ],
+    [Input("extend-data-x-interval", "n_intervals")],
+    [State("extend-data-x-store", "data"), State("extend-data-x-offset", "data")],
 )
 
 if __name__ == "__main__":
