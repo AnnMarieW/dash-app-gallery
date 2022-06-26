@@ -66,18 +66,35 @@ def filtered_registry(filtered_example_app_list):
     return filtered_registry
 
 
-layout = html.Div(
-    [
-        dbc.Row(
-            [
-                dbc.Col([search_code_div, feature_app_div], className="m-2"),
-                dbc.Col(textbox_card),
-            ]
-        ),
-        dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
-    ],
-    className="p-4 mx-2",
-)
+def layout(filter=None, *other):
+    """
+    Displays the apps in a card grid.
+    Apps may be filtered based on query strings or the search Input value or the keywords
+    in the featured examples Accordion.
+    If using query strings, the variable name must be `filter`.  eg `http://127.0.0.1:8050/?filter=dropdown`
+    """
+
+    if filter:
+        # filter apps based on query strings
+        filtered_example_app_names = search_code_files(filter, case_sensitive)
+        registry = filtered_registry(filtered_example_app_names)
+        children = make_card_grid(registry=registry)
+    else:
+        # show all apps
+        children = make_card_grid(registry=dash.page_registry.values())
+
+    return html.Div(
+        [
+            dbc.Row(
+                [
+                    dbc.Col([search_code_div, feature_app_div], className="m-2"),
+                    dbc.Col(textbox_card),
+                ]
+            ),
+            dbc.Row(dbc.Col(html.Div(id="home-search-x-grid", children=children))),
+        ],
+        className="p-4 mx-2",
+    )
 
 
 @callback(
@@ -88,6 +105,7 @@ layout = html.Div(
     Input("home-search-x-case-sensitive", "value"),
     Input({"type": "feature_app", "index": ALL}, "n_clicks"),
     Input("overview", "n_clicks"),
+    prevent_initial_call=True,
 )
 def update(searchterms, case_sensitive, feature_app, overview):
     input_id = ctx.triggered_id

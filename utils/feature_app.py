@@ -67,7 +67,7 @@ components = {
     "Alert": "Alert(",
     "Button": "Button(",
     "Clipboard": "Clipboard(",
-    "Accordion": "Accordian",
+    "Accordion": "Accordion",
     "Loading": "Loading",
     "Markdown": "Markdown",
     "Input": "Input",
@@ -82,7 +82,7 @@ components = {key: components[key] for key in sorted(components)}
 
 feature_app_div = html.Div(
     [
-        dbc.Label("Featured Apps", className="fw-bolder"),
+        dbc.Label("Featured Examples", className="fw-bolder"),
         dbc.Accordion(
             [
                 dbc.AccordionItem(
