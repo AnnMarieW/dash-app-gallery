@@ -29,7 +29,7 @@ for k in example_apps:
 for page in file_names:
     dash.register_page(
         page,
-        layout=example_app(page, show_code=False, make_layout=make_app_first),
+        layout=example_app(page, show_code=False),
     )
 
 

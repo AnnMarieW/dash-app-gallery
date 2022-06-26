@@ -17,7 +17,8 @@ from utils.init_app import file_names
 def snapshot(driver):
 
     for page in file_names:
-        driver.get(f"http://localhost:8050/{page}")
+        path = page.replace("_", "-")
+        driver.get(f"http://localhost:8050/{path}")
         time.sleep(5)
         driver.save_screenshot(
             os.path.join(

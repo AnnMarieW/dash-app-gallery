@@ -93,7 +93,7 @@ def make_side_by_side(code, show_app, notes):
                 width=12,
                 lg=6,
             )
-            if code
+            if code != ""
             else None,
             dcc.Markdown(notes, className="m-4", link_target="_blank")
             if notes
