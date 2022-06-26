@@ -14,7 +14,7 @@ app.layout = html.Div(
     [
         html.H4("Smooth updates using clientside callbacks"),
         dcc.Graph(id="extend-data-x-graph", figure=dict(figure)),
-        dcc.Interval(id="extend-data-x-interval", interval=25),
+        dcc.Interval(id="extend-data-x-interval", interval=25, max_intervals=200),
         dcc.Store(id="extend-data-x-offset", data=0),
         dcc.Store(id="extend-data-x-store", data=dict(x=x, y=y, resolution=resolution)),
     ]
