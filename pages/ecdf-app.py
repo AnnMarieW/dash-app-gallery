@@ -15,7 +15,7 @@ notes = """
 - [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
 #### Plotly Documentation:
-[Empirical Cumulative Distribution](https://plotly.com/python/ecdf-plots/)
+- [Empirical Cumulative Distribution](https://plotly.com/python/ecdf-plots/)
 
 ##### Contributed by:
 This example app was contributed by [Pierre-Olivier](https://github.com/pierreolivierbonin)
