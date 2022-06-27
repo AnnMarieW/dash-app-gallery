@@ -15,7 +15,6 @@ notes = """
 #### Plotly Documentation:  
 - [Continuous Color Scales and Color Bars](https://plotly.com/python/colorscales/)
 
-How to set, create and control continuous color scales and color bars in scatter, bar, map and heatmap figures.
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
