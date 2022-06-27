@@ -16,7 +16,6 @@ notes = """
 
 #### Plotly documentation:  
 - [3d Scatter Plots](https://plotly.com/python/3d-scatter-plots/)
-- [Regular Callbacks](https://dash.plotly.com/basic-callbacks)
 
 
 ##### Contributed by:
