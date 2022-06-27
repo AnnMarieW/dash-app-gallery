@@ -15,8 +15,8 @@ notes = """
 - [Dcc.Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
 #### Plotly Documentation:  
-- [Dash Tutorial](https://dash.plotly.com/installation)
 - [Bar Plots](https://plotly.com/python/bar-charts/)
+- [Regular Callbacks](https://dash.plotly.com/basic-callbacks)
 
 
 #### Contributed by:

@@ -4,7 +4,7 @@ from utils.code_and_show import example_app
 
 
 dash.register_page(
-    __name__, description="Iris samples in a scatter_3d plot filtered by petal width with a RangeSlider"
+    __name__, description="Iris samples in a scatter_3d plot filtered by petal width with a RangeSlider. This app has a top-bottom layout and a regular-callback."
 )
 
 filename = __name__.split("pages.")[1]
@@ -16,6 +16,7 @@ notes = """
 
 #### Plotly documentation:  
 - [3d Scatter Plots](https://plotly.com/python/3d-scatter-plots/)
+- [Regular Callbacks](https://dash.plotly.com/basic-callbacks)
 
 
 ##### Contributed by:

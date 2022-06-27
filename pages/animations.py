@@ -20,6 +20,7 @@ notes = """
 - [Intro to animations](https://plotly.com/python/animations/)
 - [Bar Plot](https://plotly.com/python/bar-charts/)
 - [Scatter Plot](https://plotly.com/python/line-and-scatter/)
+- [Regular Callbacks](https://dash.plotly.com/basic-callbacks)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
