@@ -11,7 +11,6 @@ dash.register_page(
 
 filename = __name__.split("pages.")[1]
 
-# any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
 #### Dash Components in App:
 - [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
