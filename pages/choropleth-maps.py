@@ -12,7 +12,7 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 #### Dash Components in App:  
-- [Dcc.RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
+- [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
 - [Choropleth maps](https://plotly.com/python/mapbox-county-choropleth/)
