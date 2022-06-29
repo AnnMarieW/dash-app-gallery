@@ -15,7 +15,7 @@ notes = """
 - [Slider](https://dash.plotly.com/dash-core-components/slider)
 
 #### Plotly Documentation:  
-- [Line and Scatter](https://plotly.com/python/line-and-scatter/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 - [Horizontal and Vertical Lines and Rectangles](https://plotly.com/python/horizontal-vertical-shapes/)
 
 ##### Contributed by:
