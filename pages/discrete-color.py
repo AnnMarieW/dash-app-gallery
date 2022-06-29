@@ -15,8 +15,8 @@ notes = """
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:
-- [Line and Scatter](https://plotly.com/python/line-and-scatter/)
-- [Creating and updating figures](https://plotly.com/python/discrete-color/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
+- [Discrete vs Continuous Color](https://plotly.com/python/discrete-color/)
 
 ##### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
