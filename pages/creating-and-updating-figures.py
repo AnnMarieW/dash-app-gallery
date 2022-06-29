@@ -14,9 +14,7 @@ notes = """
 - [Slider](https://dash.plotly.com/dash-core-components/slider)
 
 #### Plotly Documentation:  
-- [Sliders](https://plotly.com/python/sliders/)
 - [Creating and updating figures](https://plotly.com/python/creating-and-updating-figures)
-
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
