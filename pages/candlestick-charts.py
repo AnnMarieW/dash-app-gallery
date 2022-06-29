@@ -10,7 +10,7 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 #### Dash Components in App:  
-- [Dcc.Checklist](https://dash.plotly.com/dash-core-components/checklist)
+- [Checklist](https://dash.plotly.com/dash-core-components/checklist)
 
 #### Plotly Documentation:  
 
