@@ -17,7 +17,6 @@ notes = """
 #### Plotly Documentation:  
 - [Choropleth maps](https://plotly.com/python/choropleth-maps/)
 
-
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
