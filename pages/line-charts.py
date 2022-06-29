@@ -13,7 +13,6 @@ notes = """
 - [Checklist](https://dash.plotly.com/dash-core-components/checklist)
 
 #### Plotly Documentation:  
-
 - [Line Chart](https://plotly.com/python/line-charts/)
 
 #### Contributed by:
