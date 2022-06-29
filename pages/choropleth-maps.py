@@ -15,9 +15,8 @@ notes = """
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
-- [Choropleth maps](https://plotly.com/python/mapbox-county-choropleth/)
+- [Choropleth maps](https://plotly.com/python/choropleth-maps/)
 
-How to make an interactive Mapbox Choropleth Map of US Counties.
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
