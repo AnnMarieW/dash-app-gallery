@@ -15,7 +15,7 @@ notes = """
 - [Color Picker](https://dash.plotly.com/dash-daq/colorpicker)
 
 #### Plotly Documentation:  
-- [Line and Scatter](https://plotly.com/python/line-and-scatter/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 - [Setting the Font, Title, Legend Entries, and Axis Titles](https://plotly.com/python/figure-labels/)
 
 ##### Contributed by:
