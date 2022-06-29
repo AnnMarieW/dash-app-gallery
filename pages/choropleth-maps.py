@@ -4,7 +4,7 @@ from utils.code_and_show import example_app
 
 
 dash.register_page(
-    __name__, description="Interactive Mapbox Choropleth Map of US Counties. This app has a top-bottom layout and a regular-callback."
+    __name__, description="Interactive Mapbox Choropleth Map of Montreal. This app has a top-bottom layout and a regular-callback."
 )
 
 filename = __name__.split("pages.")[1]
