@@ -15,7 +15,6 @@ notes = """
 - [Radio Items](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
-
 - [Graph with multiple axes (dual y-axis plots, plots with secondary axes)](https://plotly.com/python/multiple-axes/)
 - [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 - [Plotly Subplots](https://plotly.com/python/subplots/)
