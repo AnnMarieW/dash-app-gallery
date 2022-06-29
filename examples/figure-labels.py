@@ -35,7 +35,7 @@ app.layout = html.Div(
     Input("figure-labels-x-font", "value"),
     Input("figure-labels-x-title", "value"),
 )
-def update_bar_chart(font_color, title_color):
+def update_chart(font_color, title_color):
     df = px.data.iris()  # replace with your own data source
     fig = go.Figure(
         px.scatter(

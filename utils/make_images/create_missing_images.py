@@ -16,9 +16,12 @@ from utils.init_app import get_missing_image_names
 def snapshot(driver):
 
     missing_example_apps = get_missing_image_names()
+    print(missing_example_apps)
+
 
     for page in missing_example_apps:
-        driver.get(f"http://localhost:8050/{page}")
+        path = page.replace("_", "-")
+        driver.get(f"http://localhost:8050/{path}")
         time.sleep(5)
         driver.save_screenshot(
             os.path.join(
