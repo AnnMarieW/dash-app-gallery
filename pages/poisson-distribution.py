@@ -24,7 +24,6 @@ notes = """
 Dash Bootstrap Components 
 - [Card](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
 - [Accordion](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/)
-- [Row](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
 ##### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
