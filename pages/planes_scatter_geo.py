@@ -1,8 +1,6 @@
 import dash
-from dash import html, dcc
 
 from utils.code_and_show import example_app
-
 
 dash.register_page(
     __name__,
@@ -12,16 +10,18 @@ dash.register_page(
 filename = __name__.split("pages.")[1]
 
 notes = """
+
 #### Dash Components in App:
-- [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
 #### Plotly Documentation:  
 - [Scatter Mapbox](https://plotly.com/python/mapbox-layers/) 
 - [Scatter Geo](https://plotly.com/python/bubble-maps/) 
-- [Map Configuration: Mapbox Maps vs Geo Maps ](https://plotly.com/python/map-configuration/)
+- [Map Configuration: Mapbox Maps vs Geo Maps](https://plotly.com/python/map-configuration/)
 
 #### Contributed by:
 This example app was contributed by [someshfengde](https://github.com/someshfengde)
+
 """
 
-layout = html.Div([example_app(filename), dcc.Markdown(notes, className="m-4")])
+layout = example_app(filename, notes=notes)
