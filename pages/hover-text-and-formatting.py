@@ -15,7 +15,7 @@ notes = """
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
-- [Line and Scatter](https://plotly.com/python/line-and-scatter/)
+- [Line Plot](https://plotly.com/python/line-charts/)
 - [Hover Text and Formatting](https://plotly.com/python/hover-text-and-formatting/)
 
 ##### Contributed by:
