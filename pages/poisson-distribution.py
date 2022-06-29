@@ -26,7 +26,7 @@ Dash Bootstrap Components
 - [Accordion](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/)
 
 ##### Contributed by:
-This example app was contributed by [Plotly](https://plotly.com/python/)
+This example app was contributed by [Tolga](https://github.com/tolgahancepel)
 """
 
 layout = example_app(filename, notes=notes)
