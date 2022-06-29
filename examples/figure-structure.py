@@ -15,7 +15,7 @@ app.layout = html.Div(
     [
         html.H4("Displaying figure structure as JSON"),
         dcc.Graph(id="figure-structure-x-graph", figure=fig),
-        dcc.Clipboard(target_id="structure"),
+        dcc.Clipboard(target_id="figure-structure-x-structure"),
         html.Pre(
             id="figure-structure-x-structure",
             style={
