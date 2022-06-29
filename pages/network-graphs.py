@@ -15,8 +15,6 @@ notes = """
 - [Cytoscape](https://dash.plotly.com/cytoscape)
 - [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
-- [How to make Network Graphs](https://plotly.com/python/network-graphs/)
-
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 """
