@@ -22,7 +22,3 @@ This example app was contributed by [IcToxi](https://github.com/IcToxi)
 """
 
 layout = example_app(filename, notes=notes)
-
-
-# THIS APP IS MISSING TITLE ON LANDING PAGE!!!
-
