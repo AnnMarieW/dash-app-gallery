@@ -15,7 +15,6 @@ notes = """
 #### Plotly Documentation:  
 - [Candlestick charts](https://plotly.com/python/candlestick-charts/)
 - [RangeSlider](https://plotly.com/python/range-slider/)
-How to make interactive candlestick charts in Python with Plotly. Six examples of candlestick charts with Pandas, time series, and yahoo finance data.
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
