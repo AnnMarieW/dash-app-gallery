@@ -4,7 +4,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app plots a Poisson distribution on a histogram, which contains a formula with MathJax.It has a top-down layout and a regular-callback.",
+    description="This app plots a Poisson distribution on a histogram, which contains a formula with MathJax. It has a top-down layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
