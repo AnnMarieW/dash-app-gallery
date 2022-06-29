@@ -15,7 +15,6 @@ notes = """
 - [Cytoscape](https://dash.plotly.com/cytoscape)
 - [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
-#### Plotly Documentation:  
 - [How to make Network Graphs](https://plotly.com/python/network-graphs/)
 
 #### Contributed by:
