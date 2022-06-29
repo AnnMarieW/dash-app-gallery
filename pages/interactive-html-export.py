@@ -15,7 +15,7 @@ notes = """
 - [Button](https://dash.plotly.com/dash-html-components/button)
 
 #### Plotly Documentation:  
-- [Line and Scatter](https://plotly.com/python/line-and-scatter/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 - [Interactive HTML Export](https://plotly.com/python/interactive-html-export/)
 
 ##### Contributed by:
