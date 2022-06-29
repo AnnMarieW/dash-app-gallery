@@ -13,7 +13,7 @@ notes = """
 - [Daq Color Picker](https://dash.plotly.com/dash-daq/colorpicker)
 
 #### Plotly Documentation:  
-- [How to make interactive line and scatter charts](https://plotly.com/python/marker-style/)
+- [How to style markers]](https://plotly.com/python/marker-style/)
 - [Scatter Plots] (https://plotly.com/python/line-and-scatter/)
 
 #### Contributed by:
