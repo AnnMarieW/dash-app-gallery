@@ -13,11 +13,8 @@ notes = """
 #### Dash Components in App:
 - [Checklist](https://dash.plotly.com/dash-core-components/checklist)
 
-
 #### Plotly Documentation:  
-- [Line and Scatter charts](https://plotly.com/python/line-and-scatter/)
-
-How to make interactive line and scatter charts 
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
