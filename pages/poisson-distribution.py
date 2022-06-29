@@ -4,7 +4,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app plots a Poisson distribution on a histogram, which contains a formula with MathJax.",
+    description="This app plots a Poisson distribution on a histogram, which contains a formula with MathJax. It has a top-down layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
@@ -26,7 +26,7 @@ Dash Bootstrap Components
 - [Accordion](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/accordion/)
 
 ##### Contributed by:
-This example app was contributed by [someshfengde](https://github.com/someshfengde)
+This example app was contributed by [Tolga](https://github.com/tolgahancepel)
 """
 
 layout = example_app(filename, notes=notes)
