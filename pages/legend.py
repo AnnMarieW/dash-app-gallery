@@ -14,7 +14,6 @@ notes = """
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
-
 - [How to configure and style the legend](https://plotly.com/python/legend/)
 - [Scatter Plots](https://plotly.com/python/line-and-scatter/)
 
