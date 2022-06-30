@@ -71,7 +71,7 @@ components = {
     "Accordion": "Accordion",
     "Loading": "Loading",
     "Markdown": "Markdown",
-    "Input": "Input",
+    "Input": "dcc.Input",
     "Interval": "Interval",
     "Color Picker": "daq.Color",
     "Led display" : "daq.LED",
