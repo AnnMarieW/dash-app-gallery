@@ -5,7 +5,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This application includes an example of a 3d line chart with a dropdown.",
+    description="This application includes an example of a 3d line chart with a dropdown.This app uses side by side layout with a regular callback",
 )
 
 filename = __name__.split("pages.")[1]
@@ -17,6 +17,9 @@ notes = """
 
 #### Plotly Documentation:
 - [3d-Line component](https://plotly.com/python/3d-line-plots/)
+
+#### Community components:
+- [dbc.Row and dbc.Col](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
 ##### Contributed by:
 This example app was contributed by [tolgahancepel](https://github.com/tolgahancepel)
