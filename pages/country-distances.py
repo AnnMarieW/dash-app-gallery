@@ -5,7 +5,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This application plots line on a map between the selected countries. It has a top-bottom layout and a regular-callback.",
+    description="This application plots line on a map between the selected countries. It has a top-bottom layout and a chained callback.",
 )
 
 filename = __name__.split("pages.")[1]
