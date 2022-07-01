@@ -1,4 +1,3 @@
-# This app was created by Plotly Dash contributor Pierre-Olivier Bonin: https://github.com/pierreolivierbonin
 from dash import Dash, dcc, html, Input, Output
 import pandas as pd
 import plotly.express as px
