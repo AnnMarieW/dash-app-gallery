@@ -24,7 +24,7 @@ app.layout = html.Div([
         html.Div(
             [
                 dcc.Dropdown(
-                    id='time-series-app-x-dropdown',
+                    id='differenced-time-series-app-x-dropdown',
                     value='IBM',
                     options=stock_list,
                     multi=True,
@@ -37,7 +37,7 @@ app.layout = html.Div([
         ),
         html.Div(
             [dcc.DatePickerRange(
-                id='time-series-app-x-date-picker',
+                id='differenced-time-series-app-x-date-picker',
                 min_date_allowed=date(2007, 1, 4),
                 max_date_allowed=date(2016, 3, 1),
                 initial_visible_month=date(2016, 3, 1),
@@ -52,7 +52,7 @@ app.layout = html.Div([
         ),
         html.Div(
             [dcc.RadioItems(
-                id="time-series-app-x-radio-items",
+                id="differenced-time-series-app-x-radio-items",
                 options=["Stock Prices", "Returns"],
                 value="Stock Prices"
             )
@@ -70,11 +70,11 @@ app.layout = html.Div([
 
 
 @ app.callback(
-    Output('time-series-app-x-graph', 'figure'),
-    [Input("time-series-app-x-dropdown", "value"),
-     Input("time-series-app-x-date-picker", "start_date"),
-     Input("time-series-app-x-date-picker", "end_date"),
-     Input("time-series-app-x-radio-items", "value")])
+    Output('differenced-time-series-app-x-graph', 'figure'),
+    [Input("differenced-time-series-app-x-dropdown", "value"),
+     Input("differenced-time-series-app-x-date-picker", "start_date"),
+     Input("differenced-time-series-app-x-date-picker", "end_date"),
+     Input("differenced-time-series-app-x-radio-items", "value")])
 def update_graph(stock, start_date, end_date, graph_type):
     if graph_type == "Stock Prices":
         fig = px.line(df[start_date:end_date],
