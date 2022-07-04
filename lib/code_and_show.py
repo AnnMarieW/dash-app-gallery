@@ -3,7 +3,7 @@ import uuid
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-from utils.init_app import example_source_codes, example_apps
+from lib.utils import example_source_codes, example_apps
 
 
 def make_code_div(code):

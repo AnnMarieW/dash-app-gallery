@@ -1,6 +1,6 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(__name__, description="This app shows how to interactively change the marker borders. It has a top-bottom layout and a regular-callback.")
