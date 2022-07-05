@@ -8,6 +8,7 @@ import dash_bootstrap_components as dbc
 from lib.utils import filter_registry
 from lib.card_grid import make_card_grid
 from lib.feature_app import feature_app_div
+import lib.overview_textbox
 
 
 def make_search_code_div(code_filter):
@@ -57,9 +58,9 @@ def layout(code=None, **other):
             dbc.Row(
                 [
                     dbc.Col(
-                        [make_search_code_div(code), feature_app_div], className="m-2"
+                        [make_search_code_div(code), feature_app_div], md=6, className="p-4"
                     ),
-                    dbc.Col(textbox_card),
+                    dbc.Col(lib.overview_textbox.card, md=6, className="py-4"),
                 ]
             ),
             dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
