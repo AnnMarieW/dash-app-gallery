@@ -21,6 +21,7 @@ notes = """
 
 Dash Bootstrap Components 
 - [Modal](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/modal/ "This component was made by the community and not officially maintained by Plotly.")
+- [Navbar](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/)
 
 ##### Contributed by:
 This example app was contributed by [Milan Mitrovic](https://milanzmitrovic.github.io)
