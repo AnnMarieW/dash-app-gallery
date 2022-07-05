@@ -35,24 +35,24 @@ app.layout = html.Div([
 
     html.Div(
         [
-            dbc.Button("Open modal", id="open", n_clicks=0),
+            dbc.Button("Open modal", id="modal_treemap_open", n_clicks=0),
             dbc.Modal(
                 [
                     dbc.ModalHeader(dbc.ModalTitle("Filters")),
                     dbc.ModalBody([
                         # Filter within dbc Modal
                         dcc.Dropdown(
-                            id='dynamic_callback_dropdown_region',
+                            id='modal_treemap_dynamic_callback_dropdown_region',
                             options=[{'label': x, 'value': x} for x in sorted(df['Region'].unique())]
                         )
                     ]),
                     dbc.ModalFooter(
                         dbc.Button(
-                            "Close", id="close", className="ms-auto", n_clicks=0
+                            "Close", id="modal_treemap_close", className="ms-auto", n_clicks=0
                         )
                     ),
                 ],
-                id="modal",
+                id="modal_treemap_modal",
                 is_open=False,
             ),
         ]
@@ -62,7 +62,7 @@ app.layout = html.Div([
     html.Br(),
 
     dcc.Graph(
-        id='line_chart'
+        id='modal_treemap_line_chart'
     ),
 
     html.Br(),
@@ -72,8 +72,8 @@ app.layout = html.Div([
 
 
 @callback(
-    Output(component_id='line_chart', component_property='figure'),
-    Input(component_id='dynamic_callback_dropdown_region', component_property='value')
+    Output(component_id='modal_treemap_line_chart', component_property='figure'),
+    Input(component_id='modal_treemap_dynamic_callback_dropdown_region', component_property='value')
 )
 def line_chart(
         region
@@ -93,10 +93,10 @@ def line_chart(
 
 
 @callback(
-    Output("modal", "is_open"),
-    Input("open", "n_clicks"),
-    Input("close", "n_clicks"),
-    State("modal", "is_open"),
+    Output("modal_treemap_modal", "is_open"),
+    Input("modal_treemap_open", "n_clicks"),
+    Input("modal_treemap_close", "n_clicks"),
+    State("modal_treemap_modal", "is_open"),
 )
 def toggle_modal(n1, n2, is_open):
     if n1 or n2:
