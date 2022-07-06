@@ -14,7 +14,7 @@ notes = """
 
 #### Plotly Documentation:  
 - [Continuous Color Scales and Color Bars](https://plotly.com/python/colorscales/)
-
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
