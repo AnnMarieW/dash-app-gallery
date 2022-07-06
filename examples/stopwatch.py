@@ -35,18 +35,6 @@ app.layout = html.Div(
     Input("stopwatch-x-y", "value"),
 )
 def update_output(n, input_value, start_watch, led_value):
-    """
-    takes in the current value from LED display and reduces it by 1
-    
-    Inputs: 
-        n: number of intervals
-        input_value: number of seconds entered by user
-        start_watch: boolean value to start/stop the stopwatch
-        led_value: current value from LED display
-
-    Output:
-        led_value: current value from LED display
-    """
     if input_value != None and start_watch == False:
         return int(input_value)
     if n > 0 and start_watch == True:
