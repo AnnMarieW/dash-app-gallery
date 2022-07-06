@@ -5,24 +5,22 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components",
+    description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components. It has a top-bottom layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
 
-# any notes will be displayed below the code-and-show page in a dcc.Markdown component
 notes = """
-### For more information see:
-
-- [Medium Article Introducing Pattern Matching Callbacks](https://medium.com/plotly/pattern-matching-callbacks-in-dash-9014eee99858)
 
 #### Dash Components in App:
-- [Pattern Matching Callbacks](https://dash.plotly.com/pattern-matching-callbacks)
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 - [Callback Context](https://dash.plotly.com/determining-which-callback-input-changed)
-- [Dropdown component](https://dash.plotly.com/dash-core-components/dropdown)
+- [Pattern Matching Callbacks](https://dash.plotly.com/pattern-matching-callbacks)
+- [Medium Article Introducing Pattern Matching Callbacks](https://medium.com/plotly/pattern-matching-callbacks-in-dash-9014eee99858)
 
 #### Plotly Components in App:
 - [Line chart](https://plotly.com/python/line-charts/)
+- [Scatter Plot](https://plotly.com/python/line-and-scatter/)
 
 #### Community Components:
 

@@ -36,11 +36,20 @@ fullscreen_modal = dbc.Modal(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", id="overview", href="/", color="secondary"),
-        dbc.Button("Fullscreen App", id="open-fs-app", color="secondary"),
-        dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary"),
+        dbc.Button("Overview", id="overview", href="/", color="secondary", size="sm"),
+        dbc.Button(
+            "Dash Docs",
+            id="dash-docs",
+            href="https://dash.plotly.com/",
+            target="_blank",
+            color="secondary",
+            size="sm",
+            className="ms-2",
+        ),
+        dbc.Button("Fullscreen App", id="open-fs-app", color="secondary", size="sm"),
+        dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary", size="sm"),
     ],
-    brand="Dash Examples Index",
+    brand="Dash Example Index",
     brand_href="/",
     color="primary",
     dark=True,
@@ -50,11 +59,14 @@ navbar = dbc.NavbarSimple(
 
 footer = html.H4(
     [
-
-        dcc.Link(" Thank you contributors!", className="bi bi-github",
-                   href="https://github.com/AnnMarieW/dash-app-gallery/graphs/contributors", target="_blank")
-
-    ], className="p-4 mt-5 text-center"
+        dcc.Link(
+            " Thank you contributors!",
+            className="bi bi-github",
+            href="https://github.com/AnnMarieW/dash-app-gallery/graphs/contributors",
+            target="_blank",
+        )
+    ],
+    className="p-4 mt-5 text-center",
 )
 
 
@@ -62,9 +74,7 @@ app.layout = html.Div(
     [
         navbar,
         fullscreen_modal,
-        dbc.Container(
-            dash.page_container, fluid=True, style={"marginTop": "4rem"}
-        ),
+        dbc.Container(dash.page_container, fluid=True, style={"marginTop": "4rem"}),
         footer,
         dcc.Location(id="url", refresh=True),
     ]
@@ -77,7 +87,7 @@ app.layout = html.Div(
     Input("url", "pathname"),
 )
 def fullscreen(path):
-    """ Don't show fullscreen buttons on home page (gallery overview)"""
+    """Don't show fullscreen buttons on home page (gallery overview)"""
     if path == "/":
         return "d-none", "d-none"
     return "ms-2", "ms-2"
@@ -107,12 +117,10 @@ def toggle_modal(n_app, n_code, is_open, pathname):
 
 
 @app.callback(
-    Output("url", "href"),
-    Input("modal-fs", "is_open"),
-    State("url", "pathname")
+    Output("url", "href"), Input("modal-fs", "is_open"), State("url", "pathname")
 )
 def refresh_page(is_open, pathname):
-    """ refreshes screen when fullscreen mode is closed, else callbacks don't fire"""
+    """refreshes screen when fullscreen mode is closed, else callbacks don't fire"""
     if is_open is None:
         return dash.no_update
     return pathname if not is_open else dash.no_update

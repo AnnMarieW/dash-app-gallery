@@ -7,7 +7,7 @@ from utils.feature_app import feature_app_div
 
 
 dash.register_page(
-    __name__, name="Home - Overview", description="Dash App Gallery", path="/"
+    __name__, name="Home - Overview", description="Dash Examples Index", path="/"
 )
 
 
@@ -45,7 +45,7 @@ search_code_div = html.Div(
 )
 
 textbox_card = dbc.Card(
-    ["Welcome to the Dash app gallery!"],
+    ["Welcome to the Dash Examples Index!"],
     style={"height": 225},
     className="shadow-sm p-4 mt-4 mx-2",
 )

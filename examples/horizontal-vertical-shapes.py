@@ -7,10 +7,6 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H4("Iris plot an interactive horizontal line"),
-        html.P(
-            "↓↓↓ try downloading the plot ↓↓↓",
-            style={"text-align": "right", "font-weight": "bold"},
-        ),
         dcc.Graph(id="horizontal-vertical-shapes-x-graph"),
         html.P("Position of hline"),
         dcc.Slider(
