@@ -13,8 +13,8 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 #### Dash Components in App:  
-- [Dcc.RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
-- [Dcc.Checklist](https://dash.plotly.com/dash-core-components/checklist)
+- [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
+- [Checklist](https://dash.plotly.com/dash-core-components/checklist)
 
 #### Plotly Documentation:  
 - [Box Plots](https://plotly.com/python/box-plots/)
