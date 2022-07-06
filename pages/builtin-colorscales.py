@@ -10,7 +10,7 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 #### Dash Components in App:  
-- [Dcc.Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
 
 #### Plotly Documentation:  
 - [Continuous Color Scales and Color Bars](https://plotly.com/python/colorscales/)
