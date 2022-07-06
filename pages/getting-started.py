@@ -4,21 +4,19 @@ from utils.code_and_show import example_app
 
 
 dash.register_page(
-    __name__, description="Getting started with Dash and Plotly", order=0
+    __name__, description="This application shows the interaction between a Dropdown and a bar chart. It has a top-bottom layout and a regular-callback."
 )
 
 filename = __name__.split("pages.")[1]
 
 notes = """
 
+#### Dash Components in App:  
+- [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+
 #### Plotly Documentation:  
-
-- [Getting Started with Dash and Plotly](https://plotly.com/python/getting-started/)
-
-#### Plotly Documentation:  
-
-- [Dash Tutorial](https://dash.plotly.com/installation)
-
+- [Bar Plots](https://plotly.com/python/bar-charts/)
+- [Getting started with Plotly](https://plotly.com/python/getting-started/)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)

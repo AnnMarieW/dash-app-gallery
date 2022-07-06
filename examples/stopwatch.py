@@ -35,7 +35,6 @@ app.layout = html.Div(
     Input("stopwatch-x-y", "value"),
 )
 def update_output(n, input_value, start_watch, led_value):
-
     if input_value != None and start_watch == False:
         return int(input_value)
     if n > 0 and start_watch == True:
