@@ -19,8 +19,6 @@ notes = """
 #### Plotly Documentation:  
 - [Box Plots](https://plotly.com/python/box-plots/)
 
-A box plot is a statistical representation of the distribution of a variable through its quartiles. 
-The ends of the box represent the lower and upper quartiles, while the median (second quartile) is marked by a line inside the box. 
 
 
 #### Contributed by:
