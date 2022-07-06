@@ -18,7 +18,7 @@ notes = """
 
 #### Plotly Documentation:  
 - [Adjusting the axes properties](https://plotly.com/python/axes/)
-- [Bar Plot](https://plotly.com/python/bar-charts/)
+- [Histogram](https://plotly.com/python/histograms)
 
 Learn how to adjust axes properties in Python - axes titles, styling and coloring axes and grid lines, ticks, tick labels and more.
 
