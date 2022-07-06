@@ -12,7 +12,7 @@ filename = __name__.split("pages.")[1]
 
 notes = """
 #### Dash Components in the App:
-- [RangeSlider](https://plotly.com/python/range-slider/)
+- [Range Slider](https://dash.plotly.com/dash-core-components/rangeslider)
 
 #### Plotly documentation:  
 - [3d Scatter Plots](https://plotly.com/python/3d-scatter-plots/)
