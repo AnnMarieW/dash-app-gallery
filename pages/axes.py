@@ -14,7 +14,7 @@ filename = __name__.split("pages.")[1]
 notes = """
 
 #### Dash Components in App:  
-- [Dcc.Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+- [Button](https://dash.plotly.com/dash-html-components/button)
 
 #### Plotly Documentation:  
 - [Adjusting the axes properties](https://plotly.com/python/axes/)
