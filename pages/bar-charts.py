@@ -17,7 +17,6 @@ notes = """
 
 #### Plotly Documentation:  
 - [Bar Plots](https://plotly.com/python/bar-charts/)
-- [Regular Callbacks](https://dash.plotly.com/basic-callbacks)
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
