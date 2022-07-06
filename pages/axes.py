@@ -20,7 +20,6 @@ notes = """
 - [Adjusting the axes properties](https://plotly.com/python/axes/)
 - [Histogram](https://plotly.com/python/histograms)
 
-Learn how to adjust axes properties in Python - axes titles, styling and coloring axes and grid lines, ticks, tick labels and more.
 
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
