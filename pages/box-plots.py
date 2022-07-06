@@ -19,8 +19,6 @@ notes = """
 #### Plotly Documentation:  
 - [Box Plots](https://plotly.com/python/box-plots/)
 
-
-
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
