@@ -20,7 +20,6 @@ notes = """
 - [Adjusting the axes properties](https://plotly.com/python/axes/)
 - [Histogram](https://plotly.com/python/histograms)
 
-
 #### Contributed by:
 This example app was contributed by [Plotly](https://plotly.com/python/)
 
