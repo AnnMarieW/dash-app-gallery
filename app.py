@@ -1,8 +1,8 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-from utils.init_app import example_apps, example_source_codes, file_name_from_path
-from utils.code_and_show import make_code_div
+from lib.utils import example_apps, example_source_codes, file_name_from_path
+from lib.code_and_show import make_code_div
 
 # syntax highlighting light or dark
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
@@ -13,7 +13,7 @@ app = Dash(
     __name__,
     use_pages=True,
     external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP],
-    suppress_callback_exceptions=True,
+    # suppress_callback_exceptions=True,
 )
 
 

@@ -1,6 +1,6 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(__name__, description="Plotly Express scatter matrix example. It has a top-bottom layout and a regular-callback.")

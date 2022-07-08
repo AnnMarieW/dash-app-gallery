@@ -31,7 +31,6 @@ def make_card(page):
                         href=page["path"],
                         id=tooltip_id,
                     ),
-
                     html.P(
                         page["description"],
                         className="card-text p-2 border-top",
