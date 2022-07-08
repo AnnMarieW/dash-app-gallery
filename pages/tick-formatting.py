@@ -1,6 +1,6 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(__name__, description="This app uses the checklist to allow for linear ticks in the scatter plot. It has a top-bottom layout and a regular-callback.")

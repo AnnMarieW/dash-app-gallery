@@ -1,6 +1,6 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(__name__, description="Updating the figure's title's font size and text, using a Slider and an Input. This app has a top-bottom layout and a regular-callback.")

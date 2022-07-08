@@ -18,7 +18,6 @@ def snapshot(driver):
     missing_example_apps = get_missing_image_names()
     print(missing_example_apps)
 
-
     for page in missing_example_apps:
         path = page.replace("_", "-")
         driver.get(f"http://localhost:8050/{path}")
