@@ -1,16 +1,14 @@
-# How to contribute an app to the Dash App Gallery 
-Thank you for contributing an app to the community supported `dash-app-gallery` project! 
-Plese keep in mind that this gallery is designed for people new to Dash and/or new to coding.
-
+# How to contribute your app to this project 
+Thank you for contributing an app to the community supported `Dash Index Examples` project! 
+Plese keep in mind that this gallery is designed for people new to Dash and/or new to coding, so let's try to keep the code simple.
 
 ## Requirements for new apps
 
-- Every app should have a graph or a Dash DataTable, a callback, and strive to be simple wtih approximately 150 lines of code. 
+Every app should have a graph or a Dash DataTable, a callback, and a maximum of 150 lines of code. 
 
    <details>
-     <summary>Possible Graphs to include:</summary>
+     <summary>You can include any graph into your app, but the current priority is:</summary>
     area<br/>
-    bar<br/>
     bar_polar<br/>
     box plot<br/>
     candlestick<br/>
@@ -23,18 +21,15 @@ Plese keep in mind that this gallery is designed for people new to Dash and/or n
     ecdf<br/>
     funnel_area<br/>
     funnel<br/>
-    histogram<br/>
     icicle<br/>
     line_3d<br/>
     line_geo<br/>
     line_mapbox<br/>
     line_polar<br/>
     line_ternary<br/>
-    line<br/>
     parallel_categories<br/>
     parallel_coordinates<br/>
     pie<br/>
-    scatter<br/>
     scatter_3d<br/>
     scatter_geo<br/>
     scatter_mapbox<br/>
@@ -52,32 +47,25 @@ Plese keep in mind that this gallery is designed for people new to Dash and/or n
      <summary>Possible callbacks to include:</summary>
     chained<br/>
     circular callback<br/>
-    clientside callback<br/>
+    clientside callback (use dash.clientside_callback rather than app.clientside_callback)<br/>
     flexible callback signature<br/>
-    general<br/>
-    multiple outputs<br/>
     pattern matching<br/>
     callback with ctx<br/>
-    randomly generated ID<br/>
-    pre-defined ID<br/>
+    regular callback
    </details>
 
-   * If you are including a clientside callback, use `dash.clientside_callback` rather than `app.clientside_callback`.
-
-* If your app requires data files, provide a link to the data rather and include it in the assets folder.
-This will make it easier for people to simply copy, paste and run the sample apps without having to create
-an assets folder locally.
+### Data
+For incorporating data into your app, please try to use the built-in [Plotly Express datasets](https://plotly.com/python-api-reference/generated/plotly.express.data.html) or the datasets located in [Plotly's repo](https://github.com/plotly/datasets). 
 
 ### Unique IDs
 
-The Dash App Gallery creates a multi-page app based on the example apps.  It's a Dash requirement that every
-id in a multi-page app is unique otherwise the callbacks will not work.
+It's a Dash requirement that every ID in a multi-page app is unique, otherwise the callbacks will not work. To ensure unique IDs, please use either method A or B. 
 
-If you are using [auto generated ids](https://dash.plotly.com/basic-callbacks#passing-components-into-callbacks-instead-of-ids), the id will be unique.  
+A. You can safely use [auto generated ids](https://dash.plotly.com/basic-callbacks#passing-components-into-callbacks-instead-of-ids). 
 
-**However, if you choose to specify the id of each component, make sure to add `[name-of-the-file]-x-` to every id. This will ensure that none of the ids across the files clash.** 
+B. **However, if you choose to specify the ID of each component, make sure to add `[name-of-the-file]-x-` to every ID. This will ensure that each ID, across the files, is unique.** 
 
-Example for pages/axes.py, where we add `axes-x-` to all ids.
+For example, if you look at the [axes.py file in the examples folder](https://github.com/AnnMarieW/dash-app-gallery/blob/main/examples/axes.py), you will see that we added a `axes-x-` to all IDs (because the name of the file is axes.
 ```
 app.layout = html.Div([
     html.H4('Interactive Plotly Express axes'),
@@ -96,7 +84,7 @@ def rotate_figure(n_clicks):
     fig.update_xaxes(tickangle=n_clicks*45)
     return fig
 ```
-After the Dash is built, `axes-x-` is removed and the code that is displayed will looks like:
+After the Dash is built, `axes-x-` is removed and the code that is displayed to the user will look like:
 ```
 app.layout = html.Div([
     html.H4('Interactive Plotly Express axes'),
@@ -120,5 +108,5 @@ If your app name, for example, is box-plots.py, you would add `box-plots-x-` in 
 
 ### Where to add new apps
 
-To add apps to the gallery, place your example apps in the `examples/` folder.
+To add apps to this project, place your example apps in the `examples/` folder. The most convenient way of doing this is by [forking our repo and creating a Pull Request](https://youtu.be/Xth83OD3NNc) for each app that you would like to add. 
 
