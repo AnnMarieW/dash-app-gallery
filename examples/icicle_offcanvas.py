@@ -20,7 +20,9 @@ df = df[['profit_derived', 'Segment', 'Region']]
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
-app.layout = html.Div([
+app.layout = dbc.Container([
+
+    html.H4('Where does profit come from? - Looking at profit through segment and region dimension.'),
 
     dbc.NavbarSimple(
         children=[],
@@ -28,9 +30,9 @@ app.layout = html.Div([
         brand_href="#",
         color="primary",
         dark=True,
+        className='mb-2'
     ),
 
-    html.Br(),
 
     html.Div(
         [
@@ -40,11 +42,6 @@ app.layout = html.Div([
                 dcc.Dropdown(
                     id='icicle_offCanvas_dynamic_callback_dropdown_region',
                     options=[{'label': x, 'value': x} for x in sorted(df['Region'].unique())]
-                ),
-                html.P(
-                    "This is the content of the Offcanvas. "
-                    "Close it by clicking on the close button, or "
-                    "the backdrop."
                 )],
                 id="icicle_offCanvas_offcanvas",
                 title="Filters",
@@ -53,25 +50,27 @@ app.layout = html.Div([
         ]
     ),
 
-    html.Br(),
-
     dcc.Graph(
-        id='icicle_offCanvas_line_chart'
-    ),
+        id='icicle_offCanvas_line_chart',
+        className='mt-2 mb-4'
+    )
 
-    html.Br(),
-    html.Br()
-
-])
+], fluid=True)
 
 
 @callback(
-    Output(component_id='icicle_offCanvas_line_chart', component_property='figure'),
-    Input(component_id='icicle_offCanvas_dynamic_callback_dropdown_region', component_property='value')
+    Output('icicle_offCanvas_line_chart', 'figure'),
+    Input('icicle_offCanvas_dynamic_callback_dropdown_region', 'value')
 )
 def line_chart(
         region
 ):
+    # This is necessary because of local-global variable scoping
+    # i.e. if local variable (with name same as global variable name) is defined within
+    # inner/local scope, then global variable can't be accessed.
+    # Place where local variable with global name is defined is not important.
+    # If local variable with global variable name is defined SOMEWHERE within local
+    # scope, global variable can't be accessed.
     dff = df.copy()
 
     if region is not None:
@@ -99,3 +98,4 @@ def toggle_offcanvas(n1, is_open):
 
 if __name__ == '__main__':
     app.run_server()
+
