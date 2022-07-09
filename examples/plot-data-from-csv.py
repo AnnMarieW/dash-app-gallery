@@ -2,7 +2,9 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 
-df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv")
+df = pd.read_csv(
+    "https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv"
+)
 
 app = Dash(__name__)
 

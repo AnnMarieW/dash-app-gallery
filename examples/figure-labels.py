@@ -38,13 +38,13 @@ app.layout = html.Div(
 )
 def update_chart(font_color, title_color):
     fig = px.scatter(
-            df,
-            x="sepal_length",
-            y="sepal_width",
-            height=350,
-            color="species",
-            title="Playing with Fonts",
-        )
+        df,
+        x="sepal_length",
+        y="sepal_width",
+        height=350,
+        color="species",
+        title="Playing with Fonts",
+    )
 
     fig.update_layout(font_color=font_color["hex"], title_font_color=title_color["hex"])
     return fig

@@ -24,7 +24,7 @@ app.layout = html.Div(
     Input("getting-started-x-dropdown", "value"),
 )
 def display_color(color):
-    fig = go.Figure(go.Bar(x=["a","b","c"], y=[2, 3, 1], marker_color=color))
+    fig = go.Figure(go.Bar(x=["a", "b", "c"], y=[2, 3, 1], marker_color=color))
     return fig
 
 

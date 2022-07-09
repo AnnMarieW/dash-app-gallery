@@ -11,7 +11,12 @@ app.layout = html.Div(
     [
         html.Pre(id="bad-apple-x-show"),
         dcc.Store(data=frames, id="bad-apple-x-frame"),
-        dcc.Interval(id="bad-apple-x-interval", interval=1000 / 15, n_intervals=0, max_intervals=200),
+        dcc.Interval(
+            id="bad-apple-x-interval",
+            interval=1000 / 15,
+            n_intervals=0,
+            max_intervals=200,
+        ),
     ]
 )
 

@@ -13,6 +13,7 @@ app.layout = html.Div(
     ]
 )
 
+
 @app.callback(Output("axes-x-graph", "figure"), Input("axes-x-button", "n_clicks"))
 def rotate_figure(n_clicks):
     fig = px.histogram(df, x="sex", height=500)
