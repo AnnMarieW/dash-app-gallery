@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.tips()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -32,7 +33,6 @@ app.layout = html.Div(
     Input("box-plots-x-y-axis", "value"),
 )
 def generate_chart(x, y):
-    df = px.data.tips()  # replace with your own data source
     fig = px.box(df, x=x, y=y)
     return fig
 

@@ -2,10 +2,11 @@ from dash import Dash, dcc, html, Input, Output, dash_table, State
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-# Read dataset into pandas dataframe
+
 df = px.data.stocks()
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -60,15 +61,10 @@ app.layout = dbc.Container(
 @app.callback(
     Output("dash_download_component_app-x-download", "data"),
     Input("dash_download_component_app-x-btn_csv", "n_clicks"),
-    State(
-        component_id="dash_download_component_app-x-dropdown",
-        component_property="value",
-    ),
+    State("dash_download_component_app-x-dropdown", "value"),
     prevent_initial_call=True,
 )
 def func(n_clicks_btn, download_type):
-    print(download_type)
-
     if download_type == "csv":
         return dcc.send_data_frame(df.to_csv, "mydf.csv")
     else:

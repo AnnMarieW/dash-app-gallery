@@ -1,6 +1,8 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.iris()
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -25,7 +27,6 @@ app.layout = html.Div(
     Input("3d-scatter-plots-x-range-slider", "value"),
 )
 def update_chart(slider_range):
-    df = px.data.iris()  # replace with your own data source
     low, high = slider_range
     mask = (df.petal_width > low) & (df.petal_width < high)
 

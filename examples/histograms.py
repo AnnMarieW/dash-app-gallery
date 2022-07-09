@@ -27,7 +27,7 @@ app.layout = html.Div(
     Input("histograms-x-std", "value"),
 )
 def display_color(mean, std):
-    data = np.random.normal(mean, std, size=500)  # replace with your own data source
+    data = np.random.normal(mean, std, size=500)
     fig = px.histogram(data, range_x=[-10, 10])
     return fig
 

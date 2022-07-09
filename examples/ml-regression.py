@@ -5,6 +5,8 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 
+df = px.data.tips()
+
 app = Dash(__name__)
 
 models = {
@@ -33,7 +35,6 @@ app.layout = html.Div(
     Input("ml-regression-x-dropdown", "value"),
 )
 def train_and_display(name):
-    df = px.data.tips()  # replace with your own data source
     X = df.total_bill.values[:, None]
     X_train, X_test, y_train, y_test = train_test_split(X, df.tip, random_state=42)
 
