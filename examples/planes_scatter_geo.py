@@ -3,8 +3,8 @@ import plotly.express as px
 import pandas as pd
 
 df_airports = pd.read_csv(
-        "https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv"
-    )
+    "https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv"
+)
 
 app = Dash(__name__)
 
