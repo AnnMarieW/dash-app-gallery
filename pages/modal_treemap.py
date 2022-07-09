@@ -13,9 +13,12 @@ filename = __name__.split("pages.")[1]
 notes = """
 #### Dash Components in App:
 - [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+- [Tabs](https://dash.plotly.com/dash-core-components/tabs)
+- [DatePickerRange](https://dash.plotly.com/dash-core-components/datepickerrange)
 
 #### Plotly Documentation:  
 - [Treemap Chart](https://plotly.com/python/treemaps/)
+- [Sunburst Chart](https://plotly.com/python/sunburst-charts/)
 
 #### Community Components:
 
