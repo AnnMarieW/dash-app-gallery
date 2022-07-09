@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.tips()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -23,7 +24,6 @@ app.layout = html.Div(
     Input("discrete-color-x-color-mode", "value"),
 )
 def generate_chart(mode):
-    df = px.data.tips()  # replace with your own data source
     if mode == "discrete":
         df["size"] = df["size"].astype(str)
     else:

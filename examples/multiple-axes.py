@@ -23,7 +23,6 @@ app.layout = html.Div(
     Output("multiple-axes-x-graph", "figure"), Input("multiple-axes-x-radio", "value")
 )
 def display_(radio_value):
-
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 

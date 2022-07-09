@@ -1,6 +1,7 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.gapminder().query("continent=='Oceania'")
 app = Dash(__name__)
 
 
@@ -24,9 +25,6 @@ app.layout = html.Div(
     Input("hover-text-and-formatting-x-hovermode", "value"),
 )
 def update_hovermode(mode):
-    df = px.data.gapminder().query(
-        "continent=='Oceania'"
-    )  # replace with your own data source
     fig = px.line(
         df,
         x="year",
