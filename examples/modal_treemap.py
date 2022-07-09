@@ -3,7 +3,7 @@ import pandas as pd
 from dash import Dash, Input, Output, callback, dcc, html, State
 import plotly.express as px
 import dash_bootstrap_components as dbc
-from datetime import date
+
 
 df = pd.read_table('https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv')
 
@@ -24,7 +24,7 @@ app.layout = dbc.Container([
 
     dbc.NavbarSimple(
         children=[],
-        brand="Dash is awesom!",
+        brand="Dash is awesome!",
         brand_href="#",
         color="primary",
         dark=True
@@ -54,11 +54,11 @@ app.layout = dbc.Container([
                         html.Label('Ship Date'),
                         dcc.DatePickerRange(
                             id='modal_treemap_my-date-picker-range',
-                            min_date_allowed=date(1995, 8, 5),
-                            max_date_allowed=date(2017, 9, 19),
-                            # initial_visible_month=date(2017, 8, 5),
-                            end_date=date(2017, 8, 25),
-                            start_date=date(2012, 1, 20)
+                            min_date_allowed=min(df['ship_date']),
+                            max_date_allowed=max(df['ship_date']),
+
+                            end_date=max(df['ship_date']),
+                            start_date=min(df['ship_date'])
                         )
 
                     ]),
@@ -117,12 +117,6 @@ def main_callback_logic(
 ):
     dff = df.copy()
 
-    print('-----------------------')
-    print(start_date)
-    print(end_date)
-    print('-------------')
-
-    # if region is not None:
     if region is not None and len(region) > 0:
         dff = dff.query('Region == @region')
 
