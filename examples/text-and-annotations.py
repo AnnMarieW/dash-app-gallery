@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.gapminder().query("year==2007")
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -31,7 +32,6 @@ app.layout = html.Div(
     Input("text-and-annotations-x-pos-y", "value"),
 )
 def modify_legend(pos_x, pos_y):
-    df = px.data.gapminder().query("year==2007")  # replace with your own data source
     fig = px.scatter(
         df,
         x="gdpPercap",

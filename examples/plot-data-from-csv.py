@@ -2,6 +2,8 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv")
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -18,10 +20,6 @@ app.layout = html.Div(
     Input("plot-data-from-csv-x-button", "n_clicks"),
 )
 def display_graph(n_clicks):
-    df = pd.read_csv(
-        "https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv"
-    )  # replace with your own data source
-
     if n_clicks % 2 == 0:
         x, y = "AAPL_x", "AAPL_y"
     else:

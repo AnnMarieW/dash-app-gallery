@@ -10,7 +10,7 @@ import os
 from selenium import webdriver
 import time
 
-from utils.init_app import get_missing_image_names
+from lib.utils import get_missing_image_names
 
 
 def snapshot(driver):

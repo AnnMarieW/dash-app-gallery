@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.tips()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -12,10 +13,8 @@ app.layout = html.Div(
     ]
 )
 
-
 @app.callback(Output("axes-x-graph", "figure"), Input("axes-x-button", "n_clicks"))
 def rotate_figure(n_clicks):
-    df = px.data.tips()  # replace with your own data source
     fig = px.histogram(df, x="sex", height=500)
     fig.update_xaxes(tickangle=n_clicks * 45)
     return fig

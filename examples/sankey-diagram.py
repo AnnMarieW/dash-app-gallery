@@ -2,6 +2,10 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.graph_objects as go
 import json, urllib
 
+url = "https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json"
+response = urllib.request.urlopen(url)
+data = json.loads(response.read())
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -19,10 +23,6 @@ app.layout = html.Div(
     Input("sankey-diagram-x-slider", "value"),
 )
 def display_sankey(opacity):
-    url = "https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json"
-    response = urllib.request.urlopen(url)
-    data = json.loads(response.read())  # replace with your own data source
-
     node = data["data"][0]["node"]
     node["color"] = [
         f"rgba(255,0,255,{opacity})"

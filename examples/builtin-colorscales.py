@@ -2,9 +2,9 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
 colorscales = px.colors.named_colorscales()
+df = px.data.iris()
 
 app = Dash(__name__)
-
 
 app.layout = html.Div(
     [
@@ -23,7 +23,6 @@ app.layout = html.Div(
     Input("builtin-colorscales-x-dropdown", "value"),
 )
 def change_colorscale(scale):
-    df = px.data.iris()  # replace with your own data source
     fig = px.scatter(
         df,
         x="sepal_width",

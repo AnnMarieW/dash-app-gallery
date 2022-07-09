@@ -3,8 +3,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 import dash_daq as daq
 
-app = Dash(__name__)
+df = px.data.iris()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -24,7 +25,6 @@ app.layout = html.Div(
     Output("marker-style-x-graph", "figure"), Input("marker-style-x-color", "value")
 )
 def update_marker_border(color):
-    df = px.data.iris()  # replace with your own data source
     fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", height=350)
     fig = go.Figure(fig)
     fig.update_traces(
