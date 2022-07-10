@@ -61,7 +61,7 @@ app.layout = html.Div([
                       "margin-left": "-21em",
                       "display": "inline-block"}
         )
-    ], style={"display": "inline-block", "width": "100%"}
+    ], style={"width": "100%"}
     ),
     dcc.Graph(id='time-series-app-x-graph',
               style={"margin-left": "2.5em"})
@@ -79,12 +79,10 @@ def update_graph(stock, start_date, end_date, graph_type):
     if graph_type == "Stock Prices":
         fig = px.line(df[start_date:end_date],
                       x=df[start_date:end_date].index,  y=stock)
-        fig.update_layout()
         return fig
     elif graph_type == "Returns":
         fig = px.line(new_df[start_date:end_date],
                       x=new_df[start_date:end_date].index,  y=stock)
-        fig.update_layout()
         return fig
 
 
