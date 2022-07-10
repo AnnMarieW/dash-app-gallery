@@ -1,6 +1,8 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.iris()
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -22,7 +24,6 @@ app.layout = html.Div(
     Input("plotly-express-x-dropdown", "value"),
 )
 def update_charts(dims):
-    df = px.data.iris()  # replace with your own data source
     fig = px.scatter_matrix(df, dimensions=dims, color="species")
     return fig
 

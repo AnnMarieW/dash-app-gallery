@@ -19,7 +19,7 @@ app.layout = dbc.Container(
                         options=df.country.unique(),
                         value="Canada",
                         id="pattern-match-x-country",
-                        clearable=False
+                        clearable=False,
                     ),
                     width=4,
                 ),
@@ -28,7 +28,6 @@ app.layout = dbc.Container(
                         "Add Chart",
                         id="pattern-match-x-add-chart",
                         n_clicks=0,
-
                     )
                 ),
             ]
@@ -104,7 +103,7 @@ def display_dropdowns(n_clicks, _, children, country):
                     id={"type": "dynamic-dropdown-y", "index": n_clicks},
                     options=df.columns,
                     value=default_column_y,
-                    clearable=False
+                    clearable=False,
                 ),
             ],
             style={

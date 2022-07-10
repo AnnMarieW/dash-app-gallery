@@ -2,14 +2,12 @@ import plotly.express as px
 from dash import Dash, dcc, html, Output, Input
 from plotly import data
 
-# Data
 df = data.iris()
 
 species = df["species"].unique().tolist()
 
 options = [{"label": specie.capitalize(), "value": specie} for specie in species]
 
-# App
 app = Dash(__name__)
 
 app.layout = html.Div(

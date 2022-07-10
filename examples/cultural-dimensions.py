@@ -11,9 +11,8 @@ df = pd.read_csv(
 )
 df.replace(to_replace="#NULL!", value=0, inplace=True)
 
-# Defining the Dash application
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
+
 
 # Country selection card
 controls = dbc.Card(
@@ -66,7 +65,7 @@ tabs = dbc.Card(
     )
 )
 
-# Application layout
+
 app.layout = dbc.Container(
     [
         html.H1("Hofstede's Cultural Dimensions"),
@@ -112,6 +111,5 @@ def make_country_graph(country_list):
     return fig
 
 
-# Run the app
 if __name__ == "__main__":
     app.run_server(debug=True)
