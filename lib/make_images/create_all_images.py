@@ -11,7 +11,7 @@ import os
 from selenium import webdriver
 import time
 
-from utils.init_app import file_names
+from lib.utils import file_names
 
 
 def snapshot(driver):

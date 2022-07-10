@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.tips()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -32,7 +33,6 @@ app.layout = html.Div(
     Input("pie-charts-x-values", "value"),
 )
 def generate_chart(names, values):
-    df = px.data.tips()  # replace with your own data source
     fig = px.pie(df, values=values, names=names, hole=0.3)
     return fig
 

@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.medals_wide(indexed=True)
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -20,7 +21,6 @@ app.layout = html.Div(
 
 @app.callback(Output("heatmaps-x-graph", "figure"), Input("heatmaps-x-medals", "value"))
 def filter_heatmap(cols):
-    df = px.data.medals_wide(indexed=True)  # replace with your own data source
     fig = px.imshow(df[cols])
     return fig
 

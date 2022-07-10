@@ -52,9 +52,9 @@ app.layout = dbc.Container(
     [
         html.H1("Poisson distribution graph"),
         html.Hr(),
-        dbc.Row(dbc.Col(accordion, lg=12, sm=12)),
-        dbc.Row(dbc.Col(inputs, lg=12, sm=12)),
-        dbc.Row(dbc.Col(graph, lg=12, sm=12)),
+        dbc.Row(dbc.Col(accordion)),
+        dbc.Row(dbc.Col(inputs)),
+        dbc.Row(dbc.Col(graph)),
     ]
 )
 

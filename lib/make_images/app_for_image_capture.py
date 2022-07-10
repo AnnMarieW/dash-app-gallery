@@ -6,10 +6,10 @@ Start this app, then run update_images_all.py or update_images_missing.py
 
 import dash
 import dash_bootstrap_components as dbc
-from utils.code_and_show import example_app, make_app_first
-from utils.init_app import file_names
+from lib.code_and_show import example_app, make_app_first
+from lib.utils import file_names
 
-from utils.init_app import example_apps
+from lib.utils import example_apps
 
 app = dash.Dash(
     __name__,

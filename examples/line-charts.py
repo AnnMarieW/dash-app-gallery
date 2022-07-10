@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.gapminder()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -22,7 +23,6 @@ app.layout = html.Div(
     Output("line-charts-x-graph", "figure"), Input("line-charts-x-checklist", "value")
 )
 def update_line_chart(continents):
-    df = px.data.gapminder()  # replace with your own data source
     mask = df.continent.isin(continents)
     fig = px.line(df[mask], x="year", y="lifeExp", color="country")
     return fig

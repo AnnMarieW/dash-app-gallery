@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.election()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -24,7 +25,6 @@ app.layout = html.Div(
     Input("choropleth-maps-x-candidate", "value"),
 )
 def display_choropleth(candidate):
-    df = px.data.election()  # replace with your own data source
     geojson = px.data.election_geojson()
     fig = px.choropleth(
         df,
