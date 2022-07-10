@@ -1,6 +1,8 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.tips()
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -25,7 +27,6 @@ app.layout = html.Div(
     Input("setting-graph-size-x-slider", "value"),
 )
 def resize_figure(width):
-    df = px.data.tips()  # replace with your own data source
     fig = px.scatter(df, x="total_bill", y="tip", facet_col="sex", height=400)
     fig.update_layout(
         margin=dict(l=20, r=20, t=20, b=20),
