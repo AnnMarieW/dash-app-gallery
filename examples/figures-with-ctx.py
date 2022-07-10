@@ -22,8 +22,8 @@ app.layout = dbc.Container(
         html.Hr(),
         dbc.Row(
             [
-                dbc.Col([buttons], lg=4, sm=12),
-                dbc.Col(dcc.Graph(id="figures-with-ctx-x-graph"), lg=8, sm=12),
+                dbc.Col([buttons], md=4),
+                dbc.Col(dcc.Graph(id="figures-with-ctx-x-graph"), md=8),
             ],
             align="center",
         ),
