@@ -2,7 +2,9 @@ from dash import Dash, dcc, html, Input, Output
 import pandas as pd
 import plotly.express as px
 
-filepath = "https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv"
+filepath = (
+    "https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv"
+)
 df = pd.read_csv(filepath)
 
 state_list = df["state"].unique()
@@ -11,7 +13,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.H1(
+        html.H2(
             f"Polar Charts of U.S. Agricultural Exports, 2011",
             style={"textAlign": "center"},
         ),
@@ -31,14 +33,15 @@ app.layout = html.Div(
         ),
         dcc.Graph(id="bar-polar-app-x-graph"),
     ],
-    style={"margin": "6em", "fontSize": 20},
+    style={"margin": "1em 5em", "fontSize": 18},
 )
 
 
-@ app.callback(
-    Output('bar-polar-app-x-graph', 'figure'),
+@app.callback(
+    Output("bar-polar-app-x-graph", "figure"),
     Input("bar-polar-app-x-dropdown", "value"),
-    Input("bar-polar-app-x-radio-items", "value"))
+    Input("bar-polar-app-x-radio-items", "value"),
+)
 def update_graph(state, radius_scale):
     filtered_df = df[df["state"].isin(state)]
     log_r = True if radius_scale == "Logarithmic" else False
@@ -55,5 +58,5 @@ def update_graph(state, radius_scale):
     return fig
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True)
