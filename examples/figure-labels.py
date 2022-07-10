@@ -3,10 +3,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 import dash_daq as daq
 
+df = px.data.iris()
+
 app = Dash(__name__)
 
-
-picker_style = {"float": "left", "margin": "auto"}
+picker_style = {"display": "inline-block", "margin": 10}
 
 app.layout = html.Div(
     [
@@ -36,17 +37,15 @@ app.layout = html.Div(
     Input("figure-labels-x-title", "value"),
 )
 def update_chart(font_color, title_color):
-    df = px.data.iris()  # replace with your own data source
-    fig = go.Figure(
-        px.scatter(
-            df,
-            x="sepal_length",
-            y="sepal_width",
-            height=350,
-            color="species",
-            title="Playing with Fonts",
-        )
+    fig = px.scatter(
+        df,
+        x="sepal_length",
+        y="sepal_width",
+        height=350,
+        color="species",
+        title="Playing with Fonts",
     )
+
     fig.update_layout(font_color=font_color["hex"], title_font_color=title_color["hex"])
     return fig
 

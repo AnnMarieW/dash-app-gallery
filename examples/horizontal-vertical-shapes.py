@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.iris()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -26,7 +27,6 @@ app.layout = html.Div(
     Input("horizontal-vertical-shapes-x-slider-position", "value"),
 )
 def display_graph(pos_x):
-    df = px.data.iris()  # replace with your own data source
     fig = px.scatter(df, x="petal_length", y="petal_width")
     fig.add_vline(x=pos_x, line_width=3, line_dash="dash", line_color="green")
     fig.add_hrect(y0=0.9, y1=2.6, line_width=0, fillcolor="red", opacity=0.2)
