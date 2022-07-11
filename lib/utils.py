@@ -59,8 +59,7 @@ def file_name_from_path(path):
             wildcard_pattern = re.sub("<.*?>", "*", template)
             if fnmatch(path, wildcard_pattern):
                 return page["module"].split(".")[-1]
-
-        if page["path"] == path:
+        if page["relative_path"] == path:
             return page["module"].split(".")[-1]
     return ""
 
