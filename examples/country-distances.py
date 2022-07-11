@@ -2,14 +2,13 @@ from dash import Dash, dcc, html, Input, Output, no_update
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-# Defining the Dash application
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = px.data.gapminder().query("year == 2007")
 
 dropdown_country_a = dcc.Dropdown(
     id="country-distances-x-dropdown-a",
-    options=[cntry for cntry in df.country],
+    options=df.country,
     value="Turkey",
 )
 
@@ -47,7 +46,7 @@ app.layout = dbc.Container(
 )
 def set_dropdown_b_options(dropdown_a_value, dropdown_b_options):
     return (
-        [cntry for cntry in df[df.country != dropdown_a_value].country],
+        df[df.country != dropdown_a_value].country,
         "Canada" if dropdown_b_options is None else no_update,
     )
 
@@ -60,7 +59,6 @@ def set_dropdown_b_options(dropdown_a_value, dropdown_b_options):
     Input("country-distances-x-dropdown-b", "value"),
 )
 def make_line_geo_graph(country_a, country_b):
-
     dff = df[df.country.isin([country_a, country_b])]
 
     fig = px.line_geo(
@@ -86,6 +84,5 @@ def make_line_geo_graph(country_a, country_b):
     return fig, fig_locations
 
 
-# Run the app
 if __name__ == "__main__":
     app.run_server(debug=True)

@@ -12,6 +12,9 @@ MODELS = {
     "k-NN": neighbors.KNeighborsClassifier,
 }
 
+X, y = datasets.make_classification(n_samples=1500, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+
 app.layout = html.Div(
     [
         html.H4("Analysis of the ML model's results using ROC and PR curves"),
@@ -32,11 +35,6 @@ app.layout = html.Div(
     Input("roc-and-pr-curves-x-dropdown", "value"),
 )
 def train_and_display(model_name):
-    X, y = datasets.make_classification(  # replace with your own data source
-        n_samples=1500, random_state=0
-    )
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
-
     model = MODELS[model_name]()
     model.fit(X_train, y_train)
 
