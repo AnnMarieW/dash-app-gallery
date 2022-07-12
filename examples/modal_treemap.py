@@ -50,12 +50,7 @@ app.layout = dbc.Container([
                             clearable=True
                         )
 
-                    ]),
-                    dbc.ModalFooter(
-                        dbc.Button(
-                            "Close", id="modal_treemap-x-close", className="ms-auto", n_clicks=0
-                        )
-                    ),
+                    ])
                 ],
                 id="modal_treemap-x-modal",
                 is_open=False,
@@ -118,11 +113,10 @@ def main_callback_logic(
 @callback(
     Output("modal_treemap-x-modal", "is_open"),
     Input("modal_treemap-x-open", "n_clicks"),
-    Input("modal_treemap-x-close", "n_clicks"),
     State("modal_treemap-x-modal", "is_open"),
 )
-def toggle_modal(n1, n2, is_open):
-    if n1 or n2:
+def toggle_modal(n1,is_open):
+    if n1:
         return not is_open
     return is_open
 
