@@ -3,7 +3,6 @@ import pandas as pd
 from dash import Dash, Input, Output, callback, dcc, html, State
 import plotly.express as px
 import dash_bootstrap_components as dbc
-from datetime import date
 
 df = pd.read_table('https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv')
 
