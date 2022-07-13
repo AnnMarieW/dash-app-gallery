@@ -15,7 +15,7 @@ def make_card(page):
                 [
                     dbc.NavLink(
                         page["title"],
-                        href=page["path"],
+                        href=page["relative_path"],
                     ),
                 ]
             ),
@@ -28,7 +28,7 @@ def make_card(page):
                                 className="img-fluid",
                             ),
                         ),
-                        href=page["path"],
+                        href=page["relative_path"],
                         id=tooltip_id,
                     ),
                     html.P(
@@ -49,7 +49,7 @@ def make_card_grid(cards_per_row=3, registry=None):
     row = []
     grid = []
     for page in registry:
-        if page["path"] != "/":
+        if page["relative_path"] != dash.get_relative_path("/"):
             if len(row) < cards_per_row:
                 row.append(make_card(page))
             if len(row) == cards_per_row:

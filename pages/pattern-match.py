@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components. It has a top-bottom layout and a regular-callback.",
+    description="This app demonstrates pattern matching callbacks which dynamically adds or deletes components. It has a top-bottom layout and a pattern matching callback.",
 )
 
 filename = __name__.split("pages.")[1]
