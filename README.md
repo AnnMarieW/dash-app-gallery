@@ -1,7 +1,7 @@
 # Dash App Gallery
 
 This Community App Gallery is designed for people new to Plotly and Dash.  It contains minimal sample apps
-with ~150 lines of code to demonstrate basic usage of graphs, components, callbacks, and layout design.
+with ~100 lines of code to demonstrate basic usage of graphs, components, callbacks, and layout design.
 
 ### Navigtaing the Gallery:
 1. To get started, use the search field to search for any keyword you're interested in. For example, search for "dcc.Dropdown" and you will see only
