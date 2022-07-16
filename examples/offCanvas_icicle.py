@@ -23,23 +23,23 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container([
 
-    html.H4('Where does profit come from? - Looking at profit through segment and region dimension.', style={'textAlign' : 'center'}, className='mb-3 mt-3'),
+    html.H4('Where does profit come from? - Looking at profit through segment and region dimension.', style={'textAlign': 'center'}, className='mb-3 mt-3'),
 
     html.Div(
         [
-            dbc.Button("Open Filters", id="icicle_offCanvas-x-open-offcanvas", n_clicks=0),
+            dbc.Button("Open Filters", id="offCanvas_icicle-x-open-offcanvas", n_clicks=0),
             dbc.Offcanvas([
 
                 html.Label('Region'),
                 dcc.Dropdown(
-                    id='icicle_offCanvas-x-dynamic_callback_dropdown_region',
+                    id='offCanvas_icicle-x-dynamic_callback_dropdown_region',
                     options=[{'label': x, 'value': x} for x in sorted(df['Region'].unique())],
                     multi=True
                 ),
 
                 html.Label('Ship Date'),
                 dcc.DatePickerRange(
-                    id='icicle_offCanvas-x-my-date-picker-range',
+                    id='offCanvas_icicle-x-my-date-picker-range',
                     min_date_allowed=min(df['ship_date']),
                     max_date_allowed=max(df['ship_date']),
                     end_date=max(df['ship_date']),
@@ -47,7 +47,7 @@ app.layout = dbc.Container([
                     clearable=True
                 )
             ],
-                id="icicle_offCanvas-x-offcanvas",
+                id="offCanvas_icicle-x-offcanvas",
                 title="Filters",
                 is_open=False,
             )
@@ -55,7 +55,7 @@ app.layout = dbc.Container([
     ),
 
     dcc.Graph(
-        id='icicle_offCanvas-x-line_chart',
+        id='offCanvas_icicle-x-line_chart',
         className='mt-2 mb-4'
     )
 
@@ -63,10 +63,10 @@ app.layout = dbc.Container([
 
 
 @callback(
-    Output('icicle_offCanvas-x-line_chart', 'figure'),
-    Input('icicle_offCanvas-x-dynamic_callback_dropdown_region', 'value'),
-    Input('icicle_offCanvas-x-my-date-picker-range', 'start_date'),
-    Input('icicle_offCanvas-x-my-date-picker-range', 'end_date')
+    Output('offCanvas_icicle-x-line_chart', 'figure'),
+    Input('offCanvas_icicle-x-dynamic_callback_dropdown_region', 'value'),
+    Input('offCanvas_icicle-x-my-date-picker-range', 'start_date'),
+    Input('offCanvas_icicle-x-my-date-picker-range', 'end_date')
 )
 def line_chart(
         region,
@@ -94,9 +94,9 @@ def line_chart(
 
 
 @callback(
-    Output("icicle_offCanvas-x-offcanvas", "is_open"),
-    Input("icicle_offCanvas-x-open-offcanvas", "n_clicks"),
-    State("icicle_offCanvas-x-offcanvas", "is_open"),
+    Output("offCanvas_icicle-x-offcanvas", "is_open"),
+    Input("offCanvas_icicle-x-open-offcanvas", "n_clicks"),
+    State("offCanvas_icicle-x-offcanvas", "is_open"),
 )
 def toggle_offcanvas(n1, is_open):
     if n1:
@@ -106,4 +106,3 @@ def toggle_offcanvas(n1, is_open):
 
 if __name__ == '__main__':
     app.run_server()
-
