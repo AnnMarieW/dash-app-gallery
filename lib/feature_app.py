@@ -29,6 +29,7 @@ figure_type = {
     "Choropleth": "px.choropleth",
     "ECDF Plots": "px.ecdf",
     "Histogram": "px.histogram",
+    "Icicle": "px.icicle",
     "Filled Area": "px.area",
     "Contour": "go.Contour",
     "Parallel Coordinates": "px.parallel_coordinates",
@@ -77,6 +78,7 @@ components = {
     "Led display": "daq.LED",
     "Power Button": "daq.Power",
     "RadioItems": "RadioItems",
+    "Offcanvas": "dbc.Offcanvas"
 }
 components = {key: components[key] for key in sorted(components)}
 
