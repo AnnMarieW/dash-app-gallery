@@ -29,6 +29,7 @@ def file_names():
 
 file_names = file_names()
 
+
 example_modules = {p: import_module(f"{EXAMPLE_APPS_DIR_NAME}.{p}") for p in file_names}
 example_apps = {p: m.app for p, m in example_modules.items()}
 example_source_codes = {p: getsource(m) for p, m in example_modules.items()}
@@ -45,10 +46,11 @@ def get_app_image_names():
 
 
 def get_missing_image_names(theme="light"):
+    files = [f for f in file_names if not f.startswith("error")]
     images = get_app_image_names()
     if theme == "dark":
-        return [app for app in file_names if f"{app}-dark" not in images]
-    return [app for app in file_names if app not in images]
+        return [app for app in files if f"{app}-dark" not in images]
+    return [app for app in files if app not in images]
 
 
 def file_name_from_path(path):
@@ -84,18 +86,19 @@ def search_code_files(
     index = {term: set() for term in searchterms}
 
     for filename, code in example_source_codes.items():
-        if include_description:
-            module = "pages." + filename
-            app_description = dash.page_registry[module]["description"]
-            code = "\n".join([app_description, code])
+        if not filename.startswith("error"):
+            if include_description:
+                module = "pages." + filename
+                app_description = dash.page_registry[module]["description"]
+                code = "\n".join([app_description, code])
 
-        if not case_sensitive:
-            code = code.lower()
+            if not case_sensitive:
+                code = code.lower()
 
-        # build index of filenames of code with the search terms
-        for term in searchterms:
-            if term in code:
-                index[term].add(filename)
+            # build index of filenames of code with the search terms
+            for term in searchterms:
+                if term in code:
+                    index[term].add(filename)
 
     search_results = [index.get(term, set()) for term in searchterms]
 
@@ -119,6 +122,6 @@ def filter_registry(
     filtered_registry = []
     for page in dash.page_registry.values():
         filename = page["module"].split("pages.")[1]
-        if filename in filtered_example_app_list:
+        if filename in filtered_example_app_list and not filename.startswith("error"):
             filtered_registry.append(page)
     return filtered_registry

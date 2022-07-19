@@ -37,8 +37,10 @@ fullscreen_modal = dbc.Modal(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm"),
-        dbc.Button(
+        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm",className="ms-2"),
+        dbc.Button("Index", href=dash.get_relative_path("/example-index"), color="secondary", size="sm", className="ms-2"),
+
+         dbc.Button(
             "Dash Docs",
             id="dash-docs",
             href="https://dash.plotly.com/",
@@ -88,9 +90,9 @@ app.layout = html.Div(
     Input("url", "pathname"),
 )
 def fullscreen(path):
-    """Don't show fullscreen buttons on home page (gallery overview)"""
+    """Don't show fullscreen buttons on home page (gallery overview or index page)"""
 
-    if path == dash.get_relative_path("/"):
+    if path in [dash.get_relative_path("/"), dash.get_relative_path("/example-index")]:
         return "d-none", "d-none"
     return "ms-2", "ms-2"
 
