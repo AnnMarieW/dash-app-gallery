@@ -150,12 +150,9 @@ def error_example(filename, image=None, no_error_filename=None, notes=None):
     code = code.replace(filename + "-x-", "")
 
     image = html.Img(src=get_asset_url(image), className="img-fluid")
-    print(image)
     error_row = dbc.Row(
         [
             dbc.Col(dbc.Card(image, style={"padding": "10px"}), width=12, lg=6),
-            #  if image
-            # else None,
             dbc.Col(
                 dbc.Card(
                     [make_code_div(code)],

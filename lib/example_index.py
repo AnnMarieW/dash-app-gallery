@@ -29,6 +29,11 @@ text = """
 -  [The children property of a component is a list of lists, instead of just a list....](/error-figures-with-ctx)
 
 
+### Interactive Tutorials
+- [Legend and annotations positioning in Plotly figures](https://plotly-annotations.herokuapp.com/)
+- [How to format numbers in the DataTable](https://formattable.pythonanywhere.com/)
+- [Dash Bootstrap Cheatsheet](https://dashcheatsheet.pythonanywhere.com/)
+
 
 """
 
