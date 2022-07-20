@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="Discrete and continuous color scales. It has a top-bottom layout and a regular-callback."
+    description="Discrete and continuous color scales. It has a top-bottom layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]

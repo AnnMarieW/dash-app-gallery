@@ -1,4 +1,3 @@
-
 import dash
 
 from lib.code_and_show import example_app
@@ -30,4 +29,3 @@ This example app was contributed by [Milan Mitrovic](https://milanzmitrovic.gith
 """
 
 layout = example_app(filename, notes=notes)
-

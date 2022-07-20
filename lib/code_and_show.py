@@ -1,6 +1,6 @@
 import uuid
 
-from dash import html, dcc
+from dash import html, dcc, get_asset_url
 import dash_bootstrap_components as dbc
 
 from lib.utils import example_source_codes, example_apps
@@ -95,7 +95,12 @@ def make_side_by_side(code, show_app, notes):
             )
             if code != ""
             else None,
-            dcc.Markdown(notes, className="m-4", link_target="_blank", dangerously_allow_html=True)
+            dcc.Markdown(
+                notes,
+                className="m-4",
+                link_target="_blank",
+                dangerously_allow_html=True,
+            )
             if notes
             else None,
         ],
@@ -134,4 +139,50 @@ def make_app_first(code, show_app, notes):
             else None,
         ],
         className="p-4",
+    )
+
+
+def error_example(filename, image=None, no_error_filename=None, notes=None):
+    """ """
+    code = example_source_codes[filename]
+
+    # Removes the id prefix
+    code = code.replace(filename + "-x-", "")
+
+    image = html.Img(src=get_asset_url(image), className="img-fluid")
+    print(image)
+    error_row = dbc.Row(
+        [
+            dbc.Col(dbc.Card(image, style={"padding": "10px"}), width=12, lg=6),
+            #  if image
+            # else None,
+            dbc.Col(
+                dbc.Card(
+                    [make_code_div(code)],
+                    style={"max-height": "600px", "overflow": "auto"},
+                ),
+                width=12,
+                lg=6,
+            )
+            if code != ""
+            else None,
+            dcc.Markdown(
+                notes,
+                className="m-4",
+                link_target="_blank",
+                dangerously_allow_html=True,
+            )
+            if notes
+            else None,
+        ],
+        className="p-4",
+    )
+
+    return html.Div(
+        [
+            html.H4("Error App"),
+            error_row,
+            html.H4("Corrected App"),
+            example_app(no_error_filename),
+        ]
     )

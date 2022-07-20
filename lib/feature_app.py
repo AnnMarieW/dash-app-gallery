@@ -78,7 +78,7 @@ components = {
     "Led display": "daq.LED",
     "Power Button": "daq.Power",
     "RadioItems": "RadioItems",
-    "Offcanvas": "dbc.Offcanvas"
+    "Offcanvas": "dbc.Offcanvas",
 }
 components = {key: components[key] for key in sorted(components)}
 

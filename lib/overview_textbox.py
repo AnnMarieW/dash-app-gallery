@@ -12,7 +12,6 @@ If you would like to contribute your own app, checkout the [contributing guide](
 """
 
 
-
 card = dbc.Card(
     dcc.Markdown(content, link_target="_blank"),
     style={"height": 250, "overflow": "auto"},

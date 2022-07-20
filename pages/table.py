@@ -3,7 +3,10 @@ import dash
 from lib.code_and_show import example_app
 
 
-dash.register_page(__name__, description="Use of DataTable with callback on cell click. This app uses top-down layout with regular-callback.")
+dash.register_page(
+    __name__,
+    description="Use of DataTable with callback on cell click. This app uses top-down layout with regular-callback.",
+)
 
 filename = __name__.split("pages.")[1]
 

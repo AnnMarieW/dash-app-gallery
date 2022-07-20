@@ -30,6 +30,3 @@ This example app was contributed by [Milan Mitrovic](https://milanzmitrovic.gith
 """
 
 layout = example_app(filename, notes=notes)
-
-
-

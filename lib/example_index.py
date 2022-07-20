@@ -7,7 +7,7 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 
-text= """
+text = """
 # Index
 
 ### DataTable
@@ -34,4 +34,3 @@ text= """
 
 
 layout = dcc.Markdown(text, className="p-4 mx-2", dangerously_allow_html=True)
-

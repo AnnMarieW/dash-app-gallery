@@ -3,7 +3,6 @@ import dash
 from lib.code_and_show import example_app
 
 
-
 dash.register_page(
     __name__,
     description="This app shows Population Density Map by Year. It uses a top-down layout.",

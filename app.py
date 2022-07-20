@@ -19,11 +19,12 @@ server = app.server
 
 
 for k in example_apps:
-    new_callback_map = example_apps[k].callback_map
-    new_callback_list = example_apps[k]._callback_list
+    if not k.startswith("error"):
+        new_callback_map = example_apps[k].callback_map
+        new_callback_list = example_apps[k]._callback_list
 
-    app.callback_map.update(new_callback_map)
-    app._callback_list.extend(new_callback_list)
+        app.callback_map.update(new_callback_map)
+        app._callback_list.extend(new_callback_list)
 
 
 fullscreen_modal = dbc.Modal(
@@ -90,9 +91,11 @@ app.layout = html.Div(
     Input("url", "pathname"),
 )
 def fullscreen(path):
-    """Don't show fullscreen buttons on home page (gallery overview or index page)"""
+    """Don't show fullscreen buttons on home page (gallery overview or index page or on error pages)"""
 
     if path in [dash.get_relative_path("/"), dash.get_relative_path("/example-index")]:
+        return "d-none", "d-none"
+    if path.startswith(dash.get_relative_path("/")+"error"):
         return "d-none", "d-none"
     return "ms-2", "ms-2"
 

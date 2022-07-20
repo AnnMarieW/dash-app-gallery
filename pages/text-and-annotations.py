@@ -3,7 +3,10 @@ import dash
 from lib.code_and_show import example_app
 
 
-dash.register_page(__name__, description="This app connects between RadioItems and a graph to change the text position of annotations. It has a top-bottom layout with a regular-callback.")
+dash.register_page(
+    __name__,
+    description="This app connects between RadioItems and a graph to change the text position of annotations. It has a top-bottom layout with a regular-callback.",
+)
 
 filename = __name__.split("pages.")[1]
 

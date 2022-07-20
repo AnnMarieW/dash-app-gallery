@@ -58,7 +58,9 @@ def layout(code=None, **other):
             dbc.Row(
                 [
                     dbc.Col(
-                        [make_search_code_div(code), feature_app_div], md=6, className="p-4"
+                        [make_search_code_div(code), feature_app_div],
+                        md=6,
+                        className="p-4",
                     ),
                     dbc.Col(lib.overview_textbox.card, md=6, className="py-4"),
                 ]
