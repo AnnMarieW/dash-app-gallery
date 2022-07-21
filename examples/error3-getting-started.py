@@ -18,14 +18,17 @@ app.layout = html.Div(
     ]
 )
 
-
+"""
+This callback is causing the error.  The Output is in a list, but it's returning a single variable - the figure.
+This can be fixed by 
+   - removing the [  ] from the Ouput()      (preferred fix)
+   - making the return a list:   `return [fig]`
+"""
 @app.callback(
-    Output("error2-getting-started-x-graph", "figure"),
-    Input("error2-getting-started-x-dropdown", "value"),
+    [Output("error2-getting-started-x-graph", "figure")],
+    [Input("error2-getting-started-x-dropdown", "value")],
 )
-def display_color(color, x):
-    # The error is because there are two variables in the callback function `color` and `x`,
-    # but there is only one Input in the callback.
+def display_color(color):
     fig = go.Figure(go.Bar(x=["a", "b", "c"], y=[2, 3, 1], marker_color=color))
     return fig
 

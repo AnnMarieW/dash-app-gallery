@@ -26,6 +26,7 @@ text = """
 ### Common Error Messages
 -  [Invalid argument `figure` passed into Graph with ID...'](/error-getting-started)
 -  [Callback error updating...](/error2-getting-started)
+-  [Callback error updating...](/error3-getting-started)
 -  [The children property of a component is a list of lists, instead of just a list....](/error-figures-with-ctx)
 
 
