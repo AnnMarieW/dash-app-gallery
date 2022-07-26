@@ -37,7 +37,7 @@ fullscreen_modal = dbc.Modal(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm"),
+        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm", className="m-1",),
         dbc.Button(
             "Dash Docs",
             id="dash-docs",
@@ -45,7 +45,7 @@ navbar = dbc.NavbarSimple(
             target="_blank",
             color="secondary",
             size="sm",
-            className="ms-2",
+            className="m-1 ",
         ),
         dbc.Button("Fullscreen App", id="open-fs-app", color="secondary", size="sm"),
         dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary", size="sm"),
@@ -55,7 +55,7 @@ navbar = dbc.NavbarSimple(
     color="primary",
     dark=True,
     fixed="top",
-    className="mb-2 fs-3",
+    className="mb-2 fs-3 ",
 )
 
 footer = html.H4(
@@ -92,7 +92,7 @@ def fullscreen(path):
 
     if path == dash.get_relative_path("/"):
         return "d-none", "d-none"
-    return "ms-2", "ms-2"
+    return "m-1", "m-1"
 
 
 @app.callback(

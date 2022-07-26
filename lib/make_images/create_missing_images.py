@@ -19,7 +19,7 @@ def snapshot(driver):
     print(missing_example_apps)
 
     for page in missing_example_apps:
-        path = page.replace("_", "-")
+        path = page.replace("_", "-").lower()
         driver.get(f"http://localhost:8050/{path}")
         time.sleep(5)
         driver.save_screenshot(
