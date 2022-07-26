@@ -7,6 +7,22 @@ import dash_bootstrap_components as dbc
 rd = random.Random(0)
 
 
+def make_hover_image(page):
+    return html.Div(
+        [
+            html.Img(
+                src=dash.get_asset_url(page["image"]),
+                className="img-fluid hover-image",
+            ),
+            html.Div(
+                dbc.Button("See app", color="secondary"),
+                className="hover-overlay",
+            ),
+        ],
+        className="hover-container",
+    )
+
+
 def make_card(page):
     tooltip_id = str(uuid.UUID(int=rd.randint(0, 2 ** 128)))
     return dbc.Card(
@@ -22,12 +38,7 @@ def make_card(page):
             dbc.CardBody(
                 [
                     html.A(
-                        html.Div(
-                            html.Img(
-                                src=dash.get_asset_url(page["image"]),
-                                className="img-fluid",
-                            ),
-                        ),
+                        make_hover_image(page),
                         href=page["relative_path"],
                         id=tooltip_id,
                     ),
@@ -35,9 +46,10 @@ def make_card(page):
                         page["description"],
                         className="card-text p-2 border-top",
                     ),
-                ]
+                ],
             ),
-            dbc.Tooltip(page["description"], target=tooltip_id),
+            # tooltip disabled for now
+            # dbc.Tooltip(page["description"], target=tooltip_id),
         ],
         className="m-2 shadow ",
     )
