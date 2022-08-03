@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This application allows you to filter bar chart and download as HTML . It has a side-by-side layout and a regular-callback."
+    description="This application allows you to filter a bar chart and download as HTML. It has a side-by-side layout and a regular-callback."
 )
 
 filename = __name__.split("pages.")[1]
