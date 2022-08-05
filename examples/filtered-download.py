@@ -29,7 +29,7 @@ app.layout = dbc.Container(
         html.Hr(),
         dbc.Row(
             [
-                dbc.Col([dropdown_state, download_button], lg=6, sm=12),
+                dbc.Col([dropdown_state, download_button], md=6, sm=12),
                 dbc.Col(dcc.Graph(id="filtered-download-x-graph")),
             ]
         ),

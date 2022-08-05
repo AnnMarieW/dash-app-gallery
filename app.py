@@ -14,7 +14,7 @@ app = Dash(
     __name__,
     use_pages=True,
     external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP],
-    # suppress_callback_exceptions=True,
+    suppress_callback_exceptions=True,
 )
 server = app.server
 server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
