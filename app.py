@@ -1,6 +1,7 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
+from whitenoise import WhiteNoise
 from lib.utils import example_apps, example_source_codes, file_name_from_path
 from lib.code_and_show import make_code_div
 
@@ -16,6 +17,7 @@ app = Dash(
     # suppress_callback_exceptions=True,
 )
 server = app.server
+server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
 
 
 for k in example_apps:
