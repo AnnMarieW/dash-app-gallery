@@ -1,5 +1,10 @@
 # Dash App Gallery
 
+## See it live at:
+
+https://dash-example-index.herokuapp.com/
+
+
 This Community App Gallery is designed for people new to Plotly and Dash.  It contains minimal sample apps
 with ~100 lines of code to demonstrate basic usage of graphs, components, callbacks, and layout design.
 

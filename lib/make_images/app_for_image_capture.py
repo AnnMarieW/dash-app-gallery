@@ -1,6 +1,6 @@
 """
 Creates an app used by script to update the images.  Each page contains example app only with no navigation or headers.
-Start this app, then run update_images_all.py or update_images_missing.py
+Start this app, then run create_all_images.py or create_missing_images.py
 """
 
 
