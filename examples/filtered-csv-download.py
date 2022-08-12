@@ -1,4 +1,4 @@
-
+import dash
 import pandas as pd
 from dash import Dash, dash_table, dcc, html, Input, Output, State
 import plotly.express as px
@@ -15,15 +15,17 @@ range_slider = dcc.RangeSlider(
 
 dtable = dash_table.DataTable(
     columns=[{"name": i, "id": i} for i in sorted(df.columns)],
+    sort_action="native",
     page_size=10,
+    style_table={"overflowX": "auto"}
 )
 
-download_button = html.Button("Download Filtered CSV")
+download_button = html.Button("Download Filtered CSV", style={"marginTop":20})
 download_component = dcc.Download()
 
 app.layout = html.Div(
     [
-        html.H2("Gapminder data filtered download"),
+        html.H2("Gapminder data filtered download", style={"marginBottom": 20}),
         download_component,
         range_slider,
         download_button,
@@ -37,7 +39,10 @@ app.layout = html.Div(
     Input(range_slider, "value"),
 )
 def update_table(slider_value):
-    return df[df.year.between(slider_value[0], slider_value[1])].to_dict("records")
+    if not slider_value:
+        return dash.no_update
+    dff = df[df.year.between(slider_value[0], slider_value[1])]
+    return dff.to_dict("records")
 
 
 @app.callback(
