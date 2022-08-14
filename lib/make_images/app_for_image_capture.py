@@ -1,15 +1,15 @@
 """
 Creates an app used by script to update the images.  Each page contains example app only with no navigation or headers.
-Start this app, then run update_images_all.py or update_images_missing.py
+Start this app, then run create_all_images.py or create_missing_images.py
 """
 
 
 import dash
 import dash_bootstrap_components as dbc
-from utils.code_and_show import example_app, make_app_first
-from utils.init_app import file_names
+from lib.code_and_show import example_app, make_app_first
+from lib.utils import file_names
 
-from utils.init_app import example_apps
+from lib.utils import example_apps
 
 app = dash.Dash(
     __name__,

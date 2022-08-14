@@ -5,36 +5,32 @@ import dash_bootstrap_components as dbc
 df = px.data.gapminder()
 default_column_x = "year"
 default_column_y = "gdpPercap"
+options = ["lifeExp", "year", "pop", "gdpPercap"]
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-
 app.layout = dbc.Container(
-    [
-        dbc.Row(dbc.Col(html.H3("Pattern Matching Callbacks Demo"))),
-        dbc.Row(
+    dbc.Row(
+        dbc.Col(
             [
-                dbc.Col(
-                    dcc.Dropdown(
-                        options=df.country.unique(),
-                        value="Canada",
-                        id="pattern-match-x-country",
-                        clearable=False
-                    ),
-                    width=4,
+                html.H3("Pattern Matching Callbacks Demo"),
+                dbc.InputGroup(
+                    [
+                        dcc.Dropdown(
+                            options=df.country.unique(),
+                            value="Canada",
+                            id="country",
+                            clearable=False,
+                            style={"width": 300},
+                        ),
+                        dbc.Button("Add Chart", id="add-chart", n_clicks=0),
+                    ],
+                    className="mb-3",
                 ),
-                dbc.Col(
-                    dbc.Button(
-                        "Add Chart",
-                        id="pattern-match-x-add-chart",
-                        n_clicks=0,
-
-                    )
-                ),
+                html.Div(id="container", children=[], className="mt-4"),
             ]
-        ),
-        dbc.Row(dbc.Col(id="pattern-match-x-container", children=[], className="mt-4")),
-    ],
+        )
+    ),
     fluid=True,
 )
 
@@ -58,70 +54,74 @@ def create_figure(column_x, column_y, country):
     )
 
 
+def make_card(n_clicks, country):
+    return dbc.Card(
+        [
+            dbc.CardHeader(
+                [
+                    f"Figure {n_clicks + 1} ",
+                    dbc.Button(
+                        "X",
+                        id={"type": "dynamic-delete", "index": n_clicks},
+                        n_clicks=0,
+                        color="secondary",
+                    ),
+                ],
+                className="text-end",
+            ),
+            dcc.Graph(
+                id={"type": "dynamic-output", "index": n_clicks},
+                style={"height": 300},
+                figure=create_figure(default_column_x, default_column_y, country),
+            ),
+            dcc.Dropdown(
+                id={"type": "dynamic-dropdown-x", "index": n_clicks},
+                options=options,
+                value=default_column_x,
+                clearable=False,
+            ),
+            dcc.Dropdown(
+                id={"type": "dynamic-dropdown-y", "index": n_clicks},
+                options=options,
+                value=default_column_y,
+                clearable=False,
+            ),
+        ],
+        style={
+            "width": 400,
+            "display": "inline-block",
+        },
+        className="m-1",
+    )
+
+
 @app.callback(
-    Output("pattern-match-x-container", "children"),
-    Input("pattern-match-x-add-chart", "n_clicks"),
+    Output("container", "children"),
+    Input("add-chart", "n_clicks"),
     Input({"type": "dynamic-delete", "index": ALL}, "n_clicks"),
-    State("pattern-match-x-container", "children"),
-    State("pattern-match-x-country", "value"),
+    State("container", "children"),
+    State("country", "value"),
 )
-def display_dropdowns(n_clicks, _, children, country):
-    triggered = ctx.triggered_id
-    if isinstance(triggered, dict):
-        delete_chart_number = triggered["index"]
-        children = [
-            chart
-            for chart in children
-            if "'index': " + str(delete_chart_number) not in str(chart)
-        ]
+def display_dropdowns(n_clicks, _, cards, country):
+    if ctx.triggered_id == "add-chart" or not ctx.triggered_id:
+        new_card = make_card(n_clicks, country)
+        cards.append(new_card)
     else:
-        new_element = dbc.Card(
-            [
-                dbc.CardHeader(
-                    [
-                        f"Figure {n_clicks+1} ",
-                        dbc.Button(
-                            "X",
-                            id={"type": "dynamic-delete", "index": n_clicks},
-                            n_clicks=0,
-                            color="secondary",
-                        ),
-                    ],
-                    className="text-end",
-                ),
-                dcc.Graph(
-                    id={"type": "dynamic-output", "index": n_clicks},
-                    style={"height": 300},
-                    figure=create_figure(default_column_x, default_column_y, country),
-                ),
-                dcc.Dropdown(
-                    id={"type": "dynamic-dropdown-x", "index": n_clicks},
-                    options=df.columns,
-                    value=default_column_x,
-                    clearable=False,
-                ),
-                dcc.Dropdown(
-                    id={"type": "dynamic-dropdown-y", "index": n_clicks},
-                    options=df.columns,
-                    value=default_column_y,
-                    clearable=False
-                ),
-            ],
-            style={
-                "width": 400,
-                "display": "inline-block",
-            },
-            className="m-1",
-        )
-        children.append(new_element)
-    return children
+        # exclude the deleted chart
+        delete_chart_number = ctx.triggered_id["index"]
+        cards = [
+            card
+            for card in cards
+            if "'index': " + str(delete_chart_number) not in str(card)
+        ]
+    return cards
 
 
 @app.callback(
     Output({"type": "dynamic-output", "index": MATCH}, "figure"),
     Input({"type": "dynamic-dropdown-x", "index": MATCH}, "value"),
     Input({"type": "dynamic-dropdown-y", "index": MATCH}, "value"),
-    Input("pattern-match-x-country", "value"),
+    Input("country", "value"),
 )
 def display_output(column_x, column_y, country):
     return create_figure(column_x, column_y, country)

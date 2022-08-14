@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.stocks()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -24,7 +25,6 @@ app.layout = html.Div(
     Input("time-series-x-ticker", "value"),
 )
 def display_time_series(ticker):
-    df = px.data.stocks()  # replace with your own data source
     fig = px.line(df, x="date", y=ticker)
     return fig
 

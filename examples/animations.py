@@ -1,8 +1,9 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
-app = Dash(__name__)
+df = px.data.gapminder()
 
+app = Dash(__name__)
 
 app.layout = html.Div(
     [
@@ -22,7 +23,6 @@ app.layout = html.Div(
     Output("animations-x-graph", "figure"), Input("animations-x-selection", "value")
 )
 def display_animated_graph(selection):
-    df = px.data.gapminder()  # replace with your own data source
     animations = {
         "GDP - Scatter": px.scatter(
             df,

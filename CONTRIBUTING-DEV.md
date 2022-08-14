@@ -1,141 +1,103 @@
-# Instructions
-
-This app creates gallery of example apps using `pages/` the Multi-page app plug-in from dash-labs.  
-
-For more information on `pages/` see the forum post https://community.plotly.com/t/introducing-dash-pages-a-dash-2-x-feature-preview
-Or the live demo : https://dashlabs.pythonanywhere.com/
-
-## Running the app
-
-After cloning the repo, run `app.py`
+# Maintainers' Contributing Guide
 
 
 
-## Adding Examples
+This document is an overview of the app structure to help guide maintainers of this project.  If you would just like to 
+add an example app, please see  [CONTRIBUTING.md](https://github.com/AnnMarieW/dash-app-gallery/blob/main/CONTRIBUTING.md)
 
-### Example app source code
 
-To add apps to the gallery, place dash example apps in the `examples/` folder.
+
+The purpose of the Dash Example Index is to display example apps, each of which are complete minimal examples that can be copied, pasted
+and run locally. This app is a multi-page app made with Dash Pages.  It enables each example app to be run as a page of a multi-page app 
+while displaying the source code of the complete stand-alone app from the file in the `examples/` folder. 
+
+## Project structure
+```
+- app.py
+- assets
+- examples
+- lib 
+     - make_images
+- pages
+```
+
+- `app.py` is the main entry point to the app.  After cloning this repo, run `app.py`. It loads the example apps from the `examples` folder, transfers their callbacks
+to the main `app` object and creates the dict with the source code. It also has the header footer and callbacks for customizing the 
+header and to display example apps in full screen mode.  
+
+
+-  `assets/` has css that applies to the entire app, plus an image for each app in the `examples` folder.  For consistency,
+these images should be created by the utility in the `make_images` folder.  
+
+
+
+- `examples/` has the source code for each stand-alone example app.  
+
+
+- `pages` This is the Dash Pages directory.  The `overview` pages shows the home page with the gallery layout along with the
+filters and welcome text box. Each file from the `examples/` folder is registered here and the layout for the "code and show" is defined.  
+
+
+- `lib/` To make the home page and the "code and show" layouts easier to maintain, they are defined in separate files here. 
+
+- `lib/make_images/` This is the folder for making the app images for each page.
 
 ### App Image
 
 
-The `pages/` plugin will automatically use the app's image in the assets folder to create the meta tags.  This image will also be used in the 
+Dash Pages  will automatically use the images in the assets folder to create the meta tags.  The images are also used in the 
 card grid on the home page.  If no image is provided, then it will default to  `app.png` .
 
+__To generate images:__  
 
-`utils_make_images` 
-This directory contains the utilities to create the images of a uniform size and shape so they will display nicely in the app gallery overview.
-(more info/directions coming soon)
+Run  `app_for_image_capture.py`  This creates an app used by a script to update the images.  Each page contains example apps
+only with no navigation or headers.
+Start this app, then _while it's running,_ run `create_all_images.py` or `create_missing_images.py`
 
+The images will be saved in `make_images/assets/`.  After review, move the image files to the main `assets/` folder.
+
+Until automated testing is set up, recreating all the images is a good way to do manual testing. Review all the images
+in `make_images/assets/` after running  `create_all_images.py`.
+
+The `lib/images_not_auto_generated/` is a folder to keep images that don't look great when they are auto generated,
+such as the ones with clientside callbacks for smooth animations. 
 
 ## Changing the app design
 
-### App frame:  `app.py`
-
-The app.py file defines the "app frame".  Here you can define the parts of the app
-that remain constant across all pages, such as the header, footer, main navigation,  `dcc.Store`
-components etc. 
-
-### App Gallery Home page
-
-The home page is a grid of cards with a preview of each example app.  You can see two sample designs in
-- `pages/home-search` - grid with search field and some dropdowns to select apps by category
-
-To select apps by category, extra data can be added to `dash.page_registry` for each app. This can be
-used to select apps in dropdowns or search fields.  See an example of this in the following files:
-- `pages/3d-scatter-plots.py`
-- `pages/exmaples3d-scatter-plots.py`
-- `pages/home-search.py`
-
-![image](https://user-images.githubusercontent.com/72614349/160702790-fa1bf95a-abc8-43cd-88aa-a7a7eef65fcf.png)
+### Home Page
+The layout for the current home page is defined in `lib/overview.py`
 
 ### Code and Show pages
 
-Once you select an app, it will show the app and/or the code
+Each image in the gallery on the home page is a link to the example app's page.  The layout for the page is defined in the `pages/` folder.
+For example the "code and show" layout for `examples/colorscales.py` is defined in `pages/colorscales.py`
 
-The layout for the app is defined in the `example_app()` function which you can find in `utils/code_and_show.py`.
+The "code and show" layouts are functions which you can find in `lib/code_and_show.py`.
 
 Use it to create the layout, for example:
 
 ```python
 # default side by side layout
-code_n_show =  example_app(f"pages/examples/colorscales.py")
+layout =  example_app("colorscales.py")
 
-# define a function to display a custom layout (see more info below:
-code_n_show =  example_app(f"pages/examples/colorscales.py", make_layout=my_custom_layout_function)
+# define a function to display a custom layout 
+layout =  example_app("colorscales.py", make_layout=my_custom_layout_function)
 
-code_only = example_app(f"pages/examples/colorscales.py", run=False)
+# shows the code only
+layout = example_app("colorscales.py", run=False)
 
-app_only = example_app(f"pages/examples/colorscales.py", show_code=False)
+# shows the app only
+layout = example_app("colorscales.py", show_code=False)
 
 
 ```
 
-Here is more info on `example_app()`
+## Code search
 
+The code search function is defined in `lib/utils.py`
+
+You can make links that will filter the gallery based on search terms.  For example to show only apps that have
+a dcc.Slider, the link would look like:
 ```
-def example_app(filename, make_layout=None, run=True, show_code=True, notes=None):
+https://dash-example-index.herokuapp.com/?code=dcc.Slider
 ```
-    
-Creates the "code and show" layout for an example dash app.
-
-- `filename`:
-   The path to the file with the sample app code.  
-
-
-- `make_layout`:
-    A function which takes as attributes the code string and the live app and returns a
-    layout.  The default layout displays the code side-by-side with the live app on large screens
-    or app first followed by the code on smaller screens.  
-
-    
-- `run`:
-    bool (default: True) Whether to run the app.  
-
-    
-- `show_code`:
-    bool (default: True) Whether to show the code
-
-- `notes`:
-     str (default: None)  Notes or tutorial to display with the app.  Text may include Markdown formatting as it will be displayed in a dcc.Markdown component
-
-![image](https://user-images.githubusercontent.com/72614349/160705938-da83452b-dce2-4236-a658-2e6fcbf8b451.png)
-
-
-### Create custom code and show layouts
-
-You can pass your own function to `example_app()` to customize the layout.
-
-For example, this layout will show the app first followed by the code on all screen sized:
-
-```python
-
-def make_app_first(code, show_app, notes):
-    """
-    This is an alternate layout for the "code and show"
-    It displays the app on top and the code below.
-    This function can be used as an example of how to create your own custom layouts
-    to be used with example_app() .
-
-    Use this layout instead of the default by passing this function
-    to the `make_layout` attribute in example_app()   e.g.:
-    `example_app("pathto/my_filename.py", make_layout=make_app_first)`
-    """
-    code = dcc.Markdown(f"```python\n{code}```\n")
-    return dbc.Row(
-        [
-            dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12)
-            if show_app
-            else None,
-            dbc.Col(
-                dbc.Card([code], style={"max-height": "500px", "overflow": "auto"}),
-                width=12,
-            )
-            if code
-            else None,
-        ]
-    )
-
-```
-

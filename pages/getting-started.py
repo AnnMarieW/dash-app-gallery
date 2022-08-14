@@ -1,10 +1,10 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(
-    __name__, description="This application shows the interaction between a Dropdown and a bar chart. It has a top-bottom layout and a regular-callback."
+    __name__, order=0, description="This application shows the interaction between a Dropdown and a bar chart. It has a top-bottom layout and a regular-callback."
 )
 
 filename = __name__.split("pages.")[1]

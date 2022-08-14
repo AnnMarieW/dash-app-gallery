@@ -10,7 +10,7 @@ import os
 from selenium import webdriver
 import time
 
-from utils.init_app import get_missing_image_names
+from lib.utils import get_missing_image_names
 
 
 def snapshot(driver):
@@ -18,9 +18,8 @@ def snapshot(driver):
     missing_example_apps = get_missing_image_names()
     print(missing_example_apps)
 
-
     for page in missing_example_apps:
-        path = page.replace("_", "-")
+        path = page.replace("_", "-").lower()
         driver.get(f"http://localhost:8050/{path}")
         time.sleep(5)
         driver.save_screenshot(

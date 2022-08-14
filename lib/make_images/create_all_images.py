@@ -11,13 +11,13 @@ import os
 from selenium import webdriver
 import time
 
-from utils.init_app import file_names
+from lib.utils import file_names
 
 
 def snapshot(driver):
 
     for page in file_names:
-        path = page.replace("_", "-")
+        path = page.replace("_", "-").lower
         driver.get(f"http://localhost:8050/{path}")
         time.sleep(5)
         driver.save_screenshot(

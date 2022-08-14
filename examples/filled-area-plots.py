@@ -1,6 +1,8 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.gapminder()
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -22,11 +24,9 @@ app.layout = html.Div(
     Input("filled-area-plots-x-y-axis", "value"),
 )
 def display_area(y):
-    df = px.data.gapminder()  # replace with your own data source
     countries = df.country.drop_duplicates().sample(n=10, random_state=42)
-    df = df[df.country.isin(countries)]
-
-    fig = px.area(df, x="year", y=y, color="continent", line_group="country")
+    dff = df[df.country.isin(countries)]
+    fig = px.area(dff, x="year", y=y, color="continent", line_group="country")
     return fig
 
 

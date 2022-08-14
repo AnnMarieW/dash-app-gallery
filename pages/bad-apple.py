@@ -1,7 +1,7 @@
 import dash
 
 
-from utils.code_and_show import example_app, make_app_first
+from lib.code_and_show import example_app, make_app_first
 
 
 dash.register_page(

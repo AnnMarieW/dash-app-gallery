@@ -2,6 +2,10 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 
+df_airports = pd.read_csv(
+    "https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv"
+)
+
 app = Dash(__name__)
 
 
@@ -31,9 +35,6 @@ app.layout = html.Div(
     Input("planes_scatter_geo-x-type", "value"),
 )
 def generate_chart(values):
-    df_airports = pd.read_csv(
-        "https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv"
-    )
     if values == "scatter_geo":
         # changing so that the default position will be US
         fig = px.scatter_geo(

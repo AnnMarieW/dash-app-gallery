@@ -27,8 +27,9 @@ figure_type = {
     "Box": "px.box",
     "Candlestick": "go.Candlestick",
     "Choropleth": "px.choropleth",
-    "ECDF Plots" : "px.ecdf",
+    "ECDF Plots": "px.ecdf",
     "Histogram": "px.histogram",
+    "Icicle": "px.icicle",
     "Filled Area": "px.area",
     "Contour": "go.Contour",
     "Parallel Coordinates": "px.parallel_coordinates",
@@ -39,7 +40,7 @@ figure_type = {
     "Sankey": "go.Sankey",
     "Sub plots": "make_subplots",
     "Sunburst": "px.sunburst",
-    "Line Geo":  "px.line_geo"
+    "Line Geo": "px.line_geo",
 }
 figure_type = {key: figure_type[key] for key in sorted(figure_type)}
 
@@ -50,7 +51,7 @@ callback_type = {
     "Clientside": "clientside_callback",
     "Callbacks": "callback(",
     "Callback context (ctx)": "ctx",
-    "Chained" : "chained"
+    "Chained": "chained",
 }
 
 components = {
@@ -74,9 +75,11 @@ components = {
     "Input": "dcc.Input",
     "Interval": "Interval",
     "Color Picker": "daq.Color",
-    "Led display" : "daq.LED",
-    "Power Button" : "daq.Power",
-    "RadioItems" : "RadioItems"
+    "Led display": "daq.LED",
+    "Power Button": "daq.Power",
+    "RadioItems": "RadioItems",
+    "Offcanvas": "dbc.Offcanvas",
+    "Modal": "dbc.Modal"
 }
 components = {key: components[key] for key in sorted(components)}
 

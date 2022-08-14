@@ -9,3 +9,5 @@ scikit-learn
 scikit-image==0.18.2
 requests==2.27.1
 dash-mantine-components==0.10.2
+whitenoise==6.2.0
+gunicorn==20.0.4

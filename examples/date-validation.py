@@ -5,7 +5,7 @@ from datetime import datetime, date
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# main app code
+
 app.layout = dbc.Container(
     [
         dcc.Markdown(

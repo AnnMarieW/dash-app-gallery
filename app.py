@@ -1,8 +1,9 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-from utils.init_app import example_apps, example_source_codes, file_name_from_path
-from utils.code_and_show import make_code_div
+from whitenoise import WhiteNoise
+from lib.utils import example_apps, example_source_codes, file_name_from_path
+from lib.code_and_show import make_code_div
 
 # syntax highlighting light or dark
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
@@ -15,6 +16,8 @@ app = Dash(
     external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP],
     suppress_callback_exceptions=True,
 )
+server = app.server
+server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
 
 
 for k in example_apps:
@@ -36,7 +39,7 @@ fullscreen_modal = dbc.Modal(
 
 navbar = dbc.NavbarSimple(
     [
-        dbc.Button("Overview", id="overview", href="/", color="secondary", size="sm"),
+        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm", className="m-1",),
         dbc.Button(
             "Dash Docs",
             id="dash-docs",
@@ -44,17 +47,17 @@ navbar = dbc.NavbarSimple(
             target="_blank",
             color="secondary",
             size="sm",
-            className="ms-2",
+            className="m-1 ",
         ),
         dbc.Button("Fullscreen App", id="open-fs-app", color="secondary", size="sm"),
         dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary", size="sm"),
     ],
     brand="Dash Example Index",
-    brand_href="/",
+    brand_href=dash.get_relative_path("/"),
     color="primary",
     dark=True,
     fixed="top",
-    className="mb-2 fs-3",
+    className="mb-2 fs-3 ",
 )
 
 footer = html.H4(
@@ -88,9 +91,10 @@ app.layout = html.Div(
 )
 def fullscreen(path):
     """Don't show fullscreen buttons on home page (gallery overview)"""
-    if path == "/":
+
+    if path == dash.get_relative_path("/"):
         return "d-none", "d-none"
-    return "ms-2", "ms-2"
+    return "m-1", "m-1"
 
 
 @app.callback(

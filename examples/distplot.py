@@ -1,6 +1,8 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
+df = px.data.tips()
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -22,7 +24,6 @@ app.layout = html.Div(
     Output("distplot-x-graph", "figure"), Input("distplot-x-distribution", "value")
 )
 def display_graph(distribution):
-    df = px.data.tips()  # replace with your own data source
     fig = px.histogram(
         df,
         x="total_bill",

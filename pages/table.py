@@ -1,6 +1,6 @@
 import dash
 
-from utils.code_and_show import example_app
+from lib.code_and_show import example_app
 
 
 dash.register_page(__name__, description="Use of DataTable with callback on cell click. This app uses top-down layout with regular-callback.")
