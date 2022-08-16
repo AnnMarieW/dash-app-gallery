@@ -6,7 +6,8 @@ import random
 app = Dash(__name__)
 initial_x = [random.randint(1, 50) for _ in range(15)]
 initial_y = [random.randint(1, 50) for _ in range(15)]
-initial_report = f"The max X point is {max(initial_x)} \nThe max Y point is {max(initial_y)} \nThe sum of X points are {sum(initial_x)} \nThe sum of Y points are {sum(initial_y)}"
+def report(x,y):
+    return f"The max X point is {max(x)} \nThe max Y point is {max(y)} \nThe sum of X points are {sum(x)} \nThe sum of Y points are {sum(y)}"
 
 app.layout = html.Div(
     [
@@ -19,7 +20,7 @@ app.layout = html.Div(
         dcc.Markdown(
             id="download-report-x-onscreen-report",
             style={"white-space": "pre"},
-            children=initial_report,
+            children=report(initial_x, initial_y),
         ),
         dcc.Download(id="download-report-x-download-component"),
     ]
@@ -40,8 +41,7 @@ def display_choropleth(get_random_values, download_clicks, current_report):
         x = [random.randint(1, 50) for _ in range(15)]
         y = [random.randint(1, 50) for _ in range(15)]
         fig = px.scatter(x=x, y=y)
-        report_text = f"The max X point is {max(x)} \nThe max Y point is {max(y)} \nThe sum of X points are {sum(x)} \nThe sum of Y points are {sum(y)}"
-        return fig, report_text, dash.no_update
+        return fig, report(x,y), dash.no_update
 
     if ctx.triggered_id == "download-report-x-save-button":
         save_report = dict(content=current_report, filename="my-report.txt")
@@ -50,3 +50,4 @@ def display_choropleth(get_random_values, download_clicks, current_report):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
