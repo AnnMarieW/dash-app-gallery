@@ -1,13 +1,9 @@
-
-
-from dash import Dash, html, dcc, Input, Output, dash_table, callback
+from dash import Dash, dcc, html, Input, Output, dash_table, callback
 import dash_mantine_components as dmc
 import plotly.express as px
-import pandas as pd
 
 
 data = px.data.stocks()
-data['date'] = pd.to_datetime(data['date'])
 
 
 app = Dash(__name__)
@@ -15,61 +11,43 @@ app = Dash(__name__)
 
 app.layout = dmc.Container([
 
-    dmc.Container([
-        html.H4('Equity prices - Line chart and Table data', style={'textAlign': 'center'}),
+    dmc.Title('Equity prices - Line chart and Table data', style={'textAlign': 'center'}),
 
-        dcc.Dropdown(
-            ['Row oriented', 'Column oriented'],
-            value='Row oriented',
-            id='variable-layout-x-layout-dropdown'
-        ),
+    dmc.Space(h=20),
+    dmc.Button("Download Data", id="variable-layout-x-btn_csv"),
+    dcc.Download(id="variable-layout-x-download-dataframe-csv"),
+    dmc.Space(h=10),
 
-        html.Br(),
-        html.Br(),
+    dmc.MultiSelect(
+        label="Select stock you like!",
+        placeholder="Select all stocks you like!",
+        id="variable-layout-x-stock-dropdown",
+        value=["GOOG", "AAPL"],
+        data=[{'label': i, 'value': i} for i in data.columns[1:]]
+    ),
 
-        dcc.Dropdown(
-            options=[{'label': i, 'value': i} for i in data.columns[1:]],
-            # value='',
-            id='variable-layout-x-stock-dropdown',
-            multi=True
-        ),
-
-        html.Br(),
-        html.Br(),
-
-
-    ], fluid=True),
-
-
+    dmc.Space(h=60),
 
     dmc.SimpleGrid([
 
         dcc.Graph(id='variable-layout-x-line_chart'),
 
-        dmc.Container(
-
-            dash_table.DataTable(
-                data.to_dict('records'),
-                [{"name": i, "id": i} for i in data.columns],
-                page_size=10
-            ),
-            style={'overflow-x': 'auto'},
-            fluid=True,
+        dash_table.DataTable(
+            data.to_dict('records'),
+            [{"name": i, "id": i} for i in data.columns],
+            page_size=10,
+            style_table={'overflow-x': 'auto'}
         ),
-
-
     ],
-        cols=1,
+        cols=2,
         id='variable-layout-x-simple_grid_layout',
         breakpoints=[
-                {"maxWidth": 980, "cols": 2, "spacing": "sm"},
-                {"maxWidth": 755, "cols": 2, "spacing": "sm"},
-                {"maxWidth": 600, "cols": 1, "spacing": "sm"},
-    ]
-
+            {"maxWidth": 1500, "cols": 2, "spacing": "md"},
+            {"maxWidth": 992, "cols": 2, "spacing": "sm"}, # common screen size for small laptops
+            {"maxWidth": 768, "cols": 1, "spacing": "sm"}, # common screen size for tablets
+        ]
     )
-],
-    # fluid=True
+], fluid=True, px=100
 )
 
 
@@ -79,17 +57,10 @@ app.layout = dmc.Container([
 )
 def select_stocks(stocks):
 
-    # Stacking df i.e. transforming 'wide' into 'long' df
-    data_stacked = data.set_index('date').stack().reset_index()
-
-    if stocks is not None and stocks != []:
-        data_stacked = data_stacked.query("level_1 in @stocks")
-
     fig = px.line(
-        data_frame=data_stacked,
+        data_frame=data,
         x='date',
-        y=0,
-        color='level_1',
+        y=stocks,
         template='simple_white'
     )
 
@@ -103,17 +74,13 @@ def select_stocks(stocks):
 
 
 @callback(
-    Output('variable-layout-x-simple_grid_layout', 'cols'),
-    Input('variable-layout-x-layout-dropdown', 'value')
+    Output("variable-layout-x-download-dataframe-csv", "data"),
+    Input("variable-layout-x-btn_csv", "n_clicks"),
+    prevent_initial_call=True,
 )
-def grid_layout(value):
-    if value == 'Row oriented':
-        return 2
-    else:
-        return 1
+def func(n_clicks):
+    return dcc.send_data_frame(data.to_csv, "mydf.csv")
 
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-
