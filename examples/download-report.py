@@ -10,14 +10,13 @@ initial_y = [random.randint(1, 50) for _ in range(15)]
 
 
 def report(x, y, n):
-    return (
-        f"""
+    return f"""
         Report #{n}  
          - The max X point is {max(x)}
          - The max Y point is {max(y)}
          - The sum of X points are {sum(x)}
          - The sum of Y points are {sum(y)}
-        """)
+        """
 
 
 app.layout = html.Div(
@@ -25,15 +24,17 @@ app.layout = html.Div(
         html.H3("Build a Graph and Download Report", style={"textAlign": "center"}),
         html.Button("Generate values", id="download-report-x-random-val", n_clicks=0),
         html.Button("Download report", id="download-report-x-save-button"),
-        html.Div("Remember that you can use the camera icon right above the graph to download an image of the figure",
-                 style={'textAlign':'right'}),
+        html.Div(
+            "Remember that you can use the camera icon right above the graph to download an image of the figure",
+            style={"textAlign": "right"},
+        ),
         dcc.Graph(
             id="download-report-x-graph",
             figure=px.scatter(x=initial_x, y=initial_y, title="Figure #0"),
         ),
         dcc.Markdown(
-            report(initial_x, initial_y, 0),
-            id="download-report-x-onscreen-report"),
+            report(initial_x, initial_y, 0), id="download-report-x-onscreen-report"
+        ),
         dcc.Download(id="download-report-x-download-component"),
     ]
 )
@@ -64,4 +65,3 @@ def download_report(_, current_report):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-

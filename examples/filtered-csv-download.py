@@ -17,10 +17,10 @@ dtable = dash_table.DataTable(
     columns=[{"name": i, "id": i} for i in sorted(df.columns)],
     sort_action="native",
     page_size=10,
-    style_table={"overflowX": "auto"}
+    style_table={"overflowX": "auto"},
 )
 
-download_button = html.Button("Download Filtered CSV", style={"marginTop":20})
+download_button = html.Button("Download Filtered CSV", style={"marginTop": 20})
 download_component = dcc.Download()
 
 app.layout = html.Div(

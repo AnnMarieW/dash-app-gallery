@@ -11,7 +11,9 @@ buttons = html.Div(
     [
         dbc.Button("Bar chart", id="figures-with-ctx-x-btn-bar", color="secondary"),
         dbc.Button("Line chart", id="figures-with-ctx-x-btn-line", color="secondary"),
-        dbc.Button("Filled area chart", id="figures-with-ctx-x-btn-area", color="secondary"),
+        dbc.Button(
+            "Filled area chart", id="figures-with-ctx-x-btn-area", color="secondary"
+        ),
     ],
     className="d-grid gap-2",
 )
@@ -29,6 +31,7 @@ app.layout = dbc.Container(
         ),
     ]
 )
+
 
 @app.callback(
     Output("figures-with-ctx-x-graph", "figure"),

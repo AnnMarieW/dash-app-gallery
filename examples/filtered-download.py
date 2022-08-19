@@ -36,6 +36,7 @@ app.layout = dbc.Container(
     ]
 )
 
+
 @app.callback(
     Output("filtered-download-x-graph", "figure"),
     Output("filtered-download-x-href", "href"),
