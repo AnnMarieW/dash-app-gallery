@@ -6,7 +6,7 @@ from utils.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This application shows Line chart, DataTable and dropdown. It has a side-by-side layout and a regular-callback.",
+    description="This application highlights the Download component, the line chart, the Dash DataTable, and a few Dash Mantine components. It has a side-by-side layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
