@@ -1,5 +1,5 @@
 import random
-from dash import Dash, dcc, html, Input, Output, State, ctx, callback
+from dash import Dash, dcc, html, Input, Output, State, callback
 import plotly.express as px
 
 
