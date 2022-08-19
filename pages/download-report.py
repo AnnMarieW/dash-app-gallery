@@ -16,7 +16,6 @@ notes = """
 - [Button](https://dash.plotly.com/dash-html-components/button)
 - [Markdown](https://dash.plotly.com/dash-core-components/markdown)
 - [Download](https://dash.plotly.com/dash-core-components/download)
-- [Callback Context](https://dash.plotly.com/determining-which-callback-input-changed)
 
 #### Plotly Documentation:  
 - [Scatter Plot](https://plotly.com/python/line-and-scatter/)
