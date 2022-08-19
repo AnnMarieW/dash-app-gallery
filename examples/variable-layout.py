@@ -14,7 +14,7 @@ app.layout = dmc.Container([
     dmc.Title('Equity prices - Line chart and Table data', style={'textAlign': 'center'}),
 
     dmc.Space(h=20),
-    dmc.Button("Download Data", id="variable-layout-x-btn_csv"),
+    dmc.Button("Download Table Data", id="variable-layout-x-btn_csv"),
     dcc.Download(id="variable-layout-x-download-dataframe-csv"),
     dmc.Space(h=10),
 
@@ -43,7 +43,7 @@ app.layout = dmc.Container([
         id='variable-layout-x-simple_grid_layout',
         breakpoints=[
             {"maxWidth": 1500, "cols": 2, "spacing": "md"},
-            {"maxWidth": 992, "cols": 2, "spacing": "sm"}, # common screen size for small laptops
+            {"maxWidth": 992, "cols": 1, "spacing": "sm"}, # common screen size for small laptops
             {"maxWidth": 768, "cols": 1, "spacing": "sm"}, # common screen size for tablets
         ]
     )
