@@ -22,6 +22,9 @@ notes = """
 #### Community Components:
 
 Dash Mantine Components 
+- [Title](https://www.dash-mantine-components.com/components/title "This component was made by the community and not officially maintained by Plotly.")
+- [Button](https://www.dash-mantine-components.com/components/button "This component was made by the community and not officially maintained by Plotly.")
+- [MultiSelect](https://www.dash-mantine-components.com/components/multiselect "This component was made by the community and not officially maintained by Plotly.")
 - [SimpleGrid](https://www.dash-mantine-components.com/components/simplegrid "This component was made by the community and not officially maintained by Plotly.")
 
 ##### Contributed by:
