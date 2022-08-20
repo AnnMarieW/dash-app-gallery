@@ -1,5 +1,5 @@
 from dash import register_page
 
-from examples.cheatsheets import cheatsheet_layout
+from examples import cheatsheet
 
-register_page(__name__, layout=cheatsheet_layout.layout, description="Dash Cheatsheet")
+register_page(__name__, layout=cheatsheet.layout, description="Dash Cheatsheet")
