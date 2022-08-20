@@ -23,11 +23,11 @@ app.layout = dbc.Container([
 
 side_by_side_dmc = """```python
 import dash_mantine_components as dmc
-app.layout = dmc.Container([        
-    dmc.SimpleGrid(
-        [dcc.Dropdown(), dcc.Graph()],    
-        cols=2,
-    ),
+app.layout = dmc.Container([
+    dmc.Grid([
+        dmc.Col(dcc.Dropdown(), span=3),
+        dmc.Col(dcc.Graph(), span=8),
+    ])
 ])
 ```"""
 
