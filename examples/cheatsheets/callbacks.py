@@ -46,3 +46,17 @@ app.layout = html.Div([
 def update_out(slider,input_v):
    return input_v, str(slider)
 ```"""
+
+ctx = """```
+from dash import Input, Output, callback, ctx
+
+@callback(
+    Output("graph", "figure"),
+    Input("btn-bar", "n_clicks"),   
+    Input("btn-area", "n_clicks"),
+)
+def display(*_):
+    if ctx.triggered_id == "btn-bar":
+        return px.bar(dff, x="year", y="pop")
+    return px.area(dff, x="year", y="pop")
+```"""

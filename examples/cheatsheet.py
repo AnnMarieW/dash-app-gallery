@@ -24,6 +24,7 @@ cards = [
     make_card("Side-by-side Layouts", layouts.side_by_side),
     make_card("Callbacks - Randomly Generated IDs", callbacks.generated_id),
     make_card("Callbacks - Multiple Outputs/Inputs", callbacks.multiple),
+    make_card("Callbacks - Which input triggered", callbacks.ctx),
     make_card("Share the App", share.deploy),
     make_card("Basic Figures", figures.basic),
     make_card("Statistical Figures", figures.statistical),
