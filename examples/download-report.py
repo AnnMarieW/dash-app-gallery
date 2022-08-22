@@ -25,7 +25,7 @@ app.layout = html.Div(
         html.Button("Generate values", id="download-report-x-random-val", n_clicks=0),
         html.Button("Download report", id="download-report-x-save-button"),
         html.Div(
-            "Remember that you can use the camera icon right above the graph to download an image of the figure",
+            "To download the figure, hover over the graph and click the camera icon.",
             style={"textAlign": "right"},
         ),
         dcc.Graph(
