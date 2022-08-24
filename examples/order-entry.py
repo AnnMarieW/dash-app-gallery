@@ -33,7 +33,7 @@ table = dash_table.DataTable(
             "format": {"specifier": ",.0f"},
             "editable": True,
             "on_change": {"failure": "default"},
-            "validation": {"default":0}
+            "validation": {"default": 0},
         },
         {"name": "unit", "id": "unit"},
         {
@@ -58,7 +58,7 @@ table = dash_table.DataTable(
     },
 )
 
-app.layout = html.Div([title, add_button, table, total], style={"margin":30})
+app.layout = html.Div([title, add_button, table, total], style={"margin": 30})
 
 
 @app.callback(
@@ -79,11 +79,11 @@ def add_row(n_clicks, rows):
     print(rows)
     if rows:
         df_merged = pd.merge(df_order, df_product, how="left", on="product")
-        df_order["price"] = df_merged["price_y"]
-        df_order["unit"] = df_merged["unit_y"]
-        df_order["total"] = df_order.price * df_order.quantity
+        df_order.price = df_merged.price_y
+        df_order.unit = df_merged.unit_y
+        df_order.total = df_order.price * df_order.quantity
 
-    order_total = df_order["total"].sum() if rows else 0
+    order_total = df_order.total.sum() if rows else 0
     return df_order.to_dict("records"), f"Total   ${order_total:,.2f}"
 
 
