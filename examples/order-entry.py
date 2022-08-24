@@ -76,7 +76,6 @@ def add_row(n_clicks, rows):
         df_order = df_order.append(df_new_order_line, ignore_index=True)
 
     # update the order
-    print(rows)
     if rows:
         df_merged = pd.merge(df_order, df_product, how="left", on="product")
         df_order.price = df_merged.price_y
