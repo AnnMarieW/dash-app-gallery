@@ -2,11 +2,12 @@ from dash import Dash, dash_table, html, Input, Output, ctx
 import pandas as pd
 
 product_data = {
-    "product": ["apples", "bananas", "milk", "egg", "bread", "cookies"],
+    "product": ["apples", "bananas", "milk", "eggs", "bread", "cookies"],
     "price": [3.75, 1.65, 1.55, 3.60, 3.00, 3.97],
     "unit": ["kg", "kg", "l", "dz", "ea", "pkg"],
 }
 new_order_line = {"product": "", "price": 0, "unit": "", "quantity": 0, "total": 0}
+
 df_product = pd.DataFrame(product_data)
 df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
@@ -35,7 +36,7 @@ table = dash_table.DataTable(
             "on_change": {"failure": "default"},
             "validation": {"default": 0},
         },
-        {"name": "unit", "id": "unit"},
+        {"name": "Unit", "id": "unit"},
         {
             "name": "Price",
             "id": "price",
