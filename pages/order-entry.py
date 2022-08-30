@@ -12,6 +12,7 @@ notes = """
 #### Dash Components in App:  
 - [DataTable](https://community.plotly.com/u/annmariew/summary)
 - [Button](https://dash.plotly.com/dash-html-components/button)
+- [Callback Context](https://dash.plotly.com/advanced-callbacks#determining-which-input-has-fired-with-dash.callback_context)
 
 #### Contributed by:
 This example app was contributed by [AnnMarieW](https://plotly.com/python/)
