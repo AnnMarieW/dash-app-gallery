@@ -21,3 +21,12 @@
 .hover-container:hover .hover-overlay {
   opacity: 1;
 }
+
+/* fixes  when the table dropdown doesn't drop down */
+.dbc .Select-menu-outer {
+  display: block !important;
+}
+
+.dash-table-container .dropdown {
+  position: static;
+}
