@@ -2,7 +2,6 @@
 from dash import Dash, dcc, html, Input, Output, no_update
 import pandas as pd
 import plotly.express as px
-import plotly.io as pio
 import dash_mantine_components as dmc
 
 
