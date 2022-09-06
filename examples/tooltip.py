@@ -5,7 +5,6 @@ import plotly.express as px
 import dash_mantine_components as dmc
 
 
-pio.renderers.default = 'browser'
 
 df = pd.read_table(
     "https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv"
