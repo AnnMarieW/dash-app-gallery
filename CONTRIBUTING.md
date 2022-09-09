@@ -1,5 +1,5 @@
 # How to contribute your app to this project 
-Thank you for contributing an app to the community supported `Dash Index Examples` project! 
+Thank you for contributing an app to the community supported `Dash Example Index` project! 
 Plese keep in mind that this gallery is designed for people new to Dash and/or new to coding, so let's try to keep the code simple.
 
 ## Requirements for new apps
@@ -7,7 +7,7 @@ Plese keep in mind that this gallery is designed for people new to Dash and/or n
 Every app should have a graph or a Dash DataTable, a callback, and a maximum of 150 lines of code. 
 
    <details>
-     <summary>You can include any graph into your app, but the current priority is:</summary>
+     <summary>Please include any of the following graphs into your app:</summary>
     area<br/>
     bar_polar<br/>
     box plot<br/>
@@ -50,7 +50,7 @@ Every app should have a graph or a Dash DataTable, a callback, and a maximum of 
     clientside callback (use dash.clientside_callback rather than app.clientside_callback)<br/>
     flexible callback signature<br/>
     pattern matching<br/>
-    callback with ctx<br/>
+    callback context (ctx)<br/>
     regular callback
    </details>
 
