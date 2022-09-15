@@ -29,7 +29,7 @@ figure_templates = [
 change_figure_template = html.Div(
     [
         html.Div("Change Figure Template"),
-        dcc.Dropdown(figure_templates, figure_templates[0], id="template"),
+        dcc.Dropdown(options=figure_templates, value=figure_templates[0], id="template"),
     ],
     className="pb-4",
 )
