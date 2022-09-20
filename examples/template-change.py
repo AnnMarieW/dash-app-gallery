@@ -29,7 +29,7 @@ figure_templates = [
 change_figure_template = html.Div(
     [
         html.Div("Change Figure Template"),
-        dcc.Dropdown(options=figure_templates, value=figure_templates[0], id="template"),
+        dcc.Dropdown(figure_templates, figure_templates[0], id="template-change-x-template"),
     ],
     className="pb-4",
 )
@@ -38,7 +38,7 @@ change_figure_template = html.Div(
 app.layout = dbc.Container(
     [
         dbc.Row(dbc.Col(change_figure_template, lg=6)),
-        dbc.Row(dbc.Col(html.Div(id="graphs"))),
+        dbc.Row(dbc.Col(html.Div(id="template-change-x-graphs"))),
     ],
     className="dbc p-4",
     fluid=True,
@@ -46,8 +46,8 @@ app.layout = dbc.Container(
 
 
 @app.callback(
-    Output("graphs", "children"),
-    Input("template", "value"),
+    Output("template-change-x-graphs", "children"),
+    Input("template-change-x-template", "value"),
 )
 def update_graph_theme(template):
     graph1 = dcc.Graph(
