@@ -8,12 +8,12 @@ app = Dash(__name__,
            prevent_initial_callbacks=True)
 
 
-countdown_store = dcc.Store(id = 'countdown-store')
-running_countdown_store = dcc.Store(id = 'running-countdown-store')
+countdown_store = dcc.Store(id = 'countdown-x-countdown-store')
+running_countdown_store = dcc.Store(id = 'countdown-x-running-countdown-store')
 
-interval = dcc.Interval(id = 'countdown-interval', interval = 1000, n_intervals = 0)
+interval = dcc.Interval(id = 'countdown-x-countdown-interval', interval = 1000, n_intervals = 0)
 
-countdown_input = dcc.Input(id='countdown-input', 
+countdown_input = dcc.Input(id='countdown-x-countdown-input', 
                             type='number', 
                             min=0, 
                             step=1, 
@@ -22,7 +22,7 @@ countdown_input = dcc.Input(id='countdown-input',
                             style = {'font-size':"1.6rem"},
                             className="mb-3")
 
-button = dbc.Button(id = 'countdown-button', 
+button = dbc.Button(id = 'countdown-x-countdown-button', 
                     children = "Start Countdown",
                     n_clicks = 0, 
                     size = "lg",
@@ -30,7 +30,7 @@ button = dbc.Button(id = 'countdown-button',
                     color="primary", 
                     className="me-1")
 
-led_display = daq.LEDDisplay(id = 'countdown-display',
+led_display = daq.LEDDisplay(id = 'countdown-x-countdown-display',
                              value="0:0:0:0:0:0",
                              label = {"label":"Time in years : months : days : hours : minutes : seconds",
                                        "style": {"font-size":"1.6rem",
@@ -41,7 +41,7 @@ led_display = daq.LEDDisplay(id = 'countdown-display',
                              labelPosition='bottom',
                              size=100)
 
-audio_div = html.Div(id = 'audio-div')
+audio_div = html.Div(id = 'countdown-x-audio-div')
 
 app.layout = dbc.Container([
     
@@ -81,11 +81,10 @@ app.layout = dbc.Container([
 
 @app.callback(
 
-    [Output('countdown-store','data'),
-     Output('countdown-interval','n_intervals')
-     ],
-    [Input('countdown-button', 'n_clicks')],
-    [State('countdown-input', 'value')]
+    Output('countdown-x-countdown-store','data'),
+    Output('countdown-x-countdown-interval','n_intervals'),
+    Input('countdown-x-countdown-button', 'n_clicks'),
+    State('countdown-x-countdown-input', 'value')
     
 )
 def init_countdown_store(n_clicks, countdown_input):
@@ -100,9 +99,9 @@ def init_countdown_store(n_clicks, countdown_input):
 
 @app.callback(
 
-    Output('running-countdown-store','data'),     
-    [Input('countdown-store','data'),
-     Input('countdown-interval', 'n_intervals')]
+    Output('countdown-x-running-countdown-store','data'),     
+    Input('countdown-x-countdown-store','data'),
+    Input('countdown-x-countdown-interval', 'n_intervals')
     
 )    
 def init_running_countdown_store(seconds, n_intervals):
@@ -120,11 +119,10 @@ def init_running_countdown_store(seconds, n_intervals):
     
 @app.callback(
 
-    [Output('countdown-display', 'value'),
-     Output('countdown-display', 'label'),
-     Output('audio-div','children')
-     ],
-    Input('running-countdown-store','data')
+    Output('countdown-x-countdown-display', 'value'),
+    Output('countdown-x-countdown-display', 'label'),
+    Output('countdown-x-audio-div','children'),
+    Input('countdown-x-running-countdown-store','data')
     
 )
 def update_countdown_display(seconds):
