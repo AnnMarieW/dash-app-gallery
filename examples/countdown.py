@@ -143,7 +143,7 @@ def update_countdown_display(seconds):
         
         label_str = is_non_zero(seconds)*"Time in "+is_non_zero(years)*'years: '+is_non_zero(months)*'months: '+is_non_zero(days)*'days: '+is_non_zero(hours)*'hours: '+is_non_zero(mins)*'minutes: '+is_non_zero(secs)*'seconds: '
         if seconds ==0:
-            audio = html.Audio(src='assets/clock-alarm-8761.mp3',controls=False, autoPlay = True)
+            audio = html.Audio(src='./assets/clock-alarm-8761.mp3',controls=False, autoPlay = True)
             
         
         return f"{years}:{months}:{days}:{hours}:{mins}:{secs}".replace("0:",""),{"label":label_str[:-2],
