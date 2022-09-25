@@ -1,6 +1,4 @@
-import dash
-from dash.dependencies import Input, Output
-from dash import dcc, html
+from dash import Dash, dcc, html, Input, Output, ctx
 import pandas as pd
 import plotly.express as px
 
@@ -9,7 +7,7 @@ df = pd.read_csv(filepath, encoding="latin")
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
     html.Header("Geographic Distribution of Volcanoes by Height",
                 style={"font-size": "30px"}),
@@ -31,7 +29,7 @@ app.layout = html.Div([
         id="circular-callback-x-map"
     )
 ],
-    style={"marginLeft": 30, "marginTop": 30, "marginBottom": 30, "marginRight": 30})
+    style={"margin": 30})
 
 
 @ app.callback(
@@ -42,12 +40,11 @@ app.layout = html.Div([
     Input("circular-callback-x-feet", "value"),
 )
 def sync_input(meter, feet):
-    ctx = dash.callback_context
-    input_id = ctx.triggered[0]["prop_id"].split(".")[0]
-    if input_id == "circular-callback-x-meter":
-        feet = None if meter is None else (float(meter) * 3.28084)
+    if ctx.triggered_id == "circular-callback-x-meter":
+        feet = None if meter is None else round((float(meter) * 3.28084), 1)
     else:
-        meter = None if feet is None else (float(feet)/3.28084)
+        meter = None if feet is None else round((float(feet)/3.28084), 1)
+
     fig = px.scatter_geo(data_frame=df.loc[df["Elev"] >= meter],
                          lat="Latitude",
                          lon="Longitude",
