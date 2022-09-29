@@ -10,14 +10,15 @@ external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
     html.Header("Geographic Distribution of Volcanoes by Height",
-                style={"font-size": "30px"}),
+                style={"font-size": "30px", "textAlign": "center"}),
     html.Div('Minimum Volcano Height',
              style={"font-size": "20px"}),
     'Meter ',
     dcc.Input(
         id="circular-callback-x-meter",
         value=2000,
-        type="number"
+        type="number",
+        step=1
     ),
     ' to Feet ',
     dcc.Input(
@@ -29,10 +30,11 @@ app.layout = html.Div([
         id="circular-callback-x-map"
     )
 ],
-    style={"margin": 30})
+    style={"margin": 30}
+)
 
 
-@ app.callback(
+@app.callback(
     Output("circular-callback-x-meter", "value"),
     Output("circular-callback-x-feet", "value"),
     Output('circular-callback-x-map', 'figure'),
@@ -43,7 +45,7 @@ def sync_input(meter, feet):
     if ctx.triggered_id == "circular-callback-x-meter":
         feet = None if meter is None else round((float(meter) * 3.28084), 1)
     else:
-        meter = None if feet is None else round((float(feet)/3.28084), 1)
+        meter = None if feet is None else round((float(feet)/3.28084), 0)
 
     fig = px.scatter_geo(data_frame=df.loc[df["Elev"] >= meter],
                          lat="Latitude",
