@@ -41,6 +41,7 @@ figure_type = {
     "Sub plots": "make_subplots",
     "Sunburst": "px.sunburst",
     "Line Geo": "px.line_geo",
+    "Violin": "px.violin",
 }
 figure_type = {key: figure_type[key] for key in sorted(figure_type)}
 
@@ -79,7 +80,8 @@ components = {
     "Power Button": "daq.Power",
     "RadioItems": "RadioItems",
     "Offcanvas": "dbc.Offcanvas",
-    "Modal": "dbc.Modal"
+    "Modal": "dbc.Modal",
+    "Store": "dcc.Store"
 }
 components = {key: components[key] for key in sorted(components)}
 
