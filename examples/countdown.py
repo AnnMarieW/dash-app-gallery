@@ -77,8 +77,6 @@ app.layout = dbc.Container([
     ], className = "dbc p-4", fluid = True)
 
 
-
-
 @app.callback(
 
     Output('countdown-x-countdown-store','data'),
@@ -92,10 +90,7 @@ def init_countdown_store(n_clicks, countdown_input):
     if n_clicks > 0:
         
         return countdown_input,0
-    
-            
-        
-
+  
 
 @app.callback(
 
@@ -113,10 +108,8 @@ def init_running_countdown_store(seconds, n_intervals):
             return running_seconds 
         else:
             return 0
-    
-    
 
-    
+
 @app.callback(
 
     Output('countdown-x-countdown-display', 'value'),
@@ -131,15 +124,11 @@ def update_countdown_display(seconds):
     
     if seconds is not None:
         
-        
         mins, secs = divmod(seconds, 60)
         hours, mins = divmod(mins, 60)
         days, hours = divmod(hours, 24)
         months, days = divmod(days, 30)        
         years, months = divmod(months, 12)
-        
-        
-     
         
         label_str = is_non_zero(seconds)*"Time in "+is_non_zero(years)*'years: '+is_non_zero(months)*'months: '+is_non_zero(days)*'days: '+is_non_zero(hours)*'hours: '+is_non_zero(mins)*'minutes: '+is_non_zero(secs)*'seconds: '
         if seconds ==0:
