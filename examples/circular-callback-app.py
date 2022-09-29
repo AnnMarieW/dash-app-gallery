@@ -52,10 +52,8 @@ def sync_input(meter, feet):
                          lon="Longitude",
                          size="Elev",
                          hover_name="Volcano Name",
-                         projection="natural earth",
-                         width=1300,
-                         height=900)
-    fig.update_layout()
+                         projection="natural earth")
+    
     return meter, feet, fig
 
 
