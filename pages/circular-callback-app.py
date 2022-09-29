@@ -13,6 +13,8 @@ notes = """
 
 #### Dash Components in App:
 - [Input](https://dash.plotly.com/dash-core-components/input)
+- [Callback Context](https://dash.plotly.com/determining-which-callback-input-changed)
+- [Circular Callback](https://dash.plotly.com/advanced-callbacks#circular-callbacks)
 
 #### Plotly Components in App:
 - [Scatter Geo](https://plotly.com/python/bubble-maps/)
