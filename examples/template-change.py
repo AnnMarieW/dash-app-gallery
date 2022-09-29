@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import dash_bootstrap_components as dbc
