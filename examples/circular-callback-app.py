@@ -16,28 +16,28 @@ app.layout = html.Div(
         ),
         html.Div("Minimum Volcano Height", style={"font-size": "20px"}),
         "Meters ",
-        dcc.Input(id="circular-callback-x-meter", value=2000, type="number", step=1),
+        dcc.Input(id="circular-callback-app-x-meter", value=2000, type="number", step=1),
         " Feet ",
         dcc.Input(
-            id="circular-callback-x-feet",
+            id="circular-callback-app-x-feet",
             value=6561.7,
             type="number",
         ),
-        dcc.Graph(id="circular-callback-x-map"),
+        dcc.Graph(id="circular-callback-app-x-map"),
     ],
     style={"margin": 10, "maxWidth": 800},
 )
 
 
 @app.callback(
-    Output("circular-callback-x-meter", "value"),
-    Output("circular-callback-x-feet", "value"),
-    Output("circular-callback-x-map", "figure"),
-    Input("circular-callback-x-meter", "value"),
-    Input("circular-callback-x-feet", "value"),
+    Output("circular-callback-app-x-meter", "value"),
+    Output("circular-callback-app-x-feet", "value"),
+    Output("circular-callback-app-x-map", "figure"),
+    Input("circular-callback-app-x-meter", "value"),
+    Input("circular-callback-app-x-feet", "value"),
 )
 def sync_input(meter, feet):
-    if ctx.triggered_id == "circular-callback-x-meter":
+    if ctx.triggered_id == "circular-callback-app-x-meter":
         feet = None if meter is None else round((float(meter) * 3.28084), 0)
     else:
         meter = None if feet is None else round((float(feet) / 3.28084), 1)
