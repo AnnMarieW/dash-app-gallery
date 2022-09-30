@@ -1,6 +1,6 @@
 import dash
 
-from lib.code_and_show import example_app
+from lib.code_and_show import example_app, make_app_first
 
 dash.register_page(
     __name__,
@@ -24,4 +24,4 @@ This example app was contributed by [Tuomas](https://github.com/tuopouk)
 
 """
 
-layout = example_app(filename, notes=notes)
+layout = example_app(filename, notes=notes, make_layout=make_app_first)
