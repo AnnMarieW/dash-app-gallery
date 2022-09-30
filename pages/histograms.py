@@ -5,7 +5,7 @@ from lib.code_and_show import example_app, make_app_first
 
 dash.register_page(
     __name__,
-    description="Interactive histogram where the Slider sets the mean and standard deviation. It has a top-bottom layout and a regular-callback.",
+    description="Interactive histogram where the mean, standard deviation sample size and number of bins is set with sliders and numeric inputs. It has a control panel in a sidebar in a responsive side-by-side layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
