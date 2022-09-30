@@ -123,7 +123,7 @@ def make_app_first(code, show_app, notes):
             dbc.Col(
                 dbc.Card(
                     [make_code_div(code)],
-                    style={"height": "700px", "overflow": "auto"},
+                    style={"height": "700px", "overflow": "auto", "marginTop":10},
                 ),
                 width=12,
             )
