@@ -6,8 +6,6 @@ import plotly.io as pio
 import dash_mantine_components as dmc
 
 
-pio.renderers.default = 'browser'
-
 # Reading data
 df = pd.read_table(
     "https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv"
@@ -46,16 +44,11 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 # hoverinfo="none" rather than "skip" which also halts events.
 fig.update_traces(hoverinfo="none", hovertemplate=None)
 
-fig.update_layout(
-    xaxis=dict(title='Year'),
-    yaxis=dict(title='Population'),
-    plot_bgcolor='rgba(255,255,255,0.1)'
-)
 
 app = Dash(__name__)
 
 app.layout = dmc.Container([
-    html.H4('Dash Tooltip Example', style={'text-align' :'center'}),
+    html.H4('Dash Tooltip Example', style={'textAlign' :'center'}),
 
     # Base bar chart i.e. bar chart that will always be shown on map.
     dcc.Graph(id="tooltip-graph-basic-2", figure=fig, clear_on_unhover=True),
@@ -117,7 +110,7 @@ def display_hover(hover_data):
 
         ], style={'width': '200px',
                   'height': '200px',
-                  'white-space': 'normal'
+                  'whiteSpace': 'normal'
                   }
         )
     ]
