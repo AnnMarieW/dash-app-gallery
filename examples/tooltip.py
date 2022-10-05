@@ -70,7 +70,7 @@ def display_hover(hover_data):
     if hover_data is None:
         return False, no_update, no_update
 
-    print(hover_data)
+    # print(hover_data)
     # Here we are getting data about X-axis of hovered bar chart
     # i.e. we are interested in date of hovered bar.
     x = hover_data['points'][0]['x']
