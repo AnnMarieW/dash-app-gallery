@@ -4,7 +4,7 @@ from lib.code_and_show import example_app
 
 
 dash.register_page(
-    __name__, description="This app uses a tooltip to display breakdown of profit as per month and segment. It uses simple layout and regular-callback."
+    __name__, description="This app uses a tooltip to display breakdown of profit per month and segment. It uses a simple layout and regular-callback."
 )
 
 filename = __name__.split("pages.")[1]
