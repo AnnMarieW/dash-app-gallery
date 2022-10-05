@@ -2,7 +2,7 @@
 from dash import Dash, dcc, html, Input, Output, no_update
 import pandas as pd
 import plotly.express as px
-import dash_mantine_components as dmc
+import dash_bootstrap_components as dbc
 
 
 # Reading data
@@ -46,7 +46,7 @@ fig.update_traces(hoverinfo="none", hovertemplate=None)
 
 app = Dash(__name__)
 
-app.layout = dmc.Container([
+app.layout = dbc.Container([
     html.H4('Dash Tooltip Example', style={'textAlign' :'center'}),
 
     # Base bar chart i.e. bar chart that will always be shown on map.
