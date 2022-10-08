@@ -2,8 +2,6 @@
 from dash import Dash, dcc, html, Input, Output, no_update
 import pandas as pd
 import plotly.express as px
-import dash_bootstrap_components as dbc
-
 
 # Reading data
 df = pd.read_table(
@@ -46,7 +44,7 @@ fig.update_traces(hoverinfo="none", hovertemplate=None)
 
 app = Dash(__name__)
 
-app.layout = dbc.Container([
+app.layout = html.Div([
     html.H4('Dash Tooltip Example', style={'textAlign' :'center'}),
 
     # Base bar chart i.e. bar chart that will always be shown on map.
