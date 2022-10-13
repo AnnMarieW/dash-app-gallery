@@ -1,11 +1,16 @@
-from dash import Dash, html, dcc, Input, Output, callback, no_update
+from dash import Dash, html, dcc, Input, Output, callback, no_update, dash_table
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from datetime import datetime, date
+import pandas as pd
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# It has 2 layout containers - Datepicker and a Card Component
+# The dataframe thats used for filtering the sunshine value and displaying the records
+df = pd.read_csv(
+    'https://raw.githubusercontent.com/plotly/datasets/master/horoscope_data.csv')
+
+# It has 2 layout containers - Datepicker and a DataTable Component
 app.layout = html.Div([dbc.Container(
     [
         html.Div([dcc.Markdown(
@@ -33,30 +38,32 @@ def get_sign(d):
     date_list = str(d).split('-')
     month, day = date_list[1], date_list[2]
     if month == '12':
-        astro_sign = 'Sagittarius' if (int(day) < 22) else 'capricorn'
+        astro_sign = 'sagittarius' if (int(day) < 22) else 'capricorn'
     elif month == '01':
-        astro_sign = 'Capricorn' if (int(day) < 20) else 'aquarius'
+        astro_sign = 'capricorn' if (int(day) < 20) else 'aquarius'
     elif month == '02':
-        astro_sign = 'Aquarius' if (int(day) < 19) else 'pisces'
+        astro_sign = 'aquarius' if (int(day) < 19) else 'pisces'
     elif month == '03':
-        astro_sign = 'Pisces' if (int(day) < 21) else 'aries'
+        astro_sign = 'pisces' if (int(day) < 21) else 'aries'
     elif month == '04':
-        astro_sign = 'Aries' if (int(day) < 20) else 'taurus'
+        astro_sign = 'aries' if (int(day) < 20) else 'taurus'
     elif month == '05':
-        astro_sign = 'Taurus' if (int(day) < 21) else 'gemini'
+        astro_sign = 'taurus' if (int(day) < 21) else 'gemini'
     elif month == '06':
-        astro_sign = 'Gemini' if (int(day) < 21) else 'cancer'
+        astro_sign = 'gemini' if (int(day) < 21) else 'cancer'
     elif month == '07':
-        astro_sign = 'Cancer' if (int(day) < 23) else 'leo'
+        astro_sign = 'cancer' if (int(day) < 23) else 'leo'
     elif month == '08':
-        astro_sign = 'Leo' if (int(day) < 23) else 'virgo'
+        astro_sign = 'leo' if (int(day) < 23) else 'virgo'
     elif month == '09':
-        astro_sign = 'Virgo' if (int(day) < 23) else 'libra'
+        astro_sign = 'virgo' if (int(day) < 23) else 'libra'
     elif month == '10':
-        astro_sign = 'Libra' if (int(day) < 23) else 'scorpio'
+        astro_sign = 'libra' if (int(day) < 23) else 'scorpio'
     elif month == '11':
         astro_sign = 'scorpio' if (int(day) < 22) else 'sagittarius'
-    return f'Here is your sunshine:  {astro_sign} ☀️ 🌞 '
+    removed_df = df.drop(['date_range', 'current_date', 'description'], axis=1)
+    matched_df = removed_df.loc[removed_df['sign'] == astro_sign]
+    return f'🪄 Here is your sunshine:  {astro_sign} ☀️ 🌞 ', matched_df
 
 
 # app callback using datepicker and updating alert and div according to date provided
@@ -70,18 +77,24 @@ def get_sign(d):
 def update_output(d):
     if d is None:
         return no_update
-    text = get_sign(d)
+    text, matched_df = get_sign(d)
     return [
-        dbc.Card(
+        html.Div(dbc.Alert(
             [
-                dbc.CardImg(
-                    src="assets/date-picker-single-addon.jpeg", top=True),
-                dbc.CardBody(
-                    html.P(text,
-                           className="card-text")
-                ),
+                html.I(className="bi bi-info-circle-fill me-2"),
+                f'{text}',
             ],
-            style={"width": "24rem", 'margin-left': 'auto', 'margin-right': 'auto', 'margin-bottom': '21px'}),
+            color="info",
+            id=f'{text}',
+            className="d-flex align-items-center",
+        )),
+        dash_table.DataTable(
+            id="table",
+            columns=[{"name": i, "id": i} for i in matched_df.columns],
+            data=matched_df.to_dict("records"),
+            style_cell=dict(textAlign="left"),
+            style_header=dict(backgroundColor="paleturquoise"),
+            style_data=dict(backgroundColor="lavender")),
 
 
     ]
