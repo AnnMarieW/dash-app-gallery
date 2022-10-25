@@ -51,7 +51,7 @@ app.layout = dbc.Container(
             id="flames-x-modal",
             size="lg",
         ),
-        dcc.Markdown("""To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and more about the [FLAMES games](https://www.wikihow.com/Play-%22Flame%22).""",
+        dcc.Markdown("""To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and more about the [FLAME games](https://www.wikihow.com/Play-%22Flame%22).""",
                      className='mt-4', style={'textAlign': 'center'})
     ],
     fluid=True,
