@@ -68,9 +68,9 @@ app.layout = dbc.Container(
 
 
 @app.callback(
-    [Output("flames-x-modal", "is_open"), Output("flames-x-modal", "children")],
-    [Input("flames-x-submit-button", "n_clicks")],
-    [State("flames-x-name", "value"), State("flames-x-crush", "value")],
+    Output("flames-x-modal", "is_open"), Output("flames-x-modal", "children"),
+    Input("flames-x-submit-button", "n_clicks"),
+    State("flames-x-name", "value"), State("flames-x-crush", "value"),
 )
 def flames_x_modal(n_clicks, name, crush):
     name = name.strip().lower()
