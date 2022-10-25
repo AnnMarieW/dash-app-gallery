@@ -12,7 +12,6 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 options = [
     "city",
     "county",
-    "city",
     "zip_code",
     "category_name",
     "vendor_name",
