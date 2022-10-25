@@ -48,7 +48,7 @@ figure_type = {key: figure_type[key] for key in sorted(figure_type)}
 callback_type = {
     # key  : value
     # name of link  : search term used to filter the code files
-    "Pattern Match": ["ALL", "MATCH"]
+    "Pattern Match": ["ALL", "MATCH"],
     "Clientside": "clientside_callback",
     "Callbacks": "callback(",
     "Callback context (ctx)": "ctx",
