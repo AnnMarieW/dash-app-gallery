@@ -17,8 +17,6 @@ notes = """
 - [Callback Context](https://dash.plotly.com/determining-which-callback-input-changed)
 - [Pattern Matching Callbacks](https://dash.plotly.com/pattern-matching-callbacks)
 - [Medium Article Introducing Pattern Matching Callbacks](https://medium.com/plotly/pattern-matching-callbacks-in-dash-9014eee99858)
-
-#### Plotly Components in App:
 - [DataTable](https://dash.plotly.com/datatable)
 
 #### Community Components:
