@@ -1,4 +1,4 @@
-from dash import Dash, dcc, html, Input, Output, State, ALL, MATCH, ctx
+from dash import Dash, dcc, html, Input, Output, State, MATCH
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
@@ -19,15 +19,17 @@ app.layout = dbc.Container(
                         dcc.Dropdown(
                             options=df.country.unique(),
                             value="Canada",
-                            id="country",
+                            id="pattern-match-country",
                             clearable=False,
                             style={"width": 300},
                         ),
-                        dbc.Button("Add Chart", id="add-chart", n_clicks=0),
+                        dbc.Button(
+                            "Add Chart", id="pattern-match-add-chart", n_clicks=0
+                        ),
                     ],
                     className="mb-3",
                 ),
-                html.Div(id="container", children=[], className="mt-4"),
+                html.Div(id="pattern-match-container", children=[], className="mt-4"),
             ]
         )
     ),
@@ -92,38 +94,38 @@ def make_card(n_clicks, country):
             "display": "inline-block",
         },
         className="m-1",
+        id={"type": "dynamic-card", "index": n_clicks},
     )
 
 
 @app.callback(
-    Output("container", "children"),
-    Input("add-chart", "n_clicks"),
-    Input({"type": "dynamic-delete", "index": ALL}, "n_clicks"),
-    State("container", "children"),
-    State("country", "value"),
+    Output("pattern-match-container", "children"),
+    Input("pattern-match-add-chart", "n_clicks"),
+    State("pattern-match-container", "children"),
+    State("pattern-match-country", "value"),
 )
-def display_dropdowns(n_clicks, _, cards, country):
-    if ctx.triggered_id == "add-chart" or not ctx.triggered_id:
-        new_card = make_card(n_clicks, country)
-        cards.append(new_card)
-    else:
-        # exclude the deleted chart
-        delete_chart_number = ctx.triggered_id["index"]
-        cards = [
-            card
-            for card in cards
-            if "'index': " + str(delete_chart_number) not in str(card)
-        ]
+def add_card(n_clicks, cards, country):
+    new_card = make_card(n_clicks, country)
+    cards.append(new_card)
     return cards
+
+
+@app.callback(
+    Output({"type": "dynamic-card", "index": MATCH}, "style"),
+    Input({"type": "dynamic-delete", "index": MATCH}, "n_clicks"),
+    prevent_initial_call=True,
+)
+def remove_card(_):
+    return {"display": "none"}
 
 
 @app.callback(
     Output({"type": "dynamic-output", "index": MATCH}, "figure"),
     Input({"type": "dynamic-dropdown-x", "index": MATCH}, "value"),
     Input({"type": "dynamic-dropdown-y", "index": MATCH}, "value"),
-    Input("country", "value"),
+    Input("pattern-match-country", "value"),
 )
-def display_output(column_x, column_y, country):
+def update_figure(column_x, column_y, country):
     return create_figure(column_x, column_y, country)
 
 
