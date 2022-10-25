@@ -8,17 +8,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
-        dbc.Row(
-            [
-                html.Div(
-                    html.Img(
-                        src="./assets/flames.png",
-                        style={"width": "100%", "height": "50%"},
-                    ),
-                    style={"width": "100%", "height": "50%"},
-                ),
-            ]
-        ),
+        html.H4("Play the FLAME Game", style={'textAlign': 'center'}),
         dbc.Row(
             [
                 dbc.Col(
@@ -61,6 +51,8 @@ app.layout = dbc.Container(
             id="flames-x-modal",
             size="lg",
         ),
+        dcc.Markdown("""To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and more about the [FLAMES games](https://www.wikihow.com/Play-%22Flame%22).""",
+                     className='mt-4', style={'textAlign': 'center'})
     ],
     fluid=True,
     className="dbc",
