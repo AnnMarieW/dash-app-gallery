@@ -1,24 +1,24 @@
 from dash import Dash, dcc, html, Input, Output, no_update, State
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import numpy as np
-import pandas as pd
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
-        html.H4("Play the FLAME Game", style={'textAlign': 'center'}),
+        html.Img(
+            src="assets/flames_header.png",
+            className="img-fluid",
+        ),
+        html.H4("Play the FLAME Game", className="text-center"),
         dbc.Row(
             [
                 dbc.Col(
                     [
-                        dcc.Markdown("## **Enter your first name**"),
+                        dcc.Markdown("### **Enter your first name**"),
                         dcc.Input(
                             id="flames-x-name",
                             value="",
-                            type="text",
-                            style={"width": "100%"},
+                            className="w-100",
                             placeholder="Enter your First name",
                         ),
                     ],
@@ -26,13 +26,12 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
-                        dcc.Markdown("## **Enter your crush's name** "),
+                        dcc.Markdown("### **Enter your crush's name** "),
                         dcc.Input(
                             id="flames-x-crush",
                             value="",
-                            type="text",
                             placeholder="Enter your crush's name",
-                            style={"width": "100%"},
+                            className="w-100",
                         ),
                     ],
                     width=6,
@@ -51,18 +50,21 @@ app.layout = dbc.Container(
             id="flames-x-modal",
             size="lg",
         ),
-        dcc.Markdown("""To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and more about the [FLAME games](https://www.wikihow.com/Play-%22Flame%22).""",
-                     className='mt-4', style={'textAlign': 'center'})
+        dcc.Markdown(
+            """To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and [FLAME games](https://www.wikihow.com/Play-%22Flame%22).""",
+            className="mt-4 text-center",
+        ),
     ],
     fluid=True,
-    className="dbc",
 )
 
 
 @app.callback(
-    Output("flames-x-modal", "is_open"), Output("flames-x-modal", "children"),
+    Output("flames-x-modal", "is_open"),
+    Output("flames-x-modal", "children"),
     Input("flames-x-submit-button", "n_clicks"),
-    State("flames-x-name", "value"), State("flames-x-crush", "value"),
+    State("flames-x-name", "value"),
+    State("flames-x-crush", "value"),
 )
 def flames_x_modal(n_clicks, name, crush):
     name = name.strip().lower()
@@ -111,19 +113,15 @@ def flames_x_modal(n_clicks, name, crush):
             dbc.ModalBody(
                 [
                     html.H3(f"{name} and {crush} are {who_is_it}"),
-                    html.Img(
-                        src="./assets/love.gif",
-                        style={"width": "100%", "height": "50%"},
-                    ),
+                    html.Img(src="assets/love.gif", className="img-fluid"),
                 ]
             ),
         ],
     )
 
     if n_clicks:
-        return [True, children]
-
-    return [False, no_update]
+        return True, children
+    return False, no_update
 
 
 if __name__ == "__main__":
