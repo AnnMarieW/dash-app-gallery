@@ -80,19 +80,15 @@ def update_store_data_of_boxes_amount_data(user_datatable: None or list, n_click
     """
 
     if user_datatable is None:
-        print("----1----")
         updated_table = get_default_csv_file()
 
     elif ctx.triggered_id == "add-btn":
-        print("----2----")
         updated_table = pd.DataFrame(user_datatable)
-        updated_table = updated_table.append(df_new_order_line, ignore_index=True)
+        updated_table = pd.concat([updated_table, pd.DataFrame.from_records(df_new_order_line)])
 
     else:
-        print("----3----")
         updated_table = pd.DataFrame(user_datatable)
     updated_table = add_finish_column(updated_table)
-    print("----4----")
     return updated_table.to_dict('records')
 
 
