@@ -30,18 +30,19 @@ def get_default_csv_file() -> pandas.DataFrame:
 
 
 app = Dash(__name__, suppress_callback_exceptions=True)
-app.title = 'Time Chart App'
+app.title = 'timeline-gantt'
 
 app.layout = html.Div(
     [
-        html.H1("Project TimeLine", className="bg-primary text-white p-1", style=APP_TOP_MARGIN),
+        html.H1("Project TimeLine", className="bg-primary text-white p-1", style=STYLE_TEXT),
         dash_table.DataTable(
             id='user-datatable',
-            columns=[{'name': i, 'id': i} for i in pd.read_csv("GanttChart.csv").columns],
+            columns=[{'name': i, 'id': i} for i in pd.read_csv('https://raw.githubusercontent.com/plotly/datasets'
+                                                               '/master/GanttChart.csv').columns],
             editable=True,
             row_deletable=True,
         ),
-        html.H3("Project Time Chart", style=APP_TOP_MARGIN),
+        html.H3("Project Time Chart", style=STYLE_TEXT),
         dcc.Graph(id="graph"),
     ],
 )
