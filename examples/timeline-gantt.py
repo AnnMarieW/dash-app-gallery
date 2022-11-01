@@ -1,9 +1,9 @@
 import pandas
 import pandas as pd
 import plotly.figure_factory
-from dash import Dash, html, dcc, Input, Output, dash_table
+from dash import Dash, html, dcc, Input, Output, dash_table, ctx
 
-STYLE_TEXT = {
+APP_TOP_MARGIN = {
     'text-align': 'center'}
 
 
@@ -30,19 +30,39 @@ def get_default_csv_file() -> pandas.DataFrame:
 
 
 app = Dash(__name__, suppress_callback_exceptions=True)
-app.title = 'timeline-gantt'
+app.title = 'Time Chart App'
+
+new_order_line = {"Task": "", "Start": '2016-01-01', "Duration": 0, "Resource": "", "Finish": 1 / 1 / 2000}
+df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
 app.layout = html.Div(
     [
-        html.H1("Project TimeLine", className="bg-primary text-white p-1", style=STYLE_TEXT),
+        html.H1("Project TimeLine", className="bg-primary text-white p-1", style=APP_TOP_MARGIN),
+        html.Button("+", n_clicks=0, id="add-btn"),
         dash_table.DataTable(
             id='user-datatable',
-            columns=[{'name': i, 'id': i} for i in pd.read_csv('https://raw.githubusercontent.com/plotly/datasets'
-                                                               '/master/GanttChart.csv').columns],
+            columns=[{
+                'id': 'Task',
+                'name': 'Task',
+                'type': 'text'
+            }, {
+                'id': 'Start',
+                'name': 'Start time of task',
+                'type': 'datetime'},
+                {
+                    'id': 'Duration',
+                    'name': 'Duration of task',
+                    'type': 'numeric',
+                }, {
+                    'id': 'Resource',
+                    'name': 'Resource',
+                    'type': 'text'
+                }],
+
             editable=True,
             row_deletable=True,
         ),
-        html.H3("Project Time Chart", style=STYLE_TEXT),
+        html.H3("Project Time Chart", style=APP_TOP_MARGIN),
         dcc.Graph(id="graph"),
     ],
 )
@@ -50,10 +70,10 @@ app.layout = html.Div(
 
 @app.callback(
     Output('user-datatable', 'data'),
-    Input('user-datatable', 'data')
-
+    Input('user-datatable', 'data'),
+    Input("add-btn", "n_clicks"),
 )
-def update_store_data_of_boxes_amount_data(user_datatable: None or list) -> list:
+def update_store_data_of_boxes_amount_data(user_datatable: None or list, n_clicks) -> list:
     """
     This function save the user changes in the DataTable into the local memory of the browser using dcc.store.
     This is how it's possible to use the most update changes of the user in other Dash Components.
@@ -61,6 +81,10 @@ def update_store_data_of_boxes_amount_data(user_datatable: None or list) -> list
 
     if user_datatable is None:
         updated_table = get_default_csv_file()
+
+    elif ctx.triggered_id == "add-btn":
+        updated_table = pd.DataFrame(user_datatable)
+        updated_table = pd.concat([updated_table, pd.DataFrame.from_records(df_new_order_line)])
 
     else:
         updated_table = pd.DataFrame(user_datatable)
@@ -73,11 +97,14 @@ def update_store_data_of_boxes_amount_data(user_datatable: None or list) -> list
     Input('user-datatable', 'data')
 )
 def update_chart(datatable: list) -> plotly.graph_objs.Figure:
-    return plotly.figure_factory.create_gantt(pd.DataFrame(datatable), index_col='Resource', show_colorbar=True,
+    if datatable is None:
+        df = add_finish_column(get_default_csv_file())
+    else:
+        df = pd.DataFrame(datatable)
+    return plotly.figure_factory.create_gantt(df, index_col='Resource', show_colorbar=True,
                                               group_tasks=True, showgrid_x=False, showgrid_y=True, bar_width=0.5,
                                               title="")
 
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-    dcc.Store(id='user-datatable', data={}, storage_type='local')
