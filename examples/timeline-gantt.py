@@ -1,6 +1,3 @@
-"""
-This app
-"""
 import pandas
 import pandas as pd
 import plotly.figure_factory
@@ -35,7 +32,7 @@ def get_default_csv_file() -> pandas.DataFrame:
 app = Dash(__name__, suppress_callback_exceptions=True)
 app.title = 'Time Chart App'
 
-new_order_line = {"Task": "", "Start": 1 / 1 / 2000, "Duration": 0, "Resource": "", "Finish": 1 / 1 / 2000}
+new_order_line = {"Task": "", "Start": '2016-01-01', "Duration": 0, "Resource": "", "Finish": 1 / 1 / 2000}
 df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
 app.layout = html.Div(
@@ -44,25 +41,23 @@ app.layout = html.Div(
         html.Button("+", n_clicks=0, id="add-btn"),
         dash_table.DataTable(
             id='user-datatable',
-            # columns=[{'name': i, 'id': i} for i in pd.read_csv("GanttChart.csv").columns],
             columns=[{
                 'id': 'Task',
                 'name': 'Task',
                 'type': 'text'
             }, {
-
                 'id': 'Start',
                 'name': 'Start time of task',
-                'type': 'datetime'
-            }, {
-                'id': 'Duration',
-                'name': 'Duration of task',
-                'type': 'numeric',
-            }, {
-                'id': 'Resource',
-                'name': 'Resource',
-                'type': 'text'
-            }],
+                'type': 'datetime'},
+                {
+                    'id': 'Duration',
+                    'name': 'Duration of task',
+                    'type': 'numeric',
+                }, {
+                    'id': 'Resource',
+                    'name': 'Resource',
+                    'type': 'text'
+                }],
 
             editable=True,
             row_deletable=True,
