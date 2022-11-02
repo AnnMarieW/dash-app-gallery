@@ -3,17 +3,12 @@ import plotly.figure_factory
 from dash import Dash, html, dcc, Input, Output, dash_table, ctx
 import dash_bootstrap_components as dbc
 
-
 DATA_TABLE_SCHEMA = [
     {
         'id': 'Task',
         'name': 'Task',
         'type': 'text'
     }, {
-        'id': 'Start',
-        'name': 'Start time of task',
-        'type': 'datetime'},
-    {
         'id': 'Duration',
         'name': 'Duration of task',
         'type': 'numeric',
@@ -21,7 +16,16 @@ DATA_TABLE_SCHEMA = [
         'id': 'Resource',
         'name': 'Resource',
         'type': 'text'
-    }
+    }, {
+        'id': 'Start',
+        'name': 'Start time of task',
+        'type': 'datetime'
+    }, {
+        'id': 'Finish',
+        'name': 'End time of task',
+        'type': 'datetime',
+        "editable": False
+    },
 ]
 
 
@@ -33,6 +37,8 @@ def add_finish_column(df: pd.DataFrame) -> pd.DataFrame:
     df['Duration'] = df['Duration'].astype(int)
     df['Finish'] = df['Start'] + pd.to_timedelta(df['Duration'], unit='D')
     df['Start'] = pd.to_datetime(df['Start']).dt.date
+    df['Finish'] = pd.to_datetime(df['Finish']).dt.date
+
     return df
 
 
