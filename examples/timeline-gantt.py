@@ -69,41 +69,43 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('user-datatable', 'data'),
-    Input('user-datatable', 'data'),
+    Output("user-datatable", "data"),
+    Output("graph", "figure"),
+    Input("user-datatable", "derived_virtual_data"),
     Input("add-btn", "n_clicks"),
 )
-def update_store_data_of_boxes_amount_data(user_datatable: None or list, n_clicks) -> list:
-    """
-    This function save the user changes in the DataTable into the local memory of the browser using dcc.store.
-    This is how it's possible to use the most update changes of the user in other Dash Components.
-    """
-
+def update_table_and_figure(user_datatable: None or list, n_clicks) -> (list, dict):
+    # initialize table when app starts
     if user_datatable is None:
         updated_table = get_default_csv_file()
 
-    elif ctx.triggered_id == "add-btn":
-        updated_table = pd.DataFrame(user_datatable)
-        updated_table = pd.concat([updated_table, pd.DataFrame.from_records(df_new_order_line)])
+    # if user deleted all rows, add a default row:
+    elif not user_datatable:
+        updated_table = get_default_csv_file()
 
+    # convert table data to DataFrame
     else:
         updated_table = pd.DataFrame(user_datatable)
+
+    # add a row
+    if ctx.triggered_id == "add-btn":
+        updated_table = pd.concat(
+            [updated_table, pd.DataFrame.from_records(updated_table)]
+        )
+
     updated_table = add_finish_column(updated_table)
-    return updated_table.to_dict('records')
 
+    fig = plotly.figure_factory.create_gantt(
+        updated_table,
+        index_col="Resource",
+        show_colorbar=True,
+        group_tasks=True,
+        showgrid_x=False,
+        showgrid_y=True,
+        bar_width=0.5,
+    )
 
-@app.callback(
-    Output("graph", "figure"),
-    Input('user-datatable', 'data')
-)
-def update_chart(datatable: list) -> plotly.graph_objs.Figure:
-    if datatable is None:
-        df = add_finish_column(get_default_csv_file())
-    else:
-        df = pd.DataFrame(datatable)
-    return plotly.figure_factory.create_gantt(df, index_col='Resource', show_colorbar=True,
-                                              group_tasks=True, showgrid_x=False, showgrid_y=True, bar_width=0.5,
-                                              title="")
+    return updated_table.to_dict("records"), fig
 
 
 if __name__ == "__main__":
