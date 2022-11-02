@@ -6,6 +6,24 @@ from dash import Dash, html, dcc, Input, Output, dash_table, ctx
 APP_TOP_MARGIN = {
     'text-align': 'center'}
 
+DATA_TABLE_SCHEMA = [{
+    'id': 'Task',
+    'name': 'Task',
+    'type': 'text'
+}, {
+    'id': 'Start',
+    'name': 'Start time of task',
+    'type': 'datetime'},
+    {
+        'id': 'Duration',
+        'name': 'Duration of task',
+        'type': 'numeric',
+    }, {
+        'id': 'Resource',
+        'name': 'Resource',
+        'type': 'text'
+    }]
+
 
 def add_finish_column(df: pandas.DataFrame) -> pandas.DataFrame:
     """
@@ -40,25 +58,9 @@ app.layout = html.Div(
         html.H1("Project TimeLine", className="bg-primary text-white p-1", style=APP_TOP_MARGIN),
         html.Button("+", n_clicks=0, id="add-btn"),
         dash_table.DataTable(
-            id='user-datatable',
-            columns=[{
-                'id': 'Task',
-                'name': 'Task',
-                'type': 'text'
-            }, {
-                'id': 'Start',
-                'name': 'Start time of task',
-                'type': 'datetime'},
-                {
-                    'id': 'Duration',
-                    'name': 'Duration of task',
-                    'type': 'numeric',
-                }, {
-                    'id': 'Resource',
-                    'name': 'Resource',
-                    'type': 'text'
-                }],
-
+            id="user-datatable",
+            sort_action="native",
+            columns=DATA_TABLE_SCHEMA,
             editable=True,
             row_deletable=True,
         ),
