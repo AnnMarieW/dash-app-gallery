@@ -50,7 +50,7 @@ def get_default_csv_file() -> pandas.DataFrame:
 app = Dash(__name__, suppress_callback_exceptions=True)
 app.title = 'Time Chart App'
 
-new_order_line = {"Task": "", "Start": '2016-01-01', "Duration": 0, "Resource": "", "Finish": 1 / 1 / 2000}
+new_order_line = {"Task": "", "Start": '2016-01-01', "Duration": 0, "Resource": "", "Finish": '2016-01-01'}
 df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
 app.layout = html.Div(
@@ -92,13 +92,13 @@ def update_table_and_figure(user_datatable: None or list, n_clicks) -> (list, di
     # add a row
     if ctx.triggered_id == "add-btn":
         updated_table = pd.concat(
-            [updated_table, pd.DataFrame.from_records(updated_table)]
+            [pd.DataFrame(user_datatable), pd.DataFrame.from_records(df_new_order_line)]
         )
 
-    updated_table = add_finish_column(updated_table)
+    updated_table_as_df = add_finish_column(updated_table)
 
     fig = plotly.figure_factory.create_gantt(
-        updated_table,
+        updated_table_as_df,
         index_col="Resource",
         show_colorbar=True,
         group_tasks=True,
@@ -107,7 +107,7 @@ def update_table_and_figure(user_datatable: None or list, n_clicks) -> (list, di
         bar_width=0.5,
     )
 
-    return updated_table.to_dict("records"), fig
+    return updated_table_as_df.to_dict("records"), fig
 
 
 if __name__ == "__main__":
