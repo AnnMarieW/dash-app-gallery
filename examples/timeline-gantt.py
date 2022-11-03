@@ -7,7 +7,7 @@ DATA_TABLE_SCHEMA = [
     {
         'id': 'Task',
         'name': 'Task',
-        'type': 'text'
+        'type': 'text',
     }, {
         'id': 'Duration',
         'name': 'Duration of task',
@@ -68,15 +68,21 @@ app.layout = html.Div(
             editable=True,
             row_deletable=True,
             style_data_conditional=[
-                {'backgroundColor': '#EEF2F7'},
+                {'backgroundColor': '#EEF2F7',
+                 'maxWidth': '60%'},
             ],
             style_header={
                 'color': 'white',
                 'backgroundColor': '#799DBF',
                 'fontWeight': 'bold'
             },
+            style_table={'width': '93%',
+                         'marginLeft': '3%',
+                         },
         ),
-        html.Button("+", n_clicks=0, id="add-btn"),  # if user want to add a row
+
+        html.Button("+", n_clicks=0, id="add-btn", style={'marginLeft': '3%'
+                                                          }),  # if user want to add a row
         dcc.Graph(id="graph"),
     ], style={'backgroundColor': '#DDE6EF'}
 )
