@@ -60,26 +60,25 @@ df_new_task_line = pd.DataFrame(new_task_line, index=[0])
 
 app.layout = html.Div(
     [
-        html.H1("Project TimeLine", className="bg-primary text-white p-1 text-center"),
+        html.H3("Project Time Line", className="bg-primary text-white p-1 text-center"),
         dash_table.DataTable(
             id="user-datatable",
             sort_action="native",
             columns=DATA_TABLE_SCHEMA,
             editable=True,
             row_deletable=True,
-            style_data_conditional=[{'backgroundColor': 'bg-primary'},
-                                    ],
+            style_data_conditional=[
+                {'backgroundColor': '#EEF2F7'},
+            ],
             style_header={
-                'backgroundColor': 'bg-primary bg-gradient text-white py-4',
+                'color': 'white',
+                'backgroundColor': '#799DBF',
                 'fontWeight': 'bold'
             },
-
         ),
-        html.Button("Add Row", n_clicks=0, id="add-btn"),  # if user want to add a row
-
-        html.H3("Project Time Chart", className="bg-light text-blue p-1 text-center"),
+        html.Button("+", n_clicks=0, id="add-btn"),  # if user want to add a row
         dcc.Graph(id="graph"),
-    ],
+    ], style={'backgroundColor': '#DDE6EF'}
 )
 
 
@@ -123,6 +122,17 @@ def update_table_and_figure(user_datatable: None or list, n_clicks) -> (list, di
         showgrid_x=False,
         showgrid_y=True,
         bar_width=0.5,
+
+    )
+    fig.update_layout(
+        title='Project Plan Gantt Chart',
+        paper_bgcolor="#DDE6EF",
+        title_x=0.5,
+        font=dict(
+            size=20,
+            color="#104870",
+        )
+
     )
 
     return updated_table_as_df.to_dict("records"), fig
