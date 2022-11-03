@@ -1,7 +1,7 @@
+import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.figure_factory
 from dash import Dash, html, dcc, Input, Output, dash_table, ctx
-import dash_bootstrap_components as dbc
 
 DATA_TABLE_SCHEMA = [
     {
