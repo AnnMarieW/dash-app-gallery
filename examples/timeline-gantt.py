@@ -83,6 +83,7 @@ app.layout = html.Div(
 
         html.Button("+", n_clicks=0, id="add-btn", style={'marginLeft': '3%'
                                                           }),  # if user want to add a row
+        html.Hr(),
         dcc.Graph(id="graph"),
     ], style={'backgroundColor': '#DDE6EF'}
 )
