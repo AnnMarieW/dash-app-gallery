@@ -60,7 +60,8 @@ def __get_default_table() -> pd.DataFrame:
     return __add_finish_column(df)
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB], suppress_callback_exceptions=True)
+app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB], suppress_callback_exceptions=True,
+           prevent_initial_callbacks=True)
 
 new_task_line = {"Task": "Task 1", "Start": '2016-01-01', "Duration": 0, "Resource": "A", "Finish": '2016-01-01'}
 df_new_task_line = pd.DataFrame(new_task_line, index=[0])
@@ -72,7 +73,16 @@ app.layout = dbc.Container(
             id="user-datatable",
             sort_action="native",
             columns=DATA_TABLE_SCHEMA,
+            data=__get_default_table().to_dict("records"),
             editable=True,
+            dropdown={
+                'Resource': {
+                    'options': [
+                        {'label': i, 'value': i}
+                        for i in list(map(chr, range(65, 91)))
+                    ]
+                },
+            },
             row_deletable=True,
             style_data_conditional=DATA_TABLE_STYLE.get('style_data_conditional'),
             style_header=DATA_TABLE_STYLE.get('style_header'),
@@ -90,13 +100,8 @@ app.layout = dbc.Container(
 
 
 def update_datatable(user_datatable) -> pd.DataFrame:
-
-    # initialize table when app starts
-    if user_datatable is None:
-        updated_table = __get_default_table()
-
     # if user deleted all rows, return the default table:
-    elif user_datatable==[]:  # @TODO: FIX BUG HERE DON"T WORK GOOD, The application is starting with this output and not with the default df
+    if not user_datatable:
         updated_table = pd.DataFrame.from_records(df_new_task_line)
 
     # add a row
