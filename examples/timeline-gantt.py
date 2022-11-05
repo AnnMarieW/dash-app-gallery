@@ -16,7 +16,8 @@ DATA_TABLE_SCHEMA = [
     }, {
         'id': 'Resource',
         'name': 'Resource',
-        'type': 'text'
+        'type': 'text',
+        'presentation': 'dropdown'
     }, {
         'id': 'Start',
         'name': 'Start time of task',
@@ -33,7 +34,9 @@ DATA_TABLE_STYLE = {
     'style_data_conditional': [{'backgroundColor': '#EEF2F7', 'maxWidth': '60%'},
                                {"if": {"column_id": "Finish"}, "backgroundColor": "#eee"}],
     'style_header': {'color': 'white', 'backgroundColor': '#799DBF', 'fontWeight': 'bold'},
-    'style_table': {'width': '93%', 'marginLeft': '3%', "overflowX": "auto"},
+    'style_table': {'width': '93%', 'marginLeft': '3%',
+                    # "overflowX": "auto"
+                    },
 }
 
 
@@ -72,6 +75,9 @@ app.layout = dbc.Container(
         dash_table.DataTable(
             id="user-datatable",
             sort_action="native",
+            columns=DATA_TABLE_SCHEMA,
+            data=__get_default_table().to_dict("records"),  # initialize table when app starts
+            editable=True,
             dropdown={  # limit num of Resource options for the user to select duo to color limitation of 26
                 'Resource': {
                     'options': [
@@ -80,9 +86,7 @@ app.layout = dbc.Container(
                     ]
                 },
             },
-            columns=DATA_TABLE_SCHEMA,
-            data=__get_default_table().to_dict("records"),  # initialize table when app starts
-            editable=True,
+
             row_deletable=True,
             style_data_conditional=DATA_TABLE_STYLE.get('style_data_conditional'),
             style_header=DATA_TABLE_STYLE.get('style_header'),
