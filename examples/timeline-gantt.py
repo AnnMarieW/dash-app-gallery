@@ -72,10 +72,7 @@ app.layout = dbc.Container(
         dash_table.DataTable(
             id="user-datatable",
             sort_action="native",
-            columns=DATA_TABLE_SCHEMA,
-            data=__get_default_table().to_dict("records"),
-            editable=True,
-            dropdown={
+            dropdown={  # limit num of Resource options for the user to select duo to color limitation of 26
                 'Resource': {
                     'options': [
                         {'label': i, 'value': i}
@@ -83,6 +80,9 @@ app.layout = dbc.Container(
                     ]
                 },
             },
+            columns=DATA_TABLE_SCHEMA,
+            data=__get_default_table().to_dict("records"),  # initialize table when app starts
+            editable=True,
             row_deletable=True,
             style_data_conditional=DATA_TABLE_STYLE.get('style_data_conditional'),
             style_header=DATA_TABLE_STYLE.get('style_header'),
