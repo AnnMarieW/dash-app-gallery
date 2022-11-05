@@ -6,7 +6,7 @@ import plotly.express as px
 import orjson
 
 # Data provided by Statistics Finland.
-regions_data = pd.read_csv('assets/key_figures_regions.csv', encoding = 'latin-1').rename(columns ={'Region 2021':'Region'}).set_index('Region')
+regions_data = pd.read_csv('./assets/key_figures_regions.csv', encoding = 'latin-1').rename(columns ={'Region 2021':'Region'}).set_index('Region')
 
 # Whole country figures on a pandas Series.
 whole_country_df = regions_data.loc['WHOLE COUNTRY']
@@ -16,7 +16,7 @@ regions_data.drop('WHOLE COUNTRY', axis = 0, inplace = True)
 
 # The json file for the mapbox viz.
 # https://geo.stat.fi/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=maakunta1000k_2021&outputFormat=json
-with open('assets/regions.json', encoding = 'ISO-8859-1') as f:
+with open('./assets/regions.json', encoding = 'ISO-8859-1') as f:
     regions_json = orjson.loads(f.read())
 
 key_figures = sorted(list(pd.unique(regions_data.columns)))
