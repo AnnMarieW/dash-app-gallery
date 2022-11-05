@@ -49,7 +49,6 @@ def __add_finish_column(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# Make data as a dataframe
 def __get_default_table() -> pd.DataFrame:
     """
     This function import the csv file into a DataFrame.
@@ -63,6 +62,7 @@ def __get_default_table() -> pd.DataFrame:
 app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB], suppress_callback_exceptions=True,
            prevent_initial_callbacks=True)
 
+# Default new row for datatable
 new_task_line = {"Task": "Task 1", "Start": '2016-01-01', "Duration": 0, "Resource": "A", "Finish": '2016-01-01'}
 df_new_task_line = pd.DataFrame(new_task_line, index=[0])
 
@@ -114,7 +114,10 @@ def update_datatable(user_datatable) -> pd.DataFrame:
     return __add_finish_column(updated_table)  # create the 'Finish' column for the gantt chart
 
 
-def create_gantt_chart(updated_table_as_df):
+def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
+    """
+    Generates Gantt chart based on the used datatable
+    """
     gantt_fig = plotly.figure_factory.create_gantt(  # Cresting the gantt chart
         updated_table_as_df,
         index_col="Resource",
