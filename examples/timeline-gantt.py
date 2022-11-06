@@ -121,12 +121,13 @@ def update_datatable(user_datatable) -> pd.DataFrame:
 def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
                             color_discrete_map=res,
-                            title='Project Plan Gantt Chart',
-                            )
+                            title='Project Plan Gantt Chart')
+
     gantt_fig.update_layout(
-        title_x=0.5, font=dict(size=16),
-        yaxis=dict(title="Task", autorange="reversed"),
-                            xaxis=dict(title=""))  # Sorted the layout according to tasks
+        title_x=0.5,
+        font=dict(size=16),
+        yaxis=dict(title="Task", autorange="reversed"),  # Sorted the layout according to tasks
+        xaxis=dict(title=""))
     gantt_fig.update_traces(width=0.7)
 
     return gantt_fig
