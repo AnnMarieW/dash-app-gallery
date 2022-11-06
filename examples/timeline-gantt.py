@@ -30,6 +30,11 @@ DATA_TABLE_STYLE = {
     },
 }
 
+# Creating dict of Keys and Colors for timeline chart
+Resource_Keys = list(map(chr, range(65, 91)))
+Resource_Color_values = px.colors.qualitative.Alphabet
+res = {Resource_Keys[i]: Resource_Color_values[i] for i in range(len(Resource_Color_values))}
+
 
 def add_finish_column(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -116,6 +121,7 @@ def update_datatable(user_datatable) -> pd.DataFrame:
 
 def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
+                            color_discrete_map=res,
                             title='Project Plan Gantt Chart',
                             )
 
