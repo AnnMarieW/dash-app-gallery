@@ -72,7 +72,6 @@ app = Dash(
     prevent_initial_callbacks=True,
 )
 
-
 app.layout = dbc.Container(
     [
         html.H1("Project Time Line", className="bg-primary text-white p-1 text-center"),
@@ -124,19 +123,12 @@ def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
                             color_discrete_map=res,
                             title='Project Plan Gantt Chart',
                             )
+    gantt_fig.update_layout(
+        title_x=0.5, font=dict(size=16),
+        yaxis=dict(title="Task", autorange="reversed"),
+                            xaxis=dict(title=""))  # Sorted the layout according to tasks
+    gantt_fig.update_traces(width=0.7)
 
-    # gantt_fig = plotly.figure_factory.create_gantt(
-    #     updated_table_as_df,
-    #     index_col="Resource",
-    #     colors=px.colors.qualitative.Alphabet,
-    #     show_colorbar=True,
-    #     group_tasks=True,
-    #     showgrid_x=False,
-    #     showgrid_y=True,
-    #     bar_width=0.5,
-    #     title="Project Plan Gantt Chart",
-    # )
-    gantt_fig.update_layout(title_x=0.5, font=dict(size=16)),
     return gantt_fig
 
 
