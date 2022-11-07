@@ -126,7 +126,8 @@ def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     gantt_fig.update_layout(
         title_x=0.5,
         font=dict(size=16),
-        yaxis=dict(title="Task", autorange="reversed"),  # Sorted the layout according to tasks
+        yaxis=dict(title="Task", automargin=True, autorange="reversed", categoryorder="array",
+                   categoryarray=updated_table_as_df["Task"]),  # sorting gantt according to datatable
         xaxis=dict(title=""))
     gantt_fig.update_traces(width=0.7)
 
