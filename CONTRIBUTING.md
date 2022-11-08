@@ -119,6 +119,7 @@ as many items as possible.
 
 Basic Requirements
 - [ ] App is beginner-friendly and demonstrates  basic dash features with ~150 lines of code or less. Typically includes a figure and/or a table and at least one callback.
+- [ ] Code is easy to read, maintain and extend.
 - [ ] App is different from others in the Example Index.
 - [ ] Runs error free as a stand-alone app in a virtual environment made from the current `requirements.txt`. Adding anything to the `requriements.txt` needs prior approval. 
 - [ ] Must include  `__name__`  in app instantiation and may include a Bootstrap external stylesheet.  Anything else needs prior approval.
@@ -132,9 +133,9 @@ Basic Requirements
 
 Naming conventions
 - [ ] Uses descriptive variable names
-- [ ]  Uses python standard camel_case  variable names  ie `submit_button`
-- [ ]  For `id`'s, uses hyphens.  ie `id="submit-button"` 
-- [ ]  In the `style` prop, uses camel case: ie `style={"textAlign": "center"}`
+- [ ] Uses python standard camel_case  variable names  ie `submit_button`
+- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"` 
+- [ ] In the `style` prop, uses camel case: ie `style={"textAlign": "center"}`
 - [ ] Uses `df` for main pandas dataframe in the global scope.  Uses `dff` for the filtered `df` in a callback function.
 
 
@@ -163,6 +164,8 @@ Before release:  (For Maintainers only)
 - [ ] Checklist above is  complete
 - [ ]  Ensure IDs are unique by adding prefix `<filename>-x-`
 - [ ] Add app image to the `assets` folder
+- [ ] Remove any data files added to the `assets` folder during review
+- [ ] Add data files to Plotly datasets repo (if any)
 - [ ] Include the new app by adding the related file to the `pages` folder and run  `app.py` from the root directory to ensure the new app works in the Example Index.
 - [ ] add entry to the CHANGELOG.md
 - [ ] Release :party:
