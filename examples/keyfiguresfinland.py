@@ -75,10 +75,11 @@ def update_header(key_figure):
 def update_whole_country_header(key_figure):
     
     # Get all the header components.
-    stat_name = whole_country_df.loc[key_figure].stat_name
-    stat_unit = whole_country_df.loc[key_figure].unit
-    stat_year = whole_country_df.loc[key_figure].year
-    stat_value = whole_country_df.loc[key_figure].value
+    dff = whole_country_df.loc[key_figure]
+    stat_name = dff.stat_name
+    stat_unit = dff.unit
+    stat_year = dff.year
+    stat_value = dff.value
  
     # Change values with no decimals (.0) to int.
     stat_value = {True: int(stat_value), False: stat_value}['.0' in str(stat_value)]
