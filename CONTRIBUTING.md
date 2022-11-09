@@ -142,12 +142,12 @@ Naming conventions
 Concise code
 - [ ] Uses concise syntax available in Dash>=2.0
 For example use `dcc.Dropdown(df.columns)` rather than 
+- [ ] Does not put callback `Input()`s `Output()`s or `State()`s in a list
 `dcc.Dropdown(options = [{'label':c, 'value':c} for c in df.columns]`           
 - [ ] Does not include props that are set to the defaults for the component.  For example,  it's not necessary to include `multi=False` in the `dcc.Dropdown`.  Check the reference section of the docs to see the defaults for the components.
 - [ ] Does not include unused imports
 - [ ] Uses Minimal comments - only those necessary to describe "why" rather than just describing what the code does.
-
-
+- [ ] Uses f-strings rather than `.format()`
 
 
 In apps using `dash-bootstrap-components`:
