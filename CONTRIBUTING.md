@@ -121,10 +121,10 @@ Basic Requirements
 - [ ] App is beginner-friendly and demonstrates  basic dash features with ~150 lines of code or less. Typically includes a figure and/or a table and at least one callback.
 - [ ] Code is easy to read, maintain and extend.
 - [ ] App is different from others in the Example Index.
-- [ ] Runs error free as a stand-alone app in a virtual environment made from the current `requirements.txt`. Adding anything to the `requriements.txt` needs prior approval. 
+- [ ] Runs error free as a stand-alone app in a virtual environment made from the current [`requirements.txt`](https://github.com/AnnMarieW/dash-app-gallery/blob/main/requirements.txt). Adding anything to the `requriements.txt` needs prior approval. 
 - [ ] Must include  `__name__`  in app instantiation and may include a Bootstrap external stylesheet.  Anything else needs prior approval.
 - [ ] Does not include the following since it will not work in production: `app.title = "...."`      `server = app.server`
-- [ ] Uses Plotly built-in datasets or data from https://github.com/plotly/datasets.  Unique data sets may be added temporarily to the `assets` folder for use during review.  Before deployment, the data will be moved to the Plotly datasets repo.
+- [ ] Uses [Plotly built-in datasets](https://plotly.com/python-api-reference/generated/plotly.data.html) or data from https://github.com/plotly/datasets.  Unique data sets may be added temporarily to the [`assets`](https://github.com/AnnMarieW/dash-app-gallery/tree/main/assets) folder for use during review.  Before deployment, the data will be moved to the Plotly datasets repo.
 - [ ] Has no errors in the console 
 - [ ] Code is formatted with black==21.6b0  (same version as used with Dash)
 - [ ] Ensure the layout is responsive - ie is functional and looks nice in various browser window sizes
@@ -133,17 +133,16 @@ Basic Requirements
 
 Naming conventions
 - [ ] Uses descriptive variable names
-- [ ] Uses python standard camel_case  variable names  ie `submit_button`
-- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"` 
+- [ ] Uses python standard snake_case variable names. For example, `submit_button`.
+- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"` **It might be better to leave this out, as there is a big section above on how one should name ID's as [name-of-the-file]-x-**
 - [ ] In the `style` prop, uses camel case: ie `style={"textAlign": "center"}`
 - [ ] Uses `df` for main pandas dataframe in the global scope.  Uses `dff` for the filtered `df` in a callback function.
 
 
 Concise code
 - [ ] Uses concise syntax available in Dash>=2.0
-For example use `dcc.Dropdown(df.columns)` rather than 
-- [ ] Does not put callback `Input()`s `Output()`s or `State()`s in a list
-`dcc.Dropdown(options = [{'label':c, 'value':c} for c in df.columns]`           
+For example use `dcc.Dropdown(df.columns)` rather than `dcc.Dropdown(options = [{'label':c, 'value':c} for c in df.columns]`. **Can we guide them to where they could read about the concise syntax (or give more examples), or is this more of a thing that one would know to do well after coding with Dash for a while?**
+- [ ] Does not put callback `Input()`s `Output()`s or `State()`s in a list          
 - [ ] Does not include props that are set to the defaults for the component.  For example,  it's not necessary to include `multi=False` in the `dcc.Dropdown`.  Check the reference section of the docs to see the defaults for the components.
 - [ ] Does not include unused imports
 - [ ] Uses Minimal comments - only those necessary to describe "why" rather than just describing what the code does.
@@ -167,6 +166,6 @@ Before release:  (For Maintainers only)
 - [ ] Remove any data files added to the `assets` folder during review
 - [ ] Add data files to Plotly datasets repo (if any)
 - [ ] Include the new app by adding the related file to the `pages` folder and run  `app.py` from the root directory to ensure the new app works in the Example Index.
-- [ ] add entry to the CHANGELOG.md
+- [ ] add entry to the CHANGELOG.md **This is new right? I'm assuming you were thinking we should start using one like in the Plotly Dash Repo? It's a smart idea.**
 - [ ] Release :party:
 
