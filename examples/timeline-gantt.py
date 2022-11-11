@@ -32,7 +32,7 @@ DATA_TABLE_STYLE = {
 
 # Creating dict of Keys and Colors for timeline chart
 resource_keys = list(map(chr, range(65, 91)))
-Resource_Color_values = px.colors.qualitative.Alphabet
+resource_color_values = px.colors.qualitative.Alphabet
 res = dict(zip(resource_keys, resource_color_values))
 
 
