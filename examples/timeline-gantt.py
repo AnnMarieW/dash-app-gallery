@@ -33,7 +33,7 @@ DATA_TABLE_STYLE = {
 # Creating dict of Keys and Colors for timeline chart
 Resource_Keys = list(map(chr, range(65, 91)))
 Resource_Color_values = px.colors.qualitative.Alphabet
-res = {Resource_Keys[i]: Resource_Color_values[i] for i in range(len(Resource_Color_values))}
+res = dict(zip(resource_keys, resource_color_values))
 
 
 def add_finish_column(df: pd.DataFrame) -> pd.DataFrame:
