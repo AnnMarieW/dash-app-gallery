@@ -3,59 +3,52 @@ import pandas as pd
 from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
-import orjson
+import json
 
 # Data provided by Statistics Finland.
 # Original data source: https://pxdata.stat.fi/PxWeb/pxweb/en/Kuntien_avainluvut/Kuntien_avainluvut__2021/kuntien_avainluvut_2021_viimeisin.px/
-regions_data = pd.read_csv('assets/key_figures_regions.csv', encoding = 'latin-1').rename(columns ={'Region 2021':'Region'}).set_index('Region')
+df = pd.read_csv('assets/key_figures_regions.csv', encoding = 'latin-1').rename(columns ={'Region 2021':'Region'}).set_index('Region')
 
 # Whole country figures on a pandas Dataframe.
-# Extract information from the key figure names.
-whole_country_df = pd.DataFrame(regions_data.loc['WHOLE COUNTRY'])
+# Extract information from the key figure names to be used in callbacks.
+whole_country_df = pd.DataFrame(df.loc['WHOLE COUNTRY'])
 whole_country_df = whole_country_df.rename(columns = {'WHOLE COUNTRY':'value'})
 whole_country_df['year'] = [stat.split(', ')[-1] for stat in whole_country_df.index]
 whole_country_df['unit'] = [stat.split(', ')[-2] if len(stat.split(', ')) > 2 else '' for stat in whole_country_df.index]
 whole_country_df['stat_name'] = [stat.split(', ')[0] if len(stat.split(', ')) < 4 else ', '.join(stat.split(', ')[:2]) for stat in whole_country_df.index]
 
 # Drop since not needed.
-regions_data.drop('WHOLE COUNTRY', axis = 0, inplace = True)
+df.drop('WHOLE COUNTRY', axis = 0, inplace = True)
 
-# The json file for the mapbox viz.
+# The json file used for the mapbox viz.
 # https://geo.stat.fi/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=maakunta1000k_2021&outputFormat=json
-with open('assets/regions.json', encoding = 'ISO-8859-1') as f:
-    regions_json = orjson.loads(f.read())
+with open('assets/regions.json', encoding = 'utf-8') as f:
+    regions_json = json.loads(f.read())
 
-key_figures = sorted(list(pd.unique(regions_data.columns)))
-
-external_stylesheets = [dbc.themes.SUPERHERO]
+external_stylesheets = [dbc.themes.SPACELAB]
 
 app = Dash(name = __name__, external_stylesheets = external_stylesheets)
-app.title = "Finland's Regional Key Figures"
-server = app.server
-
 
 app.layout = dbc.Container([
         
-        html.Div("Finland's Regional Key Figures",style={'textAlign':'center'}, className="mb-3 mt-3 fw-bold display-1"),
+        html.Div("Finland's Regional Key Figures", className="text-center mb-3 mt-3 fw-bold display-1"),
 
         dbc.Row([
             
             dbc.Col([
                 html.H2('Key figure'),
                 dcc.Dropdown(id = 'key-figures-finland-key-figure-selection-x',
-                             options = [{'label':kf, 'value':kf} for kf in key_figures],
+                             options = sorted(list(pd.unique(df.columns))),
                              value = "Degree of urbanisation, %, 2020",
-                             multi = False,
-                             style = {'font-size':'1.2rem', 'font-family':'Arial','color': 'black', 'white-space': 'nowrap'}
-                             ),
-                html.Br(),
-                html.H1(id = 'key-figures-finland-whole-country-header-x', style = {'textAlign':'center'}, className="mt-5 display-2"),
+                             className = 'text-dark bg-light text-nowrap'
+                             ),                
+                html.H1(id = 'key-figures-finland-whole-country-header-x', className="mt-5 display-2 text-center"),
                 html.Div(['Data by ',html.A('Statistics Finland', href = 'https://pxdata.stat.fi/PxWeb/pxweb/en/Kuntien_avainluvut/Kuntien_avainluvut__2021/kuntien_avainluvut_2021_viimeisin.px/', target = '_blank')], className="text-center fs-3 text"),
                 
                 ], xs = 12, sm = 12, md = 12, lg = 6, xl = 6, xxl = 6, align = 'center'),
                 
             dbc.Col([
-                html.H1(id = 'key-figures-finland-header-x', style = {'textAlign':'center'}, className="mb-3 mt-3 display-3"),
+                html.H1(id = 'key-figures-finland-header-x', className="mb-3 mt-3 display-3 text-center"),
                 dcc.Graph(id = 'key-figures-finland-region-map-x', figure = px.choropleth_mapbox(center = {"lat": 64.961093, "lon": 27.590605}))
                 
                 ], xs = 12, sm = 12, md = 12, lg = 6, xl = 6, xxl = 6)
@@ -65,7 +58,7 @@ app.layout = dbc.Container([
         dcc.Store(id = 'key-figures-finland-locations-x'),
         dcc.Store(id = 'key-figures-finland-zs-x'),
         dcc.Store(id = 'key-figures-finland-geojson-data', data = regions_json),
-        ], fluid = True)    
+        ], fluid = True, className = "dbc")    
 
 @app.callback(Output('key-figures-finland-header-x','children'),Input('key-figures-finland-key-figure-selection-x', 'value') )
 def update_header(key_figure):
@@ -74,7 +67,7 @@ def update_header(key_figure):
 @app.callback(Output('key-figures-finland-whole-country-header-x','children'),Input('key-figures-finland-key-figure-selection-x', 'value'))
 def update_whole_country_header(key_figure):
     
-    # Get all the header components.
+    # Get all the header components for the header.
     dff = whole_country_df.loc[key_figure]
     stat_name = dff.stat_name
     stat_unit = dff.unit
@@ -102,8 +95,8 @@ def update_whole_country_header(key_figure):
     
 )
 def store_data(key_figure):
-    df = regions_data[key_figure]
-    return list(df.index), list(df.values)
+    dff = df[key_figure]
+    return list(dff.index), list(dff.values)
 
 # Update map on clientside.
 app.clientside_callback(
@@ -115,13 +108,11 @@ app.clientside_callback(
             'height':800,
             'mapbox': {'style':'open-street-map','zoom':4.2,'center':{'lat': 64.961093, 'lon': 27.590605}
             },
-            'margin':{'l':0,'t':0,'b':0,'r':0
-            }
+            'margin':{'l':0,'t':0,'b':0,'r':0}
         };
         var data = [{            
             'type':'choroplethmapbox',            
             'name':'',
-            'subplot': 'mapbox',
             'geojson':geojson,
             'locations':locations,
             'featureidkey':'properties.name',
