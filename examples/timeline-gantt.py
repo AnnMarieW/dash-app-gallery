@@ -127,8 +127,20 @@ def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     Input("add-row-btn", "n_clicks"),
 )
 def update_table_and_figure(user_datatable: None or list, _) -> (list, dict):
-    updated_table_as_df = update_datatable(user_datatable)
+    # if user deleted all rows, return the default table:
+    if not user_datatable:
+        updated_table = df_new_task_line
+
+    # if button clicked, then add a row
+    elif ctx.triggered_id == "add-row-btn":
+        updated_table = pd.concat([pd.DataFrame(user_datatable), df_new_task_line])
+
+    else:
+        updated_table = pd.DataFrame(user_datatable)
+    
+    updated_table_as_df = add_finish_column(updated_table)
     gantt_chart = create_gantt_chart(updated_table_as_df)
+    
     return updated_table_as_df.to_dict("records"), gantt_chart
 
 
