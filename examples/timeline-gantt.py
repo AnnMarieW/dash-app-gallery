@@ -104,20 +104,6 @@ app.layout = dbc.Container(
 )
 
 
-def update_datatable(user_datatable) -> pd.DataFrame:
-    # if user deleted all rows, return the default table:
-    if not user_datatable:
-        updated_table = df_new_task_line
-
-    # add a row
-    elif ctx.triggered_id == "add-row-btn":
-        updated_table = pd.concat([pd.DataFrame(user_datatable), df_new_task_line])
-
-    else:
-        updated_table = pd.DataFrame(user_datatable)
-    return add_finish_column(updated_table)
-
-
 def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
                             color_discrete_map=res,
