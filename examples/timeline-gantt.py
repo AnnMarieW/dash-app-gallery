@@ -30,31 +30,6 @@ DATA_TABLE_STYLE = {
     },
 }
 
-# Creating dict of Keys and Colors for timeline chart
-resource_keys = list(map(chr, range(65, 91)))
-resource_color_values = px.colors.qualitative.Alphabet
-res = dict(zip(resource_keys, resource_color_values))
-
-
-def add_finish_column(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    This function is used for creating 'Finish' column which is a required column for gantt chart.
-    """
-    df["Start"] = pd.to_datetime(df["Start"])
-    df["Duration"] = df["Duration"].astype(int)
-    df["Finish"] = df["Start"] + pd.to_timedelta(df["Duration"], unit="D")
-    df["Start"] = pd.to_datetime(df["Start"]).dt.date
-    df["Finish"] = pd.to_datetime(df["Finish"]).dt.date
-    return df
-
-
-def get_default_table() -> pd.DataFrame:
-    df = pd.read_csv(
-        "https://raw.githubusercontent.com/plotly/datasets/master/GanttChart.csv"
-    )
-    return add_finish_column(df)
-
-
 # Default new row for datatable
 new_task_line = {
     "Task": "",
@@ -64,6 +39,28 @@ new_task_line = {
     "Finish": "2016-01-01",
 }
 df_new_task_line = pd.DataFrame(new_task_line, index=[0])
+
+
+def get_default_table() -> pd.DataFrame:
+    """
+    Pull a csv file from Plotly datasets directory and return it as a default DataFrame for the app.
+    """
+    return pd.read_csv(
+        "https://raw.githubusercontent.com/plotly/datasets/master/GanttChart.csv"
+    )
+
+
+def add_a_the_finish_column(timeline_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    This function is creates 'Finish' column which is a required column for timeline chart.
+    """
+    timeline_df["Start"] = pd.to_datetime(timeline_df["Start"])
+    timeline_df["Duration"] = timeline_df["Duration"].astype(int)
+    timeline_df["Finish"] = timeline_df["Start"] + pd.to_timedelta(timeline_df["Duration"], unit="D")
+    timeline_df["Start"] = pd.to_datetime(timeline_df["Start"]).dt.date
+    timeline_df["Finish"] = pd.to_datetime(timeline_df["Finish"]).dt.date
+    return timeline_df
+
 
 app = Dash(
     __name__,
@@ -86,17 +83,19 @@ app.layout = dbc.Container(
                 "Resource": {
                     "clearable": False,
                     "options": [
-                        {"label": i, "value": i} for i in list(map(chr, range(65, 91)))
+                        {"label": i, "value": i} for i in ["A", "B", "C", "D"]
                     ],
                 },
             },
             # makes space for the dropdown caret
-            css=[{"selector": ".Select-value", "rule": "padding-right: 22px"}],
+            css=[
+                {"selector": ".Select-value", "rule": "padding-right: 22px"},
+                {"selector": ".dropdown", "rule": "position: static"}  # makes dropdown visible
+            ],
             page_size=10,
             row_deletable=True,
             style_data_conditional=DATA_TABLE_STYLE.get("style_data_conditional"),
             style_header=DATA_TABLE_STYLE.get("style_header"),
-            style_table=DATA_TABLE_STYLE.get("style_table"),
         ),
         dcc.Graph(id="gantt-graph"),
     ],
@@ -106,7 +105,6 @@ app.layout = dbc.Container(
 
 def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
-                            color_discrete_map=res,
                             title='Project Plan Gantt Chart')
 
     gantt_fig.update_layout(
@@ -127,6 +125,9 @@ def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     Input("add-row-btn", "n_clicks"),
 )
 def update_table_and_figure(user_datatable: None or list, _) -> (list, dict):
+    """
+    This callback function returns the timeline chart and the updated datatable for the main app layout
+    """
     # if user deleted all rows, return the default table:
     if not user_datatable:
         updated_table = df_new_task_line
@@ -137,10 +138,10 @@ def update_table_and_figure(user_datatable: None or list, _) -> (list, dict):
 
     else:
         updated_table = pd.DataFrame(user_datatable)
-    
-    updated_table_as_df = add_finish_column(updated_table)
+
+    updated_table_as_df = add_a_the_finish_column(updated_table)
     gantt_chart = create_gantt_chart(updated_table_as_df)
-    
+
     return updated_table_as_df.to_dict("records"), gantt_chart
 
 
