@@ -1,10 +1,9 @@
 import dash_bootstrap_components as dbc
 import pandas as pd
-import plotly.figure_factory
 from dash import Dash, html, dcc, Input, Output, dash_table, ctx
 import plotly.express as px
 
-DATA_TABLE_SCHEMA = [
+DATA_TABLE_COLUMNS = [
     {
         "id": "Task",
         "name": "Task",
@@ -28,6 +27,10 @@ DATA_TABLE_STYLE = {
         "backgroundColor": "#799DBF",
         "fontWeight": "bold",
     },
+    "css": [
+        {"selector": ".Select-value", "rule": "padding-right: 22px"},  # makes space for the dropdown caret
+        {"selector": ".dropdown", "rule": "position: static"}  # makes dropdown visible
+    ]
 }
 
 # Default new row for datatable
@@ -41,16 +44,13 @@ new_task_line = {
 df_new_task_line = pd.DataFrame(new_task_line, index=[0])
 
 
-def get_default_table() -> pd.DataFrame:
-    """
-    Pull a csv file from Plotly datasets directory and return it as a default DataFrame for the app.
-    """
+def get_default_table():
     return pd.read_csv(
         "https://raw.githubusercontent.com/plotly/datasets/master/GanttChart.csv"
     )
 
 
-def add_a_the_finish_column(timeline_df: pd.DataFrame) -> pd.DataFrame:
+def add_finish_column(timeline_df: pd.DataFrame):
     """
     This function is creates 'Finish' column which is a required column for timeline chart.
     """
@@ -76,10 +76,10 @@ app.layout = dbc.Container(
         dash_table.DataTable(
             id="user-datatable",
             sort_action="native",
-            columns=DATA_TABLE_SCHEMA,
+            columns=DATA_TABLE_COLUMNS,
             data=get_default_table().to_dict("records"),
             editable=True,
-            dropdown={  # limit num of Resource options for the user to select due to color limitation of 26
+            dropdown={
                 "Resource": {
                     "clearable": False,
                     "options": [
@@ -87,11 +87,7 @@ app.layout = dbc.Container(
                     ],
                 },
             },
-            # makes space for the dropdown caret
-            css=[
-                {"selector": ".Select-value", "rule": "padding-right: 22px"},
-                {"selector": ".dropdown", "rule": "position: static"}  # makes dropdown visible
-            ],
+            css=DATA_TABLE_STYLE.get("css"),
             page_size=10,
             row_deletable=True,
             style_data_conditional=DATA_TABLE_STYLE.get("style_data_conditional"),
@@ -103,7 +99,7 @@ app.layout = dbc.Container(
 )
 
 
-def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
+def create_gantt_chart(updated_table_as_df):
     gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
                             title='Project Plan Gantt Chart')
 
@@ -124,10 +120,7 @@ def create_gantt_chart(updated_table_as_df) -> plotly.graph_objs.Figure:
     Input("user-datatable", "derived_virtual_data"),
     Input("add-row-btn", "n_clicks"),
 )
-def update_table_and_figure(user_datatable: None or list, _) -> (list, dict):
-    """
-    This callback function returns the timeline chart and the updated datatable for the main app layout
-    """
+def update_table_and_figure(user_datatable: None or list, _):
     # if user deleted all rows, return the default table:
     if not user_datatable:
         updated_table = df_new_task_line
@@ -139,7 +132,7 @@ def update_table_and_figure(user_datatable: None or list, _) -> (list, dict):
     else:
         updated_table = pd.DataFrame(user_datatable)
 
-    updated_table_as_df = add_a_the_finish_column(updated_table)
+    updated_table_as_df = add_finish_column(updated_table)
     gantt_chart = create_gantt_chart(updated_table_as_df)
 
     return updated_table_as_df.to_dict("records"), gantt_chart
