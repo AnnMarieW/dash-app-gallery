@@ -40,6 +40,7 @@ figure_type = {
     "Sankey": "go.Sankey",
     "Sub plots": "make_subplots",
     "Sunburst": "px.sunburst",
+    "Timeline": "px.timeline",
     "Line Geo": "px.line_geo",
     "Violin": "px.violin",
 }

@@ -28,9 +28,12 @@ DATA_TABLE_STYLE = {
         "fontWeight": "bold",
     },
     "css": [
-        {"selector": ".Select-value", "rule": "padding-right: 22px"},  # makes space for the dropdown caret
-        {"selector": ".dropdown", "rule": "position: static"}  # makes dropdown visible
-    ]
+        {
+            "selector": ".Select-value",
+            "rule": "padding-right: 22px",
+        },  # makes space for the dropdown caret
+        {"selector": ".dropdown", "rule": "position: static"},  # makes dropdown visible
+    ],
 }
 
 # Default new row for datatable
@@ -56,7 +59,9 @@ def add_finish_column(timeline_df: pd.DataFrame):
     """
     timeline_df["Start"] = pd.to_datetime(timeline_df["Start"])
     timeline_df["Duration"] = timeline_df["Duration"].astype(int)
-    timeline_df["Finish"] = timeline_df["Start"] + pd.to_timedelta(timeline_df["Duration"], unit="D")
+    timeline_df["Finish"] = timeline_df["Start"] + pd.to_timedelta(
+        timeline_df["Duration"], unit="D"
+    )
     timeline_df["Start"] = pd.to_datetime(timeline_df["Start"]).dt.date
     timeline_df["Finish"] = pd.to_datetime(timeline_df["Finish"]).dt.date
     return timeline_df
@@ -72,9 +77,11 @@ app = Dash(
 app.layout = dbc.Container(
     [
         html.H1("Project Time Line", className="bg-primary text-white p-1 text-center"),
-        dbc.Button("Add task", n_clicks=0, id="add-row-btn", size="sm"),
+        dbc.Button(
+            "Add task", n_clicks=0, id="timeline-gantt-x-add-row-btn", size="sm"
+        ),
         dash_table.DataTable(
-            id="user-datatable",
+            id="timeline-gantt-x-user-datatable",
             sort_action="native",
             columns=DATA_TABLE_COLUMNS,
             data=get_default_table().to_dict("records"),
@@ -82,9 +89,7 @@ app.layout = dbc.Container(
             dropdown={
                 "Resource": {
                     "clearable": False,
-                    "options": [
-                        {"label": i, "value": i} for i in ["A", "B", "C", "D"]
-                    ],
+                    "options": [{"label": i, "value": i} for i in ["A", "B", "C", "D"]],
                 },
             },
             css=DATA_TABLE_STYLE.get("css"),
@@ -93,40 +98,52 @@ app.layout = dbc.Container(
             style_data_conditional=DATA_TABLE_STYLE.get("style_data_conditional"),
             style_header=DATA_TABLE_STYLE.get("style_header"),
         ),
-        dcc.Graph(id="gantt-graph"),
+        dcc.Graph(id="timeline-gantt-x-gantt-graph"),
     ],
     fluid=True,
 )
 
 
 def create_gantt_chart(updated_table_as_df):
-    gantt_fig = px.timeline(updated_table_as_df, x_start="Start", x_end="Finish", y="Task", color="Resource",
-                            title='Project Plan Gantt Chart')
+    gantt_fig = px.timeline(
+        updated_table_as_df,
+        x_start="Start",
+        x_end="Finish",
+        y="Task",
+        color="Resource",
+        title="Project Plan Gantt Chart",
+    )
 
     gantt_fig.update_layout(
         title_x=0.5,
         font=dict(size=16),
-        yaxis=dict(title="Task", automargin=True, autorange="reversed", categoryorder="array",
-                   categoryarray=updated_table_as_df["Task"]),  # sorting gantt according to datatable
-        xaxis=dict(title=""))
+        yaxis=dict(
+            title="Task",
+            automargin=True,
+            autorange="reversed",
+            categoryorder="array",
+            categoryarray=updated_table_as_df["Task"],
+        ),  # sorting gantt according to datatable
+        xaxis=dict(title=""),
+    )
     gantt_fig.update_traces(width=0.7)
 
     return gantt_fig
 
 
 @app.callback(
-    Output("user-datatable", "data"),
-    Output("gantt-graph", "figure"),
-    Input("user-datatable", "derived_virtual_data"),
-    Input("add-row-btn", "n_clicks"),
+    Output("timeline-gantt-x-user-datatable", "data"),
+    Output("timeline-gantt-x-gantt-graph", "figure"),
+    Input("timeline-gantt-x-user-datatable", "derived_virtual_data"),
+    Input("timeline-gantt-x-add-row-btn", "n_clicks"),
 )
 def update_table_and_figure(user_datatable: None or list, _):
-    # if user deleted all rows, return the default table:
+    # if user deleted all rows, return the default row:
     if not user_datatable:
         updated_table = df_new_task_line
 
     # if button clicked, then add a row
-    elif ctx.triggered_id == "add-row-btn":
+    elif ctx.triggered_id == "timeline-gantt-x-add-row-btn":
         updated_table = pd.concat([pd.DataFrame(user_datatable), df_new_task_line])
 
     else:
