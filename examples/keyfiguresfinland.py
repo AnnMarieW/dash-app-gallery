@@ -40,29 +40,24 @@ app.layout = dbc.Container([
                 dcc.Dropdown(id = 'key-figures-finland-key-figure-selection-x',
                              options = sorted(list(pd.unique(df.columns))),
                              value = "Degree of urbanisation, %, 2020",
-                             className = 'text-dark bg-light text-nowrap'
+                             className = 'text-nowrap'
                              ),                
-                html.H1(id = 'key-figures-finland-whole-country-header-x', className="mt-5 display-2 text-center"),
+                html.H2(id = 'key-figures-finland-whole-country-header-x', className="mt-5 display-2 text-center"),
                 html.Div(['Data by ',html.A('Statistics Finland', href = 'https://pxdata.stat.fi/PxWeb/pxweb/en/Kuntien_avainluvut/Kuntien_avainluvut__2021/kuntien_avainluvut_2021_viimeisin.px/', target = '_blank')], className="text-center fs-3 text"),
                 
-                ], xs = 12, sm = 12, md = 12, lg = 6, xl = 6, xxl = 6, align = 'center'),
+                ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6, align = 'center'),
                 
             dbc.Col([
-                html.H1(id = 'key-figures-finland-header-x', className="mb-3 mt-3 display-3 text-center"),
                 dcc.Graph(id = 'key-figures-finland-region-map-x', figure = px.choropleth_mapbox(center = {"lat": 64.961093, "lon": 27.590605}))
                 
-                ], xs = 12, sm = 12, md = 12, lg = 6, xl = 6, xxl = 6)
+                ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6)
 
-            ], justify = 'center', className = "m-auto d-flex justify-content-center"),
+            ], justify = 'center'),
   
         dcc.Store(id = 'key-figures-finland-locations-x'),
         dcc.Store(id = 'key-figures-finland-zs-x'),
         dcc.Store(id = 'key-figures-finland-geojson-data', data = regions_json),
-        ], fluid = True, className = "dbc")    
-
-@app.callback(Output('key-figures-finland-header-x','children'),Input('key-figures-finland-key-figure-selection-x', 'value') )
-def update_header(key_figure):
-    return f"{key_figure} by region".capitalize()
+        ], fluid = True)    
 
 @app.callback(Output('key-figures-finland-whole-country-header-x','children'),Input('key-figures-finland-key-figure-selection-x', 'value'))
 def update_whole_country_header(key_figure):
@@ -105,8 +100,8 @@ app.clientside_callback(
     function(geojson, locations, z){           
        
         var layout = {
-            'height':800,
-            'mapbox': {'style':'open-street-map','zoom':4.2,'center':{'lat': 64.961093, 'lon': 27.590605}
+            'height':600,
+            'mapbox': {'style':'open-street-map','zoom':3.8,'center':{'lat': 64.961093, 'lon': 25.795386}
             },
             'margin':{'l':0,'t':0,'b':0,'r':0}
         };
