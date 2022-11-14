@@ -45,12 +45,12 @@ app.layout = dbc.Container([
                 html.H2(id = 'key-figures-finland-x-whole-country-header', className="mt-5 display-2 text-center"),
                 html.Div(['Data by ',html.A('Statistics Finland', href = 'https://pxdata.stat.fi/PxWeb/pxweb/en/Kuntien_avainluvut/Kuntien_avainluvut__2021/kuntien_avainluvut_2021_viimeisin.px/', target = '_blank')], className="text-center fs-3 text"),
                 
-                ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6, align = 'center'),
+                ], md = 6, align = 'center'),
                 
             dbc.Col([
                 dcc.Graph(id = 'key-figures-finland-x-region-map', figure = px.choropleth_mapbox(center = {"lat": 64.961093, "lon": 25.795386}))
                 
-                ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6)
+                ], md = 6)
 
             ], justify = 'center'),
   
@@ -64,23 +64,21 @@ def update_whole_country_header(key_figure):
     
     # Get all the header components for the header.
     dff = whole_country_df.loc[key_figure]
-    stat_name = dff.stat_name
-    stat_unit = dff.unit
-    stat_year = dff.year
-    stat_value = dff.value
- 
-    # Change values with no decimals (.0) to int.
-    stat_value = {True: int(stat_value), False: stat_value}['.0' in str(stat_value)]
+    
+    # Change values with no decimals (.0) to int.    
+    stat_value = {True: int(dff.value), False: dff.value}['.0' in str(dff.value)]
+    
     # Use space as thousand separator.
-    stat_value = "{:,}".format(stat_value).replace(',',' ')
+    stat_value = "{:,}".format(stat_value).replace(',', ' ')
     
     return html.Div(
         [
-            html.Div([stat_name, ", ", stat_year]),
+            html.Div([dff.stat_name, ", ", dff.year]),
             html.Div("in Finland"),
-            html.Span([stat_value, " ", stat_unit]),
-        ]
+            html.Span([stat_value, " ", dff.unit]),
+        ],
     )
+
 
 @app.callback(
 
