@@ -48,7 +48,7 @@ app.layout = dbc.Container([
                 ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6, align = 'center'),
                 
             dbc.Col([
-                dcc.Graph(id = 'key-figures-finland-region-map-x', figure = px.choropleth_mapbox(center = {"lat": 64.961093, "lon": 27.590605}))
+                dcc.Graph(id = 'key-figures-finland-region-map-x', figure = px.choropleth_mapbox(center = {"lat": 64.961093, "lon": 25.795386}))
                 
                 ], xs = 12, sm = 12, md = 6, lg = 6, xl = 6, xxl = 6)
 
