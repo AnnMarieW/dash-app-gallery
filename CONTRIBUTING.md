@@ -121,10 +121,10 @@ Basic Requirements
 - [ ] App is beginner-friendly and demonstrates  basic dash features with ~150 lines of code or less. Typically includes a figure and/or a table and at least one callback.
 - [ ] Code is easy to read, maintain and extend.
 - [ ] App is different from others in the Example Index.
-- [ ] Runs error free as a stand-alone app in a virtual environment made from the current `requirements.txt`. Adding anything to the `requriements.txt` needs prior approval. 
+- [ ] Runs error free as a stand-alone app in a virtual environment made from the current [`requirements.txt`](https://github.com/AnnMarieW/dash-app-gallery/blob/main/requirements.txt). Adding anything to the `requriements.txt` needs prior approval. 
 - [ ] Must include  `__name__`  in app instantiation and may include a Bootstrap external stylesheet.  Anything else needs prior approval.
 - [ ] Does not include the following since it will not work in production: `app.title = "...."`      `server = app.server`
-- [ ] Uses Plotly built-in datasets or data from https://github.com/plotly/datasets.  Unique data sets may be added temporarily to the `assets` folder for use during review.  Before deployment, the data will be moved to the Plotly datasets repo.
+- [ ] Uses [Plotly built-in datasets](https://plotly.com/python-api-reference/generated/plotly.data.html) or data from https://github.com/plotly/datasets.  Unique data sets may be added temporarily to the [`assets`](https://github.com/AnnMarieW/dash-app-gallery/tree/main/assets) folder for use during review.  Before deployment, the data will be moved to the Plotly datasets repo.
 - [ ] Has no errors in the console 
 - [ ] Code is formatted with black==21.6b0  (same version as used with Dash)
 - [ ] Ensure the layout is responsive - ie is functional and looks nice in various browser window sizes
@@ -133,8 +133,8 @@ Basic Requirements
 
 Naming conventions
 - [ ] Uses descriptive variable names
-- [ ] Uses python standard camel_case  variable names  ie `submit_button`
-- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"` 
+- [ ] Uses python standard snake_case  variable names  ie `submit_button`
+- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"`.  Note - In production the ids will have the filename as a prefix (<filename>-x-)
 - [ ] In the `style` prop, uses camel case: ie `style={"textAlign": "center"}`
 - [ ] Uses `df` for main pandas dataframe in the global scope.  Uses `dff` for the filtered `df` in a callback function.
 
