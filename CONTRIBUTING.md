@@ -134,16 +134,15 @@ Basic Requirements
 Naming conventions
 - [ ] Uses descriptive variable names
 - [ ] Uses python standard snake_case  variable names  ie `submit_button`
-- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"`.  Note - In production the ids will have the filename as a prefix (<filename>-x-)
+- [ ] For `id`'s, uses hyphens.  ie `id="submit-button"`.  Note - In production the ids will have the filename as a prefix (`<filename>-x-`)
 - [ ] In the `style` prop, uses camel case: ie `style={"textAlign": "center"}`
 - [ ] Uses `df` for main pandas dataframe in the global scope.  Uses `dff` for the filtered `df` in a callback function.
 
 
 Concise code
 - [ ] Uses concise syntax available in Dash>=2.0
-For example use `dcc.Dropdown(df.columns)` rather than 
-- [ ] Does not put callback `Input()`s `Output()`s or `State()`s in a list
-`dcc.Dropdown(options = [{'label':c, 'value':c} for c in df.columns]`           
+For example use `dcc.Dropdown(df.columns)` rather than `dcc.Dropdown(options = [{'label':c, 'value':c} for c in df.columns]`
+- [ ] Does not put callback `Input()`s `Output()`s or `State()`s in a list           
 - [ ] Does not include props that are set to the defaults for the component.  For example,  it's not necessary to include `multi=False` in the `dcc.Dropdown`.  Check the reference section of the docs to see the defaults for the components.
 - [ ] Does not include unused imports
 - [ ] Uses Minimal comments - only those necessary to describe "why" rather than just describing what the code does.
@@ -151,8 +150,7 @@ For example use `dcc.Dropdown(df.columns)` rather than
 
 
 In apps using `dash-bootstrap-components`:
-- [ ] Uses `className` prop whenever possible instead of the  `style` prop
-For example:  `className="bg-primary"` rather than `style={"backgroundColor": "blue"}`
+- [ ] Uses `className` prop whenever possible instead of the  `style` prop. For example:  `className="bg-primary"` rather than `style={"backgroundColor": "blue"}`
 - [ ] Uses named Bootstrap colors rather than custom colors wherever possible
 - [ ] Avoids using `html.BR()` for spacing and instead uses margin in the `className` prop 
 - [ ] Uses `dbc.Button` instead of `html.Button`. 
