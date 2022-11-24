@@ -8,7 +8,8 @@ import json
 # Data provided by Statistics Finland.
 # Original data source: https://pxdata.stat.fi/PxWeb/pxweb/en/Kuntien_avainluvut/Kuntien_avainluvut__2021/kuntien_avainluvut_2021_viimeisin.px/
 df = (
-    pd.read_csv("assets/key_figures_regions.csv", encoding="latin-1")
+    pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/Dash-Examle-Index/key_figures_regions.csv", encoding="latin-1")
+
     .rename(columns={"Region 2021": "Region"})
     .set_index("Region")
 )
