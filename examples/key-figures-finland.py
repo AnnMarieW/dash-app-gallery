@@ -113,16 +113,14 @@ def update_whole_country_header(key_figure):
     # Change values with no decimals (.0) to int.
     stat_value = {True: int(dff.value), False: dff.value}[".0" in str(dff.value)]
 
-    # Use space as thousand separator.
-    stat_value = "{:,}".format(stat_value).replace(",", " ")
-
     return html.Div(
         [
             html.Div([dff.stat_name, ", ", dff.year]),
             html.Div("in Finland"),
-            html.Span([stat_value, " ", dff.unit]),
+            html.Span([f"{stat_value:,}", " ", dff.unit]),
         ],
     )
+
 
 
 @app.callback(
