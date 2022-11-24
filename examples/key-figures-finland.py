@@ -34,8 +34,9 @@ df.drop("WHOLE COUNTRY", axis=0, inplace=True)
 
 # The json file used for the mapbox viz.
 # https://geo.stat.fi/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=maakunta1000k_2021&outputFormat=json
-with open("assets/regions.json", encoding="utf-8") as f:
-    regions_json = json.loads(f.read())
+r = requests.get(r"https://raw.githubusercontent.com/plotly/datasets/master/Dash-Examle-Index/regions.json")
+r.encoding='utf-8'
+regions_json = r.json()
 
 external_stylesheets = [dbc.themes.SPACELAB]
 
