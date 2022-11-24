@@ -122,7 +122,6 @@ def update_whole_country_header(key_figure):
     )
 
 
-
 @app.callback(
     Output("key-figures-finland-x-locations", "data"),
     Output("key-figures-finland-x-zs", "data"),
