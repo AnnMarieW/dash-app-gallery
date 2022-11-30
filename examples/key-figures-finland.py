@@ -105,8 +105,6 @@ app.layout = dbc.Container(
     Input("key-figures-finland-x-key-figure-selection", "value"),
 )
 def update_whole_country_header(key_figure):
-
-    # Get all the header components for the header.
     dff = whole_country_df.loc[key_figure]
 
     # Change values with no decimals (.0) to int.
@@ -131,7 +129,7 @@ def store_data(key_figure):
     return list(dff.index), list(dff.values)
 
 
-# Update map on clientside.
+# Update map on clientside for better performance
 app.clientside_callback(
     """
     function(geojson, locations, z){           
@@ -163,4 +161,4 @@ app.clientside_callback(
 )
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(debug=True)
