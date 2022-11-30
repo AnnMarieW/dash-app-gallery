@@ -3,7 +3,6 @@ import pandas as pd
 from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
-import json
 import requests
 
 # Data provided by Statistics Finland.
