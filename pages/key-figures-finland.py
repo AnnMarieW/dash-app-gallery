@@ -19,7 +19,7 @@ notes = """
 
 
 ##### Contributed by:
-This example app was contributed by [Tuomas](https://github.com/tuopouk)
+This example app was contributed by [Tuomas](https://github.com/tuopouk).  See the full featured app [here](https://keyfiguresfinland.herokuapp.com/)
 
 """
 

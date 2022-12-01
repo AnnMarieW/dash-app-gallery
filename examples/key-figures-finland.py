@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
-from dash import Dash, dcc, html, Input, Output
+from dash import Dash, dcc, html, Input, Output, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import requests
@@ -59,9 +59,9 @@ app.layout = dbc.Container(
                             value="Degree of urbanisation, %, 2020",
                             className="text-nowrap",
                         ),
-                        html.H2(
+                        html.H3(
                             id="key-figures-finland-x-whole-country-header",
-                            className="mt-5 display-2 text-center",
+                            className="mt-5 display-3 text-center",
                         ),
                         html.Div(
                             [
@@ -130,7 +130,7 @@ def store_data(key_figure):
 
 
 # Update map on clientside for better performance
-app.clientside_callback(
+clientside_callback(
     """
     function(geojson, locations, z){           
        
@@ -161,4 +161,4 @@ app.clientside_callback(
 )
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
