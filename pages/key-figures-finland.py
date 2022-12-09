@@ -13,13 +13,15 @@ notes = """
 
 #### Dash Components in App:
 - [Dropdown](https://dash.plotly.com/dash-core-components/dropdown)
+- [Store](https://dash.plotly.com/dash-core-components/store)
+- [Clientside Callback](https://dash.plotly.com/clientside-callbacks)
 
 #### Plotly Components in App:
 - [Mapbox Choropleth Maps](https://plotly.com/python/mapbox-county-choropleth/)
 
 
 ##### Contributed by:
-This example app was contributed by [Tuomas](https://github.com/tuopouk).  See the full featured app [here](https://keyfiguresfinland.herokuapp.com/)
+This example app was contributed by [Tuomas](https://github.com/tuopouk).  See the fully-featured app [here](https://keyfiguresfinland.herokuapp.com/)
 
 """
 
