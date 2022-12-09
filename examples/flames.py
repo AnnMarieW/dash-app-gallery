@@ -5,10 +5,6 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
-        html.Img(
-            src="assets/flames_header.png",
-            className="img-fluid",
-        ),
         html.H4("Play the FLAME Game", className="text-center"),
         dbc.Row(
             [
@@ -52,6 +48,7 @@ app.layout = dbc.Container(
         ),
         dcc.Markdown(
             """To learn more about the app see the [forum post](https://community.plotly.com/t/flames-dash-application/68604) and [FLAME games](https://www.wikihow.com/Play-%22Flame%22).""",
+            link_target="_blank",
             className="mt-4 text-center",
         ),
     ],
