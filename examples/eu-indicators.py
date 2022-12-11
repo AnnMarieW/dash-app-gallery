@@ -88,47 +88,7 @@ app.clientside_callback(
     Output("eu-indicators-printing-hidden-content-x", "children"),
     Input("eu-indicators-printing-x", "n_clicks"),
 )
-@app.callback(
-    Output("eu-indicators-graph-x", "children"),
-    Input("eu-indicators-selected-indicator-x", "data"),
-    Input("eu-indicators-country-dropdown-x", "value")
-)
-def update_indicator_graph(indicator, country):
-
-    dff = df[(df.Indicator == indicator) & (df.Country == country)].dropna(axis=0)
-  
-    traces = []
-    for gender in dff.Gender.unique():
-
-        dfff = dff[dff.Gender == gender]
-
-
-        if len(dfff) > 1:
-            traces.append(
-                go.Scatter(x=dfff.Year, y=dfff.Val, name=gender, showlegend=True)
-            )
-        else:
-            traces.append(
-                go.Bar(x=dfff.Year,y=dfff.Val,name=gender,showlegend=True)
-            )
-    title_text = {False: f"{dfff.Year.min()} - {dfff.Year.max()}", True: str(dfff.Year.min())}[
-        dfff.Year.min() == dfff.Year.max()
-    ]
-    return dcc.Graph(
-        figure=go.Figure(
-            data=traces,
-            layout=go.Layout(
-                title=dict(
-                    text=f"{indicator} in {country}<br>{title_text} by gender", x=0.5
-                ),
-                xaxis=dict(title="Years"),
-                yaxis=dict(title=indicator, tickformat =' '),
-                legend = dict(title = 'Gender'),
-                height = 600
-            ),
-        )
-    )
-
+# Update countries dropdown based on indicator selected
 @app.callback(
     Output("eu-indicators-country-dropdown-x", "options"),
     Output("eu-indicators-country-dropdown-x", "value"),
@@ -137,11 +97,39 @@ def update_indicator_graph(indicator, country):
     Input("eu-indicators-indicator-dropdown-x", "value"),
 )
 def update_country_dropdown(indicator):
-
     dff = df[df.Indicator == indicator].dropna(axis=0)
 
     country_list = sorted(list(dff.Country.unique()))
     return country_list, country_list[0], indicator, f"#### Available countries: {len(country_list)} / {len(countries)}",
+
+
+# Create the Graph
+@app.callback(
+    Output("eu-indicators-graph-x", "children"),
+    Input("eu-indicators-selected-indicator-x", "data"),
+    Input("eu-indicators-country-dropdown-x", "value")
+)
+def update_indicator_graph(indicator, country):
+    dff = df[(df.Indicator == indicator) & (df.Country == country)].dropna(axis=0)
+
+    title_text = {False: f"{dff.Year.min()} - {dff.Year.max()}", True: str(dff.Year.min())}[
+        dff.Year.min() == dff.Year.max()
+    ]
+
+    # if data has only one year create a bar chart, otherwise a scatter plot
+    if dff['Year'].nunique() == 1:
+        fig = px.bar(dff, x='Year', y='Val', color='Gender', barmode='group', height=600)
+        fig.update_layout(title=dict(text=f"{indicator} in {country}<br>{title_text} by gender", x=0.5),
+                          yaxis=dict(title=indicator, tickformat =' '),
+                          xaxis=dict(title="Years"))
+    else:
+        fig = px.line(dff, x='Year', y='Val', color='Gender', height=600)
+        fig.update_layout(title=dict(text=f"{indicator} in {country}<br>{title_text} by gender", x=0.5),
+                          yaxis=dict(title=indicator, tickformat =' '),
+                          xaxis=dict(title="Years"))
+
+    return dcc.Graph(figure=fig)
+
     
 if __name__ == "__main__":
     app.run_server(debug=True)
