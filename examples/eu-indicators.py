@@ -117,7 +117,7 @@ def update_indicator_graph(indicator, country):
                           yaxis=dict(title=indicator, tickformat =' '),
                           xaxis=dict(title="Years"))
                           
-return dcc.Graph(figure=fig)
+    return dcc.Graph(figure=fig)
 
 @app.callback(
     Output("eu-indicators-country-dropdown-x", "options"),
