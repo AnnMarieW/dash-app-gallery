@@ -15,6 +15,7 @@ file_url = 'https://sotkanet.fi/sotkanet/en/csv?indicator=LclBCoAwEAPAF6WwWymFnM
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
  'Content-Type': 'text/html; charset=utf-8'}
 
+#Convert the data to a pandas dataframe
 bytes_data = requests.get(file_url,headers=headers).content
 s = str(bytes_data,'utf-8')
 data = StringIO(s) 
