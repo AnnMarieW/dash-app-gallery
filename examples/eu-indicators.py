@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
-import plotly.graph_objs as go
+import plotly.express as px
 from io import StringIO
 
 # This a link to the web interface where the data can be downloaded.
