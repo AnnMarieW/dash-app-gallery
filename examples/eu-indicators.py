@@ -1,6 +1,6 @@
 import pandas as pd
 import requests
-from dash import Dash, dcc, html, Input, Output
+from dash import Dash, dcc, html, Input, Output, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 from io import StringIO
