@@ -73,7 +73,8 @@ app.layout = dbc.Container(
         html.Div(id="eu-indicators-x-printing-hidden-content"),
     ]
 )
-dash.clientside_callback(
+@dash.clientside_callback(
+
     """
     function(clicks) {
         if (clicks > 0) {
