@@ -86,7 +86,7 @@ dash.clientside_callback(
     Input("eu-indicators-x-printing", "n_clicks"),
 )
 
-@app.callback(
+@dash.callback(
     Output("eu-indicators-x-graph", "children"),
     Input("eu-indicators-x-indicator-dropdown", "value"),
     Input("eu-indicators-x-country-dropdown", "value"),
