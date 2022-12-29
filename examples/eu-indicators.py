@@ -118,7 +118,7 @@ def update_indicator_graph(indicator, country):
     )
     return dcc.Graph(figure=fig)
 
-@app.callback(
+@dash.callback(
     Output("eu-indicators-x-country-dropdown", "options"),
     Output("eu-indicators-x-country-dropdown", "value"),
     Output("eu-indicators-x-available-countries", "children"),
