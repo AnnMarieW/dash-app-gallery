@@ -3,7 +3,6 @@ import requests
 from dash import Dash, dcc, html, Input, Output, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
-from io import StringIO
 
 # This a link to the web interface where the data can be downloaded.
 web_url = "https://sotkanet.fi/sotkanet/en/taulukko/?indicator=LclBCoAwEAPAF6WwWymFnMVnBBXrST0oCL7eFbyESUI_D00XsRCbyj0QVmX0hEJU5mTKhMdklVjjVrPIrJ0Yv-odkeVBoqmffxFP4AU=&region=s05zsy7TM4w3sjYCkvnWqXqGAA==&year=sy5ztk7V0zUEAA==&gender=m;f;t&abs=f&color=f&buildVersion=3.1.1&buildTimestamp=202211091024"
