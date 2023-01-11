@@ -1,6 +1,23 @@
 # How to contribute your app to this project
+ 
+The Example Index is designed for people new to Dash and/or new to coding.  If you have a beginner-friendly, complete
+minimal example of core dash features such as  figures, components, callbacks and layout design we'd love to see it!
+
+If you have never contributed to an opens source project, this is a great place to start. Here's how:
+ 1) Open an issue and include your code and an image of the app, and we'll take it from there. (The easiest way)   
+
+Or:  
+ 2) Fork the repo and create a pull request. 
+ 
+If you are new to creating pull requests, here's a video by Adam on how to [fork a repo and creating a Pull Request](https://youtu.be/Xth83OD3NNc)
+
+Below is a long list of requirements and a detailed code review checklist.  This is necessary for the apps to work when
+added to the gallery and to make sure there is a consistent coding style for the entire project. Please review the list
+and complete as many as possible, but don't worry about completing everything.  We'll either do the rest together during
+the pull request, or we can just make the necessary changes for you.
+
 Thank you for contributing an app to the community supported `Dash Example Index` project!
-Plese keep in mind that this gallery is designed for people new to Dash and/or new to coding, so let's try to keep the code simple.
+
 
 ## Requirements for new apps
 
