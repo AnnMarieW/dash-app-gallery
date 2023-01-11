@@ -4,10 +4,10 @@ The Example Index is designed for people new to Dash and/or new to coding.  If y
 minimal example of core dash features such as  figures, components, callbacks and layout design we'd love to see it!
 
 If you have never contributed to an opens source project, this is a great place to start. Here's how:
- 1) Open an issue and include your code and an image of the app, and we'll take it from there. (The easiest way)   
+1. Open an issue and include your code and an image of the app, and we'll take it from there. (The easiest way)   
 
 Or:  
- 2) Fork the repo and create a pull request. 
+2. Fork the repo and create a pull request. 
  
 If you are new to creating pull requests, here's a video by Adam on how to [fork a repo and creating a Pull Request](https://youtu.be/Xth83OD3NNc)
 
