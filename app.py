@@ -13,8 +13,13 @@ dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/s
 app = Dash(
     __name__,
     use_pages=True,
-    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP],
+    external_stylesheets=[dbc.themes.BOOTSTRAP,
+                          dark_hljs, dbc.icons.BOOTSTRAP],
     suppress_callback_exceptions=True,
+    external_scripts=[{
+        "src": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js",
+        "crossorigin": "anonymous"
+    }]
 )
 server = app.server
 server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
@@ -37,28 +42,59 @@ fullscreen_modal = dbc.Modal(
     fullscreen=True,
 )
 
-navbar = dbc.NavbarSimple(
-    [
-        dbc.Button("Overview", id="overview", href=dash.get_relative_path("/"), color="secondary", size="sm", className="m-1",),
+btn_group = html.Div([
+        dbc.Button(
+            "Home",
+            id="overview",
+            href=dash.get_relative_path("/"),
+            color='primary',
+            outline=True,
+            className='mt-2 mt-md-0 me-md-2'
+        ),
         dbc.Button(
             "Dash Docs",
             id="dash-docs",
             href="https://dash.plotly.com/",
             target="_blank",
-            color="secondary",
-            size="sm",
-            className="m-1 ",
+            color='primary',
+            outline=True,
+            className='text-nowrap mt-2 mt-md-0'
         ),
-        dbc.Button("Fullscreen App", id="open-fs-app", color="secondary", size="sm"),
-        dbc.Button("Fullscreen Code", id="open-fs-code", color="secondary", size="sm"),
-    ],
-    brand="Dash Example Index",
-    brand_href=dash.get_relative_path("/"),
-    color="primary",
-    dark=True,
-    fixed="top",
-    className="mb-2 fs-3 ",
-)
+        dbc.Button(
+            "Fullscreen App", 
+            id="open-fs-app",
+            color='primary',
+            outline=True,
+        ),
+        dbc.Button(
+            "Fullscreen Code", 
+            id="open-fs-code",
+            color='primary',
+            outline=True,
+        ),
+], className='navbar-nav')
+
+
+navbar = dbc.Navbar([
+    dbc.Container([
+        html.A([
+            html.I(className='fab fa-bootstrap fa-2x align-middle me-2'),
+            html.Span('Dash Example Index',
+                        className='d-none d-lg-inline-block navbar-nav align-middle'
+                        ),
+            html.Span('DEI', className='d-lg-none align-middle')
+        ], href='/', className='navbar-brand'),
+        
+        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+        dbc.Collapse([
+            html.Div(className='me-auto'), btn_group],
+            id="navbar-collapse",
+            is_open=False,
+            navbar=True
+        )
+    ], fluid=True)
+])
+
 
 footer = html.H4(
     [
@@ -77,7 +113,7 @@ app.layout = html.Div(
     [
         navbar,
         fullscreen_modal,
-        dbc.Container(dash.page_container, fluid=True, style={"marginTop": "4rem"}),
+        dbc.Container(dash.page_container, fluid=True),
         footer,
         dcc.Location(id="url", refresh=True),
     ]
@@ -94,8 +130,19 @@ def fullscreen(path):
 
     if path == dash.get_relative_path("/"):
         return "d-none", "d-none"
-    return "m-1", "m-1"
+    return "text-nowrap ms-md-2 mt-2 mt-md-0 me-md-2", "text-nowrap mt-2 mt-md-0 me-md-2"
 
+
+# add callback for toggling the collapse on small screens
+@app.callback(
+    Output("navbar-collapse", "is_open"),
+    [Input("navbar-toggler", "n_clicks")],
+    [State("navbar-collapse", "is_open")],
+)
+def toggle_navbar_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 @app.callback(
     Output("modal-fs", "is_open"),
@@ -131,4 +178,4 @@ def refresh_page(is_open, pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True, port='8050')
