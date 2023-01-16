@@ -15,13 +15,9 @@ logo_dark = "https://user-images.githubusercontent.com/72614349/182967824-c73218
 app = Dash(
     __name__,
     use_pages=True,
-    external_stylesheets=[dbc.themes.BOOTSTRAP,
+    external_stylesheets=[dbc.themes.SPACELAB,
                           dark_hljs, dbc.icons.BOOTSTRAP],
-    suppress_callback_exceptions=True,
-    external_scripts=[{
-        "src": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js",
-        "crossorigin": "anonymous"
-    }]
+    suppress_callback_exceptions=True
 )
 server = app.server
 server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
@@ -81,12 +77,11 @@ navbar = dbc.Navbar([
     dbc.Container([
         html.A([
             html.Img(src=logo, height=40, width=40, className='align-middle me-2'),
-            # html.I(className='fab fa-bootstrap fa-2x align-middle me-2'),
             html.Span('Dash Example Index',
-                        className='d-none d-lg-inline-block navbar-nav align-middle'
+                        className='d-none d-lg-inline-block align-middle'
                         ),
             html.Span('Example Index', className='d-lg-none align-middle')
-        ], href='/', className='navbar-brand'),
+        ], href='/', className='navbar-brand fw-bold'),
         
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
         dbc.Collapse([
