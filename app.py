@@ -9,6 +9,8 @@ from lib.code_and_show import make_code_div
 light_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-light.min.css"
 dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/stackoverflow-dark.min.css"
 
+logo = "https://user-images.githubusercontent.com/72614349/182969599-5ae4f531-ea01-4504-ac88-ee1c962c366d.png"
+logo_dark = "https://user-images.githubusercontent.com/72614349/182967824-c73218d8-acbf-4aab-b1ad-7eb35669b781.png"
 
 app = Dash(
     __name__,
@@ -78,11 +80,12 @@ btn_group = html.Div([
 navbar = dbc.Navbar([
     dbc.Container([
         html.A([
-            html.I(className='fab fa-bootstrap fa-2x align-middle me-2'),
+            html.Img(src=logo, height=40, width=40, className='align-middle me-2'),
+            # html.I(className='fab fa-bootstrap fa-2x align-middle me-2'),
             html.Span('Dash Example Index',
                         className='d-none d-lg-inline-block navbar-nav align-middle'
                         ),
-            html.Span('DEI', className='d-lg-none align-middle')
+            html.Span('Example Index', className='d-lg-none align-middle')
         ], href='/', className='navbar-brand'),
         
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
