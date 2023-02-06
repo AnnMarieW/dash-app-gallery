@@ -17,17 +17,20 @@ def make_search_code_div(code_filter):
             id="home-search-x-case-sensitive",
             label="Aa",
             value=False,
+            style={'paddingTop': 'inherit'}
         ),
     )
 
     return html.Div(
         [
-            dbc.Label("Search code", className="fw-bolder"),
             dbc.InputGroup(
                 [
+                    dbc.InputGroupText(
+                        html.I(className="bi bi-search"),
+                    ),
                     dbc.Input(id="home-search-x-code-search-input", value=code_filter),
                     dbc.InputGroupText(
-                        case_sensitive, id="home-search-x-case-label", className="px-1"
+                        case_sensitive, id="home-search-x-case-label"
                     ),
                 ]
             ),
@@ -38,13 +41,6 @@ def make_search_code_div(code_filter):
         ],
         className="mb-2",
     )
-
-
-textbox_card = dbc.Card(
-    ["Welcome to the Dash Examples Index!"],
-    style={"height": 225},
-    className="shadow-sm p-4 mt-4 mx-2",
-)
 
 
 def layout(code=None, **other):
@@ -58,14 +54,14 @@ def layout(code=None, **other):
             dbc.Row(
                 [
                     dbc.Col(
-                        [make_search_code_div(code), feature_app_div], md=6, className="p-4"
+                        [make_search_code_div(code), feature_app_div], md=6, className="py-4"
                     ),
                     dbc.Col(lib.overview_textbox.card, md=6, className="py-4"),
-                ]
+                ], className='align-items-center'
             ),
             dbc.Row(dbc.Col(html.Div(id="home-search-x-grid"))),
         ],
-        className="p-4 mx-2",
+        className="p-2",
     )
 
 
