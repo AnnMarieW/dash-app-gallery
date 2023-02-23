@@ -7,7 +7,7 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.H4("Life expentancy progression of countries per continents"),
+        html.H4("Life expectancy progression of countries per continents"),
         dcc.Graph(id="line-charts-x-graph"),
         dcc.Checklist(
             id="line-charts-x-checklist",
