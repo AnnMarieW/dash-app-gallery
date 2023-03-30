@@ -17,9 +17,9 @@ picker_style = {"display": "inline-block", "margin": 10}
 app.layout = html.Div(
     [
         html.H2("Interactive Bar Colour Control"),
-        dcc.Loading(dcc.Graph(id="graph"), type="circle"),
+        dcc.Loading(dcc.Graph(id="colourpicker-histogram-x-graph"), type="circle"),
         daq.ColorPicker(
-            id="color",
+            id="colourpicker-histogram-x-color",
             label="Color of Bars",
             size=164,
             value=dict(hex="#564AE6")
@@ -29,7 +29,7 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output("graph", "figure"), Input("color", "value"),
+    Output("colourpicker-histogram-x-graph", "figure"), Input("colourpicker-histogram-x-color", "value"),
 )
 
 
