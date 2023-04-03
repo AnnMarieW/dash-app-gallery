@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app uses Clipboard component to be able to copy the mtcars dataset as a csv. It includes an interactive scatter plot that uses RadioItems to be able to select the x variable. This app has a top-bottom layout and a regular-callback."
+    description="This app uses Clipboard component to be able to copy the mtcars dataset as a csv. It includes an interactive scatter plot that uses RadioItems to be able to select the x variable. This app has a top-bottom layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
