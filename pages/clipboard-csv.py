@@ -15,7 +15,6 @@ notes = """
 #### Dash Components in App:
 - [Clipboard](https://dash.plotly.com/dash-core-components/clipboard)
 - [DataTable](https://dash.plotly.com/datatable)
-- [Loading](https://dash.plotly.com/dash-core-components/loading)
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  
