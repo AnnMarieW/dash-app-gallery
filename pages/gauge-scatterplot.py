@@ -26,8 +26,6 @@ Dash Bootstrap Components
 - [Themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/)
 - [Container](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
-https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
-
 ##### Contributed by:
 This example app was contributed by [Jenna Le Noble](https://github.com/jennalenoble)
 
