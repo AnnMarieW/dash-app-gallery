@@ -11,10 +11,7 @@ app.layout = html.Div(
         html.H2("Graphing Light/Dark Mode with BooleanSwitch"),
         html.P("light | dark", style={"textAlign": "center"}),
         daq.BooleanSwitch(id="booleanswitch-graph-theme-x-dark_mode", on=False),
-        html.Div(
-            [dcc.Graph(id="booleanswitch-graph-theme-x-plot")],
-            id="booleanswitch-graph-theme-x-pb-result",
-        ),
+        html.Div(id="booleanswitch-graph-theme-x-pb-result")
     ]
 )
 
@@ -36,7 +33,7 @@ def update_output(on):
             template="plotly_dark",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
     else:
         fig = px.bar(
             df,
@@ -49,7 +46,7 @@ def update_output(on):
             template="plotly_white",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
 
 
 if __name__ == "__main__":
