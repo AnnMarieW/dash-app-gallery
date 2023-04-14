@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app uses Knob component to filter values in a bar chart. It has a left-right layout with Dash Bootstrap Container component and has a regular-callback.",
+    description="This app uses Knob component to filter values in a bar chart. It has a side-by-side layout and a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]

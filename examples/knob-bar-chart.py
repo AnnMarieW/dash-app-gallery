@@ -30,7 +30,7 @@ app.layout = dbc.Container(
         html.H2("Filtering a Bar Chart with Knob"),
         dbc.Row(
             [
-                dbc.Col([knob]),
+                dbc.Col(knob, md=3),
                 dbc.Col(dcc.Graph(id="knob-bar-chart-x-graph"), md=9),
             ],
             align="center",
@@ -44,7 +44,7 @@ app.layout = dbc.Container(
     Input("knob-bar-chart-x-knob", "value"),
 )
 def update_output(value):
-    return f"Filter the graph for velocity ≤ {value}."
+    return f"Filter the graph for velocity ≤ {value}"
 
 
 @app.callback(
