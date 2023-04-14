@@ -16,7 +16,7 @@ notes = """
 - [Boolean Switch](https://dash.plotly.com/dash-daq/booleanswitch)
 
 #### Plotly documentation:  
-- [Line Chart](https://plotly.com/python/line-charts/
+- [Line Chart](https://plotly.com/python/line-charts/)
 
 
 ##### Contributed by:

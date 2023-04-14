@@ -12,10 +12,7 @@ app.layout = html.Div(
         html.H2("Turning a Graph On and Off with BooleanSwitch"),
         html.P("graph off | graph on:", style={"textAlign": "center"}),
         daq.BooleanSwitch(id="booleanswitch-graph-on-off-x-pb", on=True),
-        html.Div(
-            [dcc.Graph(id="booleanswitch-graph-on-off-x-plot")],
-            id="booleanswitch-graph-on-off-x-pb-result",
-        ),
+        html.Div(id="booleanswitch-graph-on-off-x-pb-result")
     ]
 )
 
@@ -35,11 +32,10 @@ def update_output(on):
             title="Life Expectancy for Countries with High Population",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        dcc.Graph(figure=fig)
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
     else:
         fig = px.scatter()
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
 
 
 if __name__ == "__main__":
