@@ -12,10 +12,10 @@ gauge = html.Div(
     [
         daq.Gauge(
             label="Party Size",
-            scale={"start": 0, "interval": 1, "labelInterval": 2},
+            scale={"start": 0, "interval": 1, "labelInterval": 1},
             id="gauge-pie-chart-x-gauge",
             min=0,
-            max=10,
+            max=6,
             value=1,
         ),
         dcc.Slider(id="gauge-pie-chart-x-slider", min=1, max=6, step=1, value=1),
@@ -28,7 +28,7 @@ app.layout = dbc.Container(
         html.H2("Filtering Pie Chart Values with Gauge"),
         dbc.Row(
             [
-                dbc.Col([gauge], md=6),
+                dbc.Col(gauge, md=6),
                 dbc.Col(dcc.Graph(id="gauge-pie-chart-x-graph"), md=6),
             ],
             align="center",

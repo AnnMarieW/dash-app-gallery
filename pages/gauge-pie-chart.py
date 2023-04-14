@@ -5,7 +5,7 @@ from lib.code_and_show import example_app
 
 dash.register_page(
     __name__,
-    description="This app uses Gauge and Slider components to filter values for a pie chart. It has a left-right layout with Dash Bootstrap Container component and has a regular-callback.",
+    description="This app uses Gauge and Slider components to filter values for a pie chart. It has a side-by-side layout with a regular-callback.",
 )
 
 filename = __name__.split("pages.")[1]
@@ -24,7 +24,7 @@ notes = """
 
 Dash Bootstrap Components
 - [Themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/)
-- [Container](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
+- [Layout](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
 ##### Contributed by:
 This example app was contributed by [Jenna Le Noble](https://github.com/jennalenoble)
