@@ -11,10 +11,7 @@ app.layout = html.Div(
         html.H2("Colour by Type BooleanSwitch Example App"),
         html.P("colour off | colour on", style={"textAlign": "center"}),
         daq.BooleanSwitch(id="booleanswitch-color-by-type-x-pb", on=False),
-        html.Div(
-            [dcc.Graph(id="booleanswitch-color-by-type-x-plot")],
-            id="booleanswitch-color-by-type-x-pb-result",
-        ),
+        html.Div(id="booleanswitch-color-by-type-x-pb-result")
     ]
 )
 
@@ -31,21 +28,18 @@ def update_output(on):
             y="sepal_width",
             height=500,
             color="species",
-            title="Iris Sepal Width and Length",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        dcc.Graph(figure=fig)
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
     else:
         fig = px.scatter(
             df,
             x="sepal_length",
             y="sepal_width",
             height=500,
-            title="Iris Sepal Width and Length",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        return [dcc.Graph(figure=fig)]
+        return dcc.Graph(figure=fig)
 
 
 if __name__ == "__main__":
