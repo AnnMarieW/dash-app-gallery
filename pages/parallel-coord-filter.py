@@ -26,7 +26,7 @@ Dash Bootstrap Components
 - [Container](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
 #### Contributed by:
-This example app was contributed by [Jenna Le Noble](https://github.com/jennalenoble)
+This example app was contributed by [Bryan](https://community.plotly.com/u/jinnyzor/summary)
 
 """
 
