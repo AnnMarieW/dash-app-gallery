@@ -30,7 +30,7 @@ def snapshot(driver):
 
 
 if __name__ == "__main__":
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.set_window_size(850, 850)
     try:
         snapshot(driver)
