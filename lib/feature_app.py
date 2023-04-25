@@ -59,6 +59,7 @@ callback_type = {
 components = {
     # key  : value
     # name of link  : search term used to filter the code files
+    "Boolean Switch": "daq.BooleanSwitch",
     "Date Picker": "DatePicker",
     "Cards": "Card",
     "Dash DataTable": "DataTable",
