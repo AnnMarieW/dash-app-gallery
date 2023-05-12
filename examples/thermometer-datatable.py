@@ -41,7 +41,7 @@ app.layout = dbc.Container(
                     dash_table.DataTable(
                         id="thermometer-datatable-x-table",
                         columns=[{"id": i, "name": i} for i in df.columns],
-                        page_size=10,
+                        page_size=5,
                     ),
                     md=9,
                 ),
