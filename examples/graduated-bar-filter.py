@@ -11,19 +11,14 @@ df = df.query("Year == 2011")
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-bar = html.Div(
+bar_slider = html.Div(
     [
         daq.GraduatedBar(
             id="graduated-bar-filter-x-bar",
             label="Filter minimum emission levels:",
             value=5,
         ),
-        html.Div(
-            [
-                html.Br(),
-                html.Br(),
-            ]
-        ),
+        html.Div(className='mb-5'),
         daq.Slider(
             id="graduated-bar-filter-x-slider",
             min=0,
@@ -39,7 +34,7 @@ app.layout = dbc.Container(
         html.H2("Filtering a Bar Chart with Graduated Bar & Slider"),
         dbc.Row(
             [
-                dbc.Col(bar, md=3),
+                dbc.Col(bar_slider, md=3),
                 dbc.Col(dcc.Graph(id="graduated-bar-filter-x-graph"), md=9),
             ],
             align="center",

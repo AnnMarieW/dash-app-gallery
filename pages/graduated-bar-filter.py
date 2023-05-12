@@ -22,7 +22,6 @@ notes = """
 #### Community Components:
 
 Dash Bootstrap Components
-- [Themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/)
 - [Layout](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/)
 
 ##### Contributed by:
