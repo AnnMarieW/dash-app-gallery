@@ -1,8 +1,9 @@
-from dash import Dash, html, dcc, Input, Output, dash_table
+from dash import Dash, html, dcc, Input, Output
 import dash_daq as daq
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
+import dash_ag_grid as dag
 
 df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv"
@@ -38,10 +39,11 @@ app.layout = dbc.Container(
                     ),
                 ),
                 dbc.Col(
-                    dash_table.DataTable(
+                    dag.AgGrid(
                         id="thermometer-datatable-x-table",
-                        columns=[{"id": i, "name": i} for i in df.columns],
-                        page_size=5,
+                        columns=[{"field": i} for i in df.columns],
+                        columnSize="responsiveSizeToFit",
+                        style={"height":300}
                     ),
                     md=9,
                 ),

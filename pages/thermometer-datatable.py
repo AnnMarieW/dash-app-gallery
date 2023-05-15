@@ -14,7 +14,6 @@ filename = __name__.split("pages.")[1]
 notes = """
 
 #### Dash Components in the App:
-- [DataTable](https://dash.plotly.com/datatable)
 - [Thermometer](https://dash.plotly.com/dash-daq/thermometer)
 - [Slider](https://dash.plotly.com/dash-daq/slider)
 
