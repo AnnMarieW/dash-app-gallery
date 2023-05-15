@@ -74,7 +74,7 @@ def update_thermometer(value):
 
 
 @app.callback(
-    Output("thermometer-datatable-x-table", "data"),
+    Output("thermometer-datatable-x-table", "rowData"),
     Input("thermometer-datatable-x-slider", "value"),
 )
 def update_table(value):
