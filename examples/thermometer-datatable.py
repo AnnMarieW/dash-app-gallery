@@ -41,7 +41,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dag.AgGrid(
                         id="thermometer-datatable-x-table",
-                        columns=[{"field": i} for i in df.columns],
+                        columnDefs=[{"field": i} for i in df.columns],
                         columnSize="responsiveSizeToFit",
                         style={"height":300}
                     ),
