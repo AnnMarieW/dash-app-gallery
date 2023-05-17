@@ -34,8 +34,8 @@ app.layout = dbc.Container(
         html.H2("Filtering a Bar Chart with Graduated Bar & Slider"),
         dbc.Row(
             [
-                dbc.Col(bar_slider, md=3),
-                dbc.Col(dcc.Graph(id="graduated-bar-filter-x-graph"), md=9),
+                dbc.Col(bar_slider, md=4),
+                dbc.Col(dcc.Graph(id="graduated-bar-filter-x-graph"), md=8),
             ],
             align="center",
         ),
