@@ -1,4 +1,5 @@
-from dash import Dash, dcc, Input, Output, dash_table, Patch, html
+from dash import Dash, dcc, Input, Output, Patch, html
+import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
@@ -18,9 +19,11 @@ app.layout = dbc.Container(
     [
         html.H4("Filtering a Datatable with Parallel Coordinates"),
         dcc.Graph(id="parallel-coord-filter-x-my-graph", figure=fig),
-        dash_table.DataTable(
+        dag.AgGrid(
             id="parallel-coord-filter-x-table",
-            columns=[{"id": i, "name": i} for i in df.columns],
+            columnDefs=[{"field": i} for i in df.columns],
+            columnSize="sizeToFit",
+            defaultColDef={"minWidth":120}
         ),
         dcc.Store(id="parallel-coord-filter-x-activefilters", data={}),
     ]
@@ -28,7 +31,7 @@ app.layout = dbc.Container(
 
 
 @app.callback(
-    Output("parallel-coord-filter-x-table", "data"),
+    Output("parallel-coord-filter-x-table", "rowData"),
     Input("parallel-coord-filter-x-activefilters", "data"),
 )
 def udpate_table(data):

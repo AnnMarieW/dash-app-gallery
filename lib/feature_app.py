@@ -83,7 +83,8 @@ components = {
     "RadioItems": "RadioItems",
     "Offcanvas": "dbc.Offcanvas",
     "Modal": "dbc.Modal",
-    "Store": "dcc.Store"
+    "Store": "dcc.Store",
+    "AgGrid": "AgGrid"
 }
 components = {key: components[key] for key in sorted(components)}
 

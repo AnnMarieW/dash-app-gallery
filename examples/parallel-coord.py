@@ -1,4 +1,5 @@
-from dash import Dash, html, dcc, dash_table, Output, Input, State
+from dash import Dash, html, dcc, Output, Input
+import dash_ag_grid as dag
 from dash.exceptions import PreventUpdate
 import plotly.express as px
 
@@ -20,58 +21,43 @@ fig = px.parallel_coordinates(
 )
 
 my_graph = dcc.Graph(id="parallel-coord-x-graph", figure=fig)
-my_table = dash_table.DataTable(
-    data=df.to_dict("records"),
-    row_selectable="single",
-    page_size=5,
+
+my_grid = dag.AgGrid(
     id="parallel-coord-x-table",
+    columnDefs=[{"field": i} for i in df.columns],
+    rowData=df.to_dict("records"),
+    columnSize="sizeToFit",
+    defaultColDef={"minWidth": 120, "sortable":True},
+    dashGridOptions={"rowSelection": "single"},
 )
 
-app.layout = html.Div([my_graph, my_table])
+app.layout = html.Div([my_graph, my_grid])
 
 
 @app.callback(
     Output("parallel-coord-x-graph", "figure"),
-    Input("parallel-coord-x-table", "selected_rows"),
-    State("parallel-coord-x-graph", "figure"),
+    Input("parallel-coord-x-table", "selectedRows"),
 )
-def pick(r, f):
-    if r is None:
+def pick(row):
+    if row is None:
         raise PreventUpdate
 
-    row = (
-        df[["sepal_length", "sepal_width", "petal_length", "petal_width", "species_id"]]
-        .loc[r[0]]
-        .to_list()
-    )
-
-    fig = px.parallel_coordinates(
-        df,
-        color="species_id",
-        labels={
-            "species_id": "Species",
-            "sepal_width": "Sepal Width",
-            "sepal_length": "Sepal Length",
-            "petal_width": "Petal Width",
-            "petal_length": "Petal Length",
-        },
-        color_continuous_scale=px.colors.diverging.Tealrose,
-        color_continuous_midpoint=2,
-    )
+    row = row[0]
+    dimensions = [
+        "sepal_length",
+        "sepal_width",
+        "petal_length",
+        "petal_width",
+        "species_id",
+    ]
 
     # Use `constraintrange` to filter a certain trace. Read more in docs:
     # https://plotly.com/python/reference/parcoords/#parcoords-dimensions
 
     fig.update_traces(
-        dimensions=list(
-            [
-                dict(constraintrange=[row[0] - row[0] / 100000, row[0]]),
-                dict(constraintrange=[row[1] - row[1] / 100000, row[1]]),
-                dict(constraintrange=[row[2] - row[2] / 100000, row[2]]),
-                dict(constraintrange=[row[3] - row[3] / 100000, row[3]]),
-                dict(constraintrange=[row[4] - row[4] / 100000, row[4]]),
-            ]
-        )
+        dimensions=[
+            dict(constraintrange=[row[d] - row[d] / 100000, row[d]]) for d in dimensions
+        ]
     )
 
     return fig

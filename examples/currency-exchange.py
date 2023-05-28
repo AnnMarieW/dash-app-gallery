@@ -1,7 +1,11 @@
+"""
+Example of currency formatting using Intl.NumberFormat
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 
+"""
+
+import dash_ag_grid as dag
 from dash import Dash, html, dcc, Input, Output
-from dash.dash_table import FormatTemplate, DataTable
-from dash.dash_table.Format import Group, Scheme, Symbol, Format
 import pandas as pd
 
 app = Dash(__name__)
@@ -17,74 +21,36 @@ df = pd.DataFrame(
 )
 df = df.set_index("Exchange")
 
+
+columnDefs = [
+    {"headerName": "Currency Exchange Table", "field": "Exchange"},
+    {"headerName": "Canadian Dollar", "field": "CAD", "valueFormatter": {"function": "CAD(params.value)"}},
+    {"headerName": "Euro", "field": "EUR", "valueFormatter": {"function": "EUR(params.value)"}},
+    {"headerName": "Japanese Yen", "field": "JPY", "valueFormatter": {"function": "JPY(params.value)"}},
+    {"headerName": "US Dollar", "field": "USD", "valueFormatter": {"function": "USD(params.value)"}}
+]
+
+
 app.layout = html.Div(
     [
         html.H4("Currency Exchange Table", style={"textAlign": "center", "margin": 30}),
-        html.Div(
-            [
-                "Enter Amount to Exchange",
-                dcc.Input(id="currency-exchange-x-input", type="number", value=100),
-            ],
-            style={"width": 250},
-        ),
-        html.Div(
-            DataTable(
-                id="currency-exchange-x-table",
-                columns=[
-                    {"name": "Currency Exchange Table", "id": "Exchange"},
-                    {
-                        "name": "Canadian Dollar",
-                        "id": "CAD",
-                        "type": "numeric",
-                        "format": Format()  # formatted using the Format() object
-                        .scheme(Scheme.fixed)
-                        .precision(2)
-                        .symbol_prefix("$")
-                        .symbol(Symbol.yes)
-                        .symbol_suffix(" CAD")
-                        .group(Group.yes),
-                    },
-                    {
-                        "name": "Euro",
-                        "id": "EUR",
-                        "type": "numeric",
-                        "format": {  # formatted "manually"
-                            "specifier": "$,.2f",
-                            "locale": {
-                                "symbol": ["€", " EUR"],
-                                "group": ".",
-                                "decimal": ",",
-                            },
-                        },
-                    },
-                    {
-                        "name": "Japanese Yen",
-                        "id": "JPY",
-                        "type": "numeric",
-                        "format": {  # formatted "manually"
-                            "specifier": "$,.0f",
-                            "locale": {"symbol": ["¥", " JPX"]},
-                        },
-                    },
-                    {
-                        "name": "US Dollar",
-                        "id": "USD",
-                        "type": "numeric",
-                        # formatted using FormatTemplate:
-                        "format": FormatTemplate.money(2),
-                    },
-                ],
-                data=df.to_dict("records"),
-                style_table={"overflowX": "auto"},
+        dcc.Markdown("Example of custom functions using `Intl.NumberFormat` to format currencies"),
 
-            )
-        ),
-    ], style={"margin": 10}
+        html.Label("Amount to Exchange", htmlFor="currency-exchange-input"),
+        dcc.Input(id="currency-exchange-input", type="number", value=1000),
+        dag.AgGrid(
+            id="currency-exchange-grid",
+            columnDefs=columnDefs,
+            columnSize="sizeToFit",
+            defaultColDef={"type": "rightAligned"}
+        )
+
+    ], style={"margin": 20}
 )
 
 
 @app.callback(
-    Output("currency-exchange-x-table", "data"), Input("currency-exchange-x-input", "value")
+    Output("currency-exchange-grid", "rowData"), Input("currency-exchange-input", "value")
 )
 def update_table(amount):
     dff = df.multiply(amount, fill_value=0) if amount else df.copy()
@@ -93,3 +59,37 @@ def update_table(amount):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
+
+"""
+Put the following in the dashAgGridComponentFunctions.js file in the assets folder
+This will register the functions used to format the currencies.
+
+---------------
+
+var dagfuncs = window.dashAgGridFunctions = window.dashAgGridFunctions || {};
+
+dagfuncs.Intl = Intl
+
+dagfuncs.EUR = function(number) {
+  return Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number);
+}
+
+
+dagfuncs.JPY = function(number) {
+  return Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(number)
+}
+
+
+dagfuncs.USD = function(number) {
+  return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);
+}
+
+
+dagfuncs.CAD = function(number) {
+  return Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', currencyDisplay: 'code' }).format(number);
+}
+
+
+
+"""
