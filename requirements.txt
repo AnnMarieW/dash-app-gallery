@@ -1,4 +1,4 @@
-dash>=2.9.3
+dash>=2.16.1
 dash-ag-grid>=2.0.0
 dash-bootstrap-components>=1.1.0
 dash-cytoscape>=0.3.0
