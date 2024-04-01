@@ -11,11 +11,17 @@ from lib.utils import file_names
 
 from lib.utils import example_apps
 
+
+# for vis-timeline example
+vis_timeline_css = 'https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css'
+vis_timeline_script = 'https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js'
+
 app = dash.Dash(
     __name__,
     use_pages=True,
     pages_folder="",
-    external_stylesheets=[dbc.themes.SPACELAB],
+    external_stylesheets=[dbc.themes.SPACELAB, dbc.icons.BOOTSTRAP, vis_timeline_css],
+    external_scripts=[vis_timeline_script],
 )
 
 for k in example_apps:

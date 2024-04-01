@@ -12,11 +12,15 @@ dark_hljs = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/s
 logo = "https://user-images.githubusercontent.com/72614349/182969599-5ae4f531-ea01-4504-ac88-ee1c962c366d.png"
 logo_dark = "https://user-images.githubusercontent.com/72614349/182967824-c73218d8-acbf-4aab-b1ad-7eb35669b781.png"
 
+# for vis-timeline example
+vis_timeline_css = 'https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css'
+vis_timeline_script = 'https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js'
+
 app = Dash(
     __name__,
     use_pages=True,
-    external_stylesheets=[dbc.themes.SPACELAB,
-                          dark_hljs, dbc.icons.BOOTSTRAP],
+    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP, vis_timeline_css],
+    external_scripts=[vis_timeline_script],
     suppress_callback_exceptions=True
 )
 server = app.server
