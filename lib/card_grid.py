@@ -52,7 +52,7 @@ def make_card(page):
             # dbc.Tooltip(page["description"], target=tooltip_id),
         ],
         className="m-2 shadow",
-        style={'border': 'var(--bs-card-border-width) solid var(--bs-card-border-color)'}
+        style={'border': 'var(--bs-card-border-width) solid var(--bs-card-border-color)', "maxWidth":"33%"}
         #There is a strange media query removing this border, had to shim it
     )
 

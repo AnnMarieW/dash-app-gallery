@@ -17,7 +17,7 @@ fig = px.parallel_coordinates(
 
 app.layout = dbc.Container(
     [
-        html.H4("Filtering a Datatable with Parallel Coordinates"),
+        html.H4("Filtering Dash AG Grid with Parallel Coordinates"),
         dcc.Graph(id="parallel-coord-filter-x-my-graph", figure=fig),
         dag.AgGrid(
             id="parallel-coord-filter-x-table",
