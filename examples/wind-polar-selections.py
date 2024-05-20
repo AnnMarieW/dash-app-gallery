@@ -24,6 +24,18 @@ range_1 = dcc.RangeSlider(
 
 graph_1 = dcc.Graph(responsive=True)
 
+blurb = (
+    "The chart illustrates the distribution of wind speeds by direction, "
+    "revealing a significant bias towards winds originating from the west. "
+    "This notable preponderance of westerly winds suggests the influence of "
+    "macro-scale climatic patterns, such as prevailing westerlies common in "
+    "mid-latitude regions. Higher wind speeds are predominantly clustered "
+    "within the western sector, indicating that stronger wind events mostly "
+    "come from this direction. This pattern could be reflective of regional "
+    "topographical influences or larger synoptic systems driving westerly "
+    "flows."
+)
+
 app.layout = dbc.Container(
     [
         html.H1("Windy wind things"),
@@ -33,16 +45,7 @@ app.layout = dbc.Container(
                     [
                         dbc.Col(
                             [
-                                html.P(
-                                    "The chart illustrates the distribution of wind speeds by direction, "
-                                    "revealing a significant bias towards winds originating from the west. "
-                                    "This notable preponderance of westerly winds suggests the influence of "
-                                    "macro-scale climatic patterns, such as prevailing westerlies common in "
-                                    "mid-latitude regions. Higher wind speeds are predominantly clustered "
-                                    "within the western sector, indicating that stronger wind events mostly "
-                                    "come from this direction. This pattern could be reflective of regional "
-                                    "topographical influences or larger synoptic systems driving westerly flows."
-                                ),
+                                html.P(blurb),
                                 dbc.Label("Filter wind intensity"),
                                 range_1,
                                 dbc.Label("Select chart type"),
@@ -50,10 +53,7 @@ app.layout = dbc.Container(
                             ],
                             lg=4,
                         ),
-                        dbc.Col(
-                            graph_1,
-                            lg=8,
-                        ),
+                        dbc.Col(graph_1, lg=8),
                     ]
                 )
             ],
