@@ -73,12 +73,11 @@ def update_figure(strength_range, graph_type):
         df_copy = df_copy[(df.min_strength >= start) & (df.max_strength <= stop)]
 
     additional_args = {}
-    match graph_type.lower():
-        case "bar":
-            func = px.bar_polar
-        case "line":
-            func = px.line_polar
-            additional_args["line_close"] = True
+    if graph_type.lower() == "bar":
+        func = px.bar_polar
+    else:
+        func = px.line_polar
+        additional_args["line_close"] = True
 
     fig = func(
         df_copy,
