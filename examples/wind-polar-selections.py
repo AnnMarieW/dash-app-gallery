@@ -6,7 +6,9 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 
 df = px.data.wind()
 df[["min_strength", "max_strength"]] = (
-    df.strength.str.replace(r"6\+", "6-7").str.split("-", expand=True).astype(int)
+    df.strength.str.replace("6+", "6-7", regex=False)
+    .str.split("-", expand=True)
+    .astype(int)
 )
 
 dropdown_1 = dbc.Select(
