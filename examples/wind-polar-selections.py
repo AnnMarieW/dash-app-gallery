@@ -21,10 +21,11 @@ range_1 = dcc.RangeSlider(
     0,
     7,
     step=1,
+    value=(0, 7),
     marks={**{v: str(v) for v in range(7)}, 7: ">6"},
 )
 
-graph_1 = dcc.Graph(responsive=True)
+graph_1 = dcc.Graph()
 
 blurb = (
     "The chart illustrates the distribution of wind speeds by direction, "
@@ -41,24 +42,20 @@ blurb = (
 app.layout = dbc.Container(
     [
         html.H1("Windy wind things"),
-        html.Div(
-            children=[
-                dbc.Row(
+        dbc.Row(
+            [
+                dbc.Col(
                     [
-                        dbc.Col(
-                            [
-                                html.P(blurb),
-                                dbc.Label("Filter wind intensity"),
-                                range_1,
-                                dbc.Label("Select chart type"),
-                                dropdown_1,
-                            ],
-                            lg=4,
-                        ),
-                        dbc.Col(graph_1, lg=8),
-                    ]
-                )
-            ],
+                        html.P(blurb),
+                        dbc.Label("Filter wind intensity"),
+                        range_1,
+                        dbc.Label("Select chart type"),
+                        dropdown_1,
+                    ],
+                    lg=4,
+                ),
+                dbc.Col(graph_1, lg=8),
+            ]
         ),
     ]
 )
