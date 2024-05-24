@@ -1,5 +1,4 @@
 import pandas as pd
-import requests
 from dash import Dash, dcc, html, Input, Output, clientside_callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -20,7 +19,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
-                        html.H2("Select an indicator"),
+                        html.Label("Select an indicator"),
                         dcc.Dropdown(
                             id="eu-indicators-x-indicator-dropdown",
                             options=indicators,
@@ -32,7 +31,7 @@ app.layout = dbc.Container(
                 ),
                 dbc.Col(
                     [
-                        html.H2("Select a country"),
+                        html.Label("Select a country"),
                         dcc.Dropdown(
                             id="eu-indicators-x-country-dropdown",
                             options=countries,
@@ -57,7 +56,7 @@ app.layout = dbc.Container(
                                     target="_blank",
                                 ),
                             ],
-                            className="text-center fs-3 text",
+                            className="text-center fs-5 text",
                         ),
                         dbc.Button(
                             "Print Page",
@@ -72,8 +71,8 @@ app.layout = dbc.Container(
         html.Div(id="eu-indicators-x-printing-hidden-content"),
     ]
 )
-clientside_callback(
 
+clientside_callback(
     """
     function(clicks) {
         if (clicks > 0) {
@@ -131,7 +130,9 @@ def update_country_dropdown(indicator):
     return (
         country_list,
         country_list[0],
-        f"#### Available countries: {len(country_list)} / {len(countries)}",
+        f"Available countries: {len(country_list)}/{len(countries)}",
     )
+
+
 if __name__ == "__main__":
     app.run_server(debug=False)
