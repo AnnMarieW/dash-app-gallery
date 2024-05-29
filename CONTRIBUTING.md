@@ -21,7 +21,7 @@ Thank you for contributing an app to the community supported `Dash Example Index
 
 ## Requirements for new apps
 
-Every app should have a graph or a Dash DataTable, a callback, and a maximum of 150 lines of code.
+Every app should have a graph or a Dash Ag Grid, a callback, and a maximum of 150 lines of code.
 
    <details>
      <summary>Please include any of the following graphs into your app:</summary>
