@@ -15,14 +15,16 @@ dropdown_1 = dbc.Select(
     options=[{"label": v, "value": v.lower()} for v in ("Bar", "Line")],
     value="bar",
     required=True,
+    id="wind-polar-selections-x-dropdown"
 )
 
 range_1 = dcc.RangeSlider(
     0,
     7,
     step=1,
-    value=(0, 7),
+    value=[0, 7],
     marks={**{v: str(v) for v in range(7)}, 7: ">6"},
+    id="wind-polar-selections-x-slider"
 )
 
 graph_1 = dcc.Graph()
@@ -62,7 +64,7 @@ app.layout = dbc.Container(
 
 
 @callback(
-    Output(graph_1, "figure"), Input(range_1, "value"), Input(dropdown_1, "value")
+    Output(graph_1, "figure"), Input("wind-polar-selections-x-slider", "value"), Input("wind-polar-selections-x-dropdown", "value")
 )
 def update_figure(strength_range, graph_type):
     start, stop = min(strength_range), max(strength_range)

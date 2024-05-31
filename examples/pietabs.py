@@ -7,7 +7,7 @@ df = pd.read_table(
     "https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv"
 )
 df = df[df["Country"].isin(["China", "Germany", "United States", "France"])]
-df["ship_date"] = pd.to_datetime(df["Ship Date"])
+df["ship_date"] = pd.to_datetime(df["Ship Date"], format='%m/%d/%y')
 
 # convert shipping costs and profit from strings to floats
 df["Shipping Cost"] = df["Shipping Cost"].str.replace(",", ".").astype("float")

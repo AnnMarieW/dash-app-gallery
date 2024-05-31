@@ -8,7 +8,7 @@ df = pd.read_table(
 )
 
 # Transforming column types so that datetime functions can be applied correctly
-df["Order Date"] = pd.to_datetime(df["Order Date"])
+df["Order Date"] = pd.to_datetime(df["Order Date"], format='%m/%d/%y')
 df["Profit"] = df["Profit"].str.replace(",", ".")
 df["Profit"] = df["Profit"].astype("float")
 
@@ -20,7 +20,7 @@ df["year_month"] = pd.DatetimeIndex(df["Order Date"]).to_period("M").astype(str)
 # Getting time series - profit per month.
 df_grouped = (
     df[["Order Date", "Profit"]]
-    .groupby(by=pd.Grouper(key="Order Date", axis=0, freq="M"))
+    .groupby(by=pd.Grouper(key="Order Date", axis=0, freq="ME"))
     .sum()
     .reset_index()
 )
