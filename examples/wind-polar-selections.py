@@ -65,10 +65,8 @@ app.layout = dbc.Container(
     Output(graph_1, "figure"), Input(range_1, "value"), Input(dropdown_1, "value")
 )
 def update_figure(strength_range, graph_type):
-    df_copy = df.copy()
-
     start, stop = min(strength_range), max(strength_range)
-    df_copy = df_copy[(df.min_strength >= start) & (df.max_strength <= stop)]
+    df_copy = df[(df.min_strength >= start) & (df.max_strength <= stop)]
 
     additional_args = {}
     if graph_type.lower() == "bar":
