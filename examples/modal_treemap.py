@@ -8,7 +8,7 @@ df = pd.read_table(
 )
 
 df["profit_derived"] = df["Profit"].str.replace(",", ".").astype("float")
-df["ship_date"] = pd.to_datetime(df["Ship Date"])
+df["ship_date"] = pd.to_datetime(df["Ship Date"], format='%m/%d/%y')
 
 # Hierarchical charts (sunburst, treemap, etc.) work only with positive aggregate values
 # In this step, we ensure that aggregated values will be positive
@@ -99,6 +99,7 @@ def main_callback_logic(region, tab, start_date, end_date):
     if end_date is not None:
         dff = dff.query("ship_date < @end_date")
 
+    dff = dff.drop(columns=['ship_date'])
     dff = dff.groupby(by=["Segment", "Region"]).sum().reset_index()
 
     if tab == "treemap":
@@ -128,4 +129,4 @@ def toggle_modal(n1, is_open):
 
 
 if __name__ == "__main__":
-    app.run_server()
+    app.run_server(debug=True)

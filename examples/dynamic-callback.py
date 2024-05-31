@@ -7,7 +7,7 @@ df = pd.read_table(
     "https://raw.githubusercontent.com/plotly/datasets/master/global_super_store_orders.tsv"
 )
 
-df["Order Date"] = pd.to_datetime(df["Order Date"])
+df["Order Date"] = pd.to_datetime(df["Order Date"], format='%m/%d/%y' )
 df["Profit"] = df["Profit"].str.replace(",", ".")
 df["Profit"] = df["Profit"].astype("float")
 
@@ -109,7 +109,7 @@ def line_chart(country, state, region):
     if region is not None:
         dff = dff.query("Region == @region")
 
-    grouped_df = dff.groupby(dff["Order Date"].dt.week).sum().reset_index()
+    grouped_df = dff.groupby(dff["Order Date"]).sum().reset_index()
 
     fig = px.line(
         x=grouped_df["Order Date"],
