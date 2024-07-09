@@ -45,6 +45,7 @@ app.layout = html.Div([
     Input('histogram-button', 'n_clicks'),
     State('dataset-dropdown', 'value')
 )
+
 def update_graph(n_clicks_pie, n_clicks_bar, selected_dataset):
     if n_clicks_pie == 0 and n_clicks_bar == 0:
         return [], '', ''
