@@ -4,7 +4,7 @@ import json
 
 fig = px.line(
     x=["a", "b", "c"],
-    y=[1, 3, 2],  # replace with your own data source
+    y=[1, 3, 2],
     title="sample figure",
     height=325,
 )
