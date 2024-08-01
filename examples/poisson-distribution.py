@@ -30,10 +30,10 @@ accordion = html.Div(
             dbc.AccordionItem(
                 [
                     dcc.Markdown(
-                        "The Poisson distribution describes the probability of obtaining k successes during a given time interval."
-                    ),
-                    dcc.Markdown(
-                        "If a random variable X follows a Poisson distribution, then the probability that X = k successes can be found by the following formula:"
+                        """
+                        The Poisson distribution describes the probability of obtaining k successes during a given time interval.  
+                        If a random variable X follows a Poisson distribution, then the probability that X = k successes can be found by the following formula:
+                        """
                     ),
                     dcc.Markdown(
                         "$P\\left( x \\right) = \\frac{{e^{ - \\lambda } \\lambda ^x }}{{x!}}$",
