@@ -27,7 +27,7 @@ range_1 = dcc.RangeSlider(
     id="wind-polar-selections-x-slider"
 )
 
-graph_1 = dcc.Graph()
+graph_1 = dcc.Graph(id="wind-polar-selections-x-graph")
 
 blurb = (
     "The chart illustrates the distribution of wind speeds by direction, "
@@ -64,7 +64,9 @@ app.layout = dbc.Container(
 
 
 @callback(
-    Output(graph_1, "figure"), Input("wind-polar-selections-x-slider", "value"), Input("wind-polar-selections-x-dropdown", "value")
+    Output("wind-polar-selections-x-graph", "figure"),
+    Input("wind-polar-selections-x-slider", "value"),
+    Input("wind-polar-selections-x-dropdown", "value")
 )
 def update_figure(strength_range, graph_type):
     start, stop = min(strength_range), max(strength_range)
