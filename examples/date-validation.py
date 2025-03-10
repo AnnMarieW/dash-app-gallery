@@ -13,7 +13,7 @@ app.layout = dbc.Container(
         #### Date Validation
         Here we are asking user to enter birthdate with datepicker and showing success message when user selects date.
         we will be using duration to make sure alert will last for certain duration.
-        
+
         Enter Birthdate:
         """
         ),
@@ -27,7 +27,7 @@ app.layout = dbc.Container(
         html.Div(id="date-validation-x-show-succ"),
         html.Div(id="date-validation-x-show-age"),
         dcc.Markdown(
-            """        
+            """
             #### Using Simple alert
             You can use this for applications for showing success, failure, etc. Note that this will stay on screen once rendered since we are not assigning any time duration`.
             """
@@ -78,4 +78,4 @@ def toggle_alert(n):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

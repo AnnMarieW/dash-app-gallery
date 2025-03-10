@@ -30,4 +30,4 @@ def customize_width(left_width):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

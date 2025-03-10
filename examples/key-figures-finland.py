@@ -132,16 +132,16 @@ def store_data(key_figure):
 # Update map on clientside for better performance
 clientside_callback(
     """
-    function(geojson, locations, z){           
-       
+    function(geojson, locations, z){
+
         var layout = {
             'height':600,
             'mapbox': {'style':'open-street-map','zoom':3.8,'center':{'lat': 64.961093, 'lon': 25.795386}
             },
             'margin':{'l':0,'t':0,'b':0,'r':0}
         };
-        var data = [{            
-            'type':'choroplethmapbox',            
+        var data = [{
+            'type':'choroplethmapbox',
             'name':'',
             'geojson':geojson,
             'locations':locations,
@@ -152,7 +152,7 @@ clientside_callback(
             'colorscale':'Viridis'
         }];
         return {'data':data,'layout':layout}
-    }   
+    }
 """,
     Output("key-figures-finland-x-region-map", "figure"),
     Input("key-figures-finland-x-geojson-data", "data"),
@@ -161,4 +161,4 @@ clientside_callback(
 )
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run(debug=False)

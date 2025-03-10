@@ -101,4 +101,4 @@ def build_figure(X, y, Z, xrange, yrange):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

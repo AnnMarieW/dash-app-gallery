@@ -22,4 +22,4 @@ def rotate_figure(n_clicks):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
