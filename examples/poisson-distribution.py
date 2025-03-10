@@ -31,7 +31,7 @@ accordion = html.Div(
                 [
                     dcc.Markdown(
                         """
-                        The Poisson distribution describes the probability of obtaining k successes during a given time interval.  
+                        The Poisson distribution describes the probability of obtaining k successes during a given time interval.
                         If a random variable X follows a Poisson distribution, then the probability that X = k successes can be found by the following formula:
                         """
                     ),
@@ -73,4 +73,4 @@ def graph_histogram(lambda_value):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

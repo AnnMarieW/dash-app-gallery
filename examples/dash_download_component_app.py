@@ -72,4 +72,4 @@ def func(n_clicks_btn, download_type):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

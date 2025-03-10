@@ -33,4 +33,4 @@ def make_shape_taller(n_up, n_down):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

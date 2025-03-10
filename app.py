@@ -63,13 +63,13 @@ btn_group = html.Div([
             className='text-nowrap mt-2 mt-md-0'
         ),
         dbc.Button(
-            "Fullscreen App", 
+            "Fullscreen App",
             id="open-fs-app",
             color='primary',
             outline=True,
         ),
         dbc.Button(
-            "Fullscreen Code", 
+            "Fullscreen Code",
             id="open-fs-code",
             color='primary',
             outline=True,
@@ -86,7 +86,7 @@ navbar = dbc.Navbar([
                         ),
             html.Span('Example Index', className='d-lg-none align-middle')
         ], href='/', className='navbar-brand fw-bold'),
-        
+
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
         dbc.Collapse([
             html.Div(className='me-auto'), btn_group],
@@ -180,4 +180,4 @@ def refresh_page(is_open, pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port='8050')
+    app.run(debug=True, port='8050')

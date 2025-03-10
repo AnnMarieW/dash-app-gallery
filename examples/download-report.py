@@ -11,7 +11,7 @@ initial_y = [random.randint(1, 50) for _ in range(15)]
 
 def report(x, y, n):
     return f"""
-        Report #{n}  
+        Report #{n}
          - The max X point is {max(x)}
          - The max Y point is {max(y)}
          - The sum of X points are {sum(x)}
@@ -64,4 +64,4 @@ def download_report(_, current_report):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

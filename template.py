@@ -1,6 +1,6 @@
 # !!!! impoprtant !!!!
 # be sure to add:
-# nameofthefile-x- 
+# nameofthefile-x-
 # in front of every id, otherwise Dash will not work. Read more in readme.md
 
 from dash import Dash, dcc, html, Input, Output
@@ -17,11 +17,11 @@ app.layout = html.Div([
 
 
 @app.callback(
-    Output("template-x-graph", "figure"), 
+    Output("template-x-graph", "figure"),
     Input("template-x-component", "value"))
 def display_(value):
-    return 
+    return
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
