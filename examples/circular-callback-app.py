@@ -15,9 +15,9 @@ app.layout = html.Div(
             style={"font-size": "30px", "textAlign": "center"},
         ),
         html.Div("Minimum Volcano Height", style={"font-size": "20px"}),
-        "Meters ",
+        html.Label("Meters ", htmlFor="circular-callback-app-x-meter"),
         dcc.Input(id="circular-callback-app-x-meter", value=2000, type="number", step=1),
-        " Feet ",
+        html.Label(" Feet ", htmlFor="circular-callback-app-x-feet"),
         dcc.Input(
             id="circular-callback-app-x-feet",
             value=6561.7,

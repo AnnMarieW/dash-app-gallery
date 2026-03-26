@@ -3,9 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_daq as daq
 
 
-app = Dash(
-    __name__, external_stylesheets=[dbc.themes.VAPOR], prevent_initial_callbacks=True
-)
+app = Dash(__name__, external_stylesheets=[dbc.themes.VAPOR], prevent_initial_callbacks=True)
 
 
 countdown_store = dcc.Store(id="countdown-x-countdown-store")

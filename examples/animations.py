@@ -8,7 +8,7 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H4("Animated GDP and population over decades"),
-        html.P("Select an animation:"),
+        html.Label("Select an animation:", htmlFor="animations-x-selection"),
         dcc.RadioItems(
             id="animations-x-selection",
             options=["GDP - Scatter", "Population - Bar"],

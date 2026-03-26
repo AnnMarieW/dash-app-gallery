@@ -143,11 +143,7 @@ Before release:  (For Maintainers only)
 
 ### Unique IDs
 
-It's a Dash requirement that every ID in a multi-page app is unique, otherwise the callbacks will not work. To ensure unique IDs, please use either method A or B.
-
-A. You can safely use [auto generated ids](https://dash.plotly.com/basic-callbacks#passing-components-into-callbacks-instead-of-ids).
-
-B. **However, if you choose to specify the ID of each component, make sure to add `[name-of-the-file]-x-` to every ID. This will ensure that each ID, across the files, is unique.**
+It's a Dash requirement that every ID in a multi-page app is unique, otherwise the callbacks will not work. To ensure unique IDs,  add `[name-of-the-file]-x-` to every ID. This will ensure that each ID, across the files, is unique.
 
 For example, if you look at the [axes.py file in the examples folder](https://github.com/AnnMarieW/dash-app-gallery/blob/main/examples/axes.py), you will see that we added a `axes-x-` to all IDs (because the name of the file is axes.
 ```

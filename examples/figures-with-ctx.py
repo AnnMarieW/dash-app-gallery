@@ -40,7 +40,7 @@ app.layout = dbc.Container(
     Input("figures-with-ctx-x-btn-area", "n_clicks"),
 )
 def display(btn_bar, btn_line, btn_area):
-    button_id = ctx.triggered_id if ctx.triggered_id else "figures-with-ctx-x-btn-bar"
+    button_id = ctx.triggered_id
 
     if button_id == "figures-with-ctx-x-btn-bar":
         return px.bar(data_canada, x="year", y="pop")

@@ -43,4 +43,4 @@ app.layout = dbc.Container(dash.page_container, fluid=True, className="mt-2")
 
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run(debug=False)
