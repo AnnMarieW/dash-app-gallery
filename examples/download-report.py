@@ -22,8 +22,8 @@ def report(x, y, n):
 app.layout = html.Div(
     [
         html.H3("Build a Graph and Download Report", style={"textAlign": "center"}),
-        html.Button("Generate values", id="download-report-x-random-val", n_clicks=0),
-        html.Button("Download report", id="download-report-x-save-button"),
+        dcc.Button("Generate values", id="download-report-x-random-val", n_clicks=0),
+        dcc.Button("Download report", id="download-report-x-save-button"),
         html.Div(
             "To download the figure, hover over the graph and click the camera icon.",
             style={"textAlign": "right"},
@@ -64,4 +64,4 @@ def download_report(_, current_report):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

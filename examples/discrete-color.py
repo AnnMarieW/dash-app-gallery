@@ -40,4 +40,4 @@ def generate_chart(mode):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

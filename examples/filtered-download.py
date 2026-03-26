@@ -17,7 +17,7 @@ dropdown_state = dcc.Dropdown(
 )
 
 download_button = html.A(
-    html.Button("Download as HTML"),
+    dcc.Button("Download as HTML"),
     id="filtered-download-x-href",
     href="filtered-download-x-href",
     download="plotly_graph.html",
@@ -58,4 +58,4 @@ def update_bar_chart(state):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

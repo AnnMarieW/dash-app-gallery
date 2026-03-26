@@ -27,7 +27,7 @@ def display_cell_clicked_on(cell):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
 
 
 

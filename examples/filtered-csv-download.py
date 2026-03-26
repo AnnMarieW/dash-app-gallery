@@ -20,7 +20,7 @@ dtable = dash_table.DataTable(
     style_table={"overflowX": "auto"},
 )
 
-download_button = html.Button("Download Filtered CSV", style={"marginTop": 20})
+download_button = dcc.Button("Download Filtered CSV", style={"marginTop": 20})
 download_component = dcc.Download()
 
 app.layout = html.Div(
@@ -57,4 +57,4 @@ def download_data(n_clicks, data):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

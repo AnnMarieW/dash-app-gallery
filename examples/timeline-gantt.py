@@ -156,4 +156,4 @@ def update_table_and_figure(user_datatable: None or list, _):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

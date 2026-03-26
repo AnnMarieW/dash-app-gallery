@@ -8,7 +8,7 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H4("Interactive Plotly Express axes"),
-        html.Button("Rotate labels", n_clicks=0, id="axes-x-button"),
+        dcc.Button("Rotate labels", n_clicks=0, id="axes-x-button"),
         dcc.Graph(id="axes-x-graph"),
     ]
 )
@@ -22,4 +22,4 @@ def rotate_figure(n_clicks):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

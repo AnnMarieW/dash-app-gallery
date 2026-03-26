@@ -23,7 +23,7 @@ app.layout = html.Div(
         ),
         dcc.Graph(id="interactive-html-export-x-graph", figure=fig),
         html.A(
-            html.Button("Download as HTML"),
+            dcc.Button("Download as HTML"),
             id="interactive-html-export-x-download",
             href="data:text/html;base64," + encoded,
             download="plotly_graph.html",
@@ -33,4 +33,4 @@ app.layout = html.Div(
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

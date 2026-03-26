@@ -65,4 +65,4 @@ def make_line_graph(region_list):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

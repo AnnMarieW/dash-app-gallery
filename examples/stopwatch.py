@@ -45,4 +45,4 @@ def update_output(n, input_value, start_watch, led_value):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)

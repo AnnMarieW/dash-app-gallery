@@ -11,7 +11,7 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H4("Simple stock plot with adjustable axis"),
-        html.Button("Switch Axis", n_clicks=0, id="plot-data-from-csv-x-button"),
+        dcc.Button("Switch Axis", n_clicks=0, id="plot-data-from-csv-x-button"),
         dcc.Graph(id="plot-data-from-csv-x-graph"),
     ]
 )
@@ -32,4 +32,4 @@ def display_graph(n_clicks):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
