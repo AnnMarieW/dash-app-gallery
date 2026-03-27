@@ -12,10 +12,9 @@ inputs = dbc.Card(
         [
             html.P(
                 "lambda (must be >= 0): ",
-                style={"display": "inline-block", "margin-right": "8px"},
             ),
             dcc.Input(
-                id="poisson-distribution-x-lambda", placeholder="number", value=4
+                id="poisson-distribution-x-lambda", placeholder="lambda", value=4, min=0, type="number"
             ),
         ]
     )
@@ -38,7 +37,7 @@ accordion = html.Div(
                     dcc.Markdown(
                         "$P\\left( x \\right) = \\frac{{e^{ - \\lambda } \\lambda ^x }}{{x!}}$",
                         mathjax=True,
-                        style={"font-size": "28pt"},
+                        style={"fontSize": "28pt"},
                     ),
                 ],
                 title="Details",
@@ -52,9 +51,9 @@ app.layout = dbc.Container(
     [
         html.H1("Poisson distribution graph"),
         html.Hr(),
-        dbc.Row(dbc.Col(accordion)),
-        dbc.Row(dbc.Col(inputs)),
-        dbc.Row(dbc.Col(graph)),
+        accordion,
+        inputs,
+        graph,
     ]
 )
 

@@ -11,13 +11,13 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.H1(
+        html.H3(
             "Scatterplot Matrix of the Correlates of Diabetes",
             style={"textAlign": "center"},
         ),
         html.Div(
             [
-                html.H3("Choose your dimensions:"),
+                html.Label("Choose your dimensions:", htmlFor="scatter-matrix-app-x-dimension-dropdown"),
                 dcc.Dropdown(
                     id="scatter-matrix-app-x-dimension-dropdown",
                     options=dimensions_list,

@@ -18,7 +18,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 app.layout = html.Div(
     [
         html.H4("Analysis of the ML model's results using ROC and PR curves"),
-        html.P("Select model:"),
+        html.Label("Select model:", htmlFor="roc-and-pr-curves-x-dropdown"),
         dcc.Dropdown(
             id="roc-and-pr-curves-x-dropdown",
             options=["Logistic Regression", "Decision Tree", "k-NN"],

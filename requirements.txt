@@ -9,3 +9,4 @@ scikit-learn
 scikit-image==0.18.2
 requests==2.27.1
 gunicorn==20.0.4
+openpyxl

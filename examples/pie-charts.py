@@ -9,14 +9,14 @@ app.layout = html.Div(
     [
         html.H4("Analysis of the restaurant sales"),
         dcc.Graph(id="pie-charts-x-graph"),
-        html.P("Names:"),
+        html.Label("Names:", htmlFor="pie-charts-x-names"),
         dcc.Dropdown(
             id="pie-charts-x-names",
             options=["smoker", "day", "time", "sex"],
             value="day",
             clearable=False,
         ),
-        html.P("Values:"),
+        html.Label("Values:", htmlFor="pie-charts-x-values"),
         dcc.Dropdown(
             id="pie-charts-x-values",
             options=["total_bill", "tip", "size"],

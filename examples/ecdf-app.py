@@ -15,13 +15,13 @@ app = Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.H1(
+        html.H3(
             "ECDF of Vote Share (%) by District in Montreal's Municipal Elections, 2013",
             style={"textAlign": "center"},
         ),
         html.Div(
             [
-                html.H3("Choose a candidate:"),
+                html.H4("Choose a candidate:"),
                 dcc.Dropdown(
                     id="ecdf-app-x-candidate-dropdown",
                     value="Joly_pct",
@@ -29,10 +29,6 @@ app.layout = html.Div(
                     multi=True,
                 ),
             ],
-            style={
-                "width": "50%",
-                "marginLeft": "5em",
-            },
         ),
         dcc.Graph(id="ecdf-app-x-graph"),
     ]

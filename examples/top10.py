@@ -114,7 +114,7 @@ def update_top10_data(col):
 
         },
     ]
-    return data.to_dict("records"), cols, [{}]
+    return data.to_dict("records"), cols, []
 
 
 if __name__ == "__main__":

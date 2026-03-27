@@ -43,9 +43,7 @@ def update_points_color(color):
     )
     fig.update_layout(yaxis_title="Number of Countries")
     fig.update_traces(marker=dict(color=color["hex"]))
-    time.sleep(
-        2
-    )  # simulate longer callback to make loading component (spinner) more visible
+    time.sleep(2)  # simulate longer callback to make loading component (spinner) more visible
     return fig
 
 

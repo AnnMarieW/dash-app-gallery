@@ -61,7 +61,7 @@ app.layout = dbc.Container(
                         ),
                         html.H3(
                             id="key-figures-finland-x-whole-country-header",
-                            className="mt-5 display-3 text-center",
+                            className="mt-5  text-center",
                         ),
                         html.Div(
                             [

@@ -1,4 +1,5 @@
-from dash import Dash, dcc, html, Input, Output, dash_table, State
+from dash import Dash, dcc, html, Input, Output, State
+import dash_ag_grid as dag
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
@@ -21,11 +22,9 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
-                        dash_table.DataTable(
-                            df.to_dict("records"),
-                            [{"name": i, "id": i} for i in df.columns],
-                            page_size=10,
-                            style_table={"overflowX": "auto"},
+                        dag.AgGrid(
+                            rowData=df.to_dict("records"),
+                            columnDefs=[{"field": i} for i in df.columns],
                         )
                     ]
                 )

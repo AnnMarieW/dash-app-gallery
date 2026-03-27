@@ -14,7 +14,7 @@ filename = __name__.split("pages.")[1]
 notes = """
 #### Dash Components in App:
 - [Clipboard](https://dash.plotly.com/dash-core-components/clipboard)
-- [DataTable](https://dash.plotly.com/datatable)
+- [AgGrid](https://dash.plotly.com/dash-ag-grid)
 - [RadioItems](https://dash.plotly.com/dash-core-components/radioitems)
 
 #### Plotly Documentation:  

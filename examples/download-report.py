@@ -21,13 +21,10 @@ def report(x, y, n):
 
 app.layout = html.Div(
     [
-        html.H3("Build a Graph and Download Report", style={"textAlign": "center"}),
+        html.H3("Build a Graph and Download Report"),
         dcc.Button("Generate values", id="download-report-x-random-val", n_clicks=0),
         dcc.Button("Download report", id="download-report-x-save-button"),
-        html.Div(
-            "To download the figure, hover over the graph and click the camera icon.",
-            style={"textAlign": "right"},
-        ),
+        html.Div("To download the figure, hover over the graph and click the camera icon."),
         dcc.Graph(
             id="download-report-x-graph",
             figure=px.scatter(x=initial_x, y=initial_y, title="Figure #0"),

@@ -9,7 +9,7 @@ app.layout = html.Div(
     [
         html.H4("Stock price analysis"),
         dcc.Graph(id="time-series-x-time-series-chart"),
-        html.P("Select stock:"),
+        html.Label("Select stock:", htmlFor="time-series-x-ticker" ),
         dcc.Dropdown(
             id="time-series-x-ticker",
             options=["AMZN", "FB", "NFLX"],

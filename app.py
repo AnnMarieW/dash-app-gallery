@@ -48,7 +48,7 @@ btn_group = html.Div([
             "Home",
             id="overview",
             href=dash.get_relative_path("/"),
-            color='primary',
+            color='secondary',
             outline=True,
             className='mt-2 mt-md-0 me-md-2'
         ),
@@ -57,20 +57,20 @@ btn_group = html.Div([
             id="dash-docs",
             href="https://dash.plotly.com/",
             target="_blank",
-            color='primary',
+            color='secondary',
             outline=True,
             className='text-nowrap mt-2 mt-md-0'
         ),
         dbc.Button(
             "Fullscreen App",
             id="open-fs-app",
-            color='primary',
+            color='secondary',
             outline=True,
         ),
         dbc.Button(
             "Fullscreen Code",
             id="open-fs-code",
-            color='primary',
+            color='secondary',
             outline=True,
         ),
 ], className='navbar-nav')
@@ -94,7 +94,7 @@ navbar = dbc.Navbar([
             navbar=True
         )
     ], fluid=True)
-])
+], color="dark")
 
 
 footer = html.H4(

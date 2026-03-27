@@ -13,9 +13,7 @@ heading = html.H4(
 sample_size = html.Div(
     [
         dbc.Label("Sample Size", html_for="size"),
-        dcc.Slider(1, 1000, value=250, id="histograms-x-size",
-            tooltip={"placement": "bottom", "always_visible": True},
-        ),
+        dcc.Slider(1, 1000, value=250, id="histograms-x-size"),
     ],
     className="mt-2",
 )
@@ -24,9 +22,7 @@ sample_size = html.Div(
 n_bins = html.Div(
     [
         dbc.Label("Number of Bins", html_for="n_bins"),
-        dcc.Slider(1, 100, 10, value=20, id="histograms-x-n_bins",
-            tooltip={"placement": "bottom", "always_visible": True},
-        ),
+        dcc.Slider(1, 100, 10, value=20, id="histograms-x-n_bins"),
     ],
     className="mt-2",
 )

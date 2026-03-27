@@ -22,43 +22,32 @@ app.layout = dbc.Container(
             style={"textAlign": "center"},
             className="my-4",
         ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.DatePickerRange(
-                            id="pietabs-x-datepicker",
-                            min_date_allowed=min(df["ship_date"]),
-                            max_date_allowed=max(df["ship_date"]),
-                            end_date=max(df["ship_date"]),
-                            start_date=min(df["ship_date"]),
-                            clearable=False,
-                        ),
-                    ],
-                    width=4,
+
+        dcc.DatePickerRange(
+            id="pietabs-x-datepicker",
+            min_date_allowed=min(df["ship_date"]),
+            max_date_allowed=max(df["ship_date"]),
+            end_date=max(df["ship_date"]),
+            start_date=min(df["ship_date"]),
+            clearable=False,
+            className="mb-2",
+        ),
+
+        dcc.Tabs(
+            id="pietabs-x-tabs",
+            value="pietabs-x-tab-1",
+            children=[
+                dcc.Tab(
+                    label="Country",
+                    value="pietabs-x-tab-1",
+                    children=[dcc.Graph(id="pietabs-x-pie1")],
                 ),
-                dbc.Col(
-                    [
-                        dcc.Tabs(
-                            id="pietabs-x-tabs",
-                            value="pietabs-x-tab-1",
-                            children=[
-                                dcc.Tab(
-                                    label="Country",
-                                    value="pietabs-x-tab-1",
-                                    children=[dcc.Graph(id="pietabs-x-pie1")],
-                                ),
-                                dcc.Tab(
-                                    label="Category",
-                                    value="pietabs-x-tab-2",
-                                    children=[dcc.Graph(id="pietabs-x-pie2")],
-                                ),
-                            ],
-                        ),
-                    ],
-                    width=8,
+                dcc.Tab(
+                    label="Category",
+                    value="pietabs-x-tab-2",
+                    children=[dcc.Graph(id="pietabs-x-pie2")],
                 ),
-            ]
+            ],
         ),
     ]
 )

@@ -19,7 +19,7 @@ app.layout = html.Div(
         html.H4("Simple plot export options"),
         html.P(
             "↓↓↓ try downloading the plot as PNG ↓↓↓",
-            style={"text-align": "right", "font-weight": "bold"},
+            style={"textAlign": "right", "fontWeight": "bold"},
         ),
         dcc.Graph(id="interactive-html-export-x-graph", figure=fig),
         html.A(
