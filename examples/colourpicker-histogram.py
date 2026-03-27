@@ -13,7 +13,7 @@ df = df.loc[df["year"] == 1952]
 # "ggplot2", "seaborn", "simple_white", "plotly", "plotly_white", "plotly_dark", "presentation", "xgridoff", "ygridoff", "gridon", "none"
 pio.templates.default = "ggplot2"
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

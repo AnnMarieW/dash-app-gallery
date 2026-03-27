@@ -12,7 +12,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/Dash-
 indicators = sorted(list(df.Indicator.unique()))
 countries = sorted(list(df.Country.unique()))
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB])
+app = Dash(external_stylesheets=[dbc.themes.SPACELAB])
 app.layout = dbc.Container(
     [
         dbc.Row(

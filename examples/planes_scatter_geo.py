@@ -6,7 +6,7 @@ df_airports = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv"
 )
 
-app = Dash(__name__)
+app = Dash()
 
 
 app.layout = html.Div(

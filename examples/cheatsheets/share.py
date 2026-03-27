@@ -14,7 +14,7 @@ web: gunicorn app:server
 App.py:
 ```
 from dash import Dash, html
-app = Dash(__name__)
+app = Dash()
 server = app.server
 app.layout = html.Div('hi')
 

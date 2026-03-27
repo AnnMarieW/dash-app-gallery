@@ -4,7 +4,7 @@ import pandas as pd
 
 df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/solar.csv")
 
-app = Dash(__name__)
+app = Dash()
 
 grid = dag.AgGrid(
     id="quickstart-grid",

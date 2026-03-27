@@ -9,7 +9,7 @@ df = pd.read_csv(filepath)
 
 state_list = df["state"].unique()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

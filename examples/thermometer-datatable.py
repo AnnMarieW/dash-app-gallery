@@ -11,7 +11,7 @@ df = pd.read_csv(
 df["Date"] = pd.to_datetime(df["Date"])
 df = df[df["Date"].dt.strftime("%Y") == "2015"]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [

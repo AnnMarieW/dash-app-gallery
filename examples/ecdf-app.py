@@ -11,7 +11,7 @@ df["Bergeron_pct"] = round(df["Bergeron"] / df["total"] * 100, 2)
 
 candidate_list = ["Coderre_pct", "Joly_pct", "Bergeron_pct"]
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

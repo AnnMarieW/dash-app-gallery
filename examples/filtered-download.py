@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from base64 import b64encode
 import io
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/us-cities-top-1k.csv"

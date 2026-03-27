@@ -3,7 +3,7 @@ from dash import Dash, dcc, html, Output, Input
 import plotly.express as px
 
 df = px.data.tips()
-app = Dash(__name__)
+app = Dash()
 
 radio_b = dcc.RadioItems(df.columns, 'time')
 my_graph = dcc.Graph()

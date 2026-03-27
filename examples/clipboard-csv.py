@@ -3,7 +3,7 @@ import dash_ag_grid as dag
 import pandas as pd
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/mtcars.csv")
 

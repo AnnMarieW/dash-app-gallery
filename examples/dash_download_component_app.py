@@ -6,7 +6,7 @@ import dash_bootstrap_components as dbc
 
 df = px.data.stocks()
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [

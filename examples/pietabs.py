@@ -13,7 +13,7 @@ df["ship_date"] = pd.to_datetime(df["Ship Date"], format='%m/%d/%y')
 df["Shipping Cost"] = df["Shipping Cost"].str.replace(",", ".").astype("float")
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [

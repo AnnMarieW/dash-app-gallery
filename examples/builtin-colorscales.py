@@ -4,7 +4,7 @@ import plotly.express as px
 colorscales = px.colors.named_colorscales()
 df = px.data.iris()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

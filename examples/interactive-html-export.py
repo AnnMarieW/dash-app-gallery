@@ -3,7 +3,7 @@ import plotly.express as px
 from base64 import b64encode
 import io
 
-app = Dash(__name__)
+app = Dash()
 
 buffer = io.StringIO()
 

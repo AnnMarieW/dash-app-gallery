@@ -9,7 +9,7 @@ fig = px.line(
     height=325,
 )
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

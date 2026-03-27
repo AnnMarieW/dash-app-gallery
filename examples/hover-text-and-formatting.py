@@ -2,7 +2,7 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
 df = px.data.gapminder().query("continent=='Oceania'")
-app = Dash(__name__)
+app = Dash()
 
 
 app.layout = html.Div(

@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 dims = ["sepal_width", "sepal_length", "petal_width", "petal_length"]
 df = px.data.iris()
 fig = px.parallel_coordinates(

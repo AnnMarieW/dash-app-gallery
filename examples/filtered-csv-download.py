@@ -4,7 +4,7 @@ from dash import Dash,  dcc, html, Input, Output, State
 import dash_ag_grid as dag
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = px.data.gapminder()
 

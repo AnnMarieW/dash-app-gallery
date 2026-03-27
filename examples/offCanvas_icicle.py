@@ -19,7 +19,7 @@ df = df.query(expr="profit_derived >= 0")
 df = df[["profit_derived", "Segment", "Region", "ship_date"]]
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 app.layout = dbc.Container(

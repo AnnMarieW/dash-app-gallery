@@ -6,7 +6,7 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
 )
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

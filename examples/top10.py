@@ -7,7 +7,7 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/liquor_iowa_2021.csv"
 )
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 options = [
     "city",

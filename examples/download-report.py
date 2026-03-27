@@ -3,7 +3,7 @@ from dash import Dash, dcc, html, Input, Output, State, callback
 import plotly.express as px
 
 
-app = Dash(__name__)
+app = Dash()
 
 initial_x = [random.randint(1, 50) for _ in range(15)]
 initial_y = [random.randint(1, 50) for _ in range(15)]

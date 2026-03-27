@@ -20,7 +20,7 @@ iris = data.iris()
 fig_iris = px.scatter(iris, x="sepal_length", y="sepal_width", color="species")
 
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

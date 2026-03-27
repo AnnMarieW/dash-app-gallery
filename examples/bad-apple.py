@@ -5,7 +5,7 @@ frames = requests.get(
     "https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Other/Data-Dash-app-gallery/badapple_frames.json"
 ).json()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

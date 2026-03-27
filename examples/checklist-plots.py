@@ -8,7 +8,7 @@ species = df["species"].unique().tolist()
 
 options = [{"label": specie.capitalize(), "value": specie} for specie in species]
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

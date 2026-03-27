@@ -11,7 +11,7 @@ df = pd.read_csv(
 )
 df.replace(to_replace="#NULL!", value=0, inplace=True)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 # Country selection card

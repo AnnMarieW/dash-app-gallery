@@ -2,7 +2,7 @@ from dash import Dash, html, dcc, Input, Output, callback, no_update
 import dash_bootstrap_components as dbc
 from datetime import datetime, date
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 app.layout = dbc.Container(

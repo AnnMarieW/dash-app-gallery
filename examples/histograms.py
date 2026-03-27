@@ -3,7 +3,7 @@ import numpy as np
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB])
+app = Dash(external_stylesheets=[dbc.themes.SPACELAB])
 
 heading = html.H4(
     "Normal Distribution Simulation", className="bg-primary text-white p-2"

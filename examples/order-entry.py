@@ -12,7 +12,7 @@ df_product = pd.DataFrame(product_data)
 df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
 
-app = Dash(__name__)
+app = Dash()
 
 title = html.H4("Order Entry Table", style={"textAlign": "center", "margin": 30})
 add_button = dcc.Button("+", n_clicks=0, id="order-entry-x-add-btn")

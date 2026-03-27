@@ -4,7 +4,7 @@ from sklearn import linear_model, tree, neighbors
 from sklearn import metrics, datasets
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 MODELS = {
     "Logistic Regression": linear_model.LogisticRegression,

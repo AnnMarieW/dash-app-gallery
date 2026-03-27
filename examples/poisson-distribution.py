@@ -4,7 +4,7 @@ from dash import Input, Output, dcc, html
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 inputs = dbc.Card(

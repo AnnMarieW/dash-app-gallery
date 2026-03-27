@@ -3,7 +3,7 @@ import dash_ag_grid as dag
 from dash.exceptions import PreventUpdate
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = px.data.iris()
 fig = px.parallel_coordinates(

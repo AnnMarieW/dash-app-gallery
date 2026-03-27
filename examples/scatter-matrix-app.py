@@ -7,7 +7,7 @@ df = pd.read_csv(filepath)
 
 dimensions_list = df.columns.values
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [
