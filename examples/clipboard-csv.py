@@ -1,8 +1,9 @@
-from dash import Dash, dcc, html, Input, Output, State, dash_table
+from dash import Dash, dcc, html, Input, Output, State
+import dash_ag_grid as dag
 import pandas as pd
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/mtcars.csv")
 
@@ -13,11 +14,10 @@ app.layout = html.Div(
             "Copy mtcars.csv by clicking on the clipboard below. Paste the copied content into a notepad or Excel sheet to see the result."
         ),
         dcc.Clipboard(id="clipboard-csv-x-clip", style={"fontSize": 20}),
-        dash_table.DataTable(
-            df.to_dict("records"),
-            [{"name": i, "id": i} for i in df.columns],
+        dag.AgGrid(
+            rowData=df.to_dict("records"),
+            columnDefs=[{"field": i} for i in df.columns],
             id="clipboard-csv-x-table",
-            page_size=10,
         ),
         dcc.Graph(id="clipboard-csv-x-graph"),
         html.P("Select x variable:", style={"textAlign": "center"}),
@@ -35,11 +35,12 @@ app.layout = html.Div(
 @app.callback(
     Output("clipboard-csv-x-clip", "content"),
     Input("clipboard-csv-x-clip", "n_clicks"),
-    State("clipboard-csv-x-table", "data"),
+    State("clipboard-csv-x-table", "rowData"),
 )
 def custom_copy(_, data):
     dff = pd.DataFrame(data)
-    return dff.to_csv(index=False)  # do not include row names
+    # See options for .to_csv() or .to_excel() or .to_string() in the  pandas documentation
+    return dff.to_csv(index=False)  # includes headers
 
 
 @app.callback(

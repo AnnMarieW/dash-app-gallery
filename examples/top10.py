@@ -7,7 +7,7 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/liquor_iowa_2021.csv"
 )
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 options = [
     "city",
@@ -114,7 +114,7 @@ def update_top10_data(col):
 
         },
     ]
-    return data.to_dict("records"), cols, [{}]
+    return data.to_dict("records"), cols, []
 
 
 if __name__ == "__main__":

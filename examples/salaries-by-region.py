@@ -27,7 +27,7 @@ lst = [
 ]
 df = pd.DataFrame(lst, columns=["Region", "Month", "Salary"])
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
+app = Dash(external_stylesheets=[dbc.themes.DARKLY])
 
 dropdown_menu = dcc.Dropdown(
     id="salaries-by-region-x-dropdown",

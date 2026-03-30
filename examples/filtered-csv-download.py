@@ -1,9 +1,10 @@
 import dash
 import pandas as pd
-from dash import Dash, dash_table, dcc, html, Input, Output, State
+from dash import Dash,  dcc, html, Input, Output, State
+import dash_ag_grid as dag
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = px.data.gapminder()
 
@@ -13,14 +14,12 @@ range_slider = dcc.RangeSlider(
     marks={i: str(i) for i in range(1952, 2012, 5)},
 )
 
-dtable = dash_table.DataTable(
-    columns=[{"name": i, "id": i} for i in sorted(df.columns)],
-    sort_action="native",
-    page_size=10,
-    style_table={"overflowX": "auto"},
+dtable = dag.AgGrid(
+    rowData=df.to_dict("records"),
+    columnDefs=[{"field": i} for i in df.columns],
 )
 
-download_button = html.Button("Download Filtered CSV", style={"marginTop": 20})
+download_button = dcc.Button("Download Filtered CSV", style={"marginTop": 20})
 download_component = dcc.Download()
 
 app.layout = html.Div(
@@ -35,20 +34,23 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output(dtable, "data"),
+    Output(dtable, "dashGridOptions"),
     Input(range_slider, "value"),
 )
 def update_table(slider_value):
     if not slider_value:
         return dash.no_update
-    dff = df[df.year.between(slider_value[0], slider_value[1])]
-    return dff.to_dict("records")
+
+    return {
+        "isExternalFilterPresent": {"function": "true"},
+        "doesExternalFilterPass": {"function": f"params.data.year >= {slider_value[0]} && params.data.year <= {slider_value[1]}"}
+    }
 
 
 @app.callback(
     Output(download_component, "data"),
     Input(download_button, "n_clicks"),
-    State(dtable, "derived_virtual_data"),
+    State(dtable, "virtualRowData"),
     prevent_initial_call=True,
 )
 def download_data(n_clicks, data):

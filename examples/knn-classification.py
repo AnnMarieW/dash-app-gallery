@@ -5,7 +5,7 @@ from sklearn.datasets import make_moons
 import plotly.graph_objects as go
 import numpy as np
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

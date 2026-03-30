@@ -3,7 +3,7 @@ import plotly.express as px
 
 df = px.data.tips()
 
-app = Dash(__name__)
+app = Dash()
 
 dropdown = dcc.Dropdown(["Fri", "Sat", "Sun"], "Fri", clearable=False)
 

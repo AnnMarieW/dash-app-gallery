@@ -7,7 +7,7 @@ import numpy as np
 
 df = px.data.tips()
 
-app = Dash(__name__)
+app = Dash()
 
 models = {
     "Regression": linear_model.LinearRegression,

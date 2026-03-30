@@ -6,7 +6,7 @@ import pandas as pd
 
 df = px.data.tips()
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 gauge = html.Div(
     [

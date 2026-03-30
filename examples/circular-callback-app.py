@@ -5,16 +5,14 @@ import plotly.express as px
 filepath = "https://raw.githubusercontent.com/plotly/datasets/master/volcano_db.csv"
 df = pd.read_csv(filepath, encoding="latin")
 
-external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
-
-app = Dash(__name__, external_stylesheets=external_stylesheets)
+app = Dash()
 app.layout = html.Div(
     [
         html.Header(
             "Geographic Distribution of Volcanoes by Height",
-            style={"font-size": "30px", "textAlign": "center"},
+            style={"fontSize": "30px", "textAlign": "center"},
         ),
-        html.Div("Minimum Volcano Height", style={"font-size": "20px"}),
+        html.Div("Minimum Volcano Height", style={"fontSize": "20px"}),
         html.Label("Meters ", htmlFor="circular-callback-app-x-meter"),
         dcc.Input(id="circular-callback-app-x-meter", value=2000, type="number", step=1),
         html.Label(" Feet ", htmlFor="circular-callback-app-x-feet"),

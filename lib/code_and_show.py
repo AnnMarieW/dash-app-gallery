@@ -82,13 +82,13 @@ def make_side_by_side(code, show_app, notes):
 
     return dbc.Row(
         [
-            dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12, lg=6)
+            dbc.Col(dbc.Card(show_app, style={"padding": "10px", "paddingBottom": 20}), width=12, lg=6)
             if show_app
             else None,
             dbc.Col(
                 dbc.Card(
                     [make_code_div(code)],
-                    style={"max-height": "600px", "overflow": "auto"},
+                    style={"maxHeight": "600px", "overflow": "auto"},
                 ),
                 width=12,
                 lg=6,
@@ -117,7 +117,7 @@ def make_app_first(code, show_app, notes):
 
     return dbc.Row(
         [
-            dbc.Col(dbc.Card(show_app, style={"padding": "10px"}), width=12)
+            dbc.Col(dbc.Card(show_app, style={"padding": "10px",  "paddingBottom": 20}), width=12)
             if show_app
             else None,
             dbc.Col(

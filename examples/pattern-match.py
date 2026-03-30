@@ -7,7 +7,7 @@ default_column_x = "year"
 default_column_y = "gdpPercap"
 options = ["lifeExp", "year", "pop", "gdpPercap"]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     dbc.Row(

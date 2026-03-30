@@ -9,7 +9,7 @@ df = pd.read_csv(
 )
 df = df.query("Year == 2011")
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 bar_slider = html.Div(
     [

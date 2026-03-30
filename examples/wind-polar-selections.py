@@ -2,7 +2,7 @@ from dash import Dash, html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+app = Dash(external_stylesheets=[dbc.themes.CYBORG])
 
 df = px.data.wind()
 df[["min_strength", "max_strength"]] = (

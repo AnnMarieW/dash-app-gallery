@@ -3,7 +3,7 @@ import plotly.express as px
 
 df = px.data.gapminder().query("year==2007")
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

@@ -3,7 +3,7 @@ import plotly.express as px
 from base64 import b64encode
 import io
 
-app = Dash(__name__)
+app = Dash()
 
 buffer = io.StringIO()
 
@@ -19,11 +19,11 @@ app.layout = html.Div(
         html.H4("Simple plot export options"),
         html.P(
             "↓↓↓ try downloading the plot as PNG ↓↓↓",
-            style={"text-align": "right", "font-weight": "bold"},
+            style={"textAlign": "right", "fontWeight": "bold"},
         ),
         dcc.Graph(id="interactive-html-export-x-graph", figure=fig),
         html.A(
-            html.Button("Download as HTML"),
+            dcc.Button("Download as HTML"),
             id="interactive-html-export-x-download",
             href="data:text/html;base64," + encoded,
             download="plotly_graph.html",

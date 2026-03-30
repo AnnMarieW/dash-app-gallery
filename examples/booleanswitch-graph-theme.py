@@ -2,7 +2,7 @@ from dash import Dash, dcc, html, Input, Output
 import dash_daq as daq
 import plotly.express as px
 
-app = Dash(__name__)
+app = Dash()
 
 df = px.data.tips()
 

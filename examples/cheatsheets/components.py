@@ -1,5 +1,5 @@
 common = """```python
-html.Button('Submit', n_clicks=0)
+dcc.Button('Submit', n_clicks=0)
 
 dcc.Dropdown(['kiwi', 'banana', 'apple'], value='orange')
 

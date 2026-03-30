@@ -8,7 +8,7 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/spinrates.csv"
 )
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 knob = html.Div(
     [

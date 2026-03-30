@@ -3,7 +3,7 @@ import plotly.express as px
 
 df = px.data.gapminder()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

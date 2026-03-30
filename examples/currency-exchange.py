@@ -8,7 +8,7 @@ import dash_ag_grid as dag
 from dash import Dash, html, dcc, Input, Output
 import pandas as pd
 
-app = Dash(__name__)
+app = Dash()
 
 df = pd.DataFrame(
     {

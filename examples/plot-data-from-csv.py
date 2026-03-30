@@ -6,12 +6,12 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv"
 )
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [
         html.H4("Simple stock plot with adjustable axis"),
-        html.Button("Switch Axis", n_clicks=0, id="plot-data-from-csv-x-button"),
+        dcc.Button("Switch Axis", n_clicks=0, id="plot-data-from-csv-x-button"),
         dcc.Graph(id="plot-data-from-csv-x-graph"),
     ]
 )

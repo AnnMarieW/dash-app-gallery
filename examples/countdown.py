@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_daq as daq
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.VAPOR], prevent_initial_callbacks=True)
+app = Dash(external_stylesheets=[dbc.themes.VAPOR], prevent_initial_callbacks=True)
 
 
 countdown_store = dcc.Store(id="countdown-x-countdown-store")
@@ -19,7 +19,7 @@ countdown_input = dcc.Input(
     min=0,
     step=1,
     size="lg",
-    style={"font-size": "1.6rem"},
+    style={"fontSize": "1.6rem"},
     className="mb-3",
 )
 
@@ -28,7 +28,7 @@ button = dbc.Button(
     children="Start Countdown",
     n_clicks=0,
     size="lg",
-    style={"font-size": "1.6rem"},
+    style={"fontSize": "1.6rem"},
     color="primary",
     className="me-1",
 )
@@ -38,7 +38,7 @@ led_display = daq.LEDDisplay(
     value="0:0:0:0:0:0",
     label={
         "label": "Time in years : months : days : hours : minutes : seconds",
-        "style": {"font-size": "1.6rem", "text-align": "center"},
+        "style": {"fontSize": "1.6rem", "textAlign": "center"},
     },
     backgroundColor="black",
     color="red",
@@ -141,7 +141,7 @@ def update_countdown_display(seconds):
             f"{years}:{months}:{days}:{hours}:{mins}:{secs}".replace("0:", ""),
             {
                 "label": label_str[:-2],
-                "style": {"font-size": "1.6rem", "text-align": "center"},
+                "style": {"fontSize": "1.6rem", "textAlign": "center"},
             },
             audio,
         )
@@ -151,7 +151,7 @@ def update_countdown_display(seconds):
             "0:0:0:0:0:0",
             {
                 "label": "Time in years : months : days : hours : minutes : seconds",
-                "style": {"font-size": "1.6rem", "text-align": "center"},
+                "style": {"fontSize": "1.6rem", "textAlign": "center"},
             },
             audio,
         )

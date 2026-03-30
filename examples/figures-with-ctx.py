@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 
 data_canada = px.data.gapminder().query("country == 'Canada'")
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 buttons = html.Div(
     [

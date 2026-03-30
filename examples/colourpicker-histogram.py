@@ -13,7 +13,7 @@ df = df.loc[df["year"] == 1952]
 # "ggplot2", "seaborn", "simple_white", "plotly", "plotly_white", "plotly_dark", "presentation", "xgridoff", "ygridoff", "gridon", "none"
 pio.templates.default = "ggplot2"
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [
@@ -43,9 +43,7 @@ def update_points_color(color):
     )
     fig.update_layout(yaxis_title="Number of Countries")
     fig.update_traces(marker=dict(color=color["hex"]))
-    time.sleep(
-        2
-    )  # simulate longer callback to make loading component (spinner) more visible
+    time.sleep(2)  # simulate longer callback to make loading component (spinner) more visible
     return fig
 
 

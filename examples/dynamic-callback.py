@@ -11,7 +11,7 @@ df["Order Date"] = pd.to_datetime(df["Order Date"], format='%m/%d/%y' )
 df["Profit"] = df["Profit"].str.replace(",", ".")
 df["Profit"] = df["Profit"].astype("float")
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

@@ -3,12 +3,12 @@ import plotly.express as px
 
 df = px.data.tips()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [
         html.H4("Interactive Plotly Express axes"),
-        html.Button("Rotate labels", n_clicks=0, id="axes-x-button"),
+        dcc.Button("Rotate labels", n_clicks=0, id="axes-x-button"),
         dcc.Graph(id="axes-x-graph"),
     ]
 )

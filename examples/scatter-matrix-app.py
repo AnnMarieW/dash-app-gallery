@@ -7,17 +7,17 @@ df = pd.read_csv(filepath)
 
 dimensions_list = df.columns.values
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [
-        html.H1(
+        html.H3(
             "Scatterplot Matrix of the Correlates of Diabetes",
             style={"textAlign": "center"},
         ),
         html.Div(
             [
-                html.H3("Choose your dimensions:"),
+                html.Label("Choose your dimensions:", htmlFor="scatter-matrix-app-x-dimension-dropdown"),
                 dcc.Dropdown(
                     id="scatter-matrix-app-x-dimension-dropdown",
                     options=dimensions_list,

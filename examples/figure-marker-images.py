@@ -9,7 +9,7 @@ df = pd.read_csv(
 df["team_name"] = df["team_name"].str.rsplit(" ", n=1).str[0]
 df = df.loc[(df['season'].isin(['2023-2024', '2022-2023', '2021-2022'])) & (df['division'].isin(["Women's Super League (WSL)", "FA Women's Super League (WSL)"]))]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [

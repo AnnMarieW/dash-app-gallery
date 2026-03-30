@@ -1,6 +1,6 @@
 side_by_side_html = """```python
 sheet=['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = Dash(__name__, external_stylesheets=sheet)
+app = Dash(external_stylesheets=sheet)
 
 app.layout = html.Div([
    html.Div([
@@ -12,7 +12,7 @@ app.layout = html.Div([
 
 side_by_side_dbc = """```python
 import dash_bootstrap_components as dbc
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([
    dbc.Row([
        dbc.Col([dcc.Dropdown()], width=3),

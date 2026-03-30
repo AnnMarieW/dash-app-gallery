@@ -2,7 +2,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 from examples.cheatsheets import callbacks, components, figures, layouts, hello_world, share
 
-app=Dash(__name__)
+app=Dash()
 
 
 def make_card(header, content):

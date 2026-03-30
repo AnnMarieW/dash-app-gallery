@@ -9,7 +9,7 @@ figure = dict(
     data=[{"x": [], "y": []}],
     layout=dict(xaxis=dict(range=[-1, 1]), yaxis=dict(range=[-1, 1])),
 )
-app = Dash(__name__, update_title=None)  # remove "Updating..." from title
+app = Dash(update_title=None)  # remove "Updating..." from title
 app.layout = html.Div(
     [
         html.H4("Smooth updates using clientside callbacks"),

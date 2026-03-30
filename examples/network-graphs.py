@@ -1,7 +1,7 @@
 from dash import Dash, html, dcc, Input, Output
 import dash_cytoscape as cyto
 
-app = Dash(__name__)
+app = Dash()
 
 nodes = [
     {

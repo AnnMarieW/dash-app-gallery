@@ -1,4 +1,4 @@
-from dash import Dash, dash_table, html, Input, Output, ctx
+from dash import Dash, dash_table, html, dcc, Input, Output, ctx
 import pandas as pd
 
 product_data = {
@@ -12,10 +12,10 @@ df_product = pd.DataFrame(product_data)
 df_new_order_line = pd.DataFrame(new_order_line, index=[0])
 
 
-app = Dash(__name__)
+app = Dash()
 
 title = html.H4("Order Entry Table", style={"textAlign": "center", "margin": 30})
-add_button = html.Button("+", n_clicks=0, id="order-entry-x-add-btn")
+add_button = dcc.Button("+", n_clicks=0, id="order-entry-x-add-btn")
 total = html.Div(id="order-entry-x-total", style={"textAlign": "right"})
 
 table = dash_table.DataTable(

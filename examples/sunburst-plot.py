@@ -5,7 +5,7 @@ import numpy as np
 
 df = px.data.gapminder()
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     dbc.Row(

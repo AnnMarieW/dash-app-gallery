@@ -1,9 +1,8 @@
 from dash import Dash, html, dcc, Input, Output, callback, no_update
 import dash_bootstrap_components as dbc
-import dash_mantine_components as dmc
 from datetime import datetime, date
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 app.layout = dbc.Container(
@@ -17,11 +16,11 @@ app.layout = dbc.Container(
         Enter Birthdate:
         """
         ),
-        dmc.DatePicker(
+        dcc.DatePickerSingle(
             id="date-validation-x-date-pick",
-            value=date(2002, 9, 19),
-            maxDate=datetime.now().date(),
-            minDate=date(1920, 1, 1),
+            date=date(2002, 9, 19),
+            max_date_allowed=datetime.now().date(),
+            min_date_allowed=date(1920, 1, 1),
             placeholder="please pick your birthdate!",
         ),
         html.Div(id="date-validation-x-show-succ"),
@@ -48,7 +47,7 @@ app.layout = dbc.Container(
 @callback(
     Output("date-validation-x-show-succ", "children"),
     Output("date-validation-x-show-age", "children"),
-    Input("date-validation-x-date-pick", "value"),
+    Input("date-validation-x-date-pick", "date"),
     prevent_initial_call=True,
 )
 def update_output(d):

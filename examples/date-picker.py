@@ -4,7 +4,7 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

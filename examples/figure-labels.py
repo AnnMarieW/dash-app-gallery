@@ -4,7 +4,7 @@ import dash_daq as daq
 
 df = px.data.iris()
 
-app = Dash(__name__)
+app = Dash()
 
 picker_style = {"display": "inline-block", "margin": 10}
 

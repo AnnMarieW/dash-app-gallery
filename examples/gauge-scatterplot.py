@@ -8,7 +8,7 @@ df = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/auto-mpg.csv"
 )
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 gauge = html.Div(
     [

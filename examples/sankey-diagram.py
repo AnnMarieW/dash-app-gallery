@@ -6,7 +6,7 @@ url = "https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mock
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

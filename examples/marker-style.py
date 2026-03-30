@@ -5,7 +5,7 @@ import dash_daq as daq
 
 df = px.data.iris()
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

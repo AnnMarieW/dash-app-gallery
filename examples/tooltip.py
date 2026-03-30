@@ -37,7 +37,7 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
 fig.update_traces(hoverinfo="none", hovertemplate=None)
 
 
-app = Dash(__name__)
+app = Dash()
 
 app.layout = html.Div(
     [

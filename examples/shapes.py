@@ -1,7 +1,7 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.graph_objects as go
 
-app = Dash(__name__)
+app = Dash()
 
 
 app.layout = html.Div(
@@ -9,8 +9,8 @@ app.layout = html.Div(
         html.H4("Live data control"),
         dcc.Graph(id="shapes-x-graph"),
         html.P("Change the position of the right-most data point:"),
-        html.Button("Move Up", n_clicks=0, id="shapes-x-btn-up"),
-        html.Button("Move Down", n_clicks=0, id="shapes-x-btn-down"),
+        dcc.Button("Move Up", n_clicks=0, id="shapes-x-btn-up"),
+        dcc.Button("Move Down", n_clicks=0, id="shapes-x-btn-down"),
     ]
 )
 

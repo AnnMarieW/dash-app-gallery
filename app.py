@@ -1,7 +1,6 @@
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-from whitenoise import WhiteNoise
 from lib.utils import example_apps, example_source_codes, file_name_from_path
 from lib.code_and_show import make_code_div
 
@@ -21,10 +20,10 @@ app = Dash(
     use_pages=True,
     external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP, vis_timeline_css],
     external_scripts=[vis_timeline_script],
-    suppress_callback_exceptions=True
+    suppress_callback_exceptions=True,
+    prevent_initial_callbacks=True
 )
 server = app.server
-server.wsgi_app = WhiteNoise(server.wsgi_app, root="assets/")
 
 
 for k in example_apps:
@@ -49,7 +48,7 @@ btn_group = html.Div([
             "Home",
             id="overview",
             href=dash.get_relative_path("/"),
-            color='primary',
+            color='secondary',
             outline=True,
             className='mt-2 mt-md-0 me-md-2'
         ),
@@ -58,20 +57,20 @@ btn_group = html.Div([
             id="dash-docs",
             href="https://dash.plotly.com/",
             target="_blank",
-            color='primary',
+            color='secondary',
             outline=True,
             className='text-nowrap mt-2 mt-md-0'
         ),
         dbc.Button(
             "Fullscreen App",
             id="open-fs-app",
-            color='primary',
+            color='secondary',
             outline=True,
         ),
         dbc.Button(
             "Fullscreen Code",
             id="open-fs-code",
-            color='primary',
+            color='secondary',
             outline=True,
         ),
 ], className='navbar-nav')
@@ -95,7 +94,7 @@ navbar = dbc.Navbar([
             navbar=True
         )
     ], fluid=True)
-])
+], color="dark")
 
 
 footer = html.H4(
@@ -180,4 +179,5 @@ def refresh_page(is_open, pathname):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port='8050')
+    app.run(debug=True)
+
