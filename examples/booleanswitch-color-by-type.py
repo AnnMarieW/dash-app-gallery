@@ -1,24 +1,27 @@
 from dash import Dash, dcc, html, Input, Output
-import dash_daq as daq
+import dash_bootstrap_components as dbc
 import plotly.express as px
 
-app = Dash()
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = px.data.iris()
 
 app.layout = html.Div(
     [
-        html.H2("Colour by Type BooleanSwitch Example App"),
-        html.P("colour off | colour on", style={"textAlign": "center"}),
-        daq.BooleanSwitch(id="booleanswitch-color-by-type-x-pb", on=False),
-        html.Div(id="booleanswitch-color-by-type-x-pb-result")
+        html.H3("Color by Type BooleanSwitch Example App"),
+        dbc.Switch(
+            id="booleanswitch-color-by-type-x-pb",
+            label="color off | color on",
+            value=False,
+        ),
+        dcc.Graph(id="booleanswitch-color-by-type-x-pb-result")
     ]
 )
 
 
 @app.callback(
-    Output("booleanswitch-color-by-type-x-pb-result", "children"),
-    Input("booleanswitch-color-by-type-x-pb", "on"),
+    Output("booleanswitch-color-by-type-x-pb-result", "figure"),
+    Input("booleanswitch-color-by-type-x-pb", "value"),
 )
 def update_output(on):
     if on:
@@ -30,7 +33,7 @@ def update_output(on):
             color="species",
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        return dcc.Graph(figure=fig)
+        return fig
     else:
         fig = px.scatter(
             df,
@@ -39,7 +42,7 @@ def update_output(on):
             height=500,
         )
         fig.update(layout=dict(title=dict(x=0.5)))
-        return dcc.Graph(figure=fig)
+        return fig
 
 
 if __name__ == "__main__":
