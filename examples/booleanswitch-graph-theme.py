@@ -1,16 +1,19 @@
 from dash import Dash, dcc, html, Input, Output
-import dash_daq as daq
+import dash_bootstrap_components as dbc
 import plotly.express as px
 
-app = Dash()
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = px.data.tips()
 
 app.layout = html.Div(
     [
-        html.H2("Graphing Light/Dark Mode with BooleanSwitch"),
-        html.P("light | dark", style={"textAlign": "center"}),
-        daq.BooleanSwitch(id="booleanswitch-graph-theme-x-dark_mode", on=False),
+        html.H3("Graphing Light/Dark Mode with BooleanSwitch"),
+        dbc.Switch(
+            id="booleanswitch-graph-theme-x-dark_mode",
+            label="light | dark",
+            value=False,
+        ),
         html.Div(id="booleanswitch-graph-theme-x-pb-result")
     ]
 )
@@ -18,7 +21,7 @@ app.layout = html.Div(
 
 @app.callback(
     Output("booleanswitch-graph-theme-x-pb-result", "children"),
-    Input("booleanswitch-graph-theme-x-dark_mode", "on"),
+    Input("booleanswitch-graph-theme-x-dark_mode", "value"),
 )
 def update_output(on):
     if on:

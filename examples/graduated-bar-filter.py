@@ -1,5 +1,4 @@
 from dash import Dash, html, dcc, Input, Output
-import dash_daq as daq
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -13,25 +12,19 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 bar_slider = html.Div(
     [
-        daq.GraduatedBar(
-            id="graduated-bar-filter-x-bar",
-            label="Filter minimum emission levels:",
-            value=5,
-        ),
-        html.Div(className='mb-5'),
-        daq.Slider(
+
+       dcc.Slider(
             id="graduated-bar-filter-x-slider",
             min=0,
             max=10,
             value=5,
-            handleLabel={"showCurrentValue": True, "label": "VALUE"},
         ),
     ]
 )
 
 app.layout = dbc.Container(
     [
-        html.H2("Filtering a Bar Chart with Graduated Bar & Slider"),
+        html.H2("Filtering a Bar Chart with a Slider"),
         dbc.Row(
             [
                 dbc.Col(bar_slider, md=4),
@@ -41,14 +34,6 @@ app.layout = dbc.Container(
         ),
     ]
 )
-
-
-@app.callback(
-    Output("graduated-bar-filter-x-bar", "value"),
-    Input("graduated-bar-filter-x-slider", "value"),
-)
-def update_output(value):
-    return value
 
 
 @app.callback(

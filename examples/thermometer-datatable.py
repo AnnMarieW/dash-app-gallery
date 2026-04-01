@@ -1,5 +1,4 @@
 from dash import Dash, html, dcc, Input, Output
-import dash_daq as daq
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -15,28 +14,18 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
-        html.H2("Filter a Data Table with Thermometer & Slider"),
+        html.H2("Filter a Data Table with a vertical Slider"),
         html.Hr(),
         dbc.Row(
             [
-                dbc.Col(
-                    daq.Thermometer(
-                        id="thermometer-datatable-x-thermometer",
-                        value=5,
-                        min=0,
-                        max=10,
-                        style={"margin-bottom": "5%"},
-                    )
-                ),
-                dbc.Col(
-                    daq.Slider(
-                        id="thermometer-datatable-x-slider",
-                        min=0,
-                        max=10,
-                        value=5,
-                        vertical=True,
-                        size=200,
+               dbc.Col(
+                    dcc.Slider(
+                        0, 26, value=10,
+                       vertical=True,
+                       tooltip={"placement": "right", "always_visible": True, "template": "{value}°C"},
+                       id="thermometer-datatable-x-slider",
                     ),
+                    style={"--Dash-Fill-Interactive-Strong": "red"},
                 ),
                 dbc.Col(
                     dag.AgGrid(
@@ -63,15 +52,6 @@ app.layout = dbc.Container(
         ),
     ]
 )
-
-
-@app.callback(
-    Output("thermometer-datatable-x-thermometer", "value"),
-    Input("thermometer-datatable-x-slider", "value"),
-)
-def update_thermometer(value):
-    return value
-
 
 @app.callback(
     Output("thermometer-datatable-x-table", "rowData"),
